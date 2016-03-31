@@ -1,46 +1,151 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hawaiian Airlines</title>
+  <link rel="shortcut icon" href="/Images/favicon.png" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles/index.css" type="text/css" charset="utf-8"/>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
+  <!--<script src="/js/jquery-2.2.0.min.js"></script> -->
+  <script src="/js/angular.min.js"></script>
+  <script src="/js/angular-route.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/ui-bootstrap-tpls-1.2.5.min.js"></script>
+</head>
+<body>
 
-<html ng-app="Hawaiian_Airlines">
-  <head>
-    <title>Home</title>
-    <script src="/js/jquery-2.2.0.min.js"></script>
-    <script src="/js/angular.min.js"></script>
-    <script src="/js/angular-route.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/ui-bootstrap-tpls-1.2.5.min.js"></script>
-    <!--<script src="core.js"></script>-->
-    <!--<script src="/controllers/mainCtrl.js"></script>-->
-    <!--<script src="/controllers/flightsCtrl.js"></script>-->
-    <!--<script src="/services/flightsSrv.js"></script>-->
-    <link rel="stylesheet" href="/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/index.css">
-  </head>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"><img src="/Images/logo.png"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a class="item" href="#">Home</a></li>
+        <li><a class="item" href="#">About Us</a></li>
+        <li><a class="item" href="#">Contact Us</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-    <body background="background3.png">
+<!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
+     Indicators -->
+   <!-- <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+    </ol> -->
 
-    <!-- TOP NAVBAR -->
-    <nav class='navbar navbar-inverse navbar-fixed-top'>
-      <div class="container">
-        <div class="navbar-header">
-          <img class="navbar-brand>img" src="logo.png" >
-                    <!--<a href="/#/" class="navbar-brand">SE L7</a>-->
-        </div>
-        
-        <ul class="nav navbar-nav">
-
-            <li><a href="#" > <b>HOME</b> </a> </li>
-            <li><a href="#" > <b>ABOUT-US</b>   </a></li>
-            <li><a href="#" > <b>CONTACT-US</b> </a></li>
-        </ul>
+    <!-- Wrapper for slides -->
+   <!--  <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="/Images/plane.jpg" alt="Image">
+        <div class="carousel-caption">
+          <h3>Sell $</h3>
+          <p>Money Money.</p>
+        </div>      
       </div>
-    </nav>
-     
+
+      <div class="item">
+        <img src="/Images/plane.jpg" alt="Image">
+        <div class="carousel-caption">
+          <h3>More Sell $</h3>
+          <p>Lorem ipsum...</p>
+        </div>      
+      </div>
+    </div> -->
+
+    <!-- Left and right controls -->
+   <!--  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div> -->
+
+<div class="imageContainer">
+  <img src="/Images/plane.jpg" class="imagePlane">
+</div>
   
-    <!-- TOP NAVBAR -->
+<div class="main">
+<div class="container text-center">    
+  <h3> <button id="btn" type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-gbp"></span>  Special Offers</button></h3><br>
+  <div class="row">
+    <div class="col-sm-4">
+      <img src="http://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p class="titles">Project 1</p>
+    </div>
+    <div class="col-sm-4"> 
+      <img src="/Images/fav.gif" class="img-responsive" style="width:100%" alt="Image">  
+    </div>
+    <div class="col-sm-4"> 
+      <img src="http://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p class="titles">Project 3</p>    
+    </div>
+  </div>
+</div><br>
 
-    <!-- ANGULAR DYNAMIC TEMPLATING -->
-    <div ng-view></div>
-    <!-- ANGULAR DYNAMIC TEMPLATING -->
+<div class="container text-center">    
+  <h3><button id="btn" type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-plane"></span>  New Destinations</button></h3><br>
+  <div class="row">
+    <div class="col-sm-4">
+      <img src="/Images/galaxy.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <p class="titles">A Galaxy Far Away</p>
+    </div>
+    <div class="col-sm-4"> 
+      <img src="/Images/narnia.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <p class="titles">Narnia</p>    
+    </div>
+    <div class="col-sm-4"> 
+      <img src="/Images/dev.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <p class="titles">The Developer's Mind</p>    
+    </div>
+  </div>
+</div><br>
 
-    </body>
+<div class="container text-center">    
+  <h3><button id="btn" type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span>  News</button></h3><br>
+  <div class="row">
+    <div class="col-sm-4">
+      <img src="http://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p class="titles"></p>
+    </div>
+    <div class="col-sm-4"> 
+      <img src="http://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p class="titles"></p>    
+    </div>
+    <div class="col-sm-4"> 
+      <img src="http://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p class="titles"></p>    
+    </div>
+  </div>
+</div><br>
+</div>
+
+<footer class="container-fluid text-center">
+  <div class="social_btns">
+  <a href="https://www.facebook.com/HawaiianAirlines"><i class = "fa fa-facebook fa-2x"></i></a>
+  <a href="https://twitter.com/HawaiianAir"><i class = "fa fa-twitter fa-2x"></i></a>
+  <a href="https://www.instagram.com/hawaiianairlines/"><i class = "fa fa-instagram fa-2x"></i></a>
+  <a href="https://www.youtube.com/user/HawaiianAirlines"><i class = "fa fa-youtube-play fa-2x"></i></a>
+  </div>
+  <p>© 2016 HAWAIIAN AIRLINES. ALL RIGHTS RESERVED</p>
+</footer>
+
+</body>
 </html>
