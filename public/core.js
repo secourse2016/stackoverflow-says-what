@@ -7,6 +7,10 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/main.html',
             controller  : 'mainCtrl'
         })
+        .when('/one-way', {
+            templateUrl : '/partials/one-way.html',
+            controller  : 'mainCtrl'                //to be changed
+        })
         .otherwise({ 
       redirectTo: '/' 
     });
