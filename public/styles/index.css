@@ -1,5 +1,12 @@
 /* Remove the navbar's default margin-bottom and rounded borders */ 
 
+    
+    table.center {
+    border-collapse: separate;
+    border-spacing: 10px;
+    margin-left:auto; 
+    margin-right:auto;
+    }
 
     .pink_heading{
       text-align: center;
