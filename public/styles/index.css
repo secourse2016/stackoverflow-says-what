@@ -1,4 +1,11 @@
 /* Remove the navbar's default margin-bottom and rounded borders */ 
+
+
+    .pink_heading{
+      text-align: center;
+      color: #C71585
+    }
+    
     .navbar {
       margin-bottom: 0px;
       border-radius: 0;
