@@ -1,0 +1,64 @@
+[
+	{
+		"flight_no": "SE2804",
+		"aircraft_model": "Airbus a318",
+		"origin": "IAD",
+		"destination": "JFK",
+	    "capacity": "100",
+	    "date": "2016-04-26T18:25:43.511Z",
+	    "duration": 120,
+	    "available_seats" : {
+			"seats_a" : 19,
+			"seats_b" : 35,
+			"seats_c" : 45 
+	    }
+	    "seatmap":  [{
+						"seat_no" : "A23", 
+			            "class" : "A", 
+			            "reservation_id" : "VIW23Jfwq8vi3x0ef9",
+			            "cost" : 321,
+			            "window" : true,
+			            "cabin_no": "3"
+		}]
+
+	},
+	{
+		"flight_no": "SE2805",
+		"aircraft_model": "Airbus a318",
+		"origin": "IAD",
+		"destination": "JFK",
+	    "capacity": "100",
+	    "date": "2016-04-28T18:25:43.511Z",
+	    "duration": 120,
+	    "available_seats" : {
+			"seats_a" : 17,
+			"seats_b" : 35,
+			"seats_c" : 45
+	    }
+	    "seatmap":  [{
+						"seat_no" : "A23", 
+			            "class" : "A", 
+			            "reservation_id" : "VIW23Jfwq8vi3x0ef9",
+			            "cost" : 321,
+			            "window" : true,
+			            "cabin_no": "3"
+		},
+		{
+			"seat_no" : "A25", 
+			            "class" : "A", 
+			            "reservation_id" : "VIW23Jfwb9vi3z0ef9",
+			            "cost" : 321,
+			            "window" : true,
+			            "cabin_no": "3"
+		},
+		{
+			"seat_no" : "A28", 
+			            "class" : "A", 
+			            "reservation_id" : "VIK51Jfwq8vi3x0ef9",
+			            "cost" : 280,
+			            "window" : false,
+			            "cabin_no": "4"
+		}]
+
+	}
+]
