@@ -11,6 +11,10 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/one-way.html',
             controller  : 'mainCtrl'                //to be changed
         })
+         .when('/flightBooking', {
+            templateUrl : '/partials/flightBooking.html',
+            controller  : 'mainCtrl'                //to be changed
+        })
         .otherwise({ 
       redirectTo: '/' 
     });
