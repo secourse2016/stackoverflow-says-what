@@ -2,22 +2,23 @@
     .navbar {
       margin-bottom: 0px;
       border-radius: 0px;
-      height: 70px;
+      height: 50px;
       font-weight: bold;
       font-size: 16px;
       color: white;
     }
-     table.center {
-    border-collapse: separate;
-    border-spacing: 10px;
-    margin-left:auto; 
-    margin-right:auto;
+
+   /*table.center {
+      border-collapse: separate;
+      border-spacing: 10px;
+      margin-left:auto; 
+      margin-right:auto;
     }
 
     .pink_heading {
       text-align: center;
       color: #C71585
-    }
+    }*/
 
     .imageContainer {
       width: 100%; 
@@ -33,24 +34,26 @@
       height: 100%;
       margin-top: 0px;
       position: relative;
+      
     }
 
     #btnFlight {
        position:absolute;
        bottom:250px;
        right:550px;
-      width:200px;
-      height:50px;
-      background-color: #C71585;
-     color: white;
+       width:200px;
+       height:50px;
+       background-color: #C71585;
+       color: white;
     }
-    /*.bate5 {
+   .welcomeText {
       position:absolute;
-      text-transform: none!important;
-      font-weight: 400;
-      font-family: thirsty-script-light,cursive;
-      color: gray;
-    }*/
+      top: 250px; 
+      left:400px;
+      width: 100%;
+      color: white;
+      font-family: 'Lobster', cursive;
+    }
 
     .Container {
       position: absolute; 
@@ -146,7 +149,8 @@
       position: relative;
     }
 
-    #flightBtn {
+  
+    #btn {
       background-color: #C71585;
       color: white;
       margin-bottom: 20px;
@@ -175,11 +179,6 @@
       width: 100%; /* Set width to 100% */
       margin:0 auto;
       min-height:100px;
-  }
-  
-  #btn {
-    background-color: #C71585;
-    color: white;
   }
 
   /* Hide the carousel text when the screen is less than 600 pixels wide */
