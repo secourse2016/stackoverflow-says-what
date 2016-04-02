@@ -18,7 +18,11 @@ App.config(function($routeProvider) {
         })     //to be changed
 	    .when('/payment', {
             templateUrl : '/partials/payment.html',
-            controller  : 'paymentCtrl'                //to be changed
+            //controller  : 'paymentCtrl'                //to be changed
+        })
+        .when('/outGoingFlights',{
+            templateUrl : '/partials/outGoingFlights.html',
+            controller : 'flightCtrl';
         })
         .otherwise({ 
           redirectTo: '/' 
