@@ -1,0 +1,116 @@
+<!-- <div class="col-sm-3"><label style="font-size: 20px">{{f}}</h3></label></div> -->
+<div id="wrapper" style="display: inline-block;">
+    <div id="inner_left"><p1>Class</p1>
+    <select name="class" id ="classselect">
+   <option value=""></option>
+  <option value="business">Business</option>
+  <option value="econnomy+">econnomy+</option>
+  <option value="econnomy">econnomy</option>
+  </select> 
+   <!--cost -->
+   <form id = "cost">
+  From: <input type="text" name="from">
+  <select name="class">
+  <option value=""></option>
+  <option value="fromcost1">100</option>
+  <option value="fromcost2">200</option>
+  <option value="fromcost3">300</option>
+  </select> <br>
+  To: <input type="text" name="to">
+  <select name="class">
+  <option value=""></option>
+  <option value="tocost1">$</option>
+  <option value="tocost2"></option>
+  <option value="tocost3">300</option>
+  </select> <br><br>
+  <input type="submit" value="Filter">
+  </form>
+  <!--destenation-->
+   <form id = "destination">
+  From: 
+  <input type="date">
+  <select>
+  <option value="AM1">AM</option>
+  <option value="PM">PM</option>
+  </select> <br>
+  To:
+  <input type="date">
+  <select>
+  <option value="AM2">AM</option>
+  <option value="PM2">PM</option>
+  </select> <br><br>
+  <input type="checkbox" name="fewestStops" value="fewestStops"> fewest stops<br>
+  <input type="submit" value="Filter">
+  </form>
+   <!--cost -->
+   <form id = "OrderBy">
+  <select name="OrderBY">
+  <option value="orderby1">Default</option>
+  <option value="orderby2">Arrival time</option>
+  <option value="orderby3">No of stops</option>
+  <option value="orderby4">total duration</option>
+  <option value="orderby5">Origin</option>
+   <option value="orderby5">Destination</option>
+  </select> <br>
+    </form>
+    </div>
+    <div id="inner_right" style="display: inline-block; width:100%;">
+   <input type="date">
+   <table class="table table-bordered" id="myTable">
+  <tr class="clickable-row">
+    <td>Example</td>
+     <td>Business</td>
+      <td>EconomyA</td>
+       <td>EconomyB</td>
+  </tr>
+  
+   		<tr class="clickable-row" ng-repeat = "flight in flights track by $index ">
+    <td><form>
+    flight number : {{flight.continent}}<br>
+     type: {{flight.type}}<br>
+    lat : {{flight.lat}}<br>
+    size : {{flight.size}}<br>
+    </form></td>
+       <td><button ng-click = "reservebusiness(flight)" type="button" class="btn btn-default btn-lg btn-round">$900</button></td>
+        <td><button type="button" class="btn btn-default btn-lg btn-round">$900</button></td>
+         <td><button type="button" class="btn btn-default btn-lg btn-round">$900</button></td>
+  </tr>
+
+
+   <!-- </div>
+    <td>{{size}}</td>
+     <td><button type="button" class="btn btn-default btn-lg btn-round">$900</button></td>
+      <td><button>{{price}}</button></td>
+      <td><button>{{price}}</button></td> -->
+<!--   </tr>
+   <tr class="clickable-row">
+    <td>Example</td>
+     <td><button>{{price}}</button></td>
+      <td><button>{{price}}</button></td>
+      <td><button>{{price}}</button></td>
+  </tr>
+   <tr class="clickable-row">
+    <td>Example</td>
+     <td><button>{{price}}</button></td>
+      <td><button>{{price}}</button></td>
+      <td><button>{{price}}</button></td>
+  </tr>
+  <tr class="clickable-row">
+    <td>Example</td>
+     <td><button>{{price}}</button></td>
+      <td><button>{{price}}</button></td>
+      <td><button>{{price}}</button></td>
+  </tr>
+   <tr class="clickable-row">
+    <td>Example</td>
+     <td><button>{{price}}</button></td>
+      <td><button>{{price}}</button></td>
+      <td><button>{{price}}</button></td -->
+
+</table>
+
+  <div ng-repeat="flight in flights">
+  {{}}
+</div>
+</div>
+</div>

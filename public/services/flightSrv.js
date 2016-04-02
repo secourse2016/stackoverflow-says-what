@@ -104,6 +104,20 @@ App.factory('flightSrv',function($http){
 		// returns the passenger's destination
 		getDestination : function(){
 			return this.destination;
+		},
+		setPrice : function(value){
+			this.price = value;
+		},
+		// returns the passenger's destination
+		getPrice : function(){
+			return this.price;
+		},
+		setClass : function(value){
+			this.class = value;
+		},
+		// returns the passenger's destination
+		getDestination : function(){
+			return this.class;
 		}
 	};
 });

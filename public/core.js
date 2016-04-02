@@ -22,7 +22,7 @@ App.config(function($routeProvider) {
         })
         .when('/outGoingFlights',{
             templateUrl : '/partials/outGoingFlights.html',
-            controller : 'flightCtrl';
+            controller : 'flightCtrl'
         })
         .otherwise({ 
           redirectTo: '/' 
