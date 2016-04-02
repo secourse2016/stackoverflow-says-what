@@ -11,11 +11,16 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/one-way.html',
             controller  : 'mainCtrl'                //to be changed
         })
-	.when('/payment', {
+
+        .when('/flightBooking', {
+            templateUrl : '/partials/flightBooking.html',
+            controller  : 'mainCtrl'           
+        })     //to be changed
+	    .when('/payment', {
             templateUrl : '/partials/payment.html',
             controller  : 'paymentCtrl'                //to be changed
         })
         .otherwise({ 
-      redirectTo: '/' 
-    });
+          redirectTo: '/' 
+        });
 });
