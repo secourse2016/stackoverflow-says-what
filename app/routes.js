@@ -1,11 +1,5 @@
 module.exports = function(app,mongo) {
 
-    /* GET ALL STATES ENDPOINT */
-    //app.get('/api/data/codes', function(req, res) {
-    //  var codes =  require('../airports.json');
-    //  res.json( codes );
-    //});
-
     app.get('/api/data/flights', function(rep, res){
     	var flights = require('../flights.json');
     	res.json(flights);
@@ -30,5 +24,11 @@ module.exports = function(app,mongo) {
     app.get('/', function (req, res) {
       res.sendFile(__dirname + '/public/index.html');
     });
+
+    /* RENDER 404 PAGE */
+    /*app.get('*', function (req, res) {
+        res.status(404);
+        res.sendFile(__dirname + '/public/partials/404.html',404);
+    });*/
 
 };
