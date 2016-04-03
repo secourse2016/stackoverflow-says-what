@@ -32,23 +32,6 @@ App.factory('flightSrv',function($http){
 		getNumberOfChildren : function(){
 			return this.noOfChildren;
 		},
-		// saves an array of adult details as will be provided in the html page
-		// i.e. full name, age , nationality etc refernce number to be added after payment
-		setAdultDetails : function(value){
-			this.arrayOfAdults.push(value);
-		},
-		// returns the array of adults
-		getAdultDetails : function(){
-			return this.arrayOfAdults;
-		},
-		// saves an array of children details as for the adults
-		setChildrenDetails : function(value){
-			this.arrayOfChildren.push(value);
-		},
-		// returns the array of children
-		getChildrenDetails : function(){
-			return this.arrayOfChildren;
-		},
 		// sets the first departure date
 		setDepartureDate : function(value){
 			this.departureDate = value;
@@ -65,7 +48,8 @@ App.factory('flightSrv',function($http){
 		getArrivalDate : function(){
 			return this.arrivalDate;
 		},
-		// a boolean variable that indicates if the flight being booked is a round trip flight
+		// a boolean variable that indicates if the flight being booked is a round trip flight or a one-way flight
+		// if true, then the flight booked is one-way, else the flight booked is roundtrip
 		setType : function(value){
 			this.type = value;
 		},
@@ -104,6 +88,18 @@ App.factory('flightSrv',function($http){
 		// returns the passenger's destination
 		getDestination : function(){
 			return this.destination;
+		},
+		setPriceOutgoingFlight : function(value){
+			this.priceOutgoing = value;
+		},
+		getPriceOutgoingFlight : function(){
+			return this.priceOutgoing;
+		},
+		setPriceIngoingFlight : function(value){
+			this.priceIngoing = value;
+		},
+		getPriceIngoingFlight : function(){
+			return this.priceIngoing;
 		}
 	};
 });
