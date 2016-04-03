@@ -188,3 +188,51 @@
     }
 
 }
+#myTable{
+   
+  position: center;
+  background-color: transparent;
+}
+/*#date{
+  background-color: #009900;
+}
+*/
+#from{
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    position: center;
+     border: 2px solid violet;
+    border-radius: 8px;
+    background-color: transparent;
+
+}
+#to{
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    position: center;
+    border: 2px solid violet;
+    border-radius: 8px;
+    background-color: transparent;
+}
+.dollar{
+  color: gray;
+  font-size: 30px;
+}
+/*#header{
+  
+    height: 500px;
+    width: 80%;
+    margin: 50px;
+}*/
+#wrapper{
+  background-image: url("../Images/plane.jpg");
+  background-color: transparent;
+  width: 80%;
+  margin: 100px;
+}
+.button{
+
+  background-color: transparent;
+}
