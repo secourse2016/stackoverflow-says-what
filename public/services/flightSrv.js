@@ -91,6 +91,7 @@ App.factory('flightSrv',function($http){
 		},
 		// saves the passenger's origin
 		setOrigin : function(value){
+			console.log(value);
 			this.origin = value;
 		},
 		// returns the passenger's origin
