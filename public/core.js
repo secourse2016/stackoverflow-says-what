@@ -20,6 +20,10 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/payment.html',
             controller  : 'paymentCtrl'                //to be changed
         })
+          .when('/complete', {
+            templateUrl : '/partials/finalPage.html',
+            //controller  : 'mainCtrl'                //to be changed
+        })
         .otherwise({ 
           redirectTo: '/' 
         });
