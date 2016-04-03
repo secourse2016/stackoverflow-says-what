@@ -1,11 +1,11 @@
 <div >
 <link href="https://a1.muscache.com/airbnb/static/packages/common_o2.1-pretzel-63569659624b0120e962749578cae707.css" media="all" rel="stylesheet" type="text/css">
 <div class="imageContainer">
-    <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+    <div id="Carousel2" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#Carousel2" data-slide-to="0" class="active"></li>
+      <li data-target="#Carousel2" data-slide-to="1"></li>
     </ol>
 
     <!-- Wrapper for slides -->
@@ -20,16 +20,6 @@
         <div class="carousel-caption"></div>      
       </div>
     </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
 </div>  
 
 
@@ -43,15 +33,16 @@
       <label for="tabbed1">One Way</label>
     </h1>
     <div>
-      <label class="tripLabel">One Way Trip</label>
+      <label class="tripLabel">One Way</label>
       <label class="inputLabel">Departing From</label>
       <div class="input-group">
         <input type="text" class="form-control" required placeholder="Where are you flying from?"
         aria-describedby="basic-addon1" 
-        ng-model="selectedOrigin"
+        ng-model="selectedOriginOneway"
         uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
         class="form-control"
-        typeahead-on-select="setOrigin($item.iata)">
+        typeahead-on-select="setOrigin($item.iata)"
+        required>
         <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
       </div>
 
@@ -59,10 +50,11 @@
       <div class="input-group">
          <input type="text" class="form-control" placeholder="Where are you flying to?" 
          aria-describedby="basic-addon1"
-         ng-model="selectedDestination"
+         ng-model="selectedDestinationOneway"
          uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
          class="form-control"
-         typeahead-on-select="setDestination($item.iata)"/>
+         typeahead-on-select="setDestination($item.iata)"
+         required/>
          <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
       </div>
 
@@ -71,16 +63,16 @@
       <div class='input-group date' id='datetimepicker1'>
          <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"
          uib-datepicker-popup="{{format}}"
-         ng-model="dt"
+         ng-model="dtOneway"
          is-open="popup1.opened"
          ng-required="true"
          close-text="Close"
          alt-input-formats="altInputFormats"
-         ng-click="open1()"/>
+         ng-click="open1()"
+         required/>
          <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
       </div>
-
-     <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchRoundTrip()"><i class="fa fa-search"></i>   Search Flights</button>
+     <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchOneWay()"><i class="fa fa-search" ></i>   Search Flights</button>
    </div>
   </section>
 
@@ -97,10 +89,11 @@
      <div class="input-group">
        <input type="text" class="form-control" placeholder="Where are you flying from?" 
        aria-describedby="basic-addon1"
-       ng-model="selectedOrigin"
+       ng-model="selectedOriginRound"
        uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
        class="form-control"
-       typeahead-on-select="setOrigin($item.iata)"/>
+       typeahead-on-select="setOrigin($item.iata)"
+       required/>
        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
      </div>
 
@@ -108,10 +101,11 @@
      <div class="input-group">
        <input type="text" class="form-control" placeholder="Where are you flying to?" 
        aria-describedby="basic-addon1"
-       ng-model="selectedDestination"
+       ng-model="selectedDestinationRound"
        uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
        class="form-control"
-       typeahead-on-select="setDestination($item.iata)"/>
+       typeahead-on-select="setDestination($item.iata)"
+       required/>
        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
      </div>
 
@@ -121,12 +115,13 @@
          <div class='input-group date' id='datetimepicker1'>
            <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"
            uib-datepicker-popup="{{format}}"
-           ng-model="dt"
+           ng-model="dtRound"
            is-open="popup1.opened"
            ng-required="true"
            close-text="Close"
            alt-input-formats="altInputFormats"
-           ng-click="open1()"/>
+           ng-click="open1()"
+           required/>
            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
          </div>
        </div>
@@ -136,12 +131,13 @@
          <div class='input-group date' id='datetimepicker1'>
             <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"
             uib-datepicker-popup="{{format}}"
-            ng-model="dt"
+            ng-model="atRound"
             is-open="popup2.opened"
             ng-required="true"
             close-text="Close"
             alt-input-formats="altInputFormats"
-            ng-click="open2()"/>
+            ng-click="open2()"
+            required/>
             <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
          </div>
        </div>
