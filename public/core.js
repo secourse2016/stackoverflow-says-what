@@ -7,9 +7,30 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/main.html',
             controller  : 'mainCtrl'
         })
-        .when('/one-way', {
-            templateUrl : '/partials/one-way.html',
-            controller  : 'mainCtrl'                //to be changed
+        .when('/flightBooking', {
+            templateUrl : '/partials/flightBooking.html',
+            controller  : 'flightBookingCtrl'           
+        })    
+        .when('/outGoingFlights',{
+            templateUrl : '/partials/outGoingFlights.html',
+            controller : 'flightCtrl'
+        }) 
+	    .when('/payment', {
+            templateUrl : '/partials/payment.html',
+            //controller  : 'paymentCtrl'                
+        })
+        .when('/inGoingFlights',{
+            templateUrl : '/partials/inGoingFlights.html',
+            controller : 'flightCtrl'
+        })
+          .when('/complete', {
+            templateUrl : '/partials/finalPage.html',
+            //controller  : 'mainCtrl'                //to be changed
+        })
+
+        .when('/myCarousel',{
+            templateUrl : '/partials/main.html',
+            controller  : 'mainCtrl'            
         })
         .when('/confirmationR', {
             templateUrl : '/partials/confirmationRoundTrip.html',
@@ -20,6 +41,6 @@ App.config(function($routeProvider) {
             controller : 'confirmOCtrl'
         })
         .otherwise({ 
-      redirectTo: '/' 
-    });
+          templateUrl : '/partials/404.html'   
+        });
 });
