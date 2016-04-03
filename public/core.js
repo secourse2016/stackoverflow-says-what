@@ -13,7 +13,11 @@ App.config(function($routeProvider) {
         })     
 	    .when('/payment', {
             templateUrl : '/partials/payment.html',
-            controller  : 'paymentCtrl'
+            //controller  : 'paymentCtrl'                //to be changed
+        })
+        .when('/outGoingFlights',{
+            templateUrl : '/partials/outGoingFlights.html',
+            controller : 'flightCtrl'
         })
        
         .otherwise({ 
