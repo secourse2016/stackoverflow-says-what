@@ -1,8 +1,9 @@
 
 App.controller('flightCtrl', function($scope,flightSrv,$location) {
-    $scope.predicate = "continent";
+    $scope.predicate = "date";
     $scope.reverse = "price1";
-    $scope.flights=[
+    $scope.flights=
+    [
     {
   "flight_no": "SE2804",
   "aircraft_model": "Airbus a318",
@@ -183,7 +184,8 @@ App.controller('flightCtrl', function($scope,flightSrv,$location) {
      "price2"   :230,
      "price3"   :60
 
-}]       $scope.reservebusiness= function (flight){
+}]  ;     
+$scope.reservebusiness= function (flight){
         	flightSrv.setFlight(flight);
         		flightSrv.setPrice(flight);
         			flightSrv.setClass("business");
