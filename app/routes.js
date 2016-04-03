@@ -1,11 +1,5 @@
 module.exports = function(app,mongo) {
 
-    /* GET ALL STATES ENDPOINT */
-    //app.get('/api/data/codes', function(req, res) {
-    //  var codes =  require('../airports.json');
-    //  res.json( codes );
-    //});
-
     app.get('/api/data/flights', function(rep, res){
     	var flights = require('../flights.json');
     	res.json(flights);

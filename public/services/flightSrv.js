@@ -79,8 +79,13 @@ App.factory('flightSrv',function($http){
 		},
 		// returns the passenger's origin
 		getOriginAirport : function(){
+<<<<<<< HEAD
 			return this.origin;
 			// return value;
+=======
+			// return this.origin;
+			// return 'JFK';
+>>>>>>> 400bff3c4e6662a05a3881b082a64aa330bb5929
 		},
 		// saves the passenger's destination
 		setDestinationAirport : function(value){
@@ -89,7 +94,10 @@ App.factory('flightSrv',function($http){
 		// returns the passenger's destination
 		getDestinationAirport : function(){
 			return this.destination;
+<<<<<<< HEAD
 			// return 'IAD';
+=======
+>>>>>>> 400bff3c4e6662a05a3881b082a64aa330bb5929
 		},
 		setPriceOutgoingFlight : function(value){
 			this.priceOutgoing = value;
