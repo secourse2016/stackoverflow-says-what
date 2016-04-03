@@ -11,9 +11,13 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/one-way.html',
             controller  : 'mainCtrl'                //to be changed
         })
-        .when('/confirmation', {
-            templateUrl : '/partials/confirmation.html',
-            controller : 'confirmCtrl'
+        .when('/confirmationR', {
+            templateUrl : '/partials/confirmationRoundTrip.html',
+            controller : 'confirmRCtrl'
+        })
+        .when('/confirmationO', {
+            templateUrl : '/partials/confirmationOneWay.html',
+            controller : 'confirmOCtrl'
         })
         .otherwise({ 
       redirectTo: '/' 
