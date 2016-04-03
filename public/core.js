@@ -23,11 +23,15 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/inGoingFlights.html',
             controller : 'flightCtrl'
         })
+          .when('/complete', {
+            templateUrl : '/partials/finalPage.html',
+            //controller  : 'mainCtrl'                //to be changed
+        })
+
         .when('/myCarousel',{
             templateUrl : '/partials/main.html',
             controller  : 'mainCtrl'            
         })
-
         .otherwise({ 
           templateUrl : '/partials/404.html'   
         });
