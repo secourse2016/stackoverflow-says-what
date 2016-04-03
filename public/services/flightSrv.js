@@ -89,6 +89,7 @@ App.factory('flightSrv',function($http){
 		// returns the passenger's destination
 		getDestinationAirport : function(){
 			return this.destination;
+			// return 'IAD';
 		},
 		setPriceOutgoingFlight : function(value){
 			this.priceOutgoing = value;
