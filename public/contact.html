@@ -37,15 +37,17 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a class="item" href="/#/">Home</a></li>
+        <li><a class="item" href="/#/">Home</a></li>
         <li><a class="item" href="#">About Us</a></li>
-        <li><a class="item" ng-href= "{{ 'contactLink' }}">Contact Us</a></li>
+        <li class="active"><a class="item" href= "/contact.html">Contact Us</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<div ng-view></div>
+<div ng-view>
+	<p>Contact Us</p>
+</div>
 
 <footer class="container-fluid text-center">
   <div class="social_btns">
