@@ -29,15 +29,15 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
   };
   $scope.searchOneWay = function() {
     flightSrv.setType('OneWay');
-    flightSrv.setOrigin($scope.selectedOriginOneway);
-    flightSrv.setDestination($scope.selectedDestinationOneway);
+    flightSrv.setOriginAirport($scope.selectedOriginOneway);
+    flightSrv.setDestinationAirport($scope.selectedDestinationOneway);
     flightSrv.setDepartureDate($scope.dtOneway);
     $location.url('/outGoingFlights');
   };
   $scope.searchRoundTrip = function() {
     flightSrv.setType('Round');
-    flightSrv.setOrigin($scope.selectedOriginRound);
-    flightSrv.setDestination($scope.selectedDestinationRound);
+    flightSrv.setOriginAirport($scope.selectedOriginRound);
+    flightSrv.setDestinationAirport($scope.selectedDestinationRound);
     flightSrv.setDepartureDate($scope.dtRound);
     flightSrv.setArrivalDate($scope.atRound);
     $location.url('/outGoingFlights');
