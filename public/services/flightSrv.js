@@ -74,19 +74,20 @@ App.factory('flightSrv',function($http){
 			return this.ingoingFlight;
 		},
 		// saves the passenger's origin
-		setOrigin : function(value){
+		setOriginAirport : function(value){
 			this.origin = value;
 		},
 		// returns the passenger's origin
-		getOrigin : function(){
+		getOriginAirport : function(){
 			return this.origin;
+			// return value;
 		},
 		// saves the passenger's destination
-		setDestination : function(value){
+		setDestinationAirport : function(value){
 			this.destination = value;
 		},
 		// returns the passenger's destination
-		getDestination : function(){
+		getDestinationAirport : function(){
 			return this.destination;
 		},
 		setPriceOutgoingFlight : function(value){
@@ -100,6 +101,30 @@ App.factory('flightSrv',function($http){
 		},
 		getPriceIngoingFlight : function(){
 			return this.priceIngoing;
+		},
+		setOutgoingFlightDuration : function(value){
+			this.outgoingFlightDuration = value;
+		},
+		getOutgoingFlightDuration : function(){
+			return this.outgoingFlightDuration;
+		},
+		setIngoingFlightDuration : function(value){
+			this.ingoingFlightDuration = value;
+		},
+		getIngoingFlightDuration : function(){
+			return this.ingoingFlightDuration;
+		},
+		setOutgoingFlightClass : function(value){
+			this.outgoingFlightClass = value;
+		},
+		getOutgoingFlightClass : function(){
+			return this.outgoingFlightClass;
+		},
+		setIngoingFlightClass : function(value){
+			this.ingoingFlightClass = value;
+		},
+		getIngoingFlightClass : function(){
+			return this.ingoingFlightClass;
 		}
 	};
 });
