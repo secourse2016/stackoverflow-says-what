@@ -187,4 +187,14 @@
       display: none; 
     }
 
+<<<<<<< HEAD
+  .404body {
+    background-image: url(/Images/favicon.png);
+    width: 145px;
+    height: 145px;
+    margin: 0 auto;
+  }
+
+=======
+>>>>>>> 0b6f15bab20d5ad3055d4eec094d55a071ac12e0
 }

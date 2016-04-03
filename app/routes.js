@@ -25,10 +25,4 @@ module.exports = function(app,mongo) {
       res.sendFile(__dirname + '/public/index.html');
     });
 
-    /* RENDER 404 PAGE */
-    /*app.get('*', function (req, res) {
-        res.status(404);
-        res.sendFile(__dirname + '/public/partials/404.html',404);
-    });*/
-
 };

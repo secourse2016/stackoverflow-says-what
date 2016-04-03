@@ -10,17 +10,25 @@ App.config(function($routeProvider) {
         .when('/flightBooking', {
             templateUrl : '/partials/flightBooking.html',
             controller  : 'flightBookingCtrl'           
-        })     
+        })    
+        .when('/outGoingFlights',{
+            templateUrl : '/partials/outGoingFlights.html',
+            controller : 'flightCtrl'
+        }) 
 	    .when('/payment', {
             templateUrl : '/partials/payment.html',
-            //controller  : 'paymentCtrl'                //to be changed
+            //controller  : 'paymentCtrl'                
         })
         .when('/outGoingFlights',{
             templateUrl : '/partials/outGoingFlights.html',
             controller : 'flightCtrl'
         })
-       
+        .when('/myCarousel',{
+            templateUrl : '/partials/main.html',
+            controller  : 'mainCtrl'            
+        })
+
         .otherwise({ 
-          redirectTo: '/'   
+          templateUrl : '/partials/404.html'   
         });
 });

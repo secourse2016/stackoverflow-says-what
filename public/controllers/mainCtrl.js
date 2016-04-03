@@ -5,8 +5,5 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
     $location.url('/flightBooking');
   };
 
-
-   /*----------- Angular Bootstrap Datepicker -----------*/
-
 });
 

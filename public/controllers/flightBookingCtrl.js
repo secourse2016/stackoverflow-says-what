@@ -1,11 +1,6 @@
 App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
 
-  
-  /*$scope.flight = {
-    origin      : flightSrv.getSelectedOriginAirport(),
-    destination : flightSrv.getSelectedDestinationAirport()
-  };*/
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[0];
   $scope.open1 = function() {
     $scope.popup1.opened = true;
