@@ -1,8 +1,7 @@
 <div >
-
+<link href="https://a1.muscache.com/airbnb/static/packages/common_o2.1-pretzel-63569659624b0120e962749578cae707.css" media="all" rel="stylesheet" type="text/css">
 <div class="imageContainer">
-  <!-- <img src="/Images/plane.jpg" class="imagePlane">  -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel2" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
    <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -12,19 +11,13 @@
     <!-- Wrapper for slides -->
    <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="/Images/plane.jpg" alt="Image">
-        <div class="carousel-caption">
-          <h3>Sell $</h3>
-          <p>Money Money.</p>
-        </div>      
+        <img src="/Images/home.jpg" alt="Image">
+        <div class="carousel-caption"></div>      
       </div>
 
       <div class="item">
         <img src="/Images/hawainight.jpg" alt="Image">
-        <div class="carousel-caption">
-          <h3>More Sell $</h3>
-          <p>Lorem ipsum...</p>
-        </div>      
+        <div class="carousel-caption"></div>      
       </div>
     </div>
 
@@ -42,7 +35,7 @@
 
 <div class="Container">
     <div class="tabbed">
-
+    
   <!-- first panel -->
   <input name="tabbed" id="tabbed1" type="radio" checked>
   <section>
@@ -50,62 +43,44 @@
       <label for="tabbed1">One Way</label>
     </h1>
     <div>
-
+      <label class="tripLabel">One Way Trip</label>
       <label class="inputLabel">Departing From</label>
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Where are you flying from?" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="Where are you flying from?"
+        aria-describedby="basic-addon1" 
+        ng-model="selectedOrigin"
+        uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+        class="form-control"
+        typeahead-on-select="setOrigin($item.iata)">
         <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
       </div>
 
       <label class="inputLabel">Leaving To</label>
       <div class="input-group">
-         <input type="text" class="form-control" placeholder="Where are you flying to?" aria-describedby="basic-addon1"/>
+         <input type="text" class="form-control" placeholder="Where are you flying to?" 
+         aria-describedby="basic-addon1"
+         ng-model="selectedDestination"
+         uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+         class="form-control"
+         typeahead-on-select="setDestination($item.iata)"/>
          <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
       </div>
 
 
       <label class="inputLabel">Departue Date</label>
       <div class='input-group date' id='datetimepicker1'>
-         <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"/>
+         <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"
+         uib-datepicker-popup="{{format}}"
+         ng-model="dt"
+         is-open="popup1.opened"
+         ng-required="true"
+         close-text="Close"
+         alt-input-formats="altInputFormats"
+         ng-click="open1()"/>
          <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
       </div>
 
-      <div class="row" style="margin-bottom: 20px">
-       <div class="col-lg-6">
-          <label class="inputLabel">Adults</label>
-          <div class="dropdown">
-             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              0<span class="caret"></span>
-             </button>
-             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-               <li><a>0</a></li>
-               <li><a>1</a></li>
-               <li><a>2</a></li>
-               <li><a>3</a></li>
-               <li role="separator" class="divider"></li>
-               <li><a href="#">Separated link</a></li>
-             </ul>
-          </div>
-       </div>
-
-       <div class="col-lg-6">
-          <label class="inputLabel">Children (2-11 Years) </label>
-          <div class="dropdown">
-             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              0<span class="caret"></span>
-             </button>
-             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-               <li><a>0</a></li>
-               <li><a>1</a></li>
-               <li><a>2</a></li>
-               <li><a>3</a></li>
-               <li role="separator" class="divider"></li>
-               <li><a href="#">Separated link</a></li>
-             </ul>
-          </div>
-       </div>
-    </div>
-     <button id="flightBtn" type="button" class="btn btn-default"><i class="fa fa-search"></i>   Search Flights</button>
+     <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;"><i class="fa fa-search"></i>   Search Flights</button>
    </div>
   </section>
 
@@ -116,16 +91,27 @@
       <label for="tabbed2">Round Trip</label>
     </h1>
     <div>
-
+     
+     <label class="tripLabel">Round Trip </label>
      <label class="inputLabel">Departing From</label>
      <div class="input-group">
-       <input type="text" class="form-control" placeholder="Where are you flying from?" aria-describedby="basic-addon1"/>
+       <input type="text" class="form-control" placeholder="Where are you flying from?" 
+       aria-describedby="basic-addon1"
+       ng-model="selectedOrigin"
+       uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+       class="form-control"
+       typeahead-on-select="setOrigin($item.iata)"/>
        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
      </div>
 
      <label class="inputLabel">Leaving To</label>
      <div class="input-group">
-       <input type="text" class="form-control" placeholder="Where are you flying to?" aria-describedby="basic-addon1"/>
+       <input type="text" class="form-control" placeholder="Where are you flying to?" 
+       aria-describedby="basic-addon1"
+       ng-model="selectedDestination"
+       uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+       class="form-control"
+       typeahead-on-select="setDestination($item.iata)"/>
        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
      </div>
 
@@ -133,7 +119,14 @@
        <div class="col-lg-6">
          <label class="inputLabel">Departue Date</label>
          <div class='input-group date' id='datetimepicker1'>
-           <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"/>
+           <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"
+           uib-datepicker-popup="{{format}}"
+           ng-model="dt"
+           is-open="popup1.opened"
+           ng-required="true"
+           close-text="Close"
+           alt-input-formats="altInputFormats"
+           ng-click="open1()"/>
            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
          </div>
        </div>
@@ -141,12 +134,19 @@
        <div class="col-lg-6">
          <label class="inputLabel">Arrival Date</label>
          <div class='input-group date' id='datetimepicker1'>
-            <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"/>
+            <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"
+            uib-datepicker-popup="{{format}}"
+            ng-model="dt"
+            is-open="popup2.opened"
+            ng-required="true"
+            close-text="Close"
+            alt-input-formats="altInputFormats"
+            ng-click="open2()"/>
             <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
          </div>
        </div>
      </div>
-
+<!-- 
      <div class="row" style="margin-bottom: 20px">
        <div class="col-lg-6">
           <label class="inputLabel">Adults</label>
@@ -159,30 +159,10 @@
                <li><a>1</a></li>
                <li><a>2</a></li>
                <li><a>3</a></li>
-               <li role="separator" class="divider"></li>
-               <li><a href="#">Separated link</a></li>
              </ul>
           </div>
-       </div>
-
-       <div class="col-lg-6">
-          <label class="inputLabel">Children (2-11 Years) </label>
-          <div class="dropdown">
-             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              0<span class="caret"></span>
-             </button>
-             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a>0</a></li>
-               <li><a>1</a></li>
-               <li><a>2</a></li>
-               <li><a>3</a></li>
-               <li role="separator" class="divider"></li>
-               <li><a href="#">Separated link</a></li>
-             </ul>
-          </div>
-       </div>
-     </div>
-     <button id="flightBtn" type="button" class="btn btn-default"><i class="fa fa-search"></i>   Search Flights</button>
+       </div> -->
+     <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;"><i class="fa fa-search"></i>   Search Flights</button>
     </div>
   </section>
 
@@ -255,32 +235,23 @@
 
   </div>
   </div>
-
   </div>
-
-  <!-- <ul class="nav nav-pills nav-justified">
-
-    <li role="presentation" class="active"> <a href="#one-way">ONE-WAY</a> </li>
-    <li role="presentation" class="active"> <a href="#">ROUND-TRIP</a>     </li>
-    
-  </ul> -->
-
 </div>
 
   
 <div class="main">
 <div class="container text-center">    
-  <h3> <button id="btn" type="button" class="btn btn-default btn-lg"><i class="fa fa-plane"></i>  Special Offers</button></h3><br>
+  <h3> <button id="btn" type="button" class="btn btn-default btn-lg"><i class="fa fa-money"></i>  Special Offers</button></h3><br>
   <div class="row">
     <div class="col-sm-4">
-      <img src="/Images/Mount-Fuji.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <img src="/Images/Mount-Fuji.jpg" class="img-circle" style="width:100%" alt="Image">
       <p class="titles">Nonstop service between Narita and Honolulu</p>
     </div>
     <div class="col-sm-4"> 
-      <img src="/Images/fav.gif" class="img-responsive" style="width:100%" alt="Image">  
+      <img src="/Images/fav.gif" class="img-circle" style="width:100%" alt="Image">  
     </div>
     <div class="col-sm-4"> 
-      <img src="/Images/offer2.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <img src="/Images/offer2.jpg" class="img-circle" style="width:100%" alt="Image">
       <p class="titles">Deals from the Bay to Hawaii</p>    
     </div>
   </div>
@@ -290,22 +261,22 @@
   <h3><button id="btn" type="button" class="btn btn-default btn-lg"><i class="fa fa-plane"></i>  New Destinations</button></h3><br>
   <div class="row">
     <div class="col-sm-4">
-      <img src="/Images/galaxy.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <img src="/Images/galaxy.jpg" class="img-circle" style="width:100%" alt="Image">
       <p class="titles">A Galaxy Far Away</p>
     </div>
     <div class="col-sm-4"> 
-      <img src="/Images/narnia.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <img src="/Images/narnia.jpg" class="img-circle" style="width:100%" alt="Image">
       <p class="titles">Narnia</p>    
     </div>
     <div class="col-sm-4"> 
-      <img src="/Images/dev.jpg" class="img-responsive" style="width:100%" alt="Image">
-   a`1   <p class="titles">The Developer's Mind</p>    
+      <img src="/Images/dev.jpg" class="img-circle" style="width:100%" alt="Image">
+      <p class="titles">The Developer's Mind</p>    
     </div>
   </div>
 </div><br>
 
 <div class="container text-center">    
-  <h3><button id="btn" type="button" class="btn btn-default btn-lg"><i class="fa fa-plane"></i>  News</button></h3><br>
+  <h3><button id="btn" type="button" class="btn btn-default btn-lg"><i class="fa fa-newspaper-o"></i>  News</button></h3><br>
   <div class="row">
     <div class="col-sm-4">
       <img src="http://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
