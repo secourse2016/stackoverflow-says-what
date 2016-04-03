@@ -1,40 +1,25 @@
 /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
+      height: 0px;
       margin-bottom: 0px;
       border-radius: 0px;
-      height: 0px;
-      font-weight: bold;
-      font-size: 16px;
       color: white;
+      letter-spacing: 1px;
+      font-size: 15px;
+      font-family: 'Open Sans', sans-serif;
+      border-color: black;
+      background-color: black;
+      text-transform: uppercase;
     }
-
-   /*table.center {
-      border-collapse: separate;
-      border-spacing: 10px;
-      margin-left:auto; 
-      margin-right:auto;
-    }
-
-    .pink_heading {
-      text-align: center;
-      color: #C71585
-    }*/
-
+    
     .imageContainer {
       width: 100%; 
       height: 100%; 
       left: 0px; 
       top: 0px; 
       margin-top: 0px;
+      margin-bottom: 10px;
       z-index: -1;
-    }
-
-    .imagePlane {
-      width: 100%;
-      height: 100%;
-      margin-top: 0px;
-      position: relative;
-      
     }
 
     #btnFlight {
@@ -45,6 +30,8 @@
        height:50px;
        background-color: #C71585;
        color: white;
+       font-size: 16px;
+       font-weight: bold;
     }
     
    .welcomeText {
@@ -90,6 +77,8 @@
 
      .tabbed > section > h1 > label{
        cursor: pointer;
+       width: 100%;
+       height: 100%
        -moz-user-select : none;
        -ms-user-select : none;
        -webkit-user-select : none;
@@ -138,6 +127,12 @@
       z-index  : 2;
     }
 
+    .tripLabel {
+      font-size: 23px;
+      color: #C71585;
+      font-family: 'Lobster', cursive;
+    }
+
     .inputLabel {
       margin-bottom: 10px;
     }
@@ -150,11 +145,12 @@
       position: relative;
     }
 
-  #btn {
+    #btn {
       background-color: #C71585;
       color: white;
       margin-bottom: 20px;
       margin-right: 50px;
+      font-size: 16px;
     }
 
     .item {
@@ -165,10 +161,6 @@
       font-size: 20px;
     }
 
-    .main{
-      /*background-image: url("/background.jpg");*/
-    }
-
     /* Add a gray background color and some padding to the footer */
     footer {
       background-color: black;
@@ -176,7 +168,7 @@
     }
     
   .carousel-inner img {
-      width: 100%; /* Set width to 100% */
+      width: 100%; 
       margin:0 auto;
       min-height:100px;
   }
@@ -186,5 +178,14 @@
     .carousel-caption {
       display: none; 
     }
+
+  /*.404body {
+    background-color: #000;
+    background-image: url(http://worrydream.com/media/404_background.jpg);
+    width: 800px;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }*/
 
 }
