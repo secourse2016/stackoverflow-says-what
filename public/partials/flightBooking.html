@@ -46,7 +46,7 @@
       <label class="tripLabel">One Way Trip</label>
       <label class="inputLabel">Departing From</label>
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Where are you flying from?"
+        <input type="text" class="form-control" required placeholder="Where are you flying from?"
         aria-describedby="basic-addon1" 
         ng-model="selectedOrigin"
         uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
@@ -80,7 +80,7 @@
          <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
       </div>
 
-     <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;"><i class="fa fa-search"></i>   Search Flights</button>
+     <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchRoundTrip()"><i class="fa fa-search"></i>   Search Flights</button>
    </div>
   </section>
 
@@ -146,23 +146,7 @@
          </div>
        </div>
      </div>
-<!-- 
-     <div class="row" style="margin-bottom: 20px">
-       <div class="col-lg-6">
-          <label class="inputLabel">Adults</label>
-          <div class="dropdown">
-             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              0<span class="caret"></span>
-             </button>
-             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-               <li><a>0</a></li>
-               <li><a>1</a></li>
-               <li><a>2</a></li>
-               <li><a>3</a></li>
-             </ul>
-          </div>
-       </div> -->
-     <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;"><i class="fa fa-search"></i>   Search Flights</button>
+     <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchRoundTrip()"><i class="fa fa-search"></i>   Search Flights</button>
     </div>
   </section>
 

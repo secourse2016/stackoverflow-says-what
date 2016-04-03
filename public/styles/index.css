@@ -179,13 +179,13 @@
       display: none; 
     }
 
-  /*.404body {
+  .404body {
     background-color: #000;
     background-image: url(http://worrydream.com/media/404_background.jpg);
     width: 800px;
     height: 600px;
     margin-left: auto;
     margin-right: auto;
-  }*/
+  }
 
 }
