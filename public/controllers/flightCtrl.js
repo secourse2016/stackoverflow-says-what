@@ -1,5 +1,7 @@
 
 App.controller('flightCtrl', function($scope,flightSrv,$location) {
+    $scope.predicate = "continent";
+    $scope.reverse = "price1";
 	$scope.flights = [
 		{"continent": "1",
         "type": "airport",
@@ -66,6 +68,7 @@ App.controller('flightCtrl', function($scope,flightSrv,$location) {
   $scope.popup2 = {
     opened: false
   };
-  
+
+
 
 });

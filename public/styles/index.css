@@ -227,7 +227,8 @@
     margin: 50px;
 }*/
 #wrapper{
-  background-image: url("../Images/plane.jpg");
+  /*
+  : url("../Images/plane.jpg");*/
   background-color: transparent;
   width: 80%;
   margin: 100px;

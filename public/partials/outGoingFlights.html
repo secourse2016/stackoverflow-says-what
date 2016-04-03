@@ -1,7 +1,4 @@
 <!-- <div class="col-sm-3"><label style="font-size: 20px">{{f}}</h3></label></div> -->
-<div>
-<div id = "header" >
-</div>
 <div id="wrapper" style="display: inline-block;">
     <div id="inner_left"><!-- <p1>Class</p1> -->
    <button type="button" class="btn btn-warning" >Filter Cost</button>
@@ -24,7 +21,7 @@
   </ul>
 </div>
     </form>
-    <!-- <button type="button" class="btn btn-warning">Sort By</button> -->
+     <button type="button" class="btn btn-warning" ng-click="sortBy()">Sort By</button> 
     </div>
     <div id="inner_right" style="display: inline-block; width:100%;">
          <input type="text" id = "mycalender"
@@ -40,6 +37,8 @@
                                 class="btn btn-default"
                                 ng-click="open1()">
    </div>
+  
+  <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre>
    <table class="table table-inverse" id="myTable" ;style ="width :100%;">
   <tr class="clickable-row">
     <td>Flight</td>
@@ -48,7 +47,7 @@
        <td>EconomyB</td>
   </tr>
   
-   		<tr class="clickable-row" ng-repeat = "flight in flights track by $index ">
+   		<tr class="clickable-row" ng-repeat = "flight in flights |orderBy:predicate">
     <td><form>
     flight number : {{flight.continent}}<br>
      type: {{flight.type}}<br>
@@ -61,5 +60,5 @@
   </tr>
 
 </table>
-</div>
+
 </div>
