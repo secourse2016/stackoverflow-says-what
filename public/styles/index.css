@@ -2,11 +2,17 @@
     .navbar {
       margin-bottom: 0px;
       border-radius: 0px;
-      height: 70px;
-      font-weight: bold;
+      height: 0px;
       font-size: 16px;
       color: white;
+      letter-spacing: 1px;
+      font-size: 15px;
+      font-family: 'Open Sans', sans-serif;
+      border-color: black;
+      background-color: black;
+      text-transform: uppercase;
     }
+
 
     #background {
       width: 100%; 
@@ -33,6 +39,13 @@
     border-spacing: 10px;
     margin-left:auto; 
     margin-right:auto;
+=======
+   /*table.center {
+      border-collapse: separate;
+      border-spacing: 10px;
+      margin-left:auto; 
+      margin-right:auto;
+>>>>>>> dev
     }
 
     .pink_heading {
@@ -54,24 +67,27 @@
       height: 100%;
       margin-top: 0px;
       position: relative;
+      
     }
 
     #btnFlight {
        position:absolute;
        bottom:250px;
        right:550px;
-      width:200px;
-      height:50px;
-      background-color: #C71585;
-     color: white;
+       width:200px;
+       height:50px;
+       background-color: #C71585;
+       color: white;
     }
-    /*.bate5 {
+    
+   .welcomeText {
       position:absolute;
-      text-transform: none!important;
-      font-weight: 400;
-      font-family: thirsty-script-light,cursive;
-      color: gray;
-    }*/
+      top: 250px; 
+      left:400px;
+      width: 100%;
+      color: white;
+      font-family: 'Lobster', cursive;
+    }
 
     .Container {
       position: absolute; 
@@ -155,6 +171,12 @@
       z-index  : 2;
     }
 
+    .tripLabel {
+      font-size: 23px;
+      color: #C71585;
+      font-family: 'Lobster', cursive;
+    }
+
     .inputLabel {
       margin-bottom: 10px;
     }
@@ -167,7 +189,7 @@
       position: relative;
     }
 
-    #flightBtn {
+  #btn {
       background-color: #C71585;
       color: white;
       margin-bottom: 20px;
@@ -197,11 +219,6 @@
       margin:0 auto;
       min-height:100px;
   }
-  
-  #btn {
-    background-color: #C71585;
-    color: white;
-  }
 
   /* Hide the carousel text when the screen is less than 600 pixels wide */
   @media (max-width: 600px) {
@@ -209,4 +226,14 @@
       display: none; 
     }
 
+<<<<<<< HEAD
+  .404body {
+    background-image: url(/Images/favicon.png);
+    width: 145px;
+    height: 145px;
+    margin: 0 auto;
+  }
+
+=======
+>>>>>>> 0b6f15bab20d5ad3055d4eec094d55a071ac12e0
 }

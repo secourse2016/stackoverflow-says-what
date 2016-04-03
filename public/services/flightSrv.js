@@ -50,55 +50,48 @@ App.factory('flightSrv',function($http){
 			return this.arrayOfChildren;
 		},
 		// sets the first departure date
-		setFirstDepartureDate : function(value){
-			this.firstDepartureDate = value;
+		setDepartureDate : function(value){
+			this.departureDate = value;
 		},
 		// returns the first departure date
-		getFirstDepartureDate : function(){
-			return this.firstDepartureDate;
-		},
-		// saves the second departure date assuming a round trip may be being booked
-		setSecondDepartureDate : function(value){
-			this.secondDepartureDate = value;
-		},
-		// returns the second departure date
-		getSecondDepartureDate : function(){
-			return this.secondDepartureDate;
+		getDepartureDate : function(){
+			return this.departureDate;
 		},
 		// sets the first arrival date
-		setFirstArrivalDate : function(value){
-			this.firstArrivalDate = value;
+		setArrivalDate : function(value){
+			this.arrivalDate = value;
 		},
 		// returns the first arrival date
-		getFirstArrivalDate : function(){
-			return this.firstArrivalDate;
-		},
-		// saves the second arrival date assuming a round trip may be being booked
-		setSecondArrivalDate : function(value){
-			this.secondArrivalDate = value;
-		},
-		// returns the second arrival time
-		getSecondArrivalDate : function(){
-			return this.secondArrivalDate;
+		getArrivalDate : function(){
+			return this.arrivalDate;
 		},
 		// a boolean variable that indicates if the flight being booked is a round trip flight
-		setRoundTrip : function(value){
-			this.roundTrip = value;
+		setType : function(value){
+			this.type = value;
 		},
 		// returns the boolean that indicates if the flight is round trip
-		getRoundTrip : function(){
-			return this.roundTrip;
+		getType : function(){
+			return this.type;
 		},
-		// a boolean variable that indicates if the flight being booked is a one way flight
-		setOneWay : function(value){
-			this.oneWay = value;
+		// saves the departure flight
+		setOutgoingFlight : function(value){
+			this.outgoingFlight = value;
 		},
-		// returns the boolean that indicates if the flight is one way
-		getOneWay : function(){
-			return this.oneWay;
+		// returns the passenger's departure flight
+		getOutgoingFlight : function(){
+			return this.outgoingFlight;
+		},
+		// saves the arriving flight
+		setIngoingFlight : function(value){
+			this.ingoingFlight = value;
+		},
+		// returns the passenger's arriving flight
+		getIngoingFlight : function(){
+			return this.ingoingFlight;
 		},
 		// saves the passenger's origin
 		setOrigin : function(value){
+			console.log(value);
 			this.origin = value;
 		},
 		// returns the passenger's origin
