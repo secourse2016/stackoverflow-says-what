@@ -1,0 +1,80 @@
+/* Remove the navbar's default margin-bottom and rounded borders */ 
+
+    
+    table.center {
+    border-collapse: separate;
+    border-spacing: 10px;
+    margin-left:auto; 
+    margin-right:auto;
+    }
+
+    .pink_heading{
+      text-align: center;
+      color: #C71585
+    }
+    
+    .navbar {
+      margin-bottom: 0px;
+      border-radius: 0;
+      height: 70px;
+      font-weight: bold;
+      font-size: 16px;
+      color: white;
+    }
+
+    .imageContainer {
+      width: 100%; 
+      height: 100%; 
+      left: 0px; 
+      top: 0px; 
+      margin-top: 0px;
+      z-index: -1;
+    }
+
+    .imagePlane {
+      width: 100%;
+      height: 100%;
+      margin-top: 0px;
+    }
+
+    .item {
+      margin-top: 0;
+    }
+
+    .titles {
+      font-size: 20px;
+    }
+
+    .main{
+      /*background-image: url("/background.jpg");*/
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: black;
+      padding: 25px;
+    }
+    
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin:0 auto;
+      min-height:100px;
+  }
+  
+  #btn {
+    background-color: #C71585;
+    color: white;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+    }
+
+  .social_btns a{
+    /*color:inherit;*/
+    text-decoration: none;
+    color: transparent;
+  }  
+}

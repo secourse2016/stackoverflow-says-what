@@ -1,0 +1,88 @@
+<div>
+  <div>
+    <h1 class="text-center">Your trip to Destination</h1>  
+  </div>
+  <div>
+    <h2>Departure flight</h3>
+    <ul class="list-inline">
+      <li><strong>From:</strong> {{ originAirport }}</li>
+      <li><strong>To:</strong>{{ destinationAirport }}</li>
+      <li><strong>Date:</strong> {{ depDate | date:'fullDate' }}</li>
+      <li><strong>Price:</strong>  {{ depPrice | currency }} </li>
+    </ul>
+  </div>
+  <div>
+    <h3><strong>Flight Details:</strong></h4>
+    <div>
+      <h5><strong>Flight no.:</strong> {{ depFlightNo }}</h5>
+    </div>
+    <div>
+      <h5><strong>Origin Airpot:</strong> {{ originAirport }}</h5>
+    </div>
+    <div>
+      <h5><strong>Destination Airpot:</strong> {{ destinationAirport }}</h5>
+    </div>
+    <div>
+      <h5><strong>Date:</strong> {{ depDate | date:'fullDate' }}</h5>
+    </div>
+    <div>
+      <h5><strong>Departure time:</strong> {{ depDate | date:'shortTime'}}</h5>
+    </div>
+    <div>
+      <h5><strong>Duration:</strong> {{ depDuration }}</h5>
+    </div>
+    <div>
+      <h5><strong>Class:</strong> {{ depClass }}</h5>
+    </div>
+  </div>
+    <div>
+      <div>
+        <h2>Arrival flight</h2>
+        <ul class="list-inline">
+          <li><strong>From:</strong> {{ destinationAirport }}</li>
+          <li><strong>To:</strong> {{ originAirport }}</li>
+          <li><strong>Date:</strong> {{ arrivalDate | date:'fullDate' }}</li>
+          <li><strong>Price:</strong>  {{arrivalPrice || currency}}</li>
+        </ul>
+     </div>
+     <div>
+       <h3><strong>Flight Details:</strong></h4>
+      <!-- <ul class="list-unstyled">
+        <li>Flight no.: no.</li>
+        <li>Origin Airpot: origin airpot</li>
+        <li>Destination Airport: dest. airport</li>
+        <li>Date: date</li>
+        <li>Time: time of departure</li>
+        <li>Duration: duration</li>
+        <li>Class: flight class</li>
+        <li>Seat no.: seat</li>
+      </ul> -->
+      <div>
+        <h5><strong>Flight no.:</strong> {{arrivalFlightNo}}</h5>
+      </div>
+      <div>
+        <h5><strong>Origin Airpot:</strong> {{ destinationAirport }}</h5>
+      </div>
+      <div>
+        <h5><strong>Destination Airpot:</strong> {{ originAirport }}</h5>
+      </div>
+      <div>
+        <h5><strong>Date:</strong> {{ arrivalDate | date:'fullDate' }}</h5>
+      </div>
+      <div>
+        <h5><strong>Departure time:</strong> {{ arrivalDate | date:'shortTime' }}</h5>
+      </div>
+      <div>
+        <h5><strong>Duration:</strong> {{ arrivalDuration }}</h5>
+      </div>
+      <div>
+        <h5><strong>Class:</strong> {{ arrivalClass }}</h5>
+      </div>
+     </div>
+    </div>
+</div>
+<div>
+  <button type="button" class="btn btn-default">Update</button>
+  <button type="button" class="btn btn-default">Confirm</button>
+</div>
+
