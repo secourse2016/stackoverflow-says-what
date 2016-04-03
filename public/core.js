@@ -19,8 +19,8 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/payment.html',
             //controller  : 'paymentCtrl'                
         })
-        .when('/outGoingFlights',{
-            templateUrl : '/partials/outGoingFlights.html',
+        .when('/inGoingFlights',{
+            templateUrl : '/partials/inGoingFlights.html',
             controller : 'flightCtrl'
         })
         .when('/myCarousel',{
