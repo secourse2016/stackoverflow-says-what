@@ -1,39 +1,58 @@
+<div style="margin-bottom: 30%">
 <div>
-	<div>
-    <h2>Departure flight</h3>
-    <ul class="list-inline">
-      <li><strong>From:</strong> {{ originAirport }}</li>
-      <li><strong>To:</strong> {{ destinationAirport }}</li>
-      <li><strong>Date:</strong> {{ depDate | date:'fullDate' }}</li>
-      <li><strong>Price:</strong>  {{ price | currency }} </li>
-    </ul>
+	<div class="flight" style="margin-left: 35px">
+    <h1 class="text-center" style="font: bold; color: #C71585; font-size: 30px; font-family:Lobster">Departure Flight</h1>
+    <div class="col-sm-1 flight"><strong>From</strong></div> <div class="col-sm-2">{{originAirport}}</div> 
+    <div class="col-sm-1 flight"><strong>To</strong></div> <div class="col-sm-2">{{destinationAirport}}</div> 
+   	<div class="col-sm-1 flight"><strong>Date</strong></div> <div class="col-sm-2">{{depDate | date:'fullDate'}}</div> 
+    <div class="col-sm-1 flight"><strong>Price</strong></div> <div class="col-sm-2">{{price | currency}}</div> 
+    <!--<ul class="list-inline">
+      <li class="flight"><strong>From </strong>{{ originAirport }}</li>
+      <li class="flight"><strong>To </strong>{{ destinationAirport }}</li>
+      <li class="flight"><strong>Date </strong>{{ depDate | date:'fullDate' }}</li>
+      <li class="flight"><strong>Price </strong>{{ price | currency }}</li>
+    </ul>-->
   </div>
-  <div>
-    <h3><strong>Flight Details:</strong></h4>
+  <br></br>
+  <div style="margin-bottom: 20%">
+  <br></br>
+    <h1 class="text-center" style="font: bold; color: #330025; font-size: 30px; font-family:Lobster"><strong>Flight Details</strong></h1>
+    <div class="col-sm-3"></div>
     <div>
-      <h5><strong>Flight no.:</strong> {{ flightNo }}</h5>
+      <h5 class="flight"><div class="col-sm-3"><strong>Flight Number</strong></div><div class="col-sm-6"> {{ flightNo }} </div></h5>
     </div>
+   <div class="col-sm-3"></div>
     <div>
-      <h5><strong>Origin Airpot:</strong> {{ originAirport }}</h5>
+      <h5 class="flight"><div class="col-sm-3"><strong>Origin Airport</strong></div> <div class="col-sm-6">{{ originAirport }}</div></h5>
     </div>
+    <div class="col-sm-3"></div>
     <div>
-      <h5><strong>Destination Airpot:</strong> {{ destinationAirport }}</h5>
+      <h5 class="flight"><div class="col-sm-3"><strong>Destination Airport</strong></div> <div class="col-sm-5">{{ destinationAirport }}</div></h5>
     </div>
+    <div class="col-sm-3"></div>
     <div>
-      <h5><strong>Date:</strong> {{ depDate | date:'fullDate' }}</h5>
+      <h5 class="flight"><div class="col-sm-3"><strong>Date</strong></div> <div class="col-sm-6">{{ depDate | date:'fullDate' }}</div></h5>
     </div>
+    <div class="col-sm-3"></div>
     <div>
-      <h5><strong>Departure time:</strong> {{ depDate | date:'shortTime'}}</h5>
+      <h5 class="flight"><div class="col-sm-3"><strong>Departure Time</strong></div> <div class="col-sm-6">{{ depDate | date:'shortTime'}}</div></h5>
     </div>
+    <div class="col-sm-3"></div>
     <div>
-      <h5><strong>Duration:</strong> {{ duration }}</h5>
+      <h5 class="flight"><div class="col-sm-3"><strong>Duration</strong></div> <div class="col-sm-6">{{ duration }} </div></h5>
     </div>
+    <div class="col-sm-3"></div>
     <div>
-      <h5><strong>Class:</strong> {{ class }}</h5>
+      <h5 class="flight"><div class="col-sm-3"><strong>Class</strong></div> <div class="col-sm-6">{{ class }}</div></h5>
     </div>
   </div>
 </div>
-<div>
-  <button type="button" class="btn btn-default">Update</button>
-  <button type="button" class="btn btn-default">Confirm</button>
+
+<div style="margin-top: 20%">
+<div class="col-sm-9"></div>
+<div class="col-sm-3">
+  <button type="button" class="btn btn-default" style="font-size: 20px; background-color: #C71585; color: white" ng-click="updateO()">Update</button>
+  <button type="button" class="btn btn-default" style="font-size: 20px; background-color: #C71585; color: white" ng-click="confirmO()">Confirm</button>
+</div>
+</div>
 </div>

@@ -22,7 +22,6 @@
       top: 0px; 
       z-index: -1;
     }
-
     .stretch {
       width: 100%;
       height: 100%;
@@ -236,4 +235,9 @@
 
 =======
 >>>>>>> 0b6f15bab20d5ad3055d4eec094d55a071ac12e0
+}
+
+.flight {
+  font-family: Bangers;
+  font-size: 24px;
 }

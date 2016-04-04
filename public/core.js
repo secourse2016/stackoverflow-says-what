@@ -17,7 +17,7 @@ App.config(function($routeProvider) {
         }) 
 	    .when('/payment', {
             templateUrl : '/partials/payment.html',
-            //controller  : 'paymentCtrl'                
+            controller  : 'paymentCtrl'                
         })
         .when('/inGoingFlights',{
             templateUrl : '/partials/inGoingFlights.html',
@@ -25,7 +25,7 @@ App.config(function($routeProvider) {
         })
           .when('/complete', {
             templateUrl : '/partials/finalPage.html',
-            //controller  : 'mainCtrl'                //to be changed
+            controller  : 'mainCtrl'                //to be changed
         })
 
         .when('/myCarousel',{

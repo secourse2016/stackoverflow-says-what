@@ -1,4 +1,4 @@
-App.controller('confirmRCtrl', function($scope, flightSrv){
+App.controller('confirmRCtrl', function($scope, flightSrv, $location){
 	// flightSrv.setOriginAirport('IAD');
 	// flightSrv.setDestinationAirport('batee5');
 	// flightSrv.setOutgoingFlight({flight_no: 44444, capacity: 200,date:"2016-04-26T18:25:43.511Z"});
@@ -10,9 +10,19 @@ App.controller('confirmRCtrl', function($scope, flightSrv){
 	$scope.depPrice = flightSrv.getPriceOutgoingFlight();
 	$scope.arrivalPrice = flightSrv.getPriceIngoingFlight();
 	$scope.depFlightNo = flightSrv.getOutgoingFlight().flight_no;
-	$scope.arrivalFlightNo = flightSrv.getPriceIngoingFlight.flight_no;
-	$scope.depDuration = flightSrv.getOutgoingFlightDuration();
-	$scope.arrivalDuration = flightSrv.getIngoingFlightDuration();
+	$scope.arrivalFlightNo = flightSrv.getIngoingFlight().flight_no;
+	$scope.depDuration = flightSrv.getOutgoingFlight().duration;
+	$scope.arrivalDuration = flightSrv.getIngoingFlight().duration;
 	$scope.depClass = flightSrv.getOutgoingFlightClass();
 	$scope.arrivalClass = flightSrv.getIngoingFlightClass();
+  
+	$scope.updateR = function() {
+    $location.url('/outGoingFlights');
+  };
+
+
+	$scope.confirmR = function() {
+    $location.url('/payment');
+  };
+
 });
