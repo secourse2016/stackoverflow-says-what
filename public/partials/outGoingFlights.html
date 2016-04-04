@@ -1,39 +1,42 @@
 <!-- <div class="col-sm-3"><label style="font-size: 20px">{{f}}</h3></label></div> -->
 <div id="wrapper" style="display: inline-block;">
     <div id="inner_left"><!-- <p1>Class</p1> -->
-   <button type="button" class="btn btn-warning" >Filter Cost</button>
+  <!--  <button type="button" class="btn btn-warning" >Filter Cost</button> -->
    
    <form id  = "cost" ><br>
-  From: <input type="number" name="from" filter ="number" id = "from"><label class = "dollar">$</label>
-  To: <input type="number" name="to" fliter = "number" id = "to"><label class = "dollar">$</label><br>
+  From: <input type="number" name="from" filter ="number" id = "from" ng-model="lower_bound"><label class = "dollar">$</label>
+  To: <input type="number" name="to" fliter = "number" id = "to" ng-model="upper_bound"><label class = "dollar">$</label><br>
   </form>
      <!--cost -->
    <form id = "OrderBy">
    <select class = "form-control" id = "filter" ng-model="predicate">
-  <option>flight_no</option>
+  <option value="flight_no">flight_no</option>
  <option>destination</option>
  <option> date</option>
  <option>Origin</option>
- <optrion>Destination</option>
+ <option value="price1">Business price</option>
+ <option value="price2">EconnomyA price</option>
+ <option value="price3">EconnomyB price</option>
 </select>
       </form>
     </div>
     <div id="inner_right" style="display: inline-block; width:100%;">
          <input type="text" id = "mycalender"
                              class="form-control"
-                             uib-datepicker-popup="{{format}}"
+                             uib-datepicker-popup="yyyy-MM-dd"
                              ng-model="dt"
                              is-open="popup1.opened"
                              ng-required="true"
                              close-text="Close"
-                             alt-input-formats="altInputFormats" filter = "date" />
+                             alt-input-formats="altInputFormats"/>
                       <span class="input-group-btn">
                         <button type="button"
                                 class="btn btn-default"
                                 ng-click="open1()">
    </div>
   
-  <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre>
+  <pre>Sorting predicate = {{predicate}}</pre>
+  <pre>date = {{dt}}</pre>
    <table class="table table-inverse" id="myTable" ;style ="width :100%;">
   <tr class="clickable-row">
     <td>Flight</td>
@@ -41,8 +44,8 @@
       <td>EconomyA</td>
        <td>EconomyB</td>
   </tr>
-  
-   		<tr class="clickable-row" ng-repeat = "flight in flights |orderBy:predicate ">
+       <pre>upper = {{upper_bound}}; lower = {{lower_bound}}</pre>
+   		<tr class="clickable-row" ng-repeat = "flight in flights |orderBy:predicate | filter: byRange | filter: {date: dt}">
     <td><form>
     flight number : {{flight.flight_no}}<br>
     destination :   {{flight.destination}}<br>

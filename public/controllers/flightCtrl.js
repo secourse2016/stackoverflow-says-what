@@ -2,6 +2,9 @@
 App.controller('flightCtrl', function($scope,flightSrv,$location) {
     $scope.predicate = "date";
     $scope.reverse = "price1";
+    $scope.upper_bound=10000;
+    $scope.lower_bound=0;
+    $scope.date = "";
     $scope.flights=
     [
     {
@@ -10,7 +13,7 @@ App.controller('flightCtrl', function($scope,flightSrv,$location) {
   "origin": "IAD",
   "destination": "JFK",
     "capacity": "100",
-    "date": "2016-04-23T18:25:43.511Z",
+    "date": "2016-04-23",
     "duration": 120,
     "available_seats" : {
     "seats_a" : 20,
@@ -206,8 +209,8 @@ $scope.reservebusiness= function (flight){
            $location.url("payment.html");
     };
 
-  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-  $scope.format = $scope.formats[0];
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy-MM-dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.format = $scope.formats[1];
 
   $scope.open1 = function() {
     $scope.popup1.opened = true;
@@ -228,7 +231,10 @@ $scope.reservebusiness= function (flight){
   $scope.popup2 = {
     opened: false
   };
+$scope.byRange = function (flight) {
+    return ($scope.lower_bound<=flight.price1&&$scope.upper_bound>=flight.price1)||($scope.lower_bound<=flight.price2&&$scope.upper_bound>=flight.price2)||($scope.lower_bound<=flight.price3&&$scope.upper_bound>=flight.price3);
 
+};
+  });
+    
 
-
-});
