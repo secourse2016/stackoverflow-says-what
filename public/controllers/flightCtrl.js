@@ -2,6 +2,9 @@
 App.controller('flightCtrl', function($scope,flightSrv,$location) {
     $scope.predicate = "date";
     $scope.reverse = "price1";
+    $scope.upper_bound=10000;
+    $scope.lower_bound=0;
+    $scope.date = "";
     $scope.outflights=
     [
     {
@@ -384,8 +387,8 @@ $scope.bookIngoing = function (flight,price,seatClass){
           flightSrv.setIngoingFlightClass(seatClass);
           $location.url("/confirmationR");
         };
-  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-  $scope.format = $scope.formats[0];
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy-MM-dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.format = $scope.formats[1];
 
   $scope.open1 = function() {
     $scope.popup1.opened = true;
@@ -406,5 +409,8 @@ $scope.bookIngoing = function (flight,price,seatClass){
   $scope.popup2 = {
     opened: false
   };
+  $scope.byRange = function (flight) {
+    return ($scope.lower_bound<=flight.price1&&$scope.upper_bound>=flight.price1)||($scope.lower_bound<=flight.price2&&$scope.upper_bound>=flight.price2)||($scope.lower_bound<=flight.price3&&$scope.upper_bound>=flight.price3);
 
+};
 });
