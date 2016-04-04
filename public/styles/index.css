@@ -185,22 +185,4 @@
     .carousel-caption {
       display: none; 
     }
-  /*@-webkit-keyframes typing { from { width: 0; } }
-  @-webkit-keyframes blink-caret { 50% { border-color: transparent; } }
-  .p22 { 
-  font: bold 300% Consolas, Monaco, monospace;
-  border-right: .1em solid black;
-   top: 200px; 
-  left:400px;
-      width: 100%;
-      color: gray;
-  width: 16.5em; 
-  width: 21ch;
-  margin: 2em 1em;
-  white-space: nowrap;
-  overflow: hidden;
-  position:absolute;
-  -webkit-animation: typing 2s steps(21, end),
-  blink-caret .5s step-end infinite alternate;
-}*/
 }

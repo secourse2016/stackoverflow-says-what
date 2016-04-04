@@ -6,7 +6,7 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
 
   $scope.homePage = function() {
     $location.url('/');
-  }
+  };
 
 });
 
