@@ -10,4 +10,8 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
     $location.url('/');
   };
 
+    $scope.contactSubmit = function() {
+    $location.url('/thankYou');
+  };
+
 });

@@ -40,6 +40,14 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/confirmationOneWay.html',
             controller : 'confirmOCtrl'
         })
+        .when('/contactUs', {
+            templateUrl : '/partials/contactUs.html',
+            controller : 'mainCtrl'
+        })
+        .when('/thankYou', {
+            templateUrl : '/partials/thankYou.html',
+            controller : 'mainCtrl'
+        })
         .otherwise({ 
           templateUrl : '/partials/404.html'   
         });
