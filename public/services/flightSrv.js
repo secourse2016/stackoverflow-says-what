@@ -1,8 +1,11 @@
 App.factory('flightSrv',function($http){
 	return {
 		// returns all the flights in the json file
-		getFlights : function(){
-			return $http.get('/api/data/flights');
+		getInFlights : function(){
+			return $http.get('/api/data/inflights');
+		},
+		getOutFlights : function(){
+			return $http.get('/api/data/outflights');
 		},
 		// returns all airports in the json file
 		getAirports : function(){
