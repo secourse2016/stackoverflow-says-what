@@ -1,8 +1,15 @@
 module.exports = function(app,mongo) {
 
-    app.get('/api/data/flights', function(rep, res){
-    	var flights = require('../flights.json');
+    app.get('/api/data/inflights', function(rep, res){
+    	var flights = require('../inFlights.json');
+        // console.log(flights);
     	res.json(flights);
+    });
+
+    app.get('/api/data/outflights', function(rep, res){
+        var flights = require('../outFlights.json');
+        // console.log(flights);
+        res.json(flights);
     });
 
     app.get('/api/data/airports', function(rep, res){
