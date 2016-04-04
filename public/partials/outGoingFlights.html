@@ -1,28 +1,49 @@
 <!-- <div class="col-sm-3"><label style="font-size: 20px">{{f}}</h3></label></div> -->
 <div id="wrapper" style="display: inline-block;">
-    <div id="inner_left"><!-- <p1>Class</p1> -->
+  <div id="inner_left"><!-- <p1>Class</p1> -->
 <!--    <button type="button" class="btn btn-warning" >Filter Cost</button>
- -->   
+ -->
+ <h1 class="text-center" style="font: bold; color: #C71585; font-size: 30px; font-family:Lobster">Outgoing Flights</h1>
+ <div class="col-sm-2"></div>   
+   <div class="col-sm-10">
    <form id  = "cost" ><br>
-  From: <input type="number" name="from" filter ="number" id = "from" ng-model="lower_bound"><label class = "dollar">$</label>
-  To: <input type="number" name="to" fliter = "number" id = "to" ng-model="upper_bound"><label class = "dollar">$</label><br>
+   <div class="col-sm-4">
+  <label style="font-size: 20px">From </label><input type="number" name="from" filter ="number" id = "from" ng-model="lower_bound"><label class = "dollar" style="font-size: 20px">$</label>
+  </div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-4">
+  <label style="font-size: 20px">To </label> <input type="number" name="to" fliter = "number" id = "to" ng-model="upper_bound"><label class = "dollar" style="font-size: 20px">$</label><br>
+  </div>
   </form>
-     <!--cost -->
-   <form id = "OrderBy">
-   <select class = "form-control" id = "filter" ng-model="predicate">
-  <option value="flight_no">flight_no</option>
- <option>destination</option>
- <option> date</option>
- <option>Origin</option>
- <option value="price1">Business price</option>
- <option value="price2">EconnomyA price</option>
- <option value="price3">EconnomyB price</option>
-</select>
-      </form>
-    </div>
-    <div id="inner_right" style="display: inline-block; width:100%;">
+  </div>
+  
+
+  <div class="col-sm-12"></div>
+
+  <!--cost -->
+  <div class="col-sm-2"></div>
+  <div class="col-sm-10">
+  <div>
+  <div class="col-sm-4">
+  <form id = "OrderBy">
+  <select class = "form-control" id = "filter" title="Choose" ng-model="predicate">
+  <option value="" disabled="">Choose your Filteration</option>
+  <option value="flight_no">Flight Number</option>
+  <option>Destination</option>
+  <option>Date</option>
+  <option>Origin</option>
+  <option value="price1">Business Price</option>
+  <option value="price2">First Class Price</option>
+  <option value="price3">Economy Price</option>
+  </select>
+  </form>
+  </div>
+  </div>
+
+  <div class="col-sm-1"></div>
+ <!--  <div id="inner_right" style="display: inline-block; width:100%;">
          <input type="text" id = "mycalender"
-                             class="form-control"
+                             class="form-control" placeholder="DD/MM/YYYY"
                              uib-datepicker-popup="yyyy-MM-dd"
                              ng-model="dt"
                              is-open="popup1.opened"
@@ -33,23 +54,34 @@
                         <button type="button"
                                 class="btn btn-default"
                                 ng-click="open1()">
-   </div>
-  
-  <pre>Sorting predicate = {{predicate}}</pre>
-  <pre>date = {{dt}}</pre>
+   </div> -->
+<div class="col-sm-4">
+    <div class='input-group date' id='datetimepicker1'>
+         <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"
+         uib-datepicker-popup="{{format}}"
+         ng-model="dtOneway"
+         is-open="popup1.opened"
+         ng-required="true"
+         close-text="Close"
+         alt-input-formats="altInputFormats"
+         ng-click="open1()" 
+         required/>
+         <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
+      </div>
+  </div>
+  </div>
+  </div>
    <table class="table table-inverse" id="myTable" ;style ="width :100%;">
   <tr class="clickable-row">
-    <td>Flight</td>
-     <td>Business</td>
-      <td>EconomyA</td>
-       <td>EconomyB</td>
+    <td style="font: bold; color: #C71585; font-size: 25px; font-family:Lobster">Flight</td>
+     <td style="font: bold; color: #C71585; font-size: 25px; font-family:Lobster">Business</td>
+      <td style="font: bold; color: #C71585; font-size: 25px; font-family:Lobster">First Class</td>
+       <td style="font: bold; color: #C71585; font-size: 25px; font-family:Lobster">Economy</td>
   </tr>
-  
-      <pre>upper = {{upper_bound}}; lower = {{lower_bound}}</pre>
-      <tr class="clickable-row" ng-repeat = "flight in outflights |orderBy:predicate | filter: byRange | filter: {date: dt}">
-    <td><form>
-    flight number : {{flight.flight_no}}<br>
-    destination :   {{flight.destination}}<br>
+        <tr class="clickable-row" ng-repeat = "flight in outflights |orderBy:predicate | filter: byRange | filter: {date: dt}">
+    <td><form style="font-size: 17px">
+    Flight Number : {{flight.flight_no}}<br>
+    Destination :   {{flight.destination}}<br>
         </form></td>
        <td><button ng-click = "bookOutgoing(flight,flight.price1,'Business')" type="button" class="btn btn-success">{{flight.price1}}$</button></td>
        <td><button ng-click = "bookOutgoing(flight,flight.price2,'Economy A')" type="button" class="btn btn-success">{{flight.price2}}$</button></td>
