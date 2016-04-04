@@ -28,6 +28,7 @@ App.config(function($routeProvider) {
             controller  : 'mainCtrl'            
         })
         .otherwise({ 
-          templateUrl : '/partials/404.html'   
+          templateUrl : '/partials/404.html' ,
+          controller : 'mainCtrl'  
         });
 });

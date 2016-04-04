@@ -13,18 +13,6 @@
       text-transform: uppercase;
     }
 
-   /*table.center {
-      border-collapse: separate;
-      border-spacing: 10px;
-      margin-left:auto; 
-      margin-right:auto;
-    }
-
-    .pink_heading {
-      text-align: center;
-      color: #C71585
-    }*/
-
     .imageContainer {
       width: 100%; 
       height: 100%; 
@@ -197,15 +185,22 @@
     .carousel-caption {
       display: none; 
     }
-
-<<<<<<< HEAD
-  .404body {
-    background-image: url(/Images/favicon.png);
-    width: 145px;
-    height: 145px;
-    margin: 0 auto;
-  }
-
-=======
->>>>>>> 0b6f15bab20d5ad3055d4eec094d55a071ac12e0
+  /*@-webkit-keyframes typing { from { width: 0; } }
+  @-webkit-keyframes blink-caret { 50% { border-color: transparent; } }
+  .p22 { 
+  font: bold 300% Consolas, Monaco, monospace;
+  border-right: .1em solid black;
+   top: 200px; 
+  left:400px;
+      width: 100%;
+      color: gray;
+  width: 16.5em; 
+  width: 21ch;
+  margin: 2em 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  position:absolute;
+  -webkit-animation: typing 2s steps(21, end),
+  blink-caret .5s step-end infinite alternate;
+}*/
 }
