@@ -5,6 +5,6 @@ function getFlightsFromJSON(){
 	return flights;
 };
 
-// function getAirportsFromJSON(){
-// 	return airport;
-// };
+function getAirportsFromJSON(){
+	return airport;
+};
