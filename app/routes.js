@@ -1,4 +1,9 @@
+
+
 module.exports = function(app,mongo) {
+
+    var flights=require('./flights.js');
+    var db=require('./db.js');
 
     app.get('/api/data/inflights', function(rep, res){
     	var flights = require('../inFlights.json');
@@ -25,6 +30,36 @@ module.exports = function(app,mongo) {
     app.get('/api/data/bookings', function(req, res){
     	var bookings = require('../bookings.json');
     	res.json(bookings);
+    });
+
+    /* SEED DB */
+    app.get('/db/seed', function(req, res) {
+
+        flights.seedDB(function(){                 
+            console.log("seedCallBack");            //new
+        });
+
+    });
+
+    /* DELETE DB */
+    app.get('/db/delete', function(req, res) {
+
+        db.clearDB(function(){                  
+            console.log("clearCallBack");        //  (new) make sure if it should be dropped instead
+        });
+
+    }); 
+
+    app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res){
+
+        console.log(req.params.origin);
+
+        flights.getOneWayFlightFromDB(function(err,result){             //new
+
+            res.send(result);
+
+        },req.params.origin,req.params.destination,req.params.departingDate,req.params.class);
+
     });
     
     /* RENDER MAIN PAGE */
