@@ -10,10 +10,6 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
     $scope.popup2.opened = true;
   };
 
-  $scope.setDate = function(year, month, day) {
-    $scope.dt = new Date(year, month, day);
-  };
-
   $scope.popup1 = {
     opened: false
   };
@@ -27,6 +23,7 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
          $scope.Airports = airports;
      });
   };
+
   $scope.setOrigin = function(originAirport)
   {
     $scope.selectedOrigin = originAirport;
@@ -35,6 +32,15 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
   {
     $scope.selectedDestination = destinationAirport;
   };
+  $scope.setDate = function(year, month, day) {
+    $scope.dt = new Date(year, month, day);
+  };
+  $scope.setClass = function(flightClass)
+  {
+    $scope.selectedClass = flightClass;
+  };
+ 
+
   $scope.searchOneWay = function() {
     flightSrv.setType('OneWay');
     flightSrv.setOriginAirport($scope.selectedOrigin);
