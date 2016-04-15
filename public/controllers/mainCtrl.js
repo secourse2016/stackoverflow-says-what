@@ -10,6 +10,10 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
     $location.url('/');
   };
 
+    $scope.bookingDetails = function() {
+    $location.url('/bookingDetails');
+    };
+
     $scope.contactSubmit = function() {
     $location.url('/thankYou');
   };

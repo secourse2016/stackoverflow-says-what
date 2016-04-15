@@ -48,6 +48,14 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/thankYou.html',
             controller : 'mainCtrl'
         })
+        .when('/searchPage', {
+            templateUrl : '/partials/searchPage.html',
+            controller : 'mainCtrl'
+        })
+        .when('/bookingDetails', {
+            templateUrl : '/partials/bookingDetails.html',
+            controller : 'mainCtrl'
+        })
         .otherwise({ 
           templateUrl : '/partials/404.html' ,
           controller  : 'mainCtrl'   
