@@ -44,7 +44,7 @@
         <input type="text" class="form-control" required placeholder="Where are you flying from?"
         aria-describedby="basic-addon1" 
         ng-model="selectedOriginOneway"
-        uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
         class="form-control"
         typeahead-on-select="setOrigin($item.iata)"
         required>
@@ -56,7 +56,7 @@
          <input type="text" class="form-control" placeholder="Where are you flying to?" 
          aria-describedby="basic-addon1"
          ng-model="selectedDestinationOneway"
-         uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+         uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
          class="form-control"
          typeahead-on-select="setDestination($item.iata)"
          required/>
@@ -95,7 +95,7 @@
        <input type="text" class="form-control" placeholder="Where are you flying from?" 
        aria-describedby="basic-addon1"
        ng-model="selectedOriginRound"
-       uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+       uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
        class="form-control"
        typeahead-on-select="setOrigin($item.iata)"
        required/>
@@ -107,7 +107,7 @@
        <input type="text" class="form-control" placeholder="Where are you flying to?" 
        aria-describedby="basic-addon1"
        ng-model="selectedDestinationRound"
-       uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+       uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
        class="form-control"
        typeahead-on-select="setDestination($item.iata)"
        required/>
