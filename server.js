@@ -1,5 +1,5 @@
 var app     = require('./app/app');
-var db      = require('./db.js');
+var db      = require('./app/db.js');
 
 
 
