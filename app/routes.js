@@ -86,21 +86,22 @@ module.exports = function(app,mongo) {
       res.sendFile(__dirname + '/public/index.html');
     });
 
-    app.use(function(req, res, next) {
-      try{
-      var token = req.body.wt || req.query.wt || req.headers['x-access-token'];   
-      var jwtSecret = process.env.JWTSECRET;
-      
-        var payload = jwt.verify(token, jwtSecret);
-        req.payload = payload;
-        next();
-      } 
-      catch (err) 
-      {
-        console.error('[ERROR]: JWT Error reason:', err);
-        res.status(403).sendFile(path.join(__dirname, '../public', '403.html'));
-      }
 
-    });
+    // app.use(function(req, res, next) {
+    // try 
+    //   {
+    //   var token = req.body.wt || req.query.wt || req.headers['x-access-token'];   
+    //   var jwtSecret = process.env.JWTSECRET;
+    //           var payload = jwt.verify(token, jwtSecret);
+    //     req.payload = payload;
+    //     next();
+    //   } 
+    //   catch (err) 
+    //   {
+    //     console.error('[ERROR]: JWT Error reason:', err);
+    //     res.status(403).sendFile(path.join(__dirname, '../public', '404.html'));
+    //   }
+
+    // });
 
 };

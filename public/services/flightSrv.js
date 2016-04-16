@@ -2,10 +2,26 @@ App.factory('flightSrv',function($http){
 	return {
 		// returns all the flights in the json file
 		getInFlights : function(){
-			return $http.get('/api/data/inflights');
+			var myUrl='/api/flights/search/';
+			myUrl = myUrl.concat(this.destination);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.origin);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat('2016-04-13T18:25:43.511Z');
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.flightClass);
+			return $http.get(myUrl);
 		},
 		getOutFlights : function(){
-			return $http.get('/api/data/outflights');
+			var myUrl='/api/flights/search/';
+			myUrl = myUrl.concat(this.origin);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.destination);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat('2016-04-12T18:25:43.511Z');
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.flightClass);
+			return $http.get(myUrl);
 		},
 		// returns all airports in the json file
 		getAirports : function(){
