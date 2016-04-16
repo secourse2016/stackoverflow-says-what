@@ -56,6 +56,7 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
     flightSrv.setDestinationAirport($scope.selectedDestination);
     flightSrv.setDepartureDate($scope.dtRound);
     flightSrv.setArrivalDate($scope.atRound);
+    flightSrv.setClass($scope.selectedClass);
     $location.url('/outGoingFlights');
   };
   

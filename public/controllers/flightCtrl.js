@@ -10,13 +10,13 @@ App.controller('flightCtrl', function($scope,flightSrv,$location) {
     // $scope.inflights = flightSrv.getInFlights();
     function getInFlights(){
       flightSrv.getInFlights().success(function(flights){
-        $scope.inflights = flights;
+        $scope.inflights = flights.outgoingFlights;
       });
     };
 
     function getOutFlights(){
       flightSrv.getOutFlights().success(function(flights){
-        $scope.outflights = flights;
+        $scope.outflights = flights.outgoingFlights;
       });
     };
 
@@ -63,7 +63,8 @@ App.controller('flightCtrl', function($scope,flightSrv,$location) {
       return ($scope.lower_bound<=flight.price1&&$scope.upper_bound>=flight.price1)||($scope.lower_bound<=flight.price2&&$scope.upper_bound>=flight.price2)||($scope.lower_bound<=flight.price3&&$scope.upper_bound>=flight.price3);
 
   };
-  getInFlights();
   getOutFlights();
+  //sif (flightSrv.getType == 'Round')
+    getInFlights();   
  
 });

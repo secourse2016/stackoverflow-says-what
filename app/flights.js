@@ -44,6 +44,7 @@ exports.seedDB = function(cb){
 getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
 {
 	result = {};
+	console.log('InOneTrip');
 	result.outgoingFlights = [];
 	myDB.db().collection("flights").find({"origin": origin, "destination": destination, "date": departingDate}).toArray(function(err,flightsArray)
     {
@@ -82,6 +83,7 @@ getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
 	    	else
 	    	{
 	    		cb(err,result);
+	    		console.log(myClass);
 	    		console.log('failure');
 	    	}
 	    	
@@ -92,6 +94,7 @@ getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
 exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDate, returningDate, myClass)
 {
 	var res = {};
+
 	getOneWayFlightFromDB(function(err2, res2){
 		res.outgoingFlights =  res2.outgoingFlights;
 		getOneWayFlightFromDB(function(err3, res3){
