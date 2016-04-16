@@ -41,7 +41,7 @@ exports.seedDB = function(cb){
 };
 
 
-exports.getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
+getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
 {
 	result = {};
 	result.outgoingFlights = [];
@@ -102,6 +102,7 @@ exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDa
 	
 	
 };
+exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
    /*myDB.connect(function(err,db)
     {
    		seedDB(function(err2,seeded)
