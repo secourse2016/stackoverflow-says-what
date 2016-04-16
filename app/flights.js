@@ -90,8 +90,8 @@ exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
 exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDate, returningDate, myClass)
 {
 	var res = {};
-	res.outgoingFlights = getOneWayFlightFromDB(cb, origin, destination, departingDate, myClass);
-	res.returningFlights = getOneWayFlightFromDB(cb, destination, origin, returningDate,  myClass);
+	res.outgoingFlights = (getOneWayFlightFromDB(cb, origin, destination, departingDate, myClass)).outgoingFlights;
+	res.returningFlights = (getOneWayFlightFromDB(cb, destination, origin, returningDate,  myClass)).outgoingFlights;
 	cb(err, res);
 };
 /*    myDB.connect(function(err,db)
