@@ -33,25 +33,6 @@
    width: 100%; 
     }
 
-    /*table.center {
-    border-collapse: separate;
-    border-spacing: 10px;
-    margin-left:auto; 
-    margin-right:auto;
-=======
-   /*table.center {
-      border-collapse: separate;
-      border-spacing: 10px;
-      margin-left:auto; 
-      margin-right:auto;
->>>>>>> dev
-    }
-
-    .pink_heading {
-      text-align: center;
-      color: #C71585
-    }*/
-
     .imageContainer {
       width: 100%; 
       height: 100%; 
@@ -224,18 +205,6 @@
     .carousel-caption {
       display: none; 
     }
-
-<<<<<<< HEAD
-  .404body {
-    background-image: url(/Images/favicon.png);
-    width: 145px;
-    height: 145px;
-    margin: 0 auto;
-  }
-
-=======
->>>>>>> 0b6f15bab20d5ad3055d4eec094d55a071ac12e0
-}
 
 .flight {
   font-family: Bangers;

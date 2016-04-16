@@ -1,6 +1,8 @@
 var flights  = require('../flights.json');
 var airports = require('../airports.json');
 var myDB = require('./db.js');
+
+
 exports.getAirportsFromJSON = function()
 {
 	return airports;
@@ -10,7 +12,7 @@ exports.getFlightsFromJSON = function(){
 	return flights;
 };
 
-function seedDB(cb){
+exports.seedDb = function(cb){
 
 	//checking airports collection
 	myDB.db().collection("airports").count(function(err,airportCount)
@@ -37,7 +39,9 @@ function seedDB(cb){
 		}
 	});
 };
-function getOneWayFlightFromDB(cb,origin,destination,departingDate,myClass)
+
+
+exports.getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
 {
 	result = {};
 	result.outgoingFlights = [];
@@ -84,29 +88,3 @@ function getOneWayFlightFromDB(cb,origin,destination,departingDate,myClass)
     	}
     });
 };
-exports.seedDB=seedDB;
-exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
-/*    myDB.connect(function(err,db)
-    {
-   		seedDB(function(err2,seeded)
-    	{
-    		console.log(err2);
-    		console.log(seeded);
-        });
-    });*/
-
-/* myDB.connect(function(err,db)
-    {
-   		getOneWayFlightFromDB(function(err2,seeded)
-    	{
-    		console.log(err2);
-    		console.log(seeded);
-        },"BOM","DEL","2016-04-12T18:25:43.511Z",'business');
-    });*/
-/*    myDB.connect(function(err,db)
-    {
-   		myDB.clearDB(function(){
-    	console.log("Databaseis clear");
-    	});
-    });*/
-    
