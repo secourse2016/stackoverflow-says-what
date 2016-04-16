@@ -35,8 +35,12 @@ module.exports = function(app,mongo) {
     /* SEED DB */
     app.get('/db/seed', function(req, res) {
 
+
         flights.seedDB(function(){                 
-            console.log("seedCallBack");            //new
+             db.db().collection('flights').count(function(err,count){     //testing seed
+                console.log(count);
+    
+             });
         });
 
     });
@@ -44,15 +48,21 @@ module.exports = function(app,mongo) {
     /* DELETE DB */
     app.get('/db/delete', function(req, res) {
 
-        db.clearDB(function(){                  
-            console.log("clearCallBack");        //  (new) make sure if it should be dropped instead
+        db.clearDB(function(){    
+
+            db.db().collection('flights').count(function(err,count){     //testing delete
+
+                console.log(count);                                      //  (new) make sure if it should be dropped instead
+    
+             });              
+                   
         });
 
     }); 
 
     app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res){
 
-        console.log(req.params.origin);
+        
 
         flights.getOneWayFlightFromDB(function(err,result){             //new
 
