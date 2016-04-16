@@ -20,7 +20,7 @@ App.factory('flightSrv',function($http){
 			return $http.get('/api/data/aircrafts');
 		},
 		// saves the number adults the flight is being booked for
-		setNumberOfAdults : function(value){
+		/*setNumberOfAdults : function(value){
 			this.noOfAdults = value;
 		},
 		// returns the number of adults the flight is being booked for
@@ -34,7 +34,7 @@ App.factory('flightSrv',function($http){
 		// returns the number of children the flight is being booked for
 		getNumberOfChildren : function(){
 			return this.noOfChildren;
-		},
+		},*/
 		// sets the first departure date
 		setDepartureDate : function(value){
 			this.departureDate = value;
@@ -79,6 +79,12 @@ App.factory('flightSrv',function($http){
 		// saves the passenger's origin
 		setOriginAirport : function(value){
 			this.origin = value;
+		},
+		setClass : function(value){
+			this.flightClass = value;
+		},
+		getClass : function(){
+			return this.flightClass;
 		},
 		// returns the passenger's origin
 		getOriginAirport : function(){

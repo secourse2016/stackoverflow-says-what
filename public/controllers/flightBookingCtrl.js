@@ -38,14 +38,16 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
   $scope.setClass = function(flightClass)
   {
     $scope.selectedClass = flightClass;
+    flightSrv.setClass(flightClass);
   };
- 
 
+ 
   $scope.searchOneWay = function() {
     flightSrv.setType('OneWay');
     flightSrv.setOriginAirport($scope.selectedOrigin);
     flightSrv.setDestinationAirport($scope.selectedDestination);
     flightSrv.setDepartureDate($scope.dtOneway);
+    flightSrv.setClass($scope.selectedClass);
     $location.url('/outGoingFlights');
   };
   $scope.searchRoundTrip = function() {
