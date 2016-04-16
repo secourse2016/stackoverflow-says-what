@@ -63,7 +63,8 @@ App.controller('flightCtrl', function($scope,flightSrv,$location) {
       return ($scope.lower_bound<=flight.price1&&$scope.upper_bound>=flight.price1)||($scope.lower_bound<=flight.price2&&$scope.upper_bound>=flight.price2)||($scope.lower_bound<=flight.price3&&$scope.upper_bound>=flight.price3);
 
   };
-  getInFlights();
   getOutFlights();
+  //sif (flightSrv.getType == 'Round')
+    getInFlights();   
  
 });
