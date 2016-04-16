@@ -32,6 +32,10 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/main.html',
             controller  : 'mainCtrl'            
         })
+        .when('/team',{
+            templateUrl : '/partials/team.html',
+            controller  : 'mainCtrl'            
+        })
         .when('/confirmationR', {
             templateUrl : '/partials/confirmationRoundTrip.html',
             controller : 'confirmRCtrl'
