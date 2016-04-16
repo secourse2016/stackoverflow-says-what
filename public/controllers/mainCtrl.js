@@ -5,16 +5,15 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
     $location.url('/flightBooking');
   };
 
-  
 	$scope.homePage = function() {
     $location.url('/');
   };
 
-    $scope.bookingDetails = function() {
+  $scope.bookingDetails = function() {
     $location.url('/bookingDetails');
-    };
+  };
 
-    $scope.contactSubmit = function() {
+  $scope.contactSubmit = function() {
     $location.url('/thankYou');
   };
 

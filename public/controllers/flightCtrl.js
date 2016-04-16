@@ -5,6 +5,7 @@ App.controller('flightCtrl', function($scope,flightSrv,$location) {
     $scope.upper_bound=10000;
     $scope.lower_bound=0;
     $scope.date = "";
+    $scope.selectedClass = flightSrv.getClass();
     // $scope.outflights = flightSrv.getOutFlights();
     // $scope.inflights = flightSrv.getInFlights();
     function getInFlights(){
@@ -18,6 +19,17 @@ App.controller('flightCtrl', function($scope,flightSrv,$location) {
         $scope.outflights = flights;
       });
     };
+
+    /*function getClass(){
+      flightSrv.getClass().success(function(value){
+        $scope.flightClass = flightSrv.getClass();
+      });
+    };*/
+    /*$scope.viewClass = function()
+    {
+      $scope.selectedClass = flightSrv.getClass();
+    };*/
+
     // console.log(outflights);
 //     $scope.outflights=
 //     [
@@ -427,8 +439,10 @@ App.controller('flightCtrl', function($scope,flightSrv,$location) {
       return ($scope.lower_bound<=flight.price1&&$scope.upper_bound>=flight.price1)||($scope.lower_bound<=flight.price2&&$scope.upper_bound>=flight.price2)||($scope.lower_bound<=flight.price3&&$scope.upper_bound>=flight.price3);
 
   };
-
+  /*$scope.$on('selectedClass', function (event, data) {
+    $scope.selectedClass = data;
+  });*/
   getInFlights();
   getOutFlights();
-
+ 
 });
