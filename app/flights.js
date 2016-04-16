@@ -12,7 +12,7 @@ exports.getFlightsFromJSON = function(){
 	return flights;
 };
 
-exports.seedDb = function(cb){
+exports.seedDB = function(cb){
 
 	//checking airports collection
 	myDB.db().collection("airports").count(function(err,airportCount)
@@ -88,3 +88,41 @@ exports.getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myCl
     	}
     });
 };
+
+exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDate, returningDate, myClass)
+{
+	var res = {};
+	getOneWayFlightFromDB(function(err2, res2){
+		res.outgoingFlights =  res2.outgoingFlights;
+		getOneWayFlightFromDB(function(err3, res3){
+			res.returningFlights = res3.outgoingFlights;
+			cb(null, res);}, destination, origin, returningDate,  myClass);
+	}, origin, destination, departingDate, myClass);
+
+	
+	
+};
+   /*myDB.connect(function(err,db)
+    {
+   		seedDB(function(err2,seeded)
+	    	{
+    		console.log(err2);
+    		console.log(seeded);
+        });
+    });*/
+
+/* myDB.connect(function(err,db)
+    {
+   		getRoundTripFlightFromDB(function(err2,result)
+    	{
+    		console.log('hello');
+    		console.log(result);
+        },"BOM","DEL","2016-04-12T18:25:43.511Z","2016-04-12T18:25:43.511Z",'business');
+    });*/
+/*    myDB.connect(function(err,db)
+    {
+   		myDB.clearDB(function(){
+    	console.log("Databaseis clear");
+    	});
+    });*/
+    
