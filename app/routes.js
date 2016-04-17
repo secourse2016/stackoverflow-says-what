@@ -131,6 +131,16 @@ module.exports = function(app,mongo) {
         },req.params.origin,req.params.destination,req.params.departingDate,req.params.returningDate,req.params.class);
 
     });
+    
+    app.get('/api/bookings/search/:refNo', function(req, res){
+
+        flights.getBooking(function(err,result){             //new
+
+            res.send(result);
+
+        },req.params.refNo);
+
+    });
 
      app.use(function(req, res, next) {
        try 
