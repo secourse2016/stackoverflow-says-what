@@ -129,7 +129,7 @@ exports.bookOneWay = function(flightNo, myClass, bookingData, cb){
 						var booking = {
 							firstName: bookingData.firstName, 
 							lastName: bookingData.lastName, 
-							passport_no: bookingData.passportNo, 
+							passport_no: bookingData.passport_no, 
 							email: bookingData.email, 
 							seat_no: mySeat.seat_no,
 							receipt_no: resvID, 
