@@ -81,8 +81,7 @@
       left: 80px; 
       width: 40%;
       background-color : transparent;
-      /*overflow: scroll;*/
-      /*background-size: fixed;*/
+      margin-top: -5%;
     }
 
     .tabbed > input{
