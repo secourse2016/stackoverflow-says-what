@@ -56,10 +56,17 @@ module.exports = function(app,mongo) {
         }else{
             var inFlight = req.body.inFlightNo;
             flights.bookOneWay(outFlight, myClass, bookingData, function(err, outBookedDetails){
-                res.json(outBookedDetails);
-            });
-            flights.bookOneWay(inFlight, myClass, bookingData, function(err, inBookedDetails){
-                res.json(inBookedDetails);
+                // res.json(outBookedDetails);
+
+                flights.bookOneWay(inFlight, myClass, bookingData, function(err, inBookedDetails){
+                    res.json(inBookedDetails);
+                    var result = {
+                        "outDetails" : outBookedDetails;
+                        "inDetails" : inBookedDetails; 
+                    }
+                    res.json(result);
+                });
+                
             });
         }
     });

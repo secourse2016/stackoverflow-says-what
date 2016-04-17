@@ -10,13 +10,19 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
     		$scope.bookingData.type = flightSrv.getType();
     		$scope.bookingData.outFlightNo = flightSrv.getOutgoingFlight();
     		$scope.bookingData.myClass = flightSrv.getClass();
-    		if(flightSrv.getType === 'Rpund')
+    		if(flightSrv.getType() === 'Round')
     			$scope.bookingData.inFlightNo = flightSrv.getIngoingFlight();
     		flightSrv.createPayment($scope.bookingData)
     			.success(function (data) {
     				// body...
     				$scope.bookingData = {};
     				$scope.refNo = data;
+    				if(flightSrv.getType() === 'OneWay')
+    					flightSrv.setOutRefNo(data.receipt_no);
+    				else{
+    					flightSrv.setOutRefNo(data.outDetails.receipt_no);
+    					flightSrv.setInRefNo(data.inDetails.receipt_no);
+    				}
     			});
     	}
   	};

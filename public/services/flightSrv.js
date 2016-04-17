@@ -105,6 +105,18 @@ App.factory('flightSrv',function($http){
 		getClass : function(){
 			return this.flightClass;
 		},
+		setOutRefNo : function(value){
+			this.outRefNo = value;
+		},
+		getOutRefNo : function(){
+			return this.outRefNo;
+		},
+		setInRefNo : function(value){
+			this.inRefNo = value;
+		},
+		getInRefNo : function(){
+			return this.inRefNo;
+		},
 		// returns the passenger's origin
 		getOriginAirport : function(){
 			return this.origin;
