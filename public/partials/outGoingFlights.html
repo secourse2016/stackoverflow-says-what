@@ -33,7 +33,7 @@
   <option>Date</option>
   <option>Origin</option>
   <option value="price1">Business Price</option>
-  <option value="price2">First Class Price</option>
+  <!-- <option value="price2">First Class Price</option> -->
   <option value="price3">Economy Price</option>
   </select>
   </form>
@@ -74,18 +74,19 @@
    <table class="table table-inverse" id="myTable" ;style ="width :100%;">
   <tr class="clickable-row">
     <td style="font: bold; color: #C71585; font-size: 25px; font-family:Lobster">Flight</td>
-     <td style="font: bold; color: #C71585; font-size: 25px; font-family:Lobster">Business</td>
-      <td style="font: bold; color: #C71585; font-size: 25px; font-family:Lobster">First Class</td>
-       <td style="font: bold; color: #C71585; font-size: 25px; font-family:Lobster">Economy</td>
+     <td><span ng-bind = "selectedClass" style="font: bold; color: #C71585; font-size: 25px; font-family:Lobster"></span></td>
+     <!--  <td style="font: bold; color: #C71585; font-size: 25px; font-family:Lobster">First Class</td>
+       <td style="font: bold; color: #C71585; font-size: 25px; font-family:Lobster">Economy</td> -->
   </tr>
-        <tr class="clickable-row" ng-repeat = "flight in outflights |orderBy:predicate | filter: byRange | filter: {date: dt}">
+        <tr class="clickable-row" ng-repeat = "flight in getOneWayFlightFromDB(cb,$scope.selectedOrigin, $scope.selectedDestination, $scope.dtOneway, $scope.selectedClass)">
     <td><form style="font-size: 17px">
     Flight Number : {{flight.flight_no}}<br>
     Destination :   {{flight.destination}}<br>
         </form></td>
        <td><button ng-click = "bookOutgoing(flight,flight.price1,'Business')" type="button" class="btn btn-success">{{flight.price1}}$</button></td>
-       <td><button ng-click = "bookOutgoing(flight,flight.price2,'Economy A')" type="button" class="btn btn-success">{{flight.price2}}$</button></td>
-       <td><button ng-click = "bookOutgoing(flight,flight.price3,'Economy B')" type="button" class="btn btn-success">{{flight.price3}}$</button></td>
+       <!-- HEEERRRREEEEEE CHANGE THE PRICE ACCORDING TO THE CLASS -->
+    <!--    <td><button ng-click = "bookOutgoing(flight,flight.price2,'Economy A')" type="button" class="btn btn-success">{{flight.price2}}$</button></td>
+       <td><button ng-click = "bookOutgoing(flight,flight.price3,'Economy B')" type="button" class="btn btn-success">{{flight.price3}}$</button></td> -->
   </tr>
 
 </table>

@@ -1,6 +1,8 @@
 var flights  = require('../flights.json');
 var airports = require('../airports.json');
 var myDB = require('./db.js');
+
+
 exports.getAirportsFromJSON = function()
 {
 	return airports;
@@ -10,7 +12,7 @@ exports.getFlightsFromJSON = function(){
 	return flights;
 };
 
-function seedDB(cb){
+exports.seedDB = function(cb){
 
 	//checking airports collection
 	myDB.db().collection("airports").count(function(err,airportCount)
@@ -37,7 +39,9 @@ function seedDB(cb){
 		}
 	});
 };
-function getOneWayFlightFromDB(cb,origin,destination,departingDate,myClass)
+
+
+getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
 {
 	result = {};
 	result.outgoingFlights = [];
@@ -84,12 +88,25 @@ function getOneWayFlightFromDB(cb,origin,destination,departingDate,myClass)
     	}
     });
 };
-exports.seedDB=seedDB;
+
+exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDate, returningDate, myClass)
+{
+	var res = {};
+	getOneWayFlightFromDB(function(err2, res2){
+		res.outgoingFlights =  res2.outgoingFlights;
+		getOneWayFlightFromDB(function(err3, res3){
+			res.returningFlights = res3.outgoingFlights;
+			cb(null, res);}, destination, origin, returningDate,  myClass);
+	}, origin, destination, departingDate, myClass);
+
+	
+	
+};
 exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
-/*    myDB.connect(function(err,db)
+   /*myDB.connect(function(err,db)
     {
    		seedDB(function(err2,seeded)
-    	{
+	    	{
     		console.log(err2);
     		console.log(seeded);
         });
@@ -97,11 +114,11 @@ exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
 
 /* myDB.connect(function(err,db)
     {
-   		getOneWayFlightFromDB(function(err2,seeded)
+   		getRoundTripFlightFromDB(function(err2,result)
     	{
-    		console.log(err2);
-    		console.log(seeded);
-        },"BOM","DEL","2016-04-12T18:25:43.511Z",'business');
+    		console.log('hello');
+    		console.log(result);
+        },"BOM","DEL","2016-04-12T18:25:43.511Z","2016-04-12T18:25:43.511Z",'business');
     });*/
 /*    myDB.connect(function(err,db)
     {
