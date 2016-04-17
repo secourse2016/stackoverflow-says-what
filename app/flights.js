@@ -108,7 +108,7 @@ exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDa
 exports.getBooking = function(cb , refNumber)
 {
 	var res = {};
-	myDB.db().collection("flights").find({flight_no: refNumber}).toArray(function(err,flightsArray){
+	myDB.db().collection("booking").find({receipt_no : refNumber}).toArray(function(err,flightsArray){
 		cb(null, flightsArray[0]);
 	});
     
