@@ -43,10 +43,14 @@ exports.seedDB = function(cb){
 
 getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
 {
+	var moment = require('moment');
 	result = {};
-	console.log('InOneTrip');
+	var lowerLimit = moment(departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
+	var x = moment(lowerLimit).add(1,'day');
+	var upperLimit = moment(x).format('YYYY-MM-DDTHH:mm:ss');
 	result.outgoingFlights = [];
-	myDB.db().collection("flights").find({"origin": origin, "destination": destination, "date": departingDate}).toArray(function(err,flightsArray)
+	myDB.db().collection("flights").find({"origin": origin, "destination": destination, "date": { "$lt" : upperLimit , 
+                                "$gt" : lowerLimit}}).toArray(function(err,flightsArray)
     {
     	if (err || flightsArray.length<1)
     	{
@@ -71,14 +75,14 @@ getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
 	    		schemaFlight.cost = myFlight.price2;
 	    		result.outgoingFlights[0]=schemaFlight;
 	    		cb(err,result);
-	    		console.log('success');
+	    		/*console.log('success');*/
 	    	}
 	    	else if (myClass == "business" && myFlight.available_seats.seats_a > 0)
 	    	{
 	    		schemaFlight.cost = myFlight.price1;
 	    		result.outgoingFlights[0]=schemaFlight;
 	    		cb(err,result);
-	    		console.log('success');
+	    		/*console.log('success');*/
 	    	}
 	    	else
 	    	{
@@ -194,6 +198,9 @@ exports.bookOneWay = function(flightNo, myClass, bookingData, cb){
 // };
 
 exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
+/*var moment = require('moment');
+console.log(moment("2016-04-19").toDate().getTime());*/
+
    /*myDB.connect(function(err,db)
     {
    		seedDB(function(err2,seeded)
