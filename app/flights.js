@@ -43,10 +43,14 @@ exports.seedDB = function(cb){
 
 getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
 {
+	var moment = require('moment');
 	result = {};
-	console.log('InOneTrip');
+	var lowerLimit = moment(departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
+	var x = moment(lowerLimit).add(1,'day');
+	var upperLimit = moment(x).format('YYYY-MM-DDTHH:mm:ss');
 	result.outgoingFlights = [];
-	myDB.db().collection("flights").find({"origin": origin, "destination": destination, "date": departingDate}).toArray(function(err,flightsArray)
+	myDB.db().collection("flights").find({"origin": origin, "destination": destination, "date": { "$lt" : upperLimit , 
+                                "$gt" : lowerLimit}}).toArray(function(err,flightsArray)
     {
     	if (err || flightsArray.length<1)
     	{
@@ -106,6 +110,9 @@ exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDa
 	
 };
 exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
+/*var moment = require('moment');
+console.log(moment("2016-04-19").toDate().getTime());*/
+
    /*myDB.connect(function(err,db)
     {
    		seedDB(function(err2,seeded)
