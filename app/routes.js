@@ -1,6 +1,5 @@
 module.exports = function(app,mongo) {
      var jwt     = require('jsonwebtoken');
-    var express = require('express');
     var path    = require('path');
     app.get('/api/data/inflights', function(rep, res){
     	var flights = require('../inFlights.json');
@@ -29,20 +28,17 @@ module.exports = function(app,mongo) {
     	res.json(bookings);
     });
     
-    /* RENDER MAIN PAGE */
-    app.get('/', function (req, res) {
-      res.sendFile(__dirname + '/public/index.html');
-    });
-    app.use(function(req, res, next) {
+     app.use(function(req, res, next) {
        try 
       {
          console.log("done");
- 
       var token = req.body.wt||req.query.wt||req.headers['x-access-token'];   
        console.log("done");
       var jwtSecret = process.env.JWTSECRET;
-     
+          console.log(req.body);
         var payload = jwt.verify(token, jwtSecret);
+             console.log("done2");
+             console.log(req.query);
         req.payload = payload;
         console.log("done");
         next();
@@ -53,6 +49,19 @@ module.exports = function(app,mongo) {
         res.status(403).sendFile(path.join(__dirname, '../public', '403.html'));
       }
 
+    });
+
+    /* RENDER MAIN PAGE */
+    app.get('/', function (req, res) {
+      res.sendFile(__dirname + '/public/index.html');
+    });
+
+
+   
+
+
+    app.get('/test', function(req, res){
+      res.json({message:"success"});
     });
 
 };
