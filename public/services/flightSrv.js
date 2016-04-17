@@ -7,7 +7,7 @@ App.factory('flightSrv',function($http){
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.origin);
 			myUrl = myUrl.concat('/');
-			myUrl = myUrl.concat('2016-04-13T18:25:43.511Z');
+			myUrl = myUrl.concat(this.arrivalDate);
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
 			return $http.get(myUrl);
@@ -18,7 +18,7 @@ App.factory('flightSrv',function($http){
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.destination);
 			myUrl = myUrl.concat('/');
-			myUrl = myUrl.concat('2016-04-12T18:25:43.511Z');
+			myUrl = myUrl.concat(this.departureDate);
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
 			return $http.get(myUrl);
