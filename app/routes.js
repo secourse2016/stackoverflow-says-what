@@ -34,6 +34,36 @@ module.exports = function(app,mongo) {
     	res.json(bookings);
     });
 
+    app.post('/api/pay', function(req, res){
+        // var bookingDetails = req.body;
+        var type = req.body.type;
+        var outFlight = req.body.outFlightNo;
+        var myClass = req.body.myClass;
+        var firstName = req.body.firstName;
+        var lastName = req.body.lastName;
+        var email = req.body.email;
+        var passport_no = req.body.passport_no;
+        var bookingData = {
+            "firstName" : firstName,
+            "lastName" : lastName,
+            "email" : email, 
+            "passport_no" : passport_no
+        };
+        if(type === 'OneWay'){
+            flights.bookOneWay(outFlight, myClass, bookingData, function(err, bookedDetails){
+                res.json(bookedDetails);
+            });
+        }else{
+            var inFlight = req.body.inFlightNo;
+            flights.bookOneWay(outFlight, myClass, bookingData, function(err, outBookedDetails){
+                res.json(outBookedDetails);
+            });
+            flights.bookOneWay(inFlight, myClass, bookingData, function(err, inBookedDetails){
+                res.json(inBookedDetails);
+            });
+        }
+    });
+
     /* SEED DB */
     app.get('/db/seed', function(req, res) {
 
