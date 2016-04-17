@@ -2,25 +2,25 @@ App.factory('flightSrv',function($http){
 	return {
 		// returns all the flights in the json file
 		getInFlights : function(){
-			var myUrl='/api/flights/search/';
-			myUrl = myUrl.concat(this.destination);
-			myUrl = myUrl.concat('/');
-			myUrl = myUrl.concat(this.origin);
-			myUrl = myUrl.concat('/');
-			myUrl = myUrl.concat('2016-04-13T18:25:43.511Z');
-			myUrl = myUrl.concat('/');
-			myUrl = myUrl.concat(this.flightClass);
+			var myUrl=	'/api/flights/search/'
+						.concat(this.destination)
+						.concat('/')
+						.concat(this.origin)
+						.concat('/')
+						.concat('2016-04-13T18:25:43.511Z')
+						.concat('/')
+						.concat(this.flightClass);
 			return $http.get(myUrl);
 		},
 		getOutFlights : function(){
-			var myUrl='/api/flights/search/';
-			myUrl = myUrl.concat(this.origin);
-			myUrl = myUrl.concat('/');
-			myUrl = myUrl.concat(this.destination);
-			myUrl = myUrl.concat('/');
-			myUrl = myUrl.concat('2016-04-12T18:25:43.511Z');
-			myUrl = myUrl.concat('/');
-			myUrl = myUrl.concat(this.flightClass);
+			var myUrl='/api/flights/search/'
+						.concat(this.origin)
+						.concat('/')
+						.concat(this.destination)
+						.concat('/')
+						.concat('2016-04-12T18:25:43.511Z')
+						.concat('/')
+						.concat(this.flightClass);
 			return $http.get(myUrl);
 		},
 		// returns all airports in the json file
@@ -36,11 +36,14 @@ App.factory('flightSrv',function($http){
 			return $http.get('/api/data/aircrafts');
 		},
 		// saves the number adults the flight is being booked for
-		/*setNumberOfAdults : function(value){
-			this.noOfAdults = value;
+		getBookingDetails : function(){
+			var myUrl='/api/bookings/search/'.concat(this.refNum);
+    		return $http.get(myUrl);
+    		//return 'HELLOOO';
 		},
+
 		// returns the number of adults the flight is being booked for
-		getNumberOfAdults : function(){
+		/*getNumberOfAdults : function(){
 			return this.noOfAdults;
 		},
 		// saves the number of children the flight is being booked for
@@ -52,6 +55,13 @@ App.factory('flightSrv',function($http){
 			return this.noOfChildren;
 		},*/
 		// sets the first departure date
+		setRefNum : function(value){
+			this.refNum = value;
+		},
+		// returns the first departure date
+		getRefNum : function(){
+			return this.refNum;
+		},
 		setDepartureDate : function(value){
 			this.departureDate = value;
 		},

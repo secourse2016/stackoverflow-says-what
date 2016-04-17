@@ -105,6 +105,15 @@ exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDa
 	
 	
 };
+exports.getBooking = function(cb , refNumber)
+{
+	var res = {};
+	myDB.db().collection("flights").find({flight_no: refNumber}).toArray(function(err,flightsArray){
+		cb(null, flightsArray[0]);
+	});
+    
+
+}
 exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
    /*myDB.connect(function(err,db)
     {
@@ -129,4 +138,13 @@ exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
     	console.log("Databaseis clear");
     	});
     });*/
-    
+/*exports.getBooking = getBooking;   
+myDB.connect(function(err,db)
+    {
+   		//myDB.db().collection("flights").insertMany()
+   		getBooking(function(err2,refNum)
+	    	{
+    		console.log(err2);
+    		console.log(refNum);
+        }, 'SE28099');
+    });*/
