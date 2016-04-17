@@ -2,10 +2,26 @@ App.factory('flightSrv',function($http){
 	return {
 		// returns all the flights in the json file
 		getInFlights : function(){
-			return $http.get('/api/data/inflights');
+			var myUrl='/api/flights/search/';
+			myUrl = myUrl.concat(this.destination);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.origin);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.arrivalDate);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.flightClass);
+			return $http.get(myUrl);
 		},
 		getOutFlights : function(){
-			return $http.get('/api/data/outflights');
+			var myUrl='/api/flights/search/';
+			myUrl = myUrl.concat(this.origin);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.destination);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.departureDate);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.flightClass);
+			return $http.get(myUrl);
 		},
 		// returns all airports in the json file
 		getAirports : function(){
@@ -20,7 +36,7 @@ App.factory('flightSrv',function($http){
 			return $http.get('/api/data/aircrafts');
 		},
 		// saves the number adults the flight is being booked for
-		setNumberOfAdults : function(value){
+		/*setNumberOfAdults : function(value){
 			this.noOfAdults = value;
 		},
 		// returns the number of adults the flight is being booked for
@@ -34,7 +50,7 @@ App.factory('flightSrv',function($http){
 		// returns the number of children the flight is being booked for
 		getNumberOfChildren : function(){
 			return this.noOfChildren;
-		},
+		},*/
 		// sets the first departure date
 		setDepartureDate : function(value){
 			this.departureDate = value;
@@ -79,6 +95,12 @@ App.factory('flightSrv',function($http){
 		// saves the passenger's origin
 		setOriginAirport : function(value){
 			this.origin = value;
+		},
+		setClass : function(value){
+			this.flightClass = value;
+		},
+		getClass : function(){
+			return this.flightClass;
 		},
 		// returns the passenger's origin
 		getOriginAirport : function(){

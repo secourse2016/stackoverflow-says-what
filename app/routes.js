@@ -4,7 +4,10 @@ module.exports = function(app,mongo) {
     var flights=require('./flights.js');
     var db=require('./db.js');
 
-    
+       app.get('/', function (req, res) {
+      res.sendFile(__dirname + '/public/index.html');
+    });
+
 
     app.get('/api/data/inflights', function(rep, res){
     	var flights = require('../flights.json');
@@ -82,20 +85,19 @@ module.exports = function(app,mongo) {
         },req.params.origin,req.params.destination,req.params.departingDate,req.params.returningDate,req.params.class);
 
     });
-    
+
      app.use(function(req, res, next) {
        try 
       {
-         console.log("done");
+       
       var token = req.body.wt||req.query.wt||req.headers['x-access-token'];   
-       console.log("done");
+
       var jwtSecret = process.env.JWTSECRET;
-          console.log(req.body);
         var payload = jwt.verify(token, jwtSecret);
-             console.log("done2");
+     
              console.log(req.query);
         req.payload = payload;
-        console.log("done");
+
         next();
       } 
       catch (err) 
@@ -103,17 +105,6 @@ module.exports = function(app,mongo) {
         console.error('[ERROR]: JWT Error reason:', err);
         res.status(403).sendFile(path.join(__dirname, '../public', '403.html'));
       }
-
-    });
-
-    /* RENDER MAIN PAGE */
-    app.get('/', function (req, res) {
-      res.sendFile(__dirname + '/public/index.html');
-    });
-
-
-
-   
 
 
     app.get('/test', function(req, res){
