@@ -6,13 +6,24 @@
 	margin-bottom: 5.4%;
 }
 
-.text-center-h{
+/*.text-center-h{
+	text-align: center;
+	font: bold;
+    font-size: 40px;
+}*/
+
+/*.text-center{
+	font:bold;
+    font-size: 25px;
+}*/
+
+#myTitle {
 	text-align: center;
 	font: bold;
     font-size: 40px;
 }
 
-.text-center{
+#myText {
 	font:bold;
     font-size: 25px;
 }
