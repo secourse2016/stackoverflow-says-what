@@ -42,7 +42,6 @@
       top: 0px; 
       margin-top: 0px;
       z-index: -1;
-      /*text-align: center;*/
     }
 
     .imagePlane {
@@ -71,8 +70,6 @@
        left: 42%;
        width:200px;
        height:50px;
-     /*  margin-left:auto;
-       margin-right:auto;*/
        margin-top:0%;
        background-color: #C71585;
        color: white;
