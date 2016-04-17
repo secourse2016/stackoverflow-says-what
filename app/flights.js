@@ -75,14 +75,14 @@ getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
 	    		schemaFlight.cost = myFlight.price2;
 	    		result.outgoingFlights[0]=schemaFlight;
 	    		cb(err,result);
-	    		console.log('success');
+	    		/*console.log('success');*/
 	    	}
 	    	else if (myClass == "business" && myFlight.available_seats.seats_a > 0)
 	    	{
 	    		schemaFlight.cost = myFlight.price1;
 	    		result.outgoingFlights[0]=schemaFlight;
 	    		cb(err,result);
-	    		console.log('success');
+	    		/*console.log('success');*/
 	    	}
 	    	else
 	    	{

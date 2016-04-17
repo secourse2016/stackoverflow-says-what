@@ -1,9 +1,10 @@
 <!-- <div class="col-sm-3"><label style="font-size: 20px">{{f}}</h3></label></div> -->
+<link href="https://a1.muscache.com/airbnb/static/packages/common_o2.1-pretzel-63569659624b0120e962749578cae707.css" media="all" rel="stylesheet" type="text/css">
 <div id="wrapper" style="display: inline-block;">
   <div id="inner_left"><!-- <p1>Class</p1> -->
    <!-- <button type="button" class="btn btn-warning" >Filter Cost</button> -->
   <h1 class="text-center" style="font: bold; color: #C71585; font-size: 30px; font-family:Lobster">Returning Back</h1>
-   <label>Helooo -> {{ inflights }}</label>
+  <!--  <label>Helooo -> {{ inflights }}</label> -->
   <div class="col-sm-2"></div> 
   <div class="col-sm-10">
   <form id  = "cost" ><br>
@@ -59,11 +60,9 @@
          uib-datepicker-popup="{{format}}"
          ng-model="dtOneway"
          is-open="popup1.opened"
-         ng-required="true"
          close-text="Close"
          alt-input-formats="altInputFormats"
-         ng-click="open1()"
-         required/>
+         ng-click="open1()">
          <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
       </div>
       </div>
@@ -77,13 +76,16 @@
       <td><span style="font: bold; color: #C71585; font-size: 25px; font-family:Lobster">{{ selectedClass }}</span></td>
   </tr>
   
-<!--      <pre>upper = {{upper_bound}}; lower = {{lower_bound}}</pre> -->
-      <tr class="clickable-row" ng-repeat = "flight in inflights">
+  <tr class="clickable-row" ng-repeat = "flight in inflights">
     <td><form style="font-size: 17px">
-    Flight Number : {{flight.flightNumber}}<br>
-    Destination :   {{flight.destination}}<br>
+    Flight Number : {{ flight.flightNumber }}<br>
+    Destination :   {{ flight.destination }}<br>
+    Origin :   {{ flight.origin }}<br>
+    Departure Date :   {{ flight.departureDateTime }}<br>
+    Arrival Date :   {{ flight.arrivalDateTime }}<br>
         </form></td>
        <td><button ng-click = "bookIngoing(flight,flight.cost,'Business')" type="button" class="btn btn-success">{{flight.cost}}$</button></td>
+
   </tr>
 
 </table>

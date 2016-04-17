@@ -34,9 +34,9 @@
     }
     .text {
       position: absolute; 
-   top: 200px; 
-   left: 0; 
-   width: 100%; 
+      top: 200px; 
+      left: 0; 
+      width: 100%; 
     }
 
     .imageContainer {
@@ -80,8 +80,9 @@
       top: 180px; 
       left: 80px; 
       width: 40%;
-      /*height: 80%;*/
       background-color : transparent;
+      /*overflow: scroll;*/
+      /*background-size: fixed;*/
     }
 
     .tabbed > input{
@@ -188,10 +189,6 @@
 
     .titles {
       font-size: 20px;
-    }
-
-    .main{
-      /*background-image: url("/background.jpg");*/
     }
 
     /* Add a gray background color and some padding to the footer */
