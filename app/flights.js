@@ -111,6 +111,16 @@ exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDa
 	
 };
 
+exports.getBooking = function(cb , refNumber)
+{
+	var res = {};
+	myDB.db().collection("booking").find({receipt_no : refNumber}).toArray(function(err,flightsArray){
+		cb(null, flightsArray[0]);
+	});
+    
+
+};
+
 // to be continued
 exports.bookOneWay = function(flightNo, myClass, bookingData, cb){
 	var result = {};
