@@ -13,8 +13,8 @@ App.controller('confirmRCtrl', function($scope, flightSrv, $location){
 	$scope.arrivalFlightNo = flightSrv.getIngoingFlight().flight_no;
 	$scope.depDuration = flightSrv.getOutgoingFlight().duration;
 	$scope.arrivalDuration = flightSrv.getIngoingFlight().duration;
-	$scope.depClass = flightSrv.getOutgoingFlightClass();
-	$scope.arrivalClass = flightSrv.getIngoingFlightClass();
+	$scope.depClass = flightSrv.getClass();
+	$scope.arrivalClass = flightSrv.getClass();
   
 	$scope.updateR = function() {
     $location.url('/outGoingFlights');

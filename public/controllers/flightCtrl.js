@@ -64,7 +64,7 @@ App.controller('flightCtrl', function($scope,flightSrv,$location) {
 
   };
   getOutFlights();
-  if (flightSrv.getType != 'OneWay')
+  if (flightSrv.getType() != 'OneWay')
     getInFlights();   
  
 });

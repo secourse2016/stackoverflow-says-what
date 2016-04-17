@@ -1,10 +1,10 @@
 module.exports = function(app,mongo) {
-     var jwt     = require('jsonwebtoken');
+    var jwt     = require('jsonwebtoken');
     var path    = require('path');
     var flights=require('./flights.js');
     var db=require('./db.js');
 
-       app.get('/', function (req, res) {
+    app.get('/', function (req, res) {
       res.sendFile(__dirname + '/public/index.html');
     });
 
@@ -107,7 +107,26 @@ module.exports = function(app,mongo) {
         });
 
     }); 
+    app.use(function(req, res, next) {
+       try 
+      {
+       
+      var token = req.body.wt||req.query.wt||req.headers['x-access-token'];   
 
+      var jwtSecret = process.env.JWTSECRET;
+        var payload = jwt.verify(token, jwtSecret);
+     
+             console.log(req.query);
+        req.payload = payload;
+
+        next();
+      } 
+      catch (err) 
+      {
+        console.error('[ERROR]: JWT Error reason:', err);
+        res.status(403).sendFile(path.join(__dirname, '../public/partials', '403.html'));
+      }
+    });
     app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res){
 
         
@@ -119,11 +138,7 @@ module.exports = function(app,mongo) {
         },req.params.origin,req.params.destination,req.params.departingDate,req.params.class);
 
     });
-
     app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res){
-
-        
-
         flights.getRoundTripFlightFromDB(function(err,result){             //new
 
             res.send(result);
@@ -141,28 +156,6 @@ module.exports = function(app,mongo) {
         },req.params.refNo);
 
     });
-
-     app.use(function(req, res, next) {
-       try 
-      {
-       
-      var token = req.body.wt||req.query.wt||req.headers['x-access-token'];   
-
-      var jwtSecret = process.env.JWTSECRET;
-        var payload = jwt.verify(token, jwtSecret);
-     
-             console.log(req.query);
-        req.payload = payload;
-
-        next();
-      } 
-      catch (err) 
-      {
-        console.error('[ERROR]: JWT Error reason:', err);
-        res.status(403).sendFile(path.join(__dirname, '../public', '403.html'));
-      }
-  });
-
 
     app.get('/test', function(req, res){
       res.json({message:"success"});

@@ -60,6 +60,12 @@
 <div class="col-sm-3"><label style="font-size: 20px">Password </label></div><div class="col-sm-4"><input ng-model="pass" type="password" id="password" class="form-control"> </input> </div>
 </div>
 <p></p>
+<div ng-show="alert" class="alert alert-danger" role="alert" 
+style="width:60%;
+       margin-left:15%;
+       text-align: center;">
+  <strong>Please fill out all fields!</strong>
+</div><br>
 <div class="col-sm-2"></div>
 <div class="col-sm-7">
 <button class="btn btn-block" style=" background-color: #C71585; color: white; font: bold; font-size: 20px" ng-click="Pay()">Pay</button>
