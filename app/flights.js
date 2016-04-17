@@ -105,6 +105,79 @@ exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDa
 	
 	
 };
+
+// to be continued
+exports.bookOneWay = function(cb, flightNo, class, bookingData){
+	var result = {};
+	myDB.db().collection('flights').find({flight_no: flightNo}).toArray(function(err, flightsArray){
+		if(err || flightsArray.length < 1)
+			cb(err, result);
+		else{
+			var flight = flightsArray[0];
+			for (var i = flight.seat_map.length - 1; i >= 0; i--) {
+				if(flight.seat_map[i].reservation_id == ""){
+					var seatNo = flight.seat_map[i].seat_no;
+					var resvID = flightNo.concat(seatNo);
+					var receiptNo;
+					myDB.db().collection('bookings').count(function(err, No){
+						if(err){
+							result = {};
+							cb(err, result);
+						}
+						else{
+							receiptNo = No + 1;
+							var booking = {firstName: bookingData.firstName, 
+								lastName: bookingData.lastName, 
+								passport_no: bookingData.passport_no, 
+								email: bookingData.email, seat_no: seatNo, 
+								issue_date: bookingData.issueDate, 
+								expiray_date: bookingData.expirayDate, 
+								receipt_no: receiptNo, 
+								flight_no: flightNo
+							};
+							myDB.db().collection('bookings').insert(booking, function(err, res){
+								if(err){
+									result = {};
+									cb(err, result);
+								}else{
+									myDB.db().collection('flights').update({flight_no: flightNo, "seat_map.seat_no": seatNo }, {seat_map.$.reservation_id: resvID}, function(err, noUpdated){
+										if(err){
+											result = {};
+											cb(err, result);
+										}else{
+											result = booking;
+											cb(null, result);
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			}
+		}
+
+	});
+	// for (var i = f.seat_map.length - 1; i >= 0; i--) {
+	// 	if(f.seat_map[i].reservation_id == ""){
+	// 		if(class == 'business' && f.seat_map[i].class == 'A'){
+	// 			// reserve
+	// 			var seatNo = f.seat_map[i].seat_no;
+	// 			var resvID = flightNo.concat(seatNo);
+	// 			var receiptNo = myDB.db().collection('bookings').count() + 1;
+	// 			myDB.db().collection('flights').update({flight_no: flightNo, "seat_map.seat_no": seatNo }, {seat_map.$.reservation_id: resvID});
+	// 			myDB.db().collection('bookings').insert({firstName: bookingData.firstName, lastName: bookingData.lastName, passport_no: bookingData.passport_no, email: bookingData.email, seat_no: seatNo, issue_date: bookingData.issueDate, expiray_date: bookingData.expirayDate, receipt_no: receiptNo, flight_no: flightNo});
+	// 			break;
+	// 		}else{
+	// 			if(class == 'economy' && f.seat_map[i].class == 'B'){
+	// 				//reserve
+	// 				break;
+	// 			}
+	// 		}
+	// 	}
+	// }
+};
+
 exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
    /*myDB.connect(function(err,db)
     {
