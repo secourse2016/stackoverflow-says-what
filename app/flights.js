@@ -182,16 +182,16 @@ exports.bookOneWay = function(flightNo, myClass, bookingData, cb){
 	});
 };
 
-exports.bookRoundTrip = function(depFlightNo, returnFlightNo, classDep, classReturn, bookingData, cb){
-	var result = {};
-	bookOneWay(depFlightNo, classDep, bookingData, function(err, depBook){
-		result.depBooking = depBook;
-		bookOneWay(returnFlightNo, classReturn, bookingData, function(err, returnBook){
-			result.returnBooking = returnBook;
-			cb(null, result);
-		});
-	});
-};
+// exports.bookRoundTrip = function(depFlightNo, returnFlightNo, classDep, classReturn, bookingData, cb){
+// 	var result = {};
+// 	bookOneWay(depFlightNo, classDep, bookingData, function(err, depBook){
+// 		result.depBooking = depBook;
+// 		bookOneWay(returnFlightNo, classReturn, bookingData, function(err, returnBook){
+// 			result.returnBooking = returnBook;
+// 			cb(null, result);
+// 		});
+// 	});
+// };
 
 exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
    /*myDB.connect(function(err,db)
