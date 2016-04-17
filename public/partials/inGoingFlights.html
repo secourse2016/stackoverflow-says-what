@@ -81,8 +81,8 @@
     Flight Number : {{ flight.flightNumber }}<br>
     Destination :   {{ flight.destination }}<br>
     Origin :   {{ flight.origin }}<br>
-    Departure Date :   {{ flight.departureDateTime }}<br>
-    Arrival Date :   {{ flight.arrivalDateTime }}<br>
+    Departure Date :   {{ flight.departureDateTime | date:'yyyy-MM-dd hh:mm'}}<br>
+    Arrival Date :   {{ flight.arrivalDateTime | date:'yyyy-MM-dd hh:mm'}}<br>
         </form></td>
        <td><button ng-click = "bookIngoing(flight,flight.cost,'Business')" type="button" class="btn btn-success">{{flight.cost}}$</button></td>
 

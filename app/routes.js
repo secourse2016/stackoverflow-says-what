@@ -1,10 +1,10 @@
 module.exports = function(app,mongo) {
-     var jwt     = require('jsonwebtoken');
+    var jwt     = require('jsonwebtoken');
     var path    = require('path');
     var flights=require('./flights.js');
     var db=require('./db.js');
 
-       app.get('/', function (req, res) {
+    app.get('/', function (req, res) {
       res.sendFile(__dirname + '/public/index.html');
     });
 
@@ -139,9 +139,6 @@ module.exports = function(app,mongo) {
 
     });
     app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res){
-
-        
-
         flights.getRoundTripFlightFromDB(function(err,result){             //new
 
             res.send(result);
