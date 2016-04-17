@@ -33,17 +33,27 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
   $scope.contactSubmit = function() {
     if($scope.fn == null || $scope.fn == "")
       $scope.fnAlert = true;
+    else
+      $scope.fnAlert = false;
 
     if($scope.ln == null || $scope.ln == "")
       $scope.lnAlert = true;
+    else
+      $scope.lnAlert = false;
     
     if($scope.email == null || $scope.email == "")
       $scope.emailAlert = true;
+    else
+      $scope.emailAlert = false;
     
     if($scope.comment == null || $scope.comment == "")
       $scope.commentAlert = true;
-    
-    else{
+    else
+      $scope.commentAlert = false;
+
+    if($scope.fn != null && $scope.ln != null &&
+      $scope.email != null && $scope.comment != null){ 
+            
        $location.url('/thankYou');
     }
   };
