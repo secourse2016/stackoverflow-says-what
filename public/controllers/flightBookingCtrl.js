@@ -34,7 +34,6 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
   $scope.setOrigin = function(originAirport)
   {
     $scope.selectedOrigin = originAirport;
-    $scope.originAlert =false;
   };
   $scope.setDestination = function(destinationAirport)
   {

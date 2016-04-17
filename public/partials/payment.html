@@ -15,12 +15,12 @@
 <div class="repeat">
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">First Name </label></div><div class="col-sm-4"><input id="fname"size="40" class="form-control"> </input></div>
+<div class="col-sm-3"><label style="font-size: 20px">First Name </label></div><div class="col-sm-4"><input ng-model="fn" id="fname"size="40" class="form-control"></input></div>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">Last Name </label></div><div class="col-sm-4"><input id="lname"size="40" class="form-control"> </input> </h3></div>
+<div class="col-sm-3"><label style="font-size: 20px">Last Name </label></div><div class="col-sm-4"><input ng-model="ln" id="lname"size="40" class="form-control"> </input> </h3></div>
 </div>
 <p></p>
 <div class="row">
@@ -28,36 +28,36 @@
 <div class="col-sm-3"><label style="font-size: 20px">Gender </h3></label></div>
 <div class="col-sm-4">
 <div class="radio">
-  <label style="font-size: 18px"><input type="radio" name="optradio">Male</label>
-  <label style="font-size: 18px"><input type="radio" name="optradio">Female</label>
+  <label style="font-size: 18px"><input ng-model="gender" value="male" type="radio" name="optradio">Male</label>
+  <label style="font-size: 18px"><input ng-model="gender" value="female"type="radio" name="optradio">Female</label>
 </div>
 </div>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">Email </label></div><div class="col-sm-4"><input type="email" id="mail" size="40" class="form-control" placeholder="example@yahoo.com"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 20px">Email </label></div><div class="col-sm-4"><input ng-model="email" type="email" id="mail" size="40" class="form-control" placeholder="example@yahoo.com"> </input> </div>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">Mobile Number </label></div><div class="col-sm-4"><input id="mobile" size="40" class="form-control" placeholder="+ID XXXX-XXX-XXX"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 20px">Mobile Number </label></div><div class="col-sm-4"><input ng-model="mobile" id="mobile" size="40" class="form-control" placeholder="+ID XXXX-XXX-XXX"> </input> </div>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">Passport Number </label></div><div class="col-sm-4"><input id="passport" class="form-control"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 20px">Passport Number </label></div><div class="col-sm-4"><input ng-model="passport" id="passport" class="form-control"> </input> </div>
 </div>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">Credit Card Number </label></div><div class="col-sm-4"><input id="creditCard" class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 20px">Credit Card Number </label></div><div class="col-sm-4"><input ng-model="credit" id="creditCard" class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX"> </input> </div>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">Password </label></div><div class="col-sm-4"><input type="password" id="password" class="form-control"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 20px">Password </label></div><div class="col-sm-4"><input ng-model="pass" type="password" id="password" class="form-control"> </input> </div>
 </div>
 <p></p>
 <div class="col-sm-2"></div>
