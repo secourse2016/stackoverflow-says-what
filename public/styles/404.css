@@ -1,0 +1,25 @@
+.h404Div{
+
+	margin-bottom:15%;
+}
+
+#Img404IM{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:10%;
+    margin-bottom:20px;
+}
+#P404P{
+	text-align: center;
+    font-size:16px;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#B404B{
+	margin-top:0px;
+    background-color: #C71585;
+    color: white;
+    margin-left: 44%;
+}

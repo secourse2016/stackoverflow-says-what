@@ -115,7 +115,8 @@ exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDa
 exports.bookOneWay = function(flightNo, myClass, bookingData, cb){
 	var result = {};
 	myDB.db().collection('flights').find({flight_no: flightNo}).toArray(function(err, flightsArray){
-		if(err || flightsArray.length < 1){			
+		if(err || flightsArray.length < 1){		
+			console.log(err);	
 			cb(err, result);
 			console.log('No matching flights');
 		}else{

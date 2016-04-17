@@ -49,7 +49,11 @@
         typeahead-on-select="setOrigin($item.iata)">
         <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
       </div>
-      <span ng-show="originAlert"><label>Origin must be filled out!</label></span>
+      <div ng-show="originAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Origin must be filled out!</strong></label></div>
 
       <label class="inputLabel">Leaving To</label>
       <div class="input-group">
@@ -61,7 +65,12 @@
          typeahead-on-select="setDestination($item.iata)">
          <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
       </div>
-      <span ng-show="destAlert"><label>Destination must be filled out!</label></span>
+       <div ng-show="destAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Destination must be filled out!</strong></label></div>
+     <!--  <span ng-show="destAlert"><label>Destination must be filled out!</label></span> -->
 
       <label class="inputLabel">Departue Date</label>
       <div class='input-group date' id='datetimepicker1'>
@@ -74,16 +83,30 @@
          ng-click="open1()">
          <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
       </div>
-      <span ng-show="departureAlert"><label>Departure date must be filled out!</label></span>
+      <div ng-show="departureAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Departure date must be filled out!</strong></label></div>
+      <!-- <span ng-show="departureAlert"><label>Departure date must be filled out!</label></span> -->
 
       <div class="flightClass" style="margin-bottom:20px;">
          <label class="inputLabel">Class</label>
          <label class="radio-inline" style="margin-right:30%;"><input type="radio" name="optradio" ng-model="selectedClass" value="business">Business</label>
          <label class="radio-inline"><input type="radio" name="optradio" ng-model="selectedClass" value="economy">Economy</label>
       </div>
-      <span ng-show="classAlert"><label>Class must be selected!</label></span>
+       <div ng-show="classAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Class must be selected!</strong></label></div>
+      <!-- <span ng-show="classAlert"><label>Class must be selected!</label></span> -->
 
-     <button type="submit" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchOneWay()"><i class="fa fa-search" ></i>   Search Flights</button>
+      <div class="checkbox">
+        <label><input type="checkbox" value="">Search Other Airlines</label>
+     </div>
+
+     <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchOneWay()"><i class="fa fa-search" ></i>   Search Flights</button>
    </div>
   </section>
 
@@ -106,7 +129,12 @@
        typeahead-on-select="setOrigin($item.iata)">
        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
      </div>
-     <span ng-show="originAlert"><label>Origin must be filled out!</label></span>
+     <div ng-show="originAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Origin must be filled out!</strong></label></div>
+     <!-- <span ng-show="originAlert"><label>Origin must be filled out!</label></span> -->
 
      <label class="inputLabel">Leaving To</label>
      <div class="input-group">
@@ -118,7 +146,12 @@
        typeahead-on-select="setDestination($item.iata)">
        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
      </div>
-     <span ng-show="destAlert"><label>Destination must be filled out!</label></span>
+      <div ng-show="destAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Destination must be filled out!</strong></label></div>
+     <!-- <span ng-show="destAlert"><label>Destination must be filled out!</label></span> -->
 
      <div class="row">
        <div class="col-lg-6">
@@ -149,14 +182,35 @@
          </div>
        </div>
      </div>
-     <span ng-show="departureAlert"><label>Departure date must be filled out!</label></span>
-     <span ng-show="arrivalAlert"><label>Arrival date must be filled out!</label></span>
+     <div ng-show="departureAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Departure date must be filled out!</strong></label></div>
+       <div ng-show="arrivalAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Arrival date must be filled out!</strong></label></div>
+     <!-- <span ng-show="departureAlert"><label>Departure date must be filled out!</label></span>
+     <span ng-show="arrivalAlert"><label>Arrival date must be filled out!</label></span> -->
+
      <div class="flightClass" style="margin-bottom:20px;">
          <label class="inputLabel">Class</label>
          <label class="radio-inline" style="margin-right:30%;"><input type="radio" name="optradio" ng-model="selectedClass" value="business">Business</label>
          <label class="radio-inline"><input type="radio" name="optradio" ng-model="selectedClass" value="economy">Economy</label>
       </div>
-      <span ng-show="classAlert"><label>Class must be selected!</label></span>
+      <div ng-show="classAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+    <label style="margin-top:-4%;"><strong>Class must be selected!</strong></label></div>
+     <!--<span ng-show="classAlert"><label>Class must be selected!</label></span>-->
+
+     <div class="checkbox">
+        <label><input type="checkbox" value="">Search Other Airlines</label>
+     </div>
+
      <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchRoundTrip()"><i class="fa fa-search"></i>   Search Flights</button>
     </div>
   </section>

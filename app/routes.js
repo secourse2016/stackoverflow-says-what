@@ -1,9 +1,14 @@
 module.exports = function(app,mongo) {
-
+     var jwt     = require('jsonwebtoken');
+    var path    = require('path');
     var flights=require('./flights.js');
     var db=require('./db.js');
 
-    
+       app.get('/', function (req, res) {
+      res.sendFile(__dirname + '/public/index.html');
+    });
+
+
     app.get('/api/data/inflights', function(rep, res){
     	var flights = require('../flights.json');
     	res.json(flights);
@@ -126,28 +131,32 @@ module.exports = function(app,mongo) {
         },req.params.origin,req.params.destination,req.params.departingDate,req.params.returningDate,req.params.class);
 
     });
-    
-    /* RENDER MAIN PAGE */
-    app.get('/', function (req, res) {
-      res.sendFile(__dirname + '/public/index.html');
+
+     app.use(function(req, res, next) {
+       try 
+      {
+       
+      var token = req.body.wt||req.query.wt||req.headers['x-access-token'];   
+
+      var jwtSecret = process.env.JWTSECRET;
+        var payload = jwt.verify(token, jwtSecret);
+     
+             console.log(req.query);
+        req.payload = payload;
+
+        next();
+      } 
+      catch (err) 
+      {
+        console.error('[ERROR]: JWT Error reason:', err);
+        res.status(403).sendFile(path.join(__dirname, '../public', '403.html'));
+      }
+  });
+
+
+    app.get('/test', function(req, res){
+      res.json({message:"success"});
+
     });
-
-
-    // app.use(function(req, res, next) {
-    // try 
-    //   {
-    //   var token = req.body.wt || req.query.wt || req.headers['x-access-token'];   
-    //   var jwtSecret = process.env.JWTSECRET;
-    //           var payload = jwt.verify(token, jwtSecret);
-    //     req.payload = payload;
-    //     next();
-    //   } 
-    //   catch (err) 
-    //   {
-    //     console.error('[ERROR]: JWT Error reason:', err);
-    //     res.status(403).sendFile(path.join(__dirname, '../public', '404.html'));
-    //   }
-
-    // });
 
 };
