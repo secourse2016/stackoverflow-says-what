@@ -23,6 +23,9 @@ App.factory('flightSrv',function($http){
 			myUrl = myUrl.concat(this.flightClass);
 			return $http.get(myUrl);
 		},
+		createPayment : function(bookingData){
+			return $http.post('/api/pay', bookingData);
+		},
 		// returns all airports in the json file
 		getAirports : function(){
 			return $http.get('/api/data/airports');

@@ -16,12 +16,12 @@
 <div class="repeat">
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">First Name </label></div><div class="col-sm-4"><input id="fname"size="40" class="form-control"> </input></div>
+<div class="col-sm-3"><label style="font-size: 20px">First Name </label></div><div class="col-sm-4"><input id="fname"size="40" class="form-control" ng-model="bookingData.firstName"> </input></div>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">Last Name </label></div><div class="col-sm-4"><input id="lname"size="40" class="form-control"> </input> </h3></div>
+<div class="col-sm-3"><label style="font-size: 20px">Last Name </label></div><div class="col-sm-4"><input id="lname"size="40" class="form-control" ng-model="bookingData.lastName"> </input> </h3></div>
 </div>
 <p></p>
 <div class="row">
@@ -37,7 +37,7 @@
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">Email </label></div><div class="col-sm-4"><input type="email" id="mail" size="40" class="form-control" placeholder="example@yahoo.com"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 20px">Email </label></div><div class="col-sm-4"><input type="email" id="mail" size="40" class="form-control" ng-model="bookingData.email" placeholder="example@yahoo.com"> </input> </div>
 </div>
 <p></p>
 <div class="row">
@@ -47,7 +47,7 @@
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">Passport Number </label></div><div class="col-sm-4"><input id="passport" class="form-control"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 20px">Passport Number </label></div><div class="col-sm-4"><input id="passport" class="form-control" ng-model="bookingData.passport_no"> </input> </div>
 </div>
 </div>
 <p></p>
