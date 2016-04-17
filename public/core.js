@@ -60,10 +60,6 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/bookingDetails.html',
             controller : 'mainCtrl'
         })
-       /* .when('/', {
-            templateUrl : '/partials/403.html',
-            controller : 'mainCtrl'
-        })*/
         .otherwise({ 
           templateUrl : '/partials/404.html' ,
           controller  : 'mainCtrl'   

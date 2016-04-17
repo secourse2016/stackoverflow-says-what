@@ -107,32 +107,7 @@ module.exports = function(app,mongo) {
         });
 
     }); 
-
-    app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res){
-
-        
-
-        flights.getOneWayFlightFromDB(function(err,result){             //new
-
-            res.send(result);
-
-        },req.params.origin,req.params.destination,req.params.departingDate,req.params.class);
-
-    });
-
-    app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res){
-
-        
-
-        flights.getRoundTripFlightFromDB(function(err,result){             //new
-
-            res.send(result);
-
-        },req.params.origin,req.params.destination,req.params.departingDate,req.params.returningDate,req.params.class);
-
-    });
-
-     app.use(function(req, res, next) {
+    app.use(function(req, res, next) {
        try 
       {
        
@@ -149,10 +124,31 @@ module.exports = function(app,mongo) {
       catch (err) 
       {
         console.error('[ERROR]: JWT Error reason:', err);
-        res.status(403).sendFile(path.join(__dirname, '../public', '403.html'));
+        res.status(403).sendFile(path.join(__dirname, '../public/partials', '403.html'));
       }
-  });
+    });
+    app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res){
 
+        
+
+        flights.getOneWayFlightFromDB(function(err,result){             //new
+
+            res.send(result);
+
+        },req.params.origin,req.params.destination,req.params.departingDate,req.params.class);
+
+    });
+    app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res){
+
+        
+
+        flights.getRoundTripFlightFromDB(function(err,result){             //new
+
+            res.send(result);
+
+        },req.params.origin,req.params.destination,req.params.departingDate,req.params.returningDate,req.params.class);
+
+    });
 
     app.get('/test', function(req, res){
       res.json({message:"success"});
