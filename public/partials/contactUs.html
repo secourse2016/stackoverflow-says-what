@@ -10,27 +10,48 @@
 <div class="repeat">
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 25px">First Name </label></div><div class="col-sm-4"><input id="fname"size="40" class="form-control"> </input></div>
+<div class="col-sm-3"><label style="font-size: 25px">First Name </label></div><div class="col-sm-4"><input ng-model="fn" id="fname"size="40" class="form-control"> </input></div>
+</div>
+<div ng-show="fnAlert" class="alert alert-danger" role="alert" 
+style="width:31%;
+       margin-left:43%;">
+  <strong>Please enter a valid name!</strong>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 25px">Last Name </label></div><div class="col-sm-4"><input id="lname"size="40" class="form-control"> </input> </h3></div>
+<div class="col-sm-3"><label style="font-size: 25px">Last Name </label></div><div class="col-sm-4"><input ng-model="ln" id="lname"size="40" class="form-control"> </input> </h3></div>
+</div>
+<div ng-show="lnAlert" ng-hide="!lnAlert"class="alert alert-danger" role="alert" 
+style="width:31%;
+       margin-left:43%;">
+  <strong>Please enter a valid name!</strong>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 25px">Email </label></div><div class="col-sm-4"><input type="email" id="mail" size="40" class="form-control" placeholder="example@yahoo.com"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 25px">Email </label></div><div class="col-sm-4"><input ng-model="email" type="email" id="mail" size="40" class="form-control" placeholder="example@yahoo.com"> </input> </div>
+</div>
+<div ng-show="emailAlert" class="alert alert-danger" role="alert" 
+style="width:31%;
+       margin-left:43%;">
+  <strong>Please enter a email!</strong>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 25px">Your Comment </label></div><div class="col-sm-4"><textarea class="form-control" rows="4"> </textarea> </h3></div></div>
+<div class="col-sm-3"><label style="font-size: 25px">Your Comment </label></div><div class="col-sm-4"><textarea ng-model="comment" class="form-control" rows="4"> </textarea> </h3></div></div><br>
+<div ng-show="commentAlert" class="alert alert-danger" role="alert" 
+style="width:31%;
+       margin-left:43%;">
+  <strong>Oops!Looks like you didn't leave a comment</strong>
+</div>
 
-<div><button ng-click="contactSubmit();" type="button" class="btn btn-success btn-lg" style="margin-left: 42%;
-                                                                 margin-top: 2%;
-                                                                 background-color: #C71585;
-                                                                 color: white;"> Submit</button>
+<div><button ng-click="contactSubmit();" type="button" class="btn btn-success btn-lg" 
+style="margin-left: 42%;
+       margin-top: 2%;
+       background-color: #C71585;
+       color: white;"> Submit</button>
 </div>
 
 </form>
