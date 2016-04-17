@@ -49,19 +49,28 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
   };
 
   $scope.searchOneWay = function() {
-     /*alert("Name must be filled out");*/
-    if ($scope.selectedOrigin == null || $scope.selectedOriginOneway == "")
-        $scope.originAlert =true;      
+    if($scope.selectedOrigin == null || $scope.selectedOriginOneway == "")
+        $scope.originAlert =true;
+    else
+        $scope.originAlert =false;      
 
     if($scope.selectedDestination == null || $scope.selectedDestination == "")
       $scope.destAlert =true;
+    else
+      $scope.destAlert =false;
 
     if($scope.dtOneway == null || $scope.dtOneway == "")
       $scope.departureAlert =true;
+    else
+      $scope.departureAlert =false;
 
     if($scope.selectedClass == null || $scope.selectedClass == "")
       $scope.classAlert =true;
     else
+      $scope.classAlert =false;
+
+    if($scope.selectedOrigin != null && $scope.selectedDestination != null
+      && $scope.dtOneway != null && $scope.selectedClass != null)
     {
     flightSrv.setType('OneWay');
     flightSrv.setOriginAirport($scope.selectedOrigin);
@@ -73,25 +82,38 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
     flightSrv.setDepartureDate($scope.newDate);
     flightSrv.setClass($scope.selectedClass);
     $location.url('/outGoingFlights');
-  }
+   }
+
   };
 
   $scope.searchRoundTrip = function() {
     if ($scope.selectedOrigin == null || $scope.selectedOriginOneway == "")
-        $scope.originAlert =true;      
+        $scope.originAlert =true;  
+    else
+        $scope.originAlert =false;      
 
     if($scope.selectedDestination == null || $scope.selectedDestination == "")
       $scope.destAlert =true;
+    else
+      $scope.destAlert =false;
 
     if($scope.dtRound ==null || $scope.dtRound =="")
       $scope.departureAlert =true;
+    else
+      $scope.departureAlert =false;
 
     if($scope.atRound == null || $scope.atRound == "")
       $scope.arrivalAlert =true;
+    else
+      $scope.arrivalAlert =false;
 
     if($scope.selectedClass == null || $scope.selectedClass == "")
       $scope.classAlert =true;
-    else{
+    else
+      $scope.classAlert =false;
+
+    if($scope.selectedOrigin != null && $scope.selectedDestination != null
+      && $scope.dtRound !=null && $scope.atRound != null && $scope.selectedClass != null){
     flightSrv.setType('Round');
     flightSrv.setOriginAirport($scope.selectedOrigin);
     flightSrv.setDestinationAirport($scope.selectedDestination);
