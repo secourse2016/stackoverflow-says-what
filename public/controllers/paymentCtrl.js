@@ -4,6 +4,28 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
 	
 
 	$scope.Pay = function() {
+// <<<<<<< HEAD
+    	// if($scope.bookingData.firstName != undefined && $scope.bookingData.lastName != undefined && $scope.bookingData.email != undefined && $scope.bookingData.passport_no != undefined){
+    	// 	$scope.bookingData.type = flightSrv.getType();
+    	// 	$scope.bookingData.outFlightNo = flightSrv.getOutgoingFlight().flightNumber;
+    	// 	$scope.bookingData.myClass = flightSrv.getClass();
+    	// 	if(flightSrv.getType() === 'Round')
+    	// 		$scope.bookingData.inFlightNo = flightSrv.getIngoingFlight().flightNumber;
+    	// 	flightSrv.createPayment($scope.bookingData)
+    	// 		.success(function (data) {
+    	// 			// body...
+    	// 			$scope.bookingData = {};
+    	// 			$scope.refNo = data;
+    	// 			if(flightSrv.getType() === 'OneWay')
+    	// 				flightSrv.setOutRefNo(data.receipt_no);
+    	// 			else{
+    	// 				flightSrv.setOutRefNo(data.outDetails.receipt_no);
+    	// 				flightSrv.setInRefNo(data.inDetails.receipt_no);
+    	// 			}
+    	// 		});
+    	// }
+    	// $location.url('/complete');
+// =======
     if (($scope.bookingData.firstName == null || $scope.bookingData.firstName == "")
      || ($scope.bookingData.lastName == null || $scope.bookingData.lastName == "")
      || ($scope.gender == null || $scope.gender == "")
@@ -18,10 +40,11 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
         $location.url('/complete');
         if($scope.bookingData.firstName != undefined && $scope.bookingData.lastName != undefined && $scope.bookingData.email != undefined && $scope.bookingData.passport_no != undefined){
             $scope.bookingData.type = flightSrv.getType();
-            $scope.bookingData.outFlightNo = flightSrv.getOutgoingFlight();
+            $scope.bookingData.outFlightNo = flightSrv.getOutgoingFlight().flightNumber;
             $scope.bookingData.myClass = flightSrv.getClass();
             if(flightSrv.getType() === 'Round')
-                $scope.bookingData.inFlightNo = flightSrv.getIngoingFlight();
+                $scope.bookingData.inFlightNo = flightSrv.getIngoingFlight().flightNumber;
+            console.log('bookingData');
             flightSrv.createPayment($scope.bookingData)
                 .success(function (data) {
                     // body...
@@ -37,6 +60,7 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
         }
      }
     	
+// >>>>>>> ea7076ae98fa13d7c1803d28741e3f9aee2a9474
   	};
 // =======
 // App.controller('paymentCtrl', function($scope,flightSrv,$location) {
