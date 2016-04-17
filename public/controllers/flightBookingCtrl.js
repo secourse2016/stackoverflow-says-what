@@ -63,7 +63,7 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
     var year =  $scope.dtRound.getFullYear();
     $scope.newDateD = year + "-" + month + "-" + date;
     flightSrv.setDepartureDate($scope.newDateD);
-    date = $scope.atRound.getDate;
+    date = $scope.atRound.getDate();
     month = '0' + ($scope.atRound.getMonth() + 1);
     year =  $scope.atRound.getFullYear();
     $scope.newDateA = year + "-" + month + "-" + date;
