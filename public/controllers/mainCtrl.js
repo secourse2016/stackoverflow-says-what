@@ -9,8 +9,14 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
     $location.url('/');
   };
 
+  //searching for flight by booking ref
+  $scope.ref = null;
+  $scope.refAlert = false;
   $scope.bookingDetails = function() {
-    $location.url('/bookingDetails');
+    if($scope.ref == null || $scope.ref == "")
+      $scope.refAlert = true;
+    else
+      $location.url('/bookingDetails');
   };
 
 

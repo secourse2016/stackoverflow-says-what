@@ -23,11 +23,7 @@
       z-index: -1;
     }
 
-    .row-colored {
     
-    background-color: #E5E4E2;
-    
-    }
     .stretch {
       width: 100%;
       height: 100%;
@@ -46,6 +42,7 @@
       top: 0px; 
       margin-top: 0px;
       z-index: -1;
+      /*text-align: center;*/
     }
 
     .imagePlane {
@@ -56,12 +53,27 @@
       
     }
 
-    #btnFlight {
+   /* #btnFlight {
        position:absolute;
        bottom:250px;
        right:550px;
        width:200px;
        height:50px;
+       margin-left:auto;
+       margin-right:auto;
+       margin-top:0%;
+       background-color: #C71585;
+       color: white;
+    }*/
+     #btnFlight {
+       position:absolute;
+       top:325px;
+       left: 42%;
+       width:200px;
+       height:50px;
+     /*  margin-left:auto;
+       margin-right:auto;*/
+       margin-top:0%;
        background-color: #C71585;
        color: white;
     }
@@ -69,7 +81,8 @@
    .welcomeText {
       position:absolute;
       top: 250px; 
-      left:400px;
+      text-align: center;
+      /*left:400px;*/
       width: 100%;
       color: white;
       font-family: 'Lobster', cursive;
