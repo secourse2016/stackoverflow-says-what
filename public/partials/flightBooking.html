@@ -102,7 +102,11 @@
        <label style="margin-top:-4%;"><strong>Class must be selected!</strong></label></div>
       <!-- <span ng-show="classAlert"><label>Class must be selected!</label></span> -->
 
-     <button type="submit" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchOneWay()"><i class="fa fa-search" ></i>   Search Flights</button>
+      <div class="checkbox">
+        <label><input type="checkbox" value="">Search Other Airlines</label>
+     </div>
+
+     <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchOneWay()"><i class="fa fa-search" ></i>   Search Flights</button>
    </div>
   </section>
 
@@ -200,9 +204,13 @@
            style="width:100%;
                   height:5px;
                   margin-top:-3%">
-       <label style="margin-top:-4%;"><strong>Class must be selected!</strong></label></div>
-     <!--  <span ng-show="classAlert"><label>Class must be selected!</label></span>
- -->
+    <label style="margin-top:-4%;"><strong>Class must be selected!</strong></label></div>
+     <!--<span ng-show="classAlert"><label>Class must be selected!</label></span>-->
+
+     <div class="checkbox">
+        <label><input type="checkbox" value="">Search Other Airlines</label>
+     </div>
+
      <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchRoundTrip()"><i class="fa fa-search"></i>   Search Flights</button>
     </div>
   </section>
