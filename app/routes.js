@@ -1,5 +1,7 @@
 module.exports = function(app,mongo) {
-    
+     var jwt     = require('jsonwebtoken');
+    var express = require('express');
+    var path    = require('path');
     app.get('/api/data/inflights', function(rep, res){
     	var flights = require('../inFlights.json');
         // console.log(flights);
@@ -34,7 +36,10 @@ module.exports = function(app,mongo) {
     app.use(function(req, res, next) {
        try 
       {
-      var token = req.body.wt || req.query.wt || req.headers['x-access-token'];   
+         console.log("done");
+ 
+      var token = req.body.wt||req.query.wt||req.headers['x-access-token'];   
+       console.log("done");
       var jwtSecret = process.env.JWTSECRET;
      
         var payload = jwt.verify(token, jwtSecret);
