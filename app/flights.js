@@ -113,7 +113,7 @@ exports.getBooking = function(cb , refNumber)
 	});
     
 
-}
+};
 exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
    /*myDB.connect(function(err,db)
     {
