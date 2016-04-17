@@ -122,14 +122,16 @@ exports.bookOneWay = function(flightNo, myClass, bookingData, cb){
 			var flight = flightsArray[0];
 			if(myClass === 'business'){
 				var availableSeats = flight.available_seats.seats_a;
-				var seatMap = flight.seat_map;
+				var seatMap = flight.seatmap;
 				var seatNo = 10 - availableSeats;
-				var mySeat = flight.seat_map[seatNo];
+				// console.log(flight);
+				var mySeat = flight.seatmap[seatNo];
 				var resvID = flightNo.concat(mySeat.seat_no);
 				seatMap[seatNo].reservation_id = resvID;
-				myDB.db().collection('flights').update({flight_no: flightNo},{$set : {seat_map: seatMap, $inc : {"available_seats.seats_a" : -1}}} , function(err, numUpdate){
+				myDB.db().collection('flights').updateOne({"flight_no": flightNo},{$set : {"seatmap": seatMap}, $inc : {"available_seats.seats_a" : -1}} , function(err, numUpdate){
 					if(err){
 						result = {};
+						console.log(err);
 						cb(err, result);
 					}else{
 						var booking = {
@@ -155,11 +157,11 @@ exports.bookOneWay = function(flightNo, myClass, bookingData, cb){
 			}else{
 				var availableSeats = flight.available_seats.seats_a;
 				var seatNo = 20 - availableSeats;
-				var seatMap = flight.seat_map;
-				var mySeat = flight.seat_map[seatNo];
+				var seatMap = flight.seatmap;
+				var mySeat = flight.seatmap[seatNo];
 				var resvID = flightNo.concat(mySeat.seat_no);
 				seatMap[seatNo].reservation_id = resvID;
-				myDB.db().collection('flights').update({flight_no: flightNo}, {$set: { seat_map: seatMap, $inc : {"available_seats.seats_b" : -1}}}, function(err, numUpdate){
+				myDB.db().collection('flights').update({flight_no: flightNo}, {$set: { seatmap: seatMap}, $inc : {"available_seats.seats_b" : -1}}, function(err, numUpdate){
 					if(err){
 						result = {};
 						cb(err, result);

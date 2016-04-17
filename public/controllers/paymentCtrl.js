@@ -5,13 +5,12 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
 	// $scope.booked
 
 	$scope.Pay = function() {
-    	$location.url('/complete');
     	if($scope.bookingData.firstName != undefined && $scope.bookingData.lastName != undefined && $scope.bookingData.email != undefined && $scope.bookingData.passport_no != undefined){
     		$scope.bookingData.type = flightSrv.getType();
-    		$scope.bookingData.outFlightNo = flightSrv.getOutgoingFlight();
+    		$scope.bookingData.outFlightNo = flightSrv.getOutgoingFlight().flightNumber;
     		$scope.bookingData.myClass = flightSrv.getClass();
     		if(flightSrv.getType() === 'Round')
-    			$scope.bookingData.inFlightNo = flightSrv.getIngoingFlight();
+    			$scope.bookingData.inFlightNo = flightSrv.getIngoingFlight().flightNumber;
     		flightSrv.createPayment($scope.bookingData)
     			.success(function (data) {
     				// body...
@@ -25,6 +24,7 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
     				}
     			});
     	}
+    	$location.url('/complete');
   	};
 // =======
 // App.controller('paymentCtrl', function($scope,flightSrv,$location) {

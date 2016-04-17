@@ -31,6 +31,7 @@ module.exports = function(app,mongo) {
 
     app.post('/api/pay', function(req, res){
         // var bookingDetails = req.body;
+        // console.log(req);
         var type = req.body.type;
         var outFlight = req.body.outFlightNo;
         var myClass = req.body.myClass;
@@ -44,8 +45,10 @@ module.exports = function(app,mongo) {
             "email" : email, 
             "passport_no" : passport_no
         };
+        // console.log(bookingData);
         if(type === 'OneWay'){
             flights.bookOneWay(outFlight, myClass, bookingData, function(err, bookedDetails){
+                console.log(bookedDetails);
                 res.json(bookedDetails);
             });
         }else{
@@ -54,12 +57,18 @@ module.exports = function(app,mongo) {
                 // res.json(outBookedDetails);
 
                 flights.bookOneWay(inFlight, myClass, bookingData, function(err, inBookedDetails){
-                    res.json(inBookedDetails);
-                    var result = {
+                    // res.json(inBookedDetails);
+                    // var result = {
+                    //     "outDetails" : outBookedDetails,
+                    //     "inDetails" : inBookedDetails
+                    // }
+                    // console.log(result);
+                    console.log(outBookedDetails);
+                    console.log(inBookedDetails);
+                    res.json(/*result*/{
                         "outDetails" : outBookedDetails,
                         "inDetails" : inBookedDetails
-                    }
-                    res.json(result);
+                    });
                 });
 
             });
