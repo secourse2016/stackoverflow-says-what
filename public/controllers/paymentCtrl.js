@@ -1,6 +1,7 @@
 App.controller('paymentCtrl', function($scope, flightSrv, $location) {
 
 	$scope.bookingData = {};
+    $scope.alert = false;
 	
 
 	$scope.Pay = function() {
@@ -34,7 +35,8 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
      || ($scope.bookingData.passport_no == null || $scope.bookingData.passport_no == "")
      || ($scope.credit == null || $scope.credit == "")
      || ($scope.pass == null || $scope.pass == ""))
-         alert("Please fill out all fields");
+        $scope.alert = true;
+         /*alert("Please fill out all fields");*/
      else
      {
         $location.url('/complete');
