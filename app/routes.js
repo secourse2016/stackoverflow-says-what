@@ -56,12 +56,12 @@ module.exports = function(app,mongo) {
                 flights.bookOneWay(inFlight, myClass, bookingData, function(err, inBookedDetails){
                     res.json(inBookedDetails);
                     var result = {
-                        "outDetails" : outBookedDetails;
-                        "inDetails" : inBookedDetails; 
+                        "outDetails" : outBookedDetails,
+                        "inDetails" : inBookedDetails
                     }
                     res.json(result);
                 });
-                
+
             });
         }
     });
