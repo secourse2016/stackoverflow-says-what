@@ -25,7 +25,7 @@ App.config(function($routeProvider) {
         })
           .when('/complete', {
             templateUrl : '/partials/finalPage.html',
-            controller  : 'mainCtrl'                //to be changed
+            controller  : 'finalCtrl'                
         })
 
         .when('/myCarousel',{
