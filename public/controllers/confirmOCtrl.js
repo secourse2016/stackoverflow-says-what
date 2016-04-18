@@ -9,8 +9,9 @@ App.controller('confirmOCtrl', function($scope, flightSrv, $location){
 	$scope.destinationAirport = flightSrv.getDestinationAirport();
 	$scope.depDate = flightSrv.getDepartureDate();
 	$scope.price = flightSrv.getPriceOutgoingFlight();
-	$scope.flightNo = flightSrv.getOutgoingFlight().flight_no;
+	$scope.flightNo = flightSrv.getOutgoingFlight().flightNumber;
 	$scope.duration = flightSrv.getOutgoingFlight().duration;
+	$scope.airline = flightSrv.getOutgoingFlight().Airline;
 	$scope.class = flightSrv.getClass();
 	// $scope.originAirport = 'JFK';
 	// $scope.destinationAirport = 'IAD';

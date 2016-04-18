@@ -1,18 +1,63 @@
+<div style="margin-bottom: 20%">
 
-<div style="margin-bottom: 30%">
-<div>
-	<div class="flight" style="margin-left: 35px">
+<div class="container" style="width:70%;">
+  <div class="panel panel-success" style="margin-top:5%;">
+   <table class="table">
+    <thead>
+      <tr>
+        <th style="color: #C71585; font-size: 25px; font-family:Lobster">Flight Details</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr class="primary">
+        <td><strong>Flight Number</strong></td>
+        <td>{{ flightNo }}</td>
+      </tr>
+      <tr class="success">
+        <td><strong>Origin Airport</strong></td>
+        <td>{{ originAirport }}</td>
+      </tr>
+      <tr class="primary">
+        <td><strong>Destination Airport</strong></td>
+        <td>{{ destinationAirport }}</td>
+      </tr>
+      <tr class="success">
+        <td><strong>Departure Date</strong></td>
+        <td>{{ depDate | date:'fullDate' }}</td>
+      </tr>
+      <tr class="primary">
+        <td><strong>Departure Time</strong></td>
+        <td>{{ depDate | date:'shortTime'}}</td>
+      <tr class="success">
+        <td><strong>Seat Class</strong></td>
+        <td>{{ class }}</td>
+      </tr>
+      <tr class="primary">
+        <td><strong>Cost</strong></td>
+        <td>{{ price | currency }}</td>
+      </tr>
+      <tr class="success">
+        <td><strong>Airline</strong></td>
+        <td>{{ airline }}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+
+<div class="col-sm-3" style="margin-top:3%;
+                             margin-left:40%;">
+  <button type="button" class="btn btn-default" style="font-size: 20px; background-color: #C71585; color: white" ng-click="updateO()">Update</button>
+  <button type="button" class="btn btn-default" style="font-size: 20px; background-color: #C71585; color: white; margin-left:5%;" ng-click="confirmO()">Confirm</button>
+</div>
+
+	<!-- <div class="flight" style="margin-left: 35px">
     <h1 class="text-center" style="font: bold; color: #C71585; font-size: 30px; font-family:Lobster">Departure Flight</h1>
     <div class="col-sm-1 flight"><strong>From</strong></div> <div class="col-sm-2">{{originAirport}}</div> 
     <div class="col-sm-1 flight"><strong>To</strong></div> <div class="col-sm-2">{{destinationAirport}}</div> 
    	<div class="col-sm-1 flight"><strong>Date</strong></div> <div class="col-sm-2">{{depDate | date:'fullDate'}}</div> 
     <div class="col-sm-1 flight"><strong>Price</strong></div> <div class="col-sm-2">{{price | currency}}</div> 
-    <!--<ul class="list-inline">
-      <li class="flight"><strong>From </strong>{{ originAirport }}</li>
-      <li class="flight"><strong>To </strong>{{ destinationAirport }}</li>
-      <li class="flight"><strong>Date </strong>{{ depDate | date:'fullDate' }}</li>
-      <li class="flight"><strong>Price </strong>{{ price | currency }}</li>
-    </ul>-->
+   
   </div>
   <br></br>
   <div style="margin-bottom: 20%">
@@ -54,6 +99,5 @@
 <div class="col-sm-3">
   <button type="button" class="btn btn-default" style="font-size: 20px; background-color: #C71585; color: white" ng-click="updateO()">Update</button>
   <button type="button" class="btn btn-default" style="font-size: 20px; background-color: #C71585; color: white" ng-click="confirmO()">Confirm</button>
-</div>
-</div>
+</div> -->
 </div>
