@@ -34,7 +34,9 @@ App.factory('flightSrv',function($http){
 		},
 		// returns all bookings in the json file
 		getBookings : function(){
-			return $http.get('/api/data/bookings');
+			var myUrl='/api/bookings/search/';
+			myUrl = myUrl.concat(this.RefNo);
+			return $http.get(myUrl);
 		},
 		// returns all aircrafts in the json file
 		getAircrafts : function(){
@@ -112,6 +114,12 @@ App.factory('flightSrv',function($http){
 		},
 		getOutRefNo : function(){
 			return this.outRefNo;
+		},
+		setRefNo : function(value){
+			this.RefNo = value;
+		},
+		getRefNo : function(){
+			return this.RefNo;
 		},
 		setInRefNo : function(value){
 			this.inRefNo = value;

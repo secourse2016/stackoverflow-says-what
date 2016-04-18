@@ -107,6 +107,14 @@ module.exports = function(app,mongo) {
         });
 
     }); 
+    app.get('/api/bookings/search/:refNo', function(req, res){
+
+        flights.getBooking(function(err,result){             //new
+            res.send(result);
+
+        },req.params.refNo);
+
+    });
     app.use(function(req, res, next) {
        try 
       {
@@ -147,15 +155,7 @@ module.exports = function(app,mongo) {
 
     });
     
-    app.get('/api/bookings/search/:refNo', function(req, res){
 
-        flights.getBooking(function(err,result){             //new
-
-            res.send(result);
-
-        },req.params.refNo);
-
-    });
 
     app.get('/test', function(req, res){
       res.json({message:"success"});

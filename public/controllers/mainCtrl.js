@@ -1,6 +1,10 @@
 App.controller('mainCtrl', function($scope,flightSrv,$location) {
 
-  
+  function getBookingDetails(){
+        flightSrv.getBookings().success(function(booking){
+        $scope.booking = booking;
+      });
+    };
 	$scope.BookAFlight = function() {
     $location.url('/flightBooking');
   };
@@ -13,6 +17,7 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
   $scope.ref = null;
   $scope.refAlert = false;
   $scope.bookingDetails = function() {
+    flightSrv.setRefNo($scope.ref);
     if($scope.ref == null || $scope.ref == "")
       $scope.refAlert = true;
     else
@@ -57,5 +62,7 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
        $location.url('/thankYou');
     }
   };
+
+  getBookingDetails();
 
 });
