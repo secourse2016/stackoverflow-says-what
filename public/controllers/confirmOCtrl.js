@@ -19,7 +19,7 @@ App.controller('confirmOCtrl', function($scope, flightSrv, $location){
 	// $scope.flightNo = "SE2805";
 	// $scope.duration = 120;
 	// $scope.class = "A";
-  
+
 	$scope.updateO = function() {
     $location.url('/outGoingFlights');
   };

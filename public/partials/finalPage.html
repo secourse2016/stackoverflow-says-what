@@ -3,18 +3,45 @@
 <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
 
 <div>
-<div style="background-image:url('./Images/giphy.gif'); background-size: cover; vertical-align: middle; text-align: center;">
-    <!--<img src="./Images/giphy.gif" class="stretch" style="margin-bottom: 30%"/>-->
-	<br></br>
-	<br></br>
-	<br></br>
-	<br></br>
-	<br></br>
-	<label style="font-family: Montserrat; font: ; font-size: 40px">Thank you! Your reservation is complete.</label>
+<div style="background-size: cover; vertical-align: middle; text-align: center;">
+	<img src="/Images/favicon.png" style="display: block;
+                                         margin-left: auto;
+                                         margin-right: auto;
+                                         margin-top:10%;
+                                         margin-bottom:20px;"/> 
+	<label style="font-family: Montserrat; color: black; font-size: 40px">Thank you! Your reservation is complete.</label>
 	<p></p>
-	<label style="font-family: Lobster; color: #C71585; font-size: 40px">Have a nice trip!</label>
+	<div class="container" style="width:50%;">
+    <h4><strong>You can use the following reference to search for your flight</strong></h4><br>
+    <button ng-click="viewRef();" type="button" class="btn btn-success btn-lg" 
+    style="background-color: #C71585;
+           color: white;
+           margin-bottom:5%;"><i class="fa fa-list-alt" aria-hidden="true"></i> View Booking Reference</button><br>
+	<div ng-show="viewAlert"class="panel panel-success">
+   <br>
+    <table class="table">
+    <thead>
+      <tr>
+        <th style="text-align:center;">Flight</th>
+        <th style="text-align:center;">Reference Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="success">
+        <td>Outgoing Flight</td>
+        <td>{{ outRefNo }}</td>
+      </tr>
+      <tr class="success">
+        <td>Ingoing Flight</td>
+        <td>{{ inRefNo }}</td>
+      </tr>
+    </tbody>
+  </table>
+	</div>
+   </div>
+	<label style="font-family: Lobster; color: black; font-size: 40px">Have a nice trip!</label>
 	<p></p>
-	<button class="btn btn-success"  style="background-color: #330025; color: white" ng-click = "homePage()">Return to Home Page</button>
+	<button class="btn btn-default btn-lg"  style="background-color: #C71585; color: white" ng-click = "homePage()"><i class="fa fa-home" aria-hidden="true"></i>  Home</button>
 	<br></br>
 	<br></br>
 	<br></br>
