@@ -4,13 +4,19 @@
    Please Enter your Booking Reference Number</p>
 
    
-   <div class="col-sm-4" style="margin-left: 33%;"><input size="40" class="form-control" ></input></div>
+   <div><input ng-model="ref" style="width:32%;margin-left:auto; margin-right:auto;" class="form-control" ></input></div><br>
+   <div ng-show="refAlert" class="alert alert-danger" role="alert"
+           style="width:32%;
+                  text-align: center;
+                  margin-left:auto;
+                  margin-right:auto;">
+    <label><strong>Please enter a valid reference number!</strong></label></div>
 
 
    <div><button ng-click="bookingDetails();" type="button" class="btn btn-success btn-lg" style="margin-left: 46%;
-                                                                 margin-top: 2%;
-                                                                 background-color: #C71585;
-                                                                 color: white;"> SEARCH</button>
+          margin-top: 2%;
+          background-color: #C71585;
+          color: white;"> SEARCH</button>
    </div>           
    
 </div>

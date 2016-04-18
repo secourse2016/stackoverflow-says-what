@@ -2,10 +2,31 @@ App.factory('flightSrv',function($http){
 	return {
 		// returns all the flights in the json file
 		getInFlights : function(){
-			return $http.get('/api/data/inflights');
+			var myUrl='/api/flights/search/';
+			myUrl = myUrl.concat(this.destination);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.origin);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.arrivalDate);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.flightClass);
+			myUrl = myUrl.concat('?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/');
+			return $http.get(myUrl);
 		},
 		getOutFlights : function(){
-			return $http.get('/api/data/outflights');
+			var myUrl='/api/flights/search/';
+			myUrl = myUrl.concat(this.origin);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.destination);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.departureDate);
+			myUrl = myUrl.concat('/');
+			myUrl = myUrl.concat(this.flightClass);
+			myUrl = myUrl.concat('?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/');
+			return $http.get(myUrl);
+		},
+		createPayment : function(bookingData){
+			return $http.post('/api/pay', bookingData);
 		},
 		// returns all airports in the json file
 		getAirports : function(){
@@ -13,14 +34,16 @@ App.factory('flightSrv',function($http){
 		},
 		// returns all bookings in the json file
 		getBookings : function(){
-			return $http.get('/api/data/bookings');
+			var myUrl='/api/bookings/search/';
+			myUrl = myUrl.concat(this.RefNo);
+			return $http.get(myUrl);
 		},
 		// returns all aircrafts in the json file
 		getAircrafts : function(){
 			return $http.get('/api/data/aircrafts');
 		},
 		// saves the number adults the flight is being booked for
-		setNumberOfAdults : function(value){
+		/*setNumberOfAdults : function(value){
 			this.noOfAdults = value;
 		},
 		// returns the number of adults the flight is being booked for
@@ -34,7 +57,7 @@ App.factory('flightSrv',function($http){
 		// returns the number of children the flight is being booked for
 		getNumberOfChildren : function(){
 			return this.noOfChildren;
-		},
+		},*/
 		// sets the first departure date
 		setDepartureDate : function(value){
 			this.departureDate = value;
@@ -79,6 +102,30 @@ App.factory('flightSrv',function($http){
 		// saves the passenger's origin
 		setOriginAirport : function(value){
 			this.origin = value;
+		},
+		setClass : function(value){
+			this.flightClass = value;
+		},
+		getClass : function(){
+			return this.flightClass;
+		},
+		setOutRefNo : function(value){
+			this.outRefNo = value;
+		},
+		getOutRefNo : function(){
+			return this.outRefNo;
+		},
+		setRefNo : function(value){
+			this.RefNo = value;
+		},
+		getRefNo : function(){
+			return this.RefNo;
+		},
+		setInRefNo : function(value){
+			this.inRefNo = value;
+		},
+		getInRefNo : function(){
+			return this.inRefNo;
 		},
 		// returns the passenger's origin
 		getOriginAirport : function(){

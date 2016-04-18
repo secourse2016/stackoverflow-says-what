@@ -1,0 +1,29 @@
+.row-colored {
+    background-color: #E5E4E2;  
+}
+
+.bookingDiv{
+	margin-bottom: 5.4%;
+}
+
+/*.text-center-h{
+	text-align: center;
+	font: bold;
+    font-size: 40px;
+}*/
+
+/*.text-center{
+	font:bold;
+    font-size: 25px;
+}*/
+
+#myTitle {
+	text-align: center;
+	font: bold;
+    font-size: 40px;
+}
+
+#myText {
+	font:bold;
+    font-size: 25px;
+}
