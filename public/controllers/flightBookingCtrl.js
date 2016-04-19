@@ -48,6 +48,8 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
     flightSrv.setClass(flightClass);
   };
 
+  $scope.checkboxModel = false;
+
   $scope.searchOneWay = function() {
     if($scope.selectedOrigin == null || $scope.selectedOriginOneway == "")
         $scope.originAlert =true;
