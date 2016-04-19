@@ -25,11 +25,15 @@ App.config(function($routeProvider) {
         })
           .when('/complete', {
             templateUrl : '/partials/finalPage.html',
-            controller  : 'mainCtrl'                //to be changed
+            controller  : 'finalCtrl'                
         })
 
         .when('/myCarousel',{
             templateUrl : '/partials/main.html',
+            controller  : 'mainCtrl'            
+        })
+        .when('/team',{
+            templateUrl : '/partials/team.html',
             controller  : 'mainCtrl'            
         })
         .when('/confirmationR', {
@@ -46,6 +50,14 @@ App.config(function($routeProvider) {
         })
         .when('/thankYou', {
             templateUrl : '/partials/thankYou.html',
+            controller : 'mainCtrl'
+        })
+        .when('/searchPage', {
+            templateUrl : '/partials/searchPage.html',
+            controller : 'mainCtrl'
+        })
+        .when('/bookingDetails', {
+            templateUrl : '/partials/bookingDetails.html',
             controller : 'mainCtrl'
         })
         .otherwise({ 
