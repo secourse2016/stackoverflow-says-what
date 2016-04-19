@@ -125,6 +125,8 @@ module.exports = function(app,mongo) {
     app.get('/api/flights/searchAll/:origin/:destination/:departingDate/:class', function(req, res)
     {
         //var lowerLimit = moment(req.params.departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
+        var d = moment(req.params.departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
+        var newDate = moment(d).toDate().getTime();
         const async = require('async');
         const request = require('request');
         var myPath = "/api/flights/search/";
@@ -132,7 +134,7 @@ module.exports = function(app,mongo) {
         myPath = myPath.concat('/');
         myPath = myPath.concat(req.params.destination);
         myPath = myPath.concat('/');
-        myPath = myPath.concat(req.params.departingDate);
+        myPath = myPath.concat(newDate);
         myPath = myPath.concat('/');
         myPath = myPath.concat(req.params.class);
         myPath = myPath.concat('?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/')
