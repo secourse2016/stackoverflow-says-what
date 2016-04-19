@@ -160,9 +160,6 @@ exports.bookOneWay = function(flightNo, myClass, bookingData, cb){
 								cb(err, result);
 							}else{
 								result = booking;
-								console.log('-----');
-								console.log(noInserted);
-								console.log('-----');
 								cb(null, result);
 							}
 						});

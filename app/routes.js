@@ -3,6 +3,15 @@ module.exports = function(app,mongo) {
     var path    = require('path');
     var flights=require('./flights.js');
     var db=require('./db.js');
+    var http = require('http');
+    var moment = require('moment');
+    const urls = require('../urls.json');    
+    app.all('*', function(req, res, next) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+        next();
+    });
+
 
     app.get('/', function (req, res) {
       res.sendFile(__dirname + '/public/index.html');
@@ -35,8 +44,6 @@ module.exports = function(app,mongo) {
     });
 
     app.post('/api/pay', function(req, res){
-        // var bookingDetails = req.body;
-        // console.log(req);
         var type = req.body.type;
         var outFlight = req.body.outFlightNo;
         var myClass = req.body.myClass;
@@ -115,6 +122,48 @@ module.exports = function(app,mongo) {
         },req.params.refNo);
 
     });
+    app.get('/api/flights/searchAll/:origin/:destination/:departingDate/:class', function(req, res)
+    {
+        //var lowerLimit = moment(req.params.departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
+        const async = require('async');
+        const request = require('request');
+        var myPath = "/api/flights/search/";
+        myPath = myPath.concat(req.params.origin);
+        myPath = myPath.concat('/');
+        myPath = myPath.concat(req.params.destination);
+        myPath = myPath.concat('/');
+        myPath = myPath.concat(req.params.departingDate);
+        myPath = myPath.concat('/');
+        myPath = myPath.concat(req.params.class);
+        myPath = myPath.concat('?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/')
+        var resultArr=[];
+        function httpGet(url, callback) {
+          const options = {
+            url :  url+myPath,
+            json : true
+          };
+          request(options,
+            function(err1, res1, body) {
+              callback(err1, body);
+            }
+          );
+        }
+
+        var arr = [];
+        async.map(urls, httpGet, function (err2, res2){
+          if (err2) return console.log(err2);
+
+          for (i = 0; i < res2.length; i++)
+          {
+            if (res2[i].outgoingFlights != undefined)
+                resultArr = resultArr.concat(res2[i].outgoingFlights);
+          }
+          result={};
+          result.outgoingFlights=resultArr;
+          res.send(result);
+
+        })
+    });
     app.use(function(req, res, next) {
        try 
       {
@@ -135,25 +184,24 @@ module.exports = function(app,mongo) {
         res.status(403).sendFile(path.join(__dirname, '../public/partials', '403.html'));
       }
     });
-    app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res){
-
-        
-
-        flights.getOneWayFlightFromDB(function(err,result){             //new
-
+    app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res)
+    {
+        flights.getOneWayFlightFromDB(function(err,result)
+        {     
+                //new
             res.send(result);
-
         },req.params.origin,req.params.destination,req.params.departingDate,req.params.class);
 
     });
-    app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res){
-        flights.getRoundTripFlightFromDB(function(err,result){             //new
-
+    app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res)
+    {
+        flights.getRoundTripFlightFromDB(function(err,result)
+        {             //new
             res.send(result);
-
         },req.params.origin,req.params.destination,req.params.departingDate,req.params.returningDate,req.params.class);
 
     });
+
     
 
 
