@@ -2,8 +2,7 @@ App.factory('flightSrv',function($http){
 	return {
 		// returns all the flights in the json file
 		getInFlights : function(){
-			var myUrl='/api/flights/search/';
-			myUrl = myUrl.concat(this.destination);
+			var myUrl = this.destination;
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.origin);
 			myUrl = myUrl.concat('/');
@@ -11,11 +10,13 @@ App.factory('flightSrv',function($http){
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
 			myUrl = myUrl.concat('?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/');
-			return $http.get(myUrl);
+			if (!this.otherAirlines)
+				return $http.get('/api/flights/search/'.concat(myUrl));
+			else
+				return $http.get('/api/flights/searchAll/'.concat(myUrl));
 		},
 		getOutFlights : function(){
-			var myUrl='/api/flights/search/';
-			myUrl = myUrl.concat(this.origin);
+			var myUrl = this.origin;
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.destination);
 			myUrl = myUrl.concat('/');
@@ -23,7 +24,10 @@ App.factory('flightSrv',function($http){
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
 			myUrl = myUrl.concat('?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/');
-			return $http.get(myUrl);
+			if (!this.otherAirlines)
+				return $http.get('/api/flights/search/'.concat(myUrl));
+			else
+				return $http.get('/api/flights/searchAll/'.concat(myUrl));
 		},
 		createPayment : function(bookingData){
 			return $http.post('/api/pay', bookingData);
@@ -179,6 +183,15 @@ App.factory('flightSrv',function($http){
 		},
 		getInRefNo : function(){
 			return this.inRefNo;
+		},
+		setOtherAirlines: function(value)
+		{
+			this.otherAirlines = value;
+		},
+		getOtherAirlines: function()
+		{
+			return this.otherAirlines;
 		}
+
 	};
 });

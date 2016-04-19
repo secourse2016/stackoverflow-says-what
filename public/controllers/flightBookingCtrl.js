@@ -81,6 +81,7 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
     $scope.newDate = year + "-" + month + "-" + date;
     flightSrv.setDepartureDate($scope.newDate);
     flightSrv.setClass($scope.selectedClass);
+    flightSrv.setOtherAirlines($scope.otherAirlines);
     $location.url('/outGoingFlights');
    }
 
@@ -128,6 +129,7 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
     $scope.newDateA = year + "-" + month + "-" + date;
     flightSrv.setArrivalDate($scope.newDateA);
     flightSrv.setClass($scope.selectedClass);
+    flightSrv.setOtherAirlines($scope.otherAirlines);
     $location.url('/outGoingFlights');
    }
   };
