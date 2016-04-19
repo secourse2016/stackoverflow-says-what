@@ -9,9 +9,10 @@ App.controller('confirmOCtrl', function($scope, flightSrv, $location){
 	$scope.destinationAirport = flightSrv.getDestinationAirport();
 	$scope.depDate = flightSrv.getDepartureDate();
 	$scope.price = flightSrv.getPriceOutgoingFlight();
-	$scope.flightNo = flightSrv.getOutgoingFlight().flight_no;
+	$scope.flightNo = flightSrv.getOutgoingFlight().flightNumber;
 	$scope.duration = flightSrv.getOutgoingFlight().duration;
-	$scope.class = flightSrv.getOutgoingFlightClass();
+	$scope.airline = flightSrv.getOutgoingFlight().Airline;
+	$scope.class = flightSrv.getClass();
 	// $scope.originAirport = 'JFK';
 	// $scope.destinationAirport = 'IAD';
 	// $scope.depDate = "2016-04-26T18:25:43.511Z";
@@ -19,7 +20,7 @@ App.controller('confirmOCtrl', function($scope, flightSrv, $location){
 	// $scope.flightNo = "SE2805";
 	// $scope.duration = 120;
 	// $scope.class = "A";
-  
+
 	$scope.updateO = function() {
     $location.url('/outGoingFlights');
   };

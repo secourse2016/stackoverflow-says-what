@@ -41,42 +41,70 @@
       <label class="tripLabel">One Way</label>
       <label class="inputLabel">Departing From</label>
       <div class="input-group">
-        <input type="text" class="form-control" required placeholder="Where are you flying from?"
+        <input type="text" class="form-control" placeholder="Where are you flying from?"
         aria-describedby="basic-addon1" 
         ng-model="selectedOriginOneway"
-        uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+        uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
         class="form-control"
-        typeahead-on-select="setOrigin($item.iata)"
-        required>
+        typeahead-on-select="setOrigin($item.iata)">
         <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
       </div>
+      <div ng-show="originAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Origin must be filled out!</strong></label></div>
 
       <label class="inputLabel">Leaving To</label>
       <div class="input-group">
          <input type="text" class="form-control" placeholder="Where are you flying to?" 
          aria-describedby="basic-addon1"
          ng-model="selectedDestinationOneway"
-         uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+         uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
          class="form-control"
-         typeahead-on-select="setDestination($item.iata)"
-         required/>
+         typeahead-on-select="setDestination($item.iata)">
          <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
       </div>
+       <div ng-show="destAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Destination must be filled out!</strong></label></div>
+     <!--  <span ng-show="destAlert"><label>Destination must be filled out!</label></span> -->
 
-
-      <label class="inputLabel">Departue Date</label>
+      <label class="inputLabel">Departure Date</label>
       <div class='input-group date' id='datetimepicker1'>
          <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"
          uib-datepicker-popup="{{format}}"
          ng-model="dtOneway"
          is-open="popup1.opened"
-         ng-required="true"
          close-text="Close"
          alt-input-formats="altInputFormats"
-         ng-click="open1()"
-         required/>
+         ng-click="open1()">
          <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
       </div>
+      <div ng-show="departureAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Departure date must be filled out!</strong></label></div>
+      <!-- <span ng-show="departureAlert"><label>Departure date must be filled out!</label></span> -->
+
+      <div class="flightClass" style="margin-bottom:20px;">
+         <label class="inputLabel">Class</label>
+         <label class="radio-inline" style="margin-right:30%;"><input type="radio" name="optradio" ng-model="selectedClass" value="business">Business</label>
+         <label class="radio-inline"><input type="radio" name="optradio" ng-model="selectedClass" value="economy">Economy</label>
+      </div>
+       <div ng-show="classAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Class must be selected!</strong></label></div>
+      <!-- <span ng-show="classAlert"><label>Class must be selected!</label></span> -->
+
+      <div class="checkbox">
+        <label><input type="checkbox" value="" ng-model="otherAirlines">Search Other Airlines</label>
+     </div>
      <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchOneWay()"><i class="fa fa-search" ></i>   Search Flights</button>
    </div>
   </section>
@@ -95,38 +123,46 @@
        <input type="text" class="form-control" placeholder="Where are you flying from?" 
        aria-describedby="basic-addon1"
        ng-model="selectedOriginRound"
-       uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+       uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
        class="form-control"
-       typeahead-on-select="setOrigin($item.iata)"
-       required/>
+       typeahead-on-select="setOrigin($item.iata)">
        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
      </div>
+     <div ng-show="originAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Origin must be filled out!</strong></label></div>
+     <!-- <span ng-show="originAlert"><label>Origin must be filled out!</label></span> -->
 
      <label class="inputLabel">Leaving To</label>
      <div class="input-group">
        <input type="text" class="form-control" placeholder="Where are you flying to?" 
        aria-describedby="basic-addon1"
        ng-model="selectedDestinationRound"
-       uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+       uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10"
        class="form-control"
-       typeahead-on-select="setDestination($item.iata)"
-       required/>
+       typeahead-on-select="setDestination($item.iata)">
        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
      </div>
+      <div ng-show="destAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Destination must be filled out!</strong></label></div>
+     <!-- <span ng-show="destAlert"><label>Destination must be filled out!</label></span> -->
 
      <div class="row">
        <div class="col-lg-6">
-         <label class="inputLabel">Departue Date</label>
+         <label class="inputLabel">Departure Date</label>
          <div class='input-group date' id='datetimepicker1'>
            <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"
            uib-datepicker-popup="{{format}}"
            ng-model="dtRound"
            is-open="popup1.opened"
-           ng-required="true"
            close-text="Close"
            alt-input-formats="altInputFormats"
-           ng-click="open1()"
-           required/>
+           ng-click="open1()">
            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
          </div>
        </div>
@@ -138,95 +174,55 @@
             uib-datepicker-popup="{{format}}"
             ng-model="atRound"
             is-open="popup2.opened"
-            ng-required="true"
             close-text="Close"
             alt-input-formats="altInputFormats"
-            ng-click="open2()"
-            required/>
+            ng-click="open2()">
             <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
          </div>
        </div>
      </div>
+     <div ng-show="departureAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Departure date must be filled out!</strong></label></div>
+       <div ng-show="arrivalAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+       <label style="margin-top:-4%;"><strong>Arrival date must be filled out!</strong></label></div>
+     <!-- <span ng-show="departureAlert"><label>Departure date must be filled out!</label></span>
+     <span ng-show="arrivalAlert"><label>Arrival date must be filled out!</label></span> -->
+
+     <div class="flightClass" style="margin-bottom:20px;">
+         <label class="inputLabel">Class</label>
+         <label class="radio-inline" style="margin-right:30%;"><input type="radio" name="optradio" ng-model="selectedClass" value="business">Business</label>
+         <label class="radio-inline"><input type="radio" name="optradio" ng-model="selectedClass" value="economy">Economy</label>
+      </div>
+      <div ng-show="classAlert" class="alert alert-danger" role="alert"
+           style="width:100%;
+                  height:5px;
+                  margin-top:-3%">
+    <label style="margin-top:-4%;"><strong>Class must be selected!</strong></label></div>
+     <!--<span ng-show="classAlert"><label>Class must be selected!</label></span>-->
+
+     <div class="checkbox">
+        <label><input type="checkbox" value="" ng-model="otherAirlines">Search Other Airlines</label>
+     </div>
+
      <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchRoundTrip()"><i class="fa fa-search"></i>   Search Flights</button>
     </div>
   </section>
-
-  <!-- third panel -->
-  <!-- <input name="tabbed" id="tabbed3" type="radio" >
-  <section>
-    <h1>
-      <label for="tabbed3">Multi-City</label>
-    </h1>
-    <div>
-
-      <label class="inputLabel">Departing From</label>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Where are you flying from?" aria-describedby="basic-addon1">
-        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
-      </div>
-
-      <label class="inputLabel">Leaving To</label>
-      <div class="input-group">
-         <input type="text" class="form-control" placeholder="Where are you flying to?" aria-describedby="basic-addon1"/>
-         <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
-      </div>
-
-
-      <label class="inputLabel">Departue Date</label>
-      <div class='input-group date' id='datetimepicker1'>
-         <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"/>
-         <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
-      </div>
-
-      <div class="row" style="margin-bottom: 20px">
-       <div class="col-lg-6">
-          <label class="inputLabel">Adults</label>
-          <div class="dropdown">
-             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              0<span class="caret"></span>
-             </button>
-             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-               <li><a href="#">0</a></li>
-               <li><a href="#">1</a></li>
-               <li><a href="#">2</a></li>
-               <li><a href="#">3</a></li>
-               <li role="separator" class="divider"></li>
-               <li><a href="#">Separated link</a></li>
-             </ul>
-          </div>
-       </div>
-
-       <div class="col-lg-6">
-          <label class="inputLabel">Children (2-11 Years) </label>
-          <div class="dropdown">
-             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              0<span class="caret"></span>
-             </button>
-             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-               <li><a href="#">0</a></li>
-               <li><a href="#">1</a></li>
-               <li><a href="#">2</a></li>
-               <li><a href="#">3</a></li>
-               <li role="separator" class="divider"></li>
-               <li><a href="#">Separated link</a></li>
-             </ul>
-          </div>
-       </div>
-    </div>
-     <button id="flightBtn" type="button" class="btn btn-default"><i class="fa fa-plus-circle"></i>   Add Flight</button>
-     <button id="flightBtn" type="button" class="btn btn-default"><i class="fa fa-search"></i>   Search Flights</button>
-   </div>
-  </section> -->
-
   </div>
   </div>
   </div>
 </div>
 
-  
+<br> 
 <div class="main">
 <div class="container text-center">    
-  <h3> <button id="btn" type="button" class="btn btn-default btn-lg"><i class="fa fa-money"></i>  Special Offers</button></h3><br>
+  <!--<h3> <button id="btn" type="button" class="btn btn-default btn-lg"><i class="fa fa-money"></i>  Special Offers</button></h3><br>-->
+  <h3 style="font-weight: bold;">Special Offers</h3>
   <div class="row">
     <div class="col-sm-4">
       <img src="/Images/Mount-Fuji.jpg" class="img-responsive" style="width:100%" alt="Image">
@@ -243,7 +239,8 @@
 </div><br>
 
 <div class="container text-center">    
-  <h3><button id="btn" type="button" class="btn btn-default btn-lg"><i class="fa fa-plane"></i>  New Destinations</button></h3><br>
+  <!--<h3><button id="btn" type="button" class="btn btn-default btn-lg"><i class="fa fa-plane"></i>  New Destinations</button></h3><br>-->
+  <h3 style="font-weight: bold;">New Destinations</h3>
   <div class="row">
     <div class="col-sm-4">
       <img src="/Images/galaxy.jpg" class="img-responsive" style="width:100%" alt="Image">
@@ -259,43 +256,7 @@
     </div>
   </div>
 </div><br>
-<div id="aboutUsDiv">
-<div><h3 style="text-align: center;">Scrum Master</h3></div>
-<div class="container text-center">    
-  <div class="row">
-    <div class="col-sm-4">
-      <img src="/Images/mariam.jpeg" class="img-circle" style="width:70%" alt="Image">
-      <p class="titles">Mariam Mazen</p>
-    </div>
-    <div class="col-sm-4"> 
-      
-      <img src="/Images/esso.jpg" class="img-circle" style="width:70%" alt="Image"> 
-      <p class="titles">Esraa Salah</p>
-      
-    </div>
-    <div class="col-sm-4"> 
-      <img src="/Images/rania6.jpg" class="img-circle"  style="width:70% " alt="Image">
-      <p class="titles">Rania Wael</p>    
-    </div>
-    </div><br>
 
-    <div class="row">
-    <div class="col-sm-4">
-      <img src="/Images/ranaFinal.jpg" class="img-circle" style="width:70%" alt="Image">
-      <p class="titles">Rana Saeed</p>
-    </div>
-    <div class="col-sm-4"> 
-      <img src="/Images/loay.jpg" class="img-circle" style="width:70%" alt="Image"> 
-      <p class="titles">Loay ElZobeidy</p>
-      
-    </div>
-    <div class="col-sm-4"> 
-      <img src="/Images/nourhan.jpg" class="img-circle"  style="width:70%" alt="Image">
-      <p class="titles">Nourhan Ramadan</p>    
-    </div>
-
-  </div>
-</div><br>
 
 <!-- <div class="container text-center">    
   <h3><button id="btn" type="button" class="btn btn-default btn-lg"><i class="fa fa-newspaper-o"></i>  News</button></h3><br>
@@ -314,4 +275,3 @@
     </div>
   </div>
 </div><br> -->
-</div>

@@ -1,5 +1,23 @@
 var app     = require('./app/app');
+var db      = require('./app/db.js');
+var flights = require('./app/flights.js');
 
-app.listen('3000', function(){
-  console.log('[OK] => HTTP Server listening on http://localhost:3000');
+db.connect(function(){
+
+    flights.seedDB(function(err,seeded)
+    {
+    	app.listen('3000', function(){
+           console.log('[OK] => HTTP Server listening on http://localhost:3000');
+        });
+    });
 });
+
+
+
+
+
+
+
+
+
+
