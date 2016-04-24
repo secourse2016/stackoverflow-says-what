@@ -139,16 +139,23 @@ module.exports = function(app,mongo) {
         myPath = myPath.concat(req.params.class);
         myPath = myPath.concat('?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/')
         var resultArr=[];
-        function httpGet(url, callback) {
-          const options = {
+        function httpGet(url, callback) 
+        {
+          setTimeout(function() {
+            const options = {
             url :  url+myPath,
-            json : true
-          };
+            json : true,
+            timeout : 1000
+            };
           request(options,
             function(err1, res1, body) {
-              callback(err1, body);
-            }
-          );
+              if (err1)
+                callback(null,null);
+              else
+                callback(err1, body);
+            });
+            }, 1000);
+          
         }
 
         var arr = [];
@@ -157,8 +164,10 @@ module.exports = function(app,mongo) {
 
           for (i = 0; i < res2.length; i++)
           {
-            if (res2[i].outgoingFlights != undefined)
-                resultArr = resultArr.concat(res2[i].outgoingFlights);
+            console.log(res2[i]);
+            if (res2[i])
+                if (res2[i].outgoingFlights != undefined)
+                    resultArr = resultArr.concat(res2[i].outgoingFlights);
           }
           result={};
           result.outgoingFlights=resultArr;
