@@ -12,6 +12,23 @@ module.exports = function(app,mongo) {
         // console.log(flights);
         res.json(flights);
     });
+    app.get('/api/data/generatingToken', function(rep, res){
+      var claims = {
+   sub: 'user9876',
+   iss: 'https://secourse.com',
+   permissions: 'view-flights'
+     }
+        var token = jwt.sign(claims,process.env.JWTSECRET, {
+          expiresInMinutes: 1440 // expires in 24 hours
+        });
+
+        // return the information including token as JSON
+        res.json({
+          success: true,
+          message: 'Enjoy your token!',
+          token: token
+        });
+    });
 
     app.get('/api/data/airports', function(rep, res){
     	var airports = require('../airports.json');
