@@ -138,7 +138,7 @@ exports.bookOneWay = function(flightNo, myClass, bookingData, cb){
 				// console.log(flight);
 				// var mySeat = flight.seatmap[seatNo];
 				var resvID = flightNo.concat('A', availableSeats);
-				seatMap[seatNo].reservation_id = resvID;
+				// seatMap[seatNo].reservation_id = resvID;
 				myDB.db().collection('flights').updateOne({"flight_no": flightNo},{/*$set : {"seatmap": seatMap}, */$inc : {"available_seats.seats_a" : -1}} , function(err, numUpdate){
 					if(err){
 						result = {};
