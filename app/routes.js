@@ -27,23 +27,6 @@ module.exports = function(app,mongo) {
         var flights = require('../flights.json');
         res.json(flights);
     });
-    app.get('/api/data/generatingToken', function(rep, res){
-      var claims = {
-            sub: 'user9876',
-            iss: 'https://secourse.com',
-            permissions: 'view-flights'
-        }
-        var token = jwt.sign(claims,process.env.JWTSECRET, {
-          expiresInMinutes: 1440 // expires in 24 hours
-        });
-
-        // return the information including token as JSON
-        res.json({
-          success: true,
-          message: 'Enjoy your token!',
-          token: token
-        });
-    });
 
     app.get('/api/data/airports', function(rep, res){
     	var airports = require('../airports.json');
@@ -141,6 +124,7 @@ module.exports = function(app,mongo) {
     });
     app.get('/api/flights/searchAll/:origin/:destination/:departingDate/:class', function(req, res)
     {
+        //var lowerLimit = moment(req.params.departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
         var d = moment(req.params.departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
         var newDate = moment(d).toDate().getTime();
         const async = require('async');
@@ -155,23 +139,16 @@ module.exports = function(app,mongo) {
         myPath = myPath.concat(req.params.class);
         myPath = myPath.concat('?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/')
         var resultArr=[];
-        function httpGet(url, callback) 
-        {
-          setTimeout(function() {
-            const options = {
+        function httpGet(url, callback) {
+          const options = {
             url :  url+myPath,
-            json : true,
-            timeout : 1000
-            };
+            json : true
+          };
           request(options,
             function(err1, res1, body) {
-              if (err1)
-                callback(null,null);
-              else
-                callback(err1, body);
-            });
-            }, 1000);
-          
+              callback(err1, body);
+            }
+          );
         }
 
         var arr = [];
@@ -180,9 +157,8 @@ module.exports = function(app,mongo) {
 
           for (i = 0; i < res2.length; i++)
           {
-            if (res2[i])
-                if (res2[i].outgoingFlights != undefined)
-                    resultArr = resultArr.concat(res2[i].outgoingFlights);
+            if (res2[i].outgoingFlights != undefined)
+                resultArr = resultArr.concat(res2[i].outgoingFlights);
           }
           result={};
           result.outgoingFlights=resultArr;
