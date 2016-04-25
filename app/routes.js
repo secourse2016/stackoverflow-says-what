@@ -29,10 +29,10 @@ module.exports = function(app,mongo) {
     });
     app.get('/api/data/generatingToken', function(rep, res){
       var claims = {
-   sub: 'user9876',
-   iss: 'https://secourse.com',
-   permissions: 'view-flights'
-     }
+            sub: 'user9876',
+            iss: 'https://secourse.com',
+            permissions: 'view-flights'
+        }
         var token = jwt.sign(claims,process.env.JWTSECRET, {
           expiresInMinutes: 1440 // expires in 24 hours
         });
@@ -141,7 +141,6 @@ module.exports = function(app,mongo) {
     });
     app.get('/api/flights/searchAll/:origin/:destination/:departingDate/:class', function(req, res)
     {
-        //var lowerLimit = moment(req.params.departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
         var d = moment(req.params.departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
         var newDate = moment(d).toDate().getTime();
         const async = require('async');
@@ -181,7 +180,6 @@ module.exports = function(app,mongo) {
 
           for (i = 0; i < res2.length; i++)
           {
-            console.log(res2[i]);
             if (res2[i])
                 if (res2[i].outgoingFlights != undefined)
                     resultArr = resultArr.concat(res2[i].outgoingFlights);
