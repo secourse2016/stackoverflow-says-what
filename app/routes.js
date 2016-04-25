@@ -16,17 +16,6 @@ module.exports = function(app,mongo) {
     app.get('/', function (req, res) {
       res.sendFile(__dirname + '/public/index.html');
     });
-
-
-    app.get('/api/data/inflights', function(rep, res){
-    	var flights = require('../flights.json');
-    	res.json(flights);
-    });
-
-    app.get('/api/data/outflights', function(rep, res){
-        var flights = require('../flights.json');
-        res.json(flights);
-    });
     app.get('/api/data/generatingToken', function(rep, res){
       var claims = {
             sub: 'user9876',
@@ -43,6 +32,15 @@ module.exports = function(app,mongo) {
           message: 'Enjoy your token!',
           token: token
         });
+    });
+    app.get('/api/data/inflights', function(rep, res){
+    	var flights = require('../flights.json');
+    	res.json(flights);
+    });
+
+    app.get('/api/data/outflights', function(rep, res){
+        var flights = require('../flights.json');
+        res.json(flights);
     });
 
     app.get('/api/data/airports', function(rep, res){
@@ -141,11 +139,14 @@ module.exports = function(app,mongo) {
     });
     app.get('/api/flights/searchAll/:origin/:destination/:departingDate/:class', function(req, res)
     {
+        //var lowerLimit = moment(req.params.departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
         var d = moment(req.params.departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
         var newDate = moment(d).toDate().getTime();
         const async = require('async');
         const request = require('request');
         var myPath = "/api/flights/search/";
+        console.log("HELOOOO");
+        console.log(req.query.wt);
         myPath = myPath.concat(req.params.origin);
         myPath = myPath.concat('/');
         myPath = myPath.concat(req.params.destination);
@@ -153,25 +154,23 @@ module.exports = function(app,mongo) {
         myPath = myPath.concat(newDate);
         myPath = myPath.concat('/');
         myPath = myPath.concat(req.params.class);
-        myPath = myPath.concat('?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/')
+        myPath = myPath.concat('?wt=');
+        myPath = myPath.concat(req.query.wt);
         var resultArr=[];
-        function httpGet(url, callback) 
-        {
-          setTimeout(function() {
-            const options = {
+        function httpGet(url, callback) {
+          const options = {
             url :  url+myPath,
             json : true,
             timeout : 1000
-            };
+          };
           request(options,
             function(err1, res1, body) {
               if (err1)
                 callback(null,null);
-              else
+              else       
                 callback(err1, body);
-            });
-            }, 1000);
-          
+            }
+          );
         }
 
         var arr = [];

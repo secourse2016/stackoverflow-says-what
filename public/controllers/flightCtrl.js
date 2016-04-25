@@ -6,17 +6,15 @@ App.controller('flightCtrl', function($scope,flightSrv,$location) {
     $scope.lower_bound=0;
     $scope.date = "";
     $scope.selectedClass = flightSrv.getClass();
-    // $scope.outflights = flightSrv.getOutFlights();
-    // $scope.inflights = flightSrv.getInFlights();
     function getInFlights(){
-      flightSrv.getInFlights().success(function(flights){
-        $scope.inflights = flights.outgoingFlights;
+      flightSrv.getInFlights(function(result){
+          $scope.inflights = result;
       });
     };
 
     function getOutFlights(){
-      flightSrv.getOutFlights().success(function(flights){
-        $scope.outflights = flights.outgoingFlights;
+      flightSrv.getOutFlights(function(result){
+          $scope.outflights = result;
       });
     };
 
