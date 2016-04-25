@@ -2,18 +2,21 @@ App.factory('flightSrv',function($http){
 	return {
 		// returns all the flights in the json file
 		getInFlights : function(){
-			var myUrl = this.destination;
+			var myUrl = this.origin;
 			myUrl = myUrl.concat('/');
-			myUrl = myUrl.concat(this.origin);
+			myUrl = myUrl.concat(this.destination);
 			myUrl = myUrl.concat('/');
-			myUrl = myUrl.concat(this.arrivalDate);
+			myUrl = myUrl.concat(this.departureDate);
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
-			myUrl = myUrl.concat('?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/');
+			this.getToken(function(token){
+				myUrl = myUrl.concat('?wt=');
+				myUrl = myUrl.concat(token);
+			});
 			if (!this.otherAirlines)
-				return $http.get('/api/flights/search/'.concat(myUrl));
-			else
-				return $http.get('/api/flights/searchAll/'.concat(myUrl));
+					return $http.get('/api/flights/search/'.concat(myUrl));
+				else
+					return $http.get('/api/flights/searchAll/'.concat(myUrl));
 		},
 		getOutFlights : function(){
 			var myUrl = this.origin;
@@ -23,11 +26,21 @@ App.factory('flightSrv',function($http){
 			myUrl = myUrl.concat(this.departureDate);
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
-			myUrl = myUrl.concat('?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/');
+			this.getToken(function(token){
+				myUrl = myUrl.concat('?wt=');
+				myUrl = myUrl.concat(token);
+			});
 			if (!this.otherAirlines)
-				return $http.get('/api/flights/search/'.concat(myUrl));
-			else
-				return $http.get('/api/flights/searchAll/'.concat(myUrl));
+					return $http.get('/api/flights/search/'.concat(myUrl));
+				else
+					return $http.get('/api/flights/searchAll/'.concat(myUrl));
+		},
+		getToken : function(callback)
+		{
+			$http.get('/api/data/generatingToken').success(function(result)
+				{
+					callback(result.token);	
+				});
 		},
 		createPayment : function(bookingData){
 			return $http.post('/api/pay', bookingData);
