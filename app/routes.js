@@ -158,7 +158,7 @@ module.exports = function(app,mongo) {
           const options = {
             url :  url+myPath,
             json : true,
-            timeout : 1000;
+            timeout : 1000
           };
           request(options,
             function(err1, res1, body) {
