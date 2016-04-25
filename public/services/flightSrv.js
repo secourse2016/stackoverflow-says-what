@@ -2,17 +2,13 @@ App.factory('flightSrv',function($http){
 	return {
 		// returns all the flights in the json file
 		getInFlights : function(){
-			var myUrl = this.origin;
+			var myUrl = this.destination;
 			myUrl = myUrl.concat('/');
-			myUrl = myUrl.concat(this.destination);
+			myUrl = myUrl.concat(this.origin);
 			myUrl = myUrl.concat('/');
-			myUrl = myUrl.concat(this.departureDate);
+			myUrl = myUrl.concat(this.arrivalDate);
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
-			this.getToken(function(token){
-				myUrl = myUrl.concat('?wt=');
-				myUrl = myUrl.concat(token);
-			});
 			if (!this.otherAirlines)
 					return $http.get('/api/flights/search/'.concat(myUrl));
 				else
@@ -26,21 +22,10 @@ App.factory('flightSrv',function($http){
 			myUrl = myUrl.concat(this.departureDate);
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
-			this.getToken(function(token){
-				myUrl = myUrl.concat('?wt=');
-				myUrl = myUrl.concat(token);
-			});
 			if (!this.otherAirlines)
 					return $http.get('/api/flights/search/'.concat(myUrl));
 				else
 					return $http.get('/api/flights/searchAll/'.concat(myUrl));
-		},
-		getToken : function(callback)
-		{
-			$http.get('/api/data/generatingToken').success(function(result)
-				{
-					callback(result.token);	
-				});
 		},
 		createPayment : function(bookingData){
 			return $http.post('/api/pay', bookingData);
