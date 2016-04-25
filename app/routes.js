@@ -145,6 +145,8 @@ module.exports = function(app,mongo) {
         const async = require('async');
         const request = require('request');
         var myPath = "/api/flights/search/";
+        console.log("HELOOOO");
+        console.log(req.query.wt);
         myPath = myPath.concat(req.params.origin);
         myPath = myPath.concat('/');
         myPath = myPath.concat(req.params.destination);
@@ -152,7 +154,8 @@ module.exports = function(app,mongo) {
         myPath = myPath.concat(newDate);
         myPath = myPath.concat('/');
         myPath = myPath.concat(req.params.class);
-        myPath = myPath.concat('?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/')
+        myPath = myPath.concat('?wt=');
+        myPath = myPath.concat(req.query.wt);
         var resultArr=[];
         function httpGet(url, callback) {
           const options = {
