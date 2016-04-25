@@ -16,8 +16,23 @@ module.exports = function(app,mongo) {
     app.get('/', function (req, res) {
       res.sendFile(__dirname + '/public/index.html');
     });
+    app.get('/api/data/generatingToken', function(rep, res){
+      var claims = {
+            sub: 'user9876',
+            iss: 'https://secourse.com',
+            permissions: 'view-flights'
+        }
+        var token = jwt.sign(claims,process.env.JWTSECRET, {
+          expiresInMinutes: 1440 // expires in 24 hours
+        });
 
-
+        // return the information including token as JSON
+        res.json({
+          success: true,
+          message: 'Enjoy your token!',
+          token: token
+        });
+    });
     app.get('/api/data/inflights', function(rep, res){
     	var flights = require('../flights.json');
     	res.json(flights);
@@ -142,11 +157,15 @@ module.exports = function(app,mongo) {
         function httpGet(url, callback) {
           const options = {
             url :  url+myPath,
-            json : true
+            json : true,
+            timeout : 1000;
           };
           request(options,
             function(err1, res1, body) {
-              callback(err1, body);
+              if (err1)
+                callback(null,null);
+              else       
+                callback(err1, body);
             }
           );
         }
@@ -157,8 +176,9 @@ module.exports = function(app,mongo) {
 
           for (i = 0; i < res2.length; i++)
           {
-            if (res2[i].outgoingFlights != undefined)
-                resultArr = resultArr.concat(res2[i].outgoingFlights);
+            if (res2[i])
+                if (res2[i].outgoingFlights != undefined)
+                    resultArr = resultArr.concat(res2[i].outgoingFlights);
           }
           result={};
           result.outgoingFlights=resultArr;
