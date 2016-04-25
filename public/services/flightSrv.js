@@ -1,7 +1,7 @@
 App.factory('flightSrv',function($http){
 	return {
 		// returns all the flights in the json file
-		getInFlights : function(){
+		getInFlights : function(cb){
 			var myUrl = this.destination;
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.origin);
@@ -9,13 +9,20 @@ App.factory('flightSrv',function($http){
 			myUrl = myUrl.concat(this.arrivalDate);
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
+			var pingOthers = this.otherAirlines;
 			this.getToken(function(token){
 				myUrl = myUrl.concat('?wt=');
 				myUrl = myUrl.concat(token);
-				if (!this.otherAirlines)
-					return $http.get('/api/flights/search/'.concat(myUrl));
+				if (!pingOthers)
+					$http.get('/api/flights/search/'.concat(myUrl)).success(function(flights)
+				 		{
+				 			cb(flights.outgoingFlights);
+				 		});
 				else
-					return $http.get('/api/flights/searchAll/'.concat(myUrl));
+					$http.get('/api/flights/searchAll/'.concat(myUrl)).success(function(flights)
+				 		{
+				 			cb(flights.outgoingFlights);
+				 		});
 			});
 		},
 		getOutFlights : function(cb){
