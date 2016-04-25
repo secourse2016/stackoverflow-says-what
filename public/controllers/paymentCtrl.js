@@ -20,14 +20,13 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
 
      else
      {
-      Stripe.card.createToken({
-
-      number: $('.card-number').val(),
-      cvc: $('.card-cvc').val(),
-      exp_month: $('.card-expiry-month').val(),
-      exp_year: $('.card-expiry-year').val()
+      /*Stripe.card.createToken({
+      number: $('.credit').val(),
+      cvc: $('.cvc').val(),
+      exp_month: $('.expiryMonth').val(),
+      exp_year: $('.expiryYear').val()
       
-      }, stripeResponseHandler);
+      }, stripeResponseHandler);*/
 
        $scope.bookingData.type = flightSrv.getType();
        $scope.bookingData.outFlightNo = flightSrv.getOutgoingFlight().flightNumber;
