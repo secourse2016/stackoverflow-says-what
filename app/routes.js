@@ -58,49 +58,7 @@ module.exports = function(app,mongo) {
     	res.json(bookings);
     });
 
-    app.post('/booking', function(req, res){
-        var type = req.body.type;
-        var outFlight = req.body.outFlightNo;
-        var myClass = req.body.myClass;
-        var firstName = req.body.firstName;
-        var lastName = req.body.lastName;
-        var email = req.body.email;
-        var passport_no = req.body.passport_no;
-        var bookingData = {
-            "firstName" : firstName,
-            "lastName" : lastName,
-            "email" : email, 
-            "passport_no" : passport_no
-        };
-        // console.log(bookingData);
-        if(type === 'OneWay'){
-            flights.bookOneWay(outFlight, myClass, bookingData, function(err, bookedDetails){
-                console.log(bookedDetails);
-                res.json(bookedDetails);
-            });
-        }else{
-            var inFlight = req.body.inFlightNo;
-            flights.bookOneWay(outFlight, myClass, bookingData, function(err, outBookedDetails){
-                // res.json(outBookedDetails);
-
-                flights.bookOneWay(inFlight, myClass, bookingData, function(err, inBookedDetails){
-                    // res.json(inBookedDetails);
-                    // var result = {
-                    //     "outDetails" : outBookedDetails,
-                    //     "inDetails" : inBookedDetails
-                    // }
-                    // console.log(result);
-                    console.log(outBookedDetails);
-                    console.log(inBookedDetails);
-                    res.json(/*result*/{
-                        "outDetails" : outBookedDetails,
-                        "inDetails" : inBookedDetails
-                    });
-                });
-
-            });
-        }
-    });
+    
 
     /* SEED DB */
     app.get('/db/seed', function(req, res) {
@@ -208,6 +166,49 @@ module.exports = function(app,mongo) {
         console.error('[ERROR]: JWT Error reason:', err);
         res.status(403).sendFile(path.join(__dirname, '../public/partials', '403.html'));
       }
+    });
+    app.post('/booking', function(req, res){
+        var type = req.body.type;
+        var outFlight = req.body.outFlightNo;
+        var myClass = req.body.myClass;
+        var firstName = req.body.firstName;
+        var lastName = req.body.lastName;
+        var email = req.body.email;
+        var passport_no = req.body.passport_no;
+        var bookingData = {
+            "firstName" : firstName,
+            "lastName" : lastName,
+            "email" : email, 
+            "passport_no" : passport_no
+        };
+        // console.log(bookingData);
+        if(type === 'OneWay'){
+            flights.bookOneWay(outFlight, myClass, bookingData, function(err, bookedDetails){
+                console.log(bookedDetails);
+                res.json(bookedDetails);
+            });
+        }else{
+            var inFlight = req.body.inFlightNo;
+            flights.bookOneWay(outFlight, myClass, bookingData, function(err, outBookedDetails){
+                // res.json(outBookedDetails);
+
+                flights.bookOneWay(inFlight, myClass, bookingData, function(err, inBookedDetails){
+                    // res.json(inBookedDetails);
+                    // var result = {
+                    //     "outDetails" : outBookedDetails,
+                    //     "inDetails" : inBookedDetails
+                    // }
+                    // console.log(result);
+                    console.log(outBookedDetails);
+                    console.log(inBookedDetails);
+                    res.json(/*result*/{
+                        "outDetails" : outBookedDetails,
+                        "inDetails" : inBookedDetails
+                    });
+                });
+
+            });
+        }
     });
     app.get('/api/flights/search/:origin/:destination/:departingDate/:class/:seats', function(req, res)
     {

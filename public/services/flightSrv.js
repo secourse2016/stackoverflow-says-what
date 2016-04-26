@@ -58,8 +58,17 @@ App.factory('flightSrv',function($http){
 					callback(result.token);	
 				});
 		},
-		createPayment : function(bookingData){
-			return $http.post('/booking', bookingData);
+		createPayment : function(bookingData,cb){
+			this.getToken(function(token){
+				var myUrl = '/booking';
+				myUrl = myUrl.concat('?wt=');
+				myUrl = myUrl.concat(token);
+				$http.post(myUrl, bookingData).success(function(data)
+					{
+						cb(data);
+					});
+			});
+			//return $http.post('/booking', bookingData);
 		},
 		// returns all airports in the json file
 		getAirports : function(){
