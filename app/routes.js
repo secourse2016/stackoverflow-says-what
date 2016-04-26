@@ -58,7 +58,7 @@ module.exports = function(app,mongo) {
     	res.json(bookings);
     });
 
-    app.post('/api/pay', function(req, res){
+    app.post('/booking', function(req, res){
         var type = req.body.type;
         var outFlight = req.body.outFlightNo;
         var myClass = req.body.myClass;

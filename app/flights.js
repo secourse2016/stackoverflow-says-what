@@ -60,6 +60,7 @@ getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
     	{
 	    	var myFlight = flightsArray[0];
 	    	var schemaFlight = {};
+	    	schemaFlight.flightId = myFlight._id;
 	    	schemaFlight.flightNumber = myFlight.flight_no;
 	    	schemaFlight.aircraftType = myFlight.aircraft_type;
 	    	schemaFlight.aircraftModel = myFlight.aircraft_model;
@@ -166,7 +167,7 @@ exports.bookOneWay = function(flightNo, myClass, bookingData, cb){
 					}
 				});
 			}else{
-				var availableSeats = flight.available_seats.seats_a;
+				var availableSeats = flight.available_seats.seats_b;
 				var seatNo = 20 - availableSeats;
 				var seatMap = flight.seatmap;
 				var mySeat = flight.seatmap[seatNo];
@@ -203,42 +204,5 @@ exports.bookOneWay = function(flightNo, myClass, bookingData, cb){
 	});
 };
 
-// exports.bookRoundTrip = function(depFlightNo, returnFlightNo, classDep, classReturn, bookingData, cb){
-// 	var result = {};
-// 	bookOneWay(depFlightNo, classDep, bookingData, function(err, depBook){
-// 		result.depBooking = depBook;
-// 		bookOneWay(returnFlightNo, classReturn, bookingData, function(err, returnBook){
-// 			result.returnBooking = returnBook;
-// 			cb(null, result);
-// 		});
-// 	});
-// };
-
 exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
-/*var moment = require('moment');
-console.log(moment("2016-04-19").toDate().getTime());*/
-
-   /*myDB.connect(function(err,db)
-    {
-   		seedDB(function(err2,seeded)
-	    	{
-    		console.log(err2);
-    		console.log(seeded);
-        });
-    });*/
-
-/* myDB.connect(function(err,db)
-    {
-   		getRoundTripFlightFromDB(function(err2,result)
-    	{
-    		console.log('hello');
-    		console.log(result);
-        },"BOM","DEL","2016-04-12T18:25:43.511Z","2016-04-12T18:25:43.511Z",'business');
-    });*/
-/*    myDB.connect(function(err,db)
-    {
-   		myDB.clearDB(function(){
-    	console.log("Databaseis clear");
-    	});
-    });*/
     
