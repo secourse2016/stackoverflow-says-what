@@ -137,7 +137,7 @@ module.exports = function(app,mongo) {
         },req.params.refNo);
 
     });
-    app.get('/api/flights/searchAll/:origin/:destination/:departingDate/:class', function(req, res)
+    app.get('/api/flights/searchAll/:origin/:destination/:departingDate/:class/:seats', function(req, res)
     {
         //var lowerLimit = moment(req.params.departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
         var d = moment(req.params.departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
@@ -145,8 +145,6 @@ module.exports = function(app,mongo) {
         const async = require('async');
         const request = require('request');
         var myPath = "/api/flights/search/";
-        console.log("HELOOOO");
-        console.log(req.query.wt);
         myPath = myPath.concat(req.params.origin);
         myPath = myPath.concat('/');
         myPath = myPath.concat(req.params.destination);
@@ -154,6 +152,8 @@ module.exports = function(app,mongo) {
         myPath = myPath.concat(newDate);
         myPath = myPath.concat('/');
         myPath = myPath.concat(req.params.class);
+        myPath = myPath.concat('/');
+        myPath = myPath.concat(req.params.seats);
         myPath = myPath.concat('?wt=');
         myPath = myPath.concat(req.query.wt);
         var resultArr=[];
@@ -209,21 +209,21 @@ module.exports = function(app,mongo) {
         res.status(403).sendFile(path.join(__dirname, '../public/partials', '403.html'));
       }
     });
-    app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res)
+    app.get('/api/flights/search/:origin/:destination/:departingDate/:class/:seats', function(req, res)
     {
         flights.getOneWayFlightFromDB(function(err,result)
         {     
                 //new
             res.send(result);
-        },req.params.origin,req.params.destination,req.params.departingDate,req.params.class);
+        },req.params.origin,req.params.destination,req.params.departingDate,req.params.class,req.params.seats);
 
     });
-    app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res)
+    app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class/:seats', function(req, res)
     {
         flights.getRoundTripFlightFromDB(function(err,result)
         {             //new
             res.send(result);
-        },req.params.origin,req.params.destination,req.params.departingDate,req.params.returningDate,req.params.class);
+        },req.params.origin,req.params.destination,req.params.departingDate,req.params.returningDate,req.params.class,req.params.seats);
 
     });
 

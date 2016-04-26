@@ -41,8 +41,10 @@ exports.seedDB = function(cb){
 };
 
 
-getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
+getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass,seats)
 {
+	console.log('HEYHOOO');
+	console.log(seats);
 	var moment = require('moment');
 	result = {};
 	var lowerLimit = moment(departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
@@ -64,21 +66,21 @@ getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
 	    	schemaFlight.flightNumber = myFlight.flight_no;
 	    	schemaFlight.aircraftType = myFlight.aircraft_type;
 	    	schemaFlight.aircraftModel = myFlight.aircraft_model;
-	    	schemaFlight.departureDateTime = moment(myFlight.date).toDate().getTime();;
-	    	schemaFlight.arrivalDateTime = moment(myFlight.arrival_date).toDate().getTime();;
+	    	schemaFlight.departureDateTime = moment(myFlight.date).toDate().getTime();
+	    	schemaFlight.arrivalDateTime = moment(myFlight.arrival_date).toDate().getTime();
 	    	schemaFlight.origin = origin;
 	    	schemaFlight.destination = destination;
 	    	schemaFlight.class = myClass;
 	    	schemaFlight.Airline = "Hawaiian";
 	    	schemaFlight.currency = "USD";
-	    	if(myClass == "economy" && myFlight.available_seats.seats_b > 0)
+	    	if(myClass == "economy" && myFlight.available_seats.seats_b >= seats)
 	    	{
 	    		schemaFlight.cost = myFlight.price2;
 	    		result.outgoingFlights[0]=schemaFlight;
 	    		cb(err,result);
 	    		/*console.log('success');*/
 	    	}
-	    	else if (myClass == "business" && myFlight.available_seats.seats_a > 0)
+	    	else if (myClass == "business" && myFlight.available_seats.seats_a >= seats)
 	    	{
 	    		schemaFlight.cost = myFlight.price1;
 	    		result.outgoingFlights[0]=schemaFlight;
@@ -96,7 +98,7 @@ getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
     });
 };
 
-exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDate, returningDate, myClass)
+exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDate, returningDate, myClass, seats)
 {
 	var res = {};
 
@@ -105,8 +107,8 @@ exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDa
 		getOneWayFlightFromDB(function(err3, res3){
 			res.returningFlights = res3.outgoingFlights;
 			cb(null, res);
-		}, destination, origin, returningDate,  myClass);
-	}, origin, destination, departingDate, myClass);
+		}, destination, origin, returningDate,  myClass, seats);
+	}, origin, destination, departingDate, myClass, seats);
 
 	
 	

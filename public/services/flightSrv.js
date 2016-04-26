@@ -9,6 +9,7 @@ App.factory('flightSrv',function($http){
 			myUrl = myUrl.concat(this.arrivalDate);
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
+			myUrl = myUrl.concat('/1');
 			var pingOthers = this.otherAirlines;
 			this.getToken(function(token){
 				myUrl = myUrl.concat('?wt=');
@@ -33,6 +34,7 @@ App.factory('flightSrv',function($http){
 			myUrl = myUrl.concat(this.departureDate);
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
+			myUrl = myUrl.concat('/1');
 			var pingOthers = this.otherAirlines;
 			this.getToken(function(token){
 				myUrl = myUrl.concat('?wt=');
