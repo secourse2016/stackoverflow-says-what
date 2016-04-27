@@ -1,13 +1,10 @@
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster">
-<div style="margin-bottom: 30%">
-<!-- <table>
-<tr>
-<td> -->
-<form class="form-horizontal" role="form" style="margin-right: 70px; margin-left: 70px">
+<div style="margin-bottom: 15%">
+<form stripe-form="stripeCallback" id="payment-form" style="margin-right: 70px; margin-left: 70px">
 <div>
 <div class="col-sm-2"></div>
 <div class="col-sm-7">
 <h1 class="text-center" style="font: bold; color: #C71585; font-size: 30px; font-family:Lobster">Payment</h1>
+<img class="img-responsive" style="margin-left:35%;" src="http://i76.imgup.net/accepted_c22e0.png"><br>
 </div>
 <div class="col-sm-10"></div>
 <p></p>
@@ -15,12 +12,16 @@
 <div class="repeat">
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">First Name </label></div><div class="col-sm-4"><input id="fname"size="40" class="form-control" ng-model="bookingData.firstName"> </input></div>
+<div class="col-sm-3"><label style="font-size: 20px">First Name </label></div>
+<div class="col-sm-4">
+<input id="fname"size="40" class="form-control" ng-model="bookingData.firstName" autofocus/>
+</div>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">Last Name </label></div><div class="col-sm-4"><input id="lname"size="40" class="form-control" ng-model="bookingData.lastName"> </input> </h3></div>
+<div class="col-sm-3"><label style="font-size: 20px">Last Name </label></div><div class="col-sm-4"><input id="lname"size="40" class="form-control" ng-model="bookingData.lastName"/>
+</h3></div>
 </div>
 <p></p>
 <div class="row">
@@ -33,16 +34,15 @@
 </div>
 </div>
 </div>
-<p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px"> Date of Birth </label></div><div class="col-sm-4"><input id="birth_date" type="date" class="form-control" ng-model="bookingData.dob"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 20px">Date of Birth </label></div><div class="col-sm-4"><input id="birth_date" type="date" class="form-control" ng-model="bookingData.dob"> </input> </div>
 </div>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px"> Nationality </label></div><div class="col-sm-4"><input id="nationality" class="form-control" ng-model="bookingData.nationality"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 20px">Nationality </label></div><div class="col-sm-4"><input id="nationality" class="form-control" ng-model="bookingData.nationality"> </input> </div>
 </div>
 </div>
 <p></p>
@@ -68,22 +68,40 @@
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">Credit Card Number </label></div><div class="col-sm-4"><input ng-model="credit" id="creditCard" class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 20px">Credit Card Number </label></div><div class="col-sm-4">
+<input ng-model="number" id="creditCard" class="form-control" 
+placeholder="Card Number"
+type="text"
+size="20" 
+data-stripe="number"
+payments-length="card"
+payments-format="card"
+payments-validate="card"></input></div>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">CVC </label></div><div class="col-sm-4"><input ng-model="cvc" id="cvc" class="form-control"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 20px">CVC </label></div><div class="col-sm-4"><input ng-model="cvc" id="cvc" class="form-control"
+placeholder="CVC"
+type="text"
+data-stripe="cvc"
+payments-format="cvc" 
+payments-validate="cvc"
+payments-type-model="type"> </input> </div>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">Expiry Year </label></div><div class="col-sm-4"><input type="number" ng-model="expiryYear" type="text" id="expiry" class="form-control" placeholder="XX"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 20px">Card Expiry Year </label></div><div class="col-sm-4"><input ng-model="expiryYear" id="expiry" class="form-control" 
+placeholder="YYYY"
+data-stripe="exp_year"> </input> </div>
 </div>
 <p></p>
 <div class="row">
 <div class="col-sm-2"></div>
-<div class="col-sm-3"><label style="font-size: 20px">Expiry Month </label></div><div class="col-sm-4"><input type="number" ng-model="expiryMonth" type="text" id="expiry" class="form-control" placeholder="XX"> </input> </div>
+<div class="col-sm-3"><label style="font-size: 20px">Card Expiry Month </label></div><div class="col-sm-4"><input ng-model="expiryMonth" id="expiry" class="form-control" 
+placeholder="MM"
+data-stripe="exp_month"> </input> </div>
 </div>
 <p></p>
 <div ng-show="alert" class="alert alert-danger" role="alert" 
@@ -95,7 +113,10 @@ style="width:60%;
 <div class="col-sm-2"></div>
 <div class="col-sm-7">
 
-<button class="btn btn-block" style=" background-color: #C71585; color: white; font: bold; font-size: 20px" ng-click="Pay()">Pay</button>
+<button ng-show="verifyAlert" class="btn btn-block" id="submitButton"style=" background-color: #C71585; color: white; font: bold; font-size: 20px" type="submit" ng-click="stripeCallback()">Verify</button><br>
+
+<button ng-show="payAlert"class="btn btn-block" id="payButton"style=" background-color: #C71585; color: white; font: bold; font-size: 20px" type="submit" ng-click="pay()">Pay</button>
+
 </div>
 <p></p>
 </div>
