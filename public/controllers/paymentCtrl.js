@@ -67,32 +67,15 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
             $scope.refNo = data;
             if(flightSrv.getType() === "OneWay")
             {
-                flightSrv.setOutRefNo(data.receipt_no);
+                flightSrv.setOutRefNo(data._id);
                 flightSrv.setInRefNo("-");
             }
             else
             {
-                flightSrv.setOutRefNo(data.outDetails.receipt_no);
-                flightSrv.setInRefNo(data.inDetails.receipt_no);
+                flightSrv.setOutRefNo(data.outDetails._id);
+                flightSrv.setInRefNo(data.inDetails._id);
             }
         }); 
-        /*flightSrv.createPayment($scope.bookingData).success(function (data) {
-                    
-            $scope.bookingData = {};
-            $scope.refNo = data;
-            if(flightSrv.getType() === "OneWay")
-            {
-                flightSrv.setOutRefNo(data.receipt_no);
-                flightSrv.setInRefNo("-");
-            }
-            else
-            {
-                flightSrv.setOutRefNo(data.outDetails.receipt_no);
-                flightSrv.setInRefNo(data.inDetails.receipt_no);
-            }
-                
-        });*/
-    // }
         $location.url('/complete');
      }
     	

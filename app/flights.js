@@ -116,8 +116,11 @@ exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDa
 
 exports.getBooking = function(cb , refNumber)
 {
+	var ObjectId = require('mongodb').ObjectID;
 	var res = {};
-	myDB.db().collection("bookings").find({"receipt_no" : refNumber}).toArray(function(err,flightsArray){
+	myDB.db().collection("bookings").find({"_id" : ObjectId(refNumber)}).toArray(function(err,flightsArray){
+		console.log('The ref number');
+		console.log(flightsArray);
 		cb(null, flightsArray[0]);
 	});
     
@@ -138,7 +141,6 @@ exports.bookOneWay = function(flightNo, myClass, bookingData, cb){
 				var availableSeats = flight.available_seats.seats_a;
 				var seatMap = flight.seatmap;
 				var seatNo = 10 - availableSeats;
-				// console.log(flight);
 				var mySeat = flight.seatmap[seatNo];
 				var resvID = flightNo.concat(mySeat.seat_no);
 				seatMap[seatNo].reservation_id = resvID;

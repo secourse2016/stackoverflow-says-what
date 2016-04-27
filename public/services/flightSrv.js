@@ -76,8 +76,10 @@ App.factory('flightSrv',function($http){
 		},
 		// returns all bookings in the json file
 		getBookings : function(){
+			console.log('7amada');
 			var myUrl='/api/bookings/search/';
 			myUrl = myUrl.concat(this.RefNo);
+			console.log(myUrl);
 			return $http.get(myUrl);
 		},
 		// returns all aircrafts in the json file
