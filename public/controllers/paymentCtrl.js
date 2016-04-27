@@ -10,8 +10,10 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
     || ($scope.gender == null || $scope.gender == "")
     || ($scope.bookingData.email == null || $scope.bookingData.email == "")
     || ($scope.mobile == null || $scope.mobile == "")
-    || ($scope.bookingData.passport_no == null || $scope.bookingData.passport_no == "")
-    || ($scope.bookingData.bookingData.passport_exp == null || $scope.bookingData.passport_exp == "")
+    || ($scope.bookingData.passportNum == null || $scope.bookingData.passportNum == "")
+    || ($scope.bookingData.passportExpiryDate == null || $scope.bookingData.passportExpiryDate == "")
+    || ($scope.bookingData.dateOfBirth == null || $scope.bookingData.dateOfBirth == "")
+    || ($scope.bookingData.nationality == null || $scope.bookingData.nationality == "")
     || ($scope.credit == null || $scope.credit == "")
     || ($scope.cvc == null || $scope.cvc == "")
     || ($scope.expiryYear == null || $scope.expiryYear == "")
@@ -31,7 +33,7 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
        $scope.bookingData.type = flightSrv.getType();
        $scope.bookingData.outFlightNo = flightSrv.getOutgoingFlight().flightNumber;
        $scope.bookingData.myClass = flightSrv.getClass();
-
+       console.log('Payment');
         if(flightSrv.getType() === 'Round')
            $scope.bookingData.inFlightNo = flightSrv.getIngoingFlight().flightNumber;
         flightSrv.createPayment($scope.bookingData,function (data)

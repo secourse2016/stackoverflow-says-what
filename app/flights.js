@@ -43,8 +43,6 @@ exports.seedDB = function(cb){
 
 getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass,seats)
 {
-	console.log('HEYHOOO');
-	console.log(seats);
 	var moment = require('moment');
 	result = {};
 	var lowerLimit = moment(departingDate,['x','YYYY-MM-DD']).format('YYYY-MM-DDTHH:mm:ss');
