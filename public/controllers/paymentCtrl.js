@@ -2,8 +2,10 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
 
 	$scope.bookingData = {};
   $scope.alert = false;
-  $scope.verifyAlert = true;
-  $scope.payAlert = false;
+  $scope.cardCheck = true;
+  $scope.cvcCheck = true;
+  $scope.dateCheck = true;
+  $scope.verifying = false;
   var token = null;
 
   $scope.stripeCallback = function (code, result) {
@@ -25,15 +27,19 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
 
      else
      {
-       Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
-      // Stripe.card.validateCardNumber($scope.number);
+      Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
 
       $scope.cardInfo = {};
       $scope.cardInfo.number = $scope.number;
       $scope.cardInfo.cvc = $scope.cvc;
       $scope.cardInfo.exp_month = $scope.expiryMonth;
       $scope.cardInfo.exp_year = $scope.expiryYear;
-      /*$form.find('submitButton').prop('disabled', true);*/ //disable submit to prevent repeated clicks
+      $scope.verifying = true;  //disabling submit button to avoid resubmissions
+
+      //input validation
+      $scope.cardCheck = Stripe.card.validateCardNumber($scope.number);
+      $scope.cvcCheck = Stripe.card.validateCVC($scope.cvc);
+      $scope.dateCheck = Stripe.card.validateExpiry($scope.expiryMonth, $scope.expiryYear); 
       Stripe.card.createToken($scope.cardInfo, stripeResponseHandler);
 
      /* Stripe.card.createToken({
@@ -44,40 +50,27 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
             cvc: "123"
           }
       }, stripeResponseHandler);*/
-
-    function stripeResponseHandler(status, response) 
-    {
-      if (!response.id) 
-      { 
-        window.alert(response.error.message);
-      }
-      else 
-      { 
-        token = response.id;
-        console.log(token);
-
-      }
-    };
-
-
-     /*   if(token === null)
-        {
-
-        }
-        else
-        {
-            $scope.verifyAlert = false;
-            $scope.payAlert = true;
-            console.log("heeere");
-        }*/
      }
-  	};
+  };
 
-$scope.pay = function ()
+  function stripeResponseHandler(status, response) 
+  {
+    if(response.error) 
+    { 
+      $scope.verifying = false;
+      //window.alert(response.error.message); 
+    }
+    else 
+    { 
+      token = response.id;
+      console.log(token);
+      Book();
+    }
+  };
+
+function Book()
 {
-    $location.url('/complete');
-     console.log("hiiiiii");
-
+  
     $scope.bookingData.type = flightSrv.getType();
     $scope.bookingData.outFlightNo = flightSrv.getOutgoingFlight().flightNumber;
     $scope.bookingData.myClass = flightSrv.getClass();
@@ -100,6 +93,10 @@ $scope.pay = function ()
         flightSrv.setInRefNo(data.inDetails.receipt_no);
       }                
    });
+   //console.log("yarab ye-route!");
+   verifying = false;
+   $location.url('/complete');
+
 };
 
 
