@@ -176,7 +176,7 @@ module.exports = function(app,mongo) {
             type = 'OneWay';
         
         stripe.charges.create({
-        amount: flightCost,
+        amount: flightCost*100,
         currency: "usd",
         source: stripeToken,
         //description: "test"
@@ -203,6 +203,7 @@ module.exports = function(app,mongo) {
                     flights.bookRound(req.body, function(err, bookedDetails)
                         { 
                             console.log(bookedDetails);
+                            console.log(flightCost);
                             res.json(bookedDetails);
                     });
                 }
