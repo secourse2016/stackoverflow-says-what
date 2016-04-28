@@ -32,15 +32,12 @@ angular.module('starter.controllers', [])
     { title: 'Rania :P', id: 6 }
   ];
 })
-// .controller('SearchCtrl', function($scope) {
-//  function searchByRefrence() {
-                                                     
-        
-//      });
+ .controller('SearchCtrl', function($scope) {
+  
  
 
 
-// })
+ })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });

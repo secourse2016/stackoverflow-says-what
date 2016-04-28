@@ -32,23 +32,32 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.oneway', {
-    url: '/oneway',
+  .state('app.BookAflight', {
+    url: '/BookAflight',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/BookAflight.html'
+      }
+    }
+  })
+  .state('app.contactUs', {
+    url: '/contactUs',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/contactUs.html'
+
+      }
+    }
+  })
+  .state('app.ourteam', {
+    url: '/ourteam',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/ourteam.html'
       }
     }
   })
 
-  .state('app.roundtrip', {
-      url: '/roundtrip',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
   .state('app.searchByRefrence', {
       url: '/searchByRefrence',
       views: {
