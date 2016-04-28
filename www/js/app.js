@@ -32,11 +32,19 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.BookAflight', {
-    url: '/BookAflight',
+  .state('app.oneWayBooking', {
+    url: '/oneWayBooking',
     views: {
       'menuContent': {
-        templateUrl: 'templates/BookAflight.html'
+        templateUrl: 'templates/oneWayBooking.html'
+      }
+    }
+  })
+  .state('app.roundTripBooking', {
+    url: '/roundTripBooking',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/roundTripBooking.html'
       }
     }
   })
