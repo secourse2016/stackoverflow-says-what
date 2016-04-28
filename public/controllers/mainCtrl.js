@@ -11,7 +11,6 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
     $location.url('/flightBooking');
   };
 
-
 	$scope.homePage = function() {
     $location.url('/');
   };
@@ -29,7 +28,6 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
       
     }
   };
-
 
   //contactUs
   $scope.fn = null;

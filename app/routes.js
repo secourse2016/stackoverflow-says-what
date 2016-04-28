@@ -5,6 +5,7 @@ module.exports = function(app,mongo) {
     var db=require('./db.js');
     var http = require('http');
     var moment = require('moment');
+    var stripe = require('stripe')("sk_test_Tr18gRe27kRjX4WlBQlMTMum");
     const urls = require('../urls.json');    
     app.all('*', function(req, res, next) {
         res.header('Access-Control-Allow-Origin', '*');
@@ -173,7 +174,6 @@ module.exports = function(app,mongo) {
         if(type === 'OneWay')
         {
             flights.bookOneWay(req.body, function(err, bookedDetails){
-                console.log(bookedDetails);
                 res.json(bookedDetails);
             });
         }
@@ -184,18 +184,6 @@ module.exports = function(app,mongo) {
                     res.json(bookedDetails);
                 });
         }
-/*            var inFlight = req.body.inFlightNo;
-            flights.bookOneWay(outFlight, myClass, bookingData, function(err, outBookedDetails){
-                flights.bookOneWay(inFlight, myClass, bookingData, function(err, inBookedDetails){
-                    console.log(outBookedDetails);
-                    console.log(inBookedDetails);
-                    res.json({
-                        "outDetails" : outBookedDetails,
-                        "inDetails" : inBookedDetails
-                    });
-                });
-
-            });*/
         
     });
     app.get('/api/flights/search/:origin/:destination/:departingDate/:class/:seats', function(req, res)

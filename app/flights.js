@@ -88,7 +88,6 @@ getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass,seat
 	    	else
 	    	{
 	    		cb(err,result);
-	    		console.log(myClass);
 	    		console.log('failure');
 	    	}
 	    	
@@ -240,7 +239,6 @@ bookOneWay = function(bookingData, cb){
 };
 bookRound = function(bookingData, cb)
 {
-	console.log('adkadk');
 	var ObjectId = require('mongodb').ObjectID;
 	bookOneWay(bookingData,function(err,booking_id)
 	{
@@ -326,8 +324,6 @@ bookRound = function(bookingData, cb)
 								}
 								else
 								{
-									console.log('Before Updating booking');
-									console.log(booking);
 									myDB.db().collection('bookings').updateOne({"_id": ObjectId(booking._id)},{$set : {"passengers": booking.passengers,"ingoingFlightNum": booking.ingoingFlightNum,"type":booking.type}} , function(err4, updatedBooking)
 									{
 										if(err4)
