@@ -167,24 +167,48 @@ module.exports = function(app,mongo) {
     });
     app.post('/booking', function(req, res){
         var type;
+        var stripeToken = req.body.paymentToken;
+        var flightCost  = req.body.cost;
+
         if (req.body.returnFlightId)
             type = 'Round';
         else
             type = 'OneWay';
-        if(type === 'OneWay')
-        {
-            flights.bookOneWay(req.body, function(err, bookedDetails){
-                res.json(bookedDetails);
-            });
-        }
-        else
-        {
-            flights.bookRound(req.body, function(err, bookedDetails)
-                {
-                    res.json(bookedDetails);
-                });
-        }
         
+        stripe.charges.create({
+        amount: flightCost*100,
+        currency: "usd",
+        source: stripeToken,
+        //description: "test"
+        }, function(err, data) {
+            if (err) 
+                res.send({ refNum: null, errorMessage: err});
+            else
+            {  
+            // payment successful
+            // create reservation in database
+            // get booking reference number and send it back to the user
+
+                if(type === 'OneWay')
+                {
+                    flights.bookOneWay(req.body, function(err, bookedDetails){
+                       
+                        console.log(bookedDetails);
+                        console.log(flightCost);
+                        res.json(bookedDetails);
+                    });
+                }
+                else
+                {
+                    flights.bookRound(req.body, function(err, bookedDetails)
+                        { 
+                            console.log(bookedDetails);
+                            console.log(flightCost);
+                            res.json(bookedDetails);
+                    });
+                }
+            }
+        });
     });
     app.get('/api/flights/search/:origin/:destination/:departingDate/:class/:seats', function(req, res)
     {
