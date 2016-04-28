@@ -5,6 +5,7 @@ module.exports = function(app,mongo) {
     var db=require('./db.js');
     var http = require('http');
     var moment = require('moment');
+    var stripe = require('stripe')("sk_test_Tr18gRe27kRjX4WlBQlMTMum");
     const urls = require('../urls.json');    
     app.all('*', function(req, res, next) {
         res.header('Access-Control-Allow-Origin', '*');
