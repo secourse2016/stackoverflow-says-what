@@ -168,8 +168,12 @@ module.exports = function(app,mongo) {
       }
     });
     app.post('/booking', function(req, res){
-        var type = req.body.type;
-        var outFlight = req.body.outFlightNo;
+        var type;
+        if (req.body.returnFlightId)
+            type = 'Round';
+        else
+            type = 'OneWay';
+/*        var outFlight = req.body.outFlightNo;
         var myClass = req.body.myClass;
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
@@ -181,17 +185,15 @@ module.exports = function(app,mongo) {
             "email" : email, 
             "passport_no" : passport_no
         };
-        // console.log(bookingData);
+        // console.log(bookingData);*/
         if(type === 'OneWay'){
-            flights.bookOneWay(outFlight, myClass, bookingData, function(err, bookedDetails){
+            flights.bookOneWay(req.body, function(err, bookedDetails){
                 console.log(bookedDetails);
                 res.json(bookedDetails);
             });
         }else{
             var inFlight = req.body.inFlightNo;
             flights.bookOneWay(outFlight, myClass, bookingData, function(err, outBookedDetails){
-                // res.json(outBookedDetails);
-
                 flights.bookOneWay(inFlight, myClass, bookingData, function(err, inBookedDetails){
                     console.log(outBookedDetails);
                     console.log(inBookedDetails);

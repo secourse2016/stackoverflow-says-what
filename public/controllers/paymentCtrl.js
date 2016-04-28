@@ -29,20 +29,26 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
       exp_year: $('.expiryYear').val()
       
       }, stripeResponseHandler);*/
-
-       $scope.bookingData.type = flightSrv.getType();
-       $scope.bookingData.outFlightNo = flightSrv.getOutgoingFlight().flightNumber;
-       $scope.bookingData.myClass = flightSrv.getClass();
+       $scope.paymentDetails = {};
+       $scope.paymentDetails.passengerDetails = [];
+       $scope.paymentDetails.passengerDetails[0]=$scope.bookingData;
+       $scope.paymentDetails.outgoingFlightId = flightSrv.getOutgoingFlight().flightId;
+       $scope.paymentDetails.class = flightSrv.getClass();
+       $scope.paymentDetails.cost = flightSrv.getOutgoingFlight().cost;
        console.log('Payment');
         if(flightSrv.getType() === 'Round')
-           $scope.bookingData.inFlightNo = flightSrv.getIngoingFlight().flightNumber;
-        flightSrv.createPayment($scope.bookingData,function (data)
+        {
+           $scope.paymentDetails.returnFlightId = flightSrv.getIngoingFlight().flightId;
+           $scope.paymentDetails.cost += flightSrv.getIngoingFlight().cost;
+        }
+        flightSrv.createPayment($scope.paymentDetails,function (data)
         {
             $scope.bookingData = {};
+            $scope.paymentDetails = {};
             $scope.refNo = data;
             if(flightSrv.getType() === "OneWay")
             {
-                flightSrv.setOutRefNo(data._id);
+                flightSrv.setOutRefNo(data);
                 flightSrv.setInRefNo("-");
             }
             else
