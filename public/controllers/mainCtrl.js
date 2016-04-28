@@ -2,6 +2,7 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
 
   function getBookingDetails(){
       flightSrv.getBookings().success(function(booking){
+        console.log(booking);
         $scope.booking = booking;
       });
   };

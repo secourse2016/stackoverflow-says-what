@@ -41,7 +41,7 @@ exports.seedDB = function(cb){
 };
 
 
-getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
+getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass,seats)
 {
 	var moment = require('moment');
 	result = {};
@@ -60,24 +60,25 @@ getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
     	{
 	    	var myFlight = flightsArray[0];
 	    	var schemaFlight = {};
+	    	schemaFlight.flightId = myFlight._id;
 	    	schemaFlight.flightNumber = myFlight.flight_no;
 	    	schemaFlight.aircraftType = myFlight.aircraft_type;
 	    	schemaFlight.aircraftModel = myFlight.aircraft_model;
-	    	schemaFlight.departureDateTime = moment(myFlight.date).toDate().getTime();;
-	    	schemaFlight.arrivalDateTime = moment(myFlight.arrival_date).toDate().getTime();;
+	    	schemaFlight.departureDateTime = moment(myFlight.date).toDate().getTime();
+	    	schemaFlight.arrivalDateTime = moment(myFlight.arrival_date).toDate().getTime();
 	    	schemaFlight.origin = origin;
 	    	schemaFlight.destination = destination;
 	    	schemaFlight.class = myClass;
 	    	schemaFlight.Airline = "Hawaiian";
 	    	schemaFlight.currency = "USD";
-	    	if(myClass == "economy" && myFlight.available_seats.seats_b > 0)
+	    	if(myClass == "economy" && myFlight.available_seats.seats_b >= seats)
 	    	{
 	    		schemaFlight.cost = myFlight.price2;
 	    		result.outgoingFlights[0]=schemaFlight;
 	    		cb(err,result);
 	    		/*console.log('success');*/
 	    	}
-	    	else if (myClass == "business" && myFlight.available_seats.seats_a > 0)
+	    	else if (myClass == "business" && myFlight.available_seats.seats_a >= seats)
 	    	{
 	    		schemaFlight.cost = myFlight.price1;
 	    		result.outgoingFlights[0]=schemaFlight;
@@ -87,7 +88,6 @@ getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
 	    	else
 	    	{
 	    		cb(err,result);
-	    		console.log(myClass);
 	    		console.log('failure');
 	    	}
 	    	
@@ -95,7 +95,7 @@ getOneWayFlightFromDB =function(cb,origin,destination,departingDate,myClass)
     });
 };
 
-exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDate, returningDate, myClass)
+exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDate, returningDate, myClass, seats)
 {
 	var res = {};
 
@@ -104,8 +104,8 @@ exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDa
 		getOneWayFlightFromDB(function(err3, res3){
 			res.returningFlights = res3.outgoingFlights;
 			cb(null, res);
-		}, destination, origin, returningDate,  myClass);
-	}, origin, destination, departingDate, myClass);
+		}, destination, origin, returningDate,  myClass, seats);
+	}, origin, destination, departingDate, myClass, seats);
 
 	
 	
@@ -113,8 +113,11 @@ exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDa
 
 exports.getBooking = function(cb , refNumber)
 {
+	var ObjectId = require('mongodb').ObjectID;
 	var res = {};
-	myDB.db().collection("bookings").find({"receipt_no" : refNumber}).toArray(function(err,flightsArray){
+	myDB.db().collection("bookings").find({"_id" : ObjectId(refNumber)}).toArray(function(err,flightsArray){
+		console.log('The ref number');
+		console.log(flightsArray);
 		cb(null, flightsArray[0]);
 	});
     
@@ -122,123 +125,227 @@ exports.getBooking = function(cb , refNumber)
 };
 
 // to be continued
-exports.bookOneWay = function(flightNo, myClass, bookingData, cb){
+bookOneWay = function(bookingData, cb){
 	var result = {};
-	myDB.db().collection('flights').find({flight_no: flightNo}).toArray(function(err, flightsArray){
-		if(err || flightsArray.length < 1){		
-			console.log(err);	
-			cb(err, result);
-			console.log('No matching flights');
-		}else{
-			var flight = flightsArray[0];
-			if(myClass === 'business'){
-				var availableSeats = flight.available_seats.seats_a;
-				var seatMap = flight.seatmap;
-				var seatNo = 10 - availableSeats;
-				// console.log(flight);
-				var mySeat = flight.seatmap[seatNo];
-				var resvID = flightNo.concat(mySeat.seat_no);
-				seatMap[seatNo].reservation_id = resvID;
-				myDB.db().collection('flights').updateOne({"flight_no": flightNo},{$set : {"seatmap": seatMap}, $inc : {"available_seats.seats_a" : -1}} , function(err, numUpdate){
-					if(err){
-						result = {};
-						console.log(err);
-						cb(err, result);
-					}else{
-						var booking = {
-							firstName: bookingData.firstName, 
-							lastName: bookingData.lastName, 
-							passport_no: bookingData.passport_no, 
-							email: bookingData.email, 
-							seat_no: mySeat.seat_no,
-							receipt_no: resvID, 
-							flight_no: flightNo
-						}
-						myDB.db().collection('bookings').insert(booking, function(err, noInserted){
-							if(err){
-								result = {};
-								cb(err, result);
-							}else{
-								result = booking;
-								cb(null, result);
-							}
-						});
-					}
-				});
-			}else{
-				var availableSeats = flight.available_seats.seats_a;
-				var seatNo = 20 - availableSeats;
-				var seatMap = flight.seatmap;
-				var mySeat = flight.seatmap[seatNo];
-				var resvID = flightNo.concat(mySeat.seat_no);
-				seatMap[seatNo].reservation_id = resvID;
-				myDB.db().collection('flights').update({flight_no: flightNo}, {$set: { seatmap: seatMap}, $inc : {"available_seats.seats_b" : -1}}, function(err, numUpdate){
-					if(err){
-						result = {};
-						cb(err, result);
-					}else{
-						var booking = {
-							firstName: bookingData.firstName, 
-							lastName: bookingData.lastName, 
-							passport_no: bookingData.passportNo, 
-							email: bookingData.email, 
-							seat_no: mySeat.seat_no,
-							receipt_no: resvID, 
-							flight_no: flightNo
-						}
-						myDB.db().collection('bookings').insert(booking, function(err, noInserted){
-							if(err){
-								result = {};
-								cb(err, result);
-							}else{
-								result = booking;
-								cb(null, result);
-							}
-						});
-					}
-				});
-			}
+	var ObjectId = require('mongodb').ObjectID;
+	var booking = {};
+	booking.type = 'OneWay';
+	booking.class = bookingData.class;
+	booking.passengers = [];
+	myDB.db().collection('bookings').insert(booking, function(err1, insertedBooking)
+	{
+		if(err1)
+		{
+			result = {};
+			cb(err1, result);
 		}
+		else
+		{
+			myDB.db().collection('flights').find({"_id": ObjectId(bookingData.outgoingFlightId)}).toArray(function(err2, flightsArray)
+			{
 
+				if(err2 || flightsArray.length < 1)
+				{			
+					cb(err2, result);
+					console.log('No matching flights');
+				}
+				else
+				{
+					var flight = flightsArray[0];
+					var seatMap = flight.seatmap; 
+					var passengerNum = bookingData.passengerDetails.length;
+					var i=0;
+					booking.outgoingFlightNum = flight.flight_no;
+					if (booking.class === 'business')
+					{	
+						var availableSeats = flight.available_seats.seats_a;
+						for (i=0;i<passengerNum;i++)
+						{	
+							var seatNo = 10 - availableSeats;
+							var mySeat = flight.seatmap[seatNo];
+							seatMap[seatNo].reservation_id = insertedBooking.ops[0]._id;
+							booking.passengers[i]=bookingData.passengerDetails[i];
+							booking.passengers[i].outgoingFlightSeat = 'A' + '' + (seatNo+1);
+							booking.passengers[i].ingoingFlightSeat = '-';
+							availableSeats--;
+						}
+						var decreaseby = passengerNum * -1;
+						myDB.db().collection('flights').updateOne({"_id": ObjectId(bookingData.outgoingFlightId)},{$set : {"seatmap": seatMap}, $inc : {"available_seats.seats_a" : decreaseby}} , function(err3, numUpdate)
+						{
+							if(err3)
+							{
+								result = {};
+								cb(err3, result);
+							}
+							else
+							{
+								myDB.db().collection('bookings').updateOne({"_id": ObjectId(insertedBooking.ops[0]._id)},{$set : {"passengers": booking.passengers,"outgoingFlightNum": booking.outgoingFlightNum,"ingoingFlightNum": "-"}} , function(err4, updatedBooking)
+								{
+									if(err4)
+									{
+										result = {};
+										cb(err4, result);
+									}
+									else
+									{
+										cb(null, insertedBooking.ops[0]._id);
+									}
+								});
+							}
+						});
+					}
+					else
+					{
+						var availableSeats = flight.available_seats.seats_b;
+						for (i=0;i<passengerNum;i++)
+						{	
+							var seatNo = 30 - availableSeats;
+							var mySeat = flight.seatmap[seatNo];
+							seatMap[seatNo].reservation_id = insertedBooking.ops[0]._id;
+							booking.passengers[i]=bookingData.passengerDetails[i];
+							booking.passengers[i].outgoingFlightSeat = 'B' + '' + (seatNo-9);
+							booking.passengers[i].ingoingFlightSeat = '-';
+							availableSeats--;
+						}
+						var decreaseby = passengerNum * -1;
+						myDB.db().collection('flights').updateOne({"_id": ObjectId(bookingData.outgoingFlightId)},{$set : {"seatmap": seatMap}, $inc : {"available_seats.seats_b" : decreaseby}} , function(err3, numUpdate)
+						{
+							if(err3)
+							{
+								result = {};
+								cb(err3, result);
+							}
+							else
+							{
+								myDB.db().collection('bookings').updateOne({"_id": ObjectId(insertedBooking.ops[0]._id)},{$set : {"passengers": booking.passengers,"outgoingFlightNum": booking.outgoingFlightNum,"ingoingFlightNum": "-"}} , function(err4, updatedBooking)
+								{
+									if(err4)
+									{
+										result = {};
+										cb(err4, result);
+									}
+									else
+									{
+										cb(null, insertedBooking.ops[0]._id);
+									}
+								});
+							}
+						});
+					}
+				}
+			});
+		}
 	});
 };
-
-// exports.bookRoundTrip = function(depFlightNo, returnFlightNo, classDep, classReturn, bookingData, cb){
-// 	var result = {};
-// 	bookOneWay(depFlightNo, classDep, bookingData, function(err, depBook){
-// 		result.depBooking = depBook;
-// 		bookOneWay(returnFlightNo, classReturn, bookingData, function(err, returnBook){
-// 			result.returnBooking = returnBook;
-// 			cb(null, result);
-// 		});
-// 	});
-// };
-
+bookRound = function(bookingData, cb)
+{
+	var ObjectId = require('mongodb').ObjectID;
+	bookOneWay(bookingData,function(err,booking_id)
+	{
+		myDB.db().collection('bookings').find({"_id": ObjectId(booking_id)}).toArray(function(err1, bookingsArray)
+		{
+			var booking = bookingsArray[0];
+			booking.type = 'RoundTrip'
+			if(err1)
+			{	
+				result = {};
+				cb(err1, result);
+			}
+			else
+			{
+				myDB.db().collection('flights').find({"_id": ObjectId(bookingData.returnFlightId)}).toArray(function(err2, flightsArray)
+				{
+					if(err2 || flightsArray.length < 1)
+					{				
+						cb(err2, result);
+						console.log('No matching flights');
+					}
+					else
+					{
+						var flight = flightsArray[0];
+						var seatMap = flight.seatmap; 
+						var passengerNum = bookingData.passengerDetails.length;
+						var i=0;
+						booking.ingoingFlightNum = flight.flight_no;
+						if (booking.class === 'business')
+						{
+							var availableSeats = flight.available_seats.seats_a;
+							for (i=0;i<passengerNum;i++)
+							{	
+								var seatNo = 10 - availableSeats;
+								var mySeat = flight.seatmap[seatNo];
+								seatMap[seatNo].reservation_id = booking._id;
+								booking.passengers[i].ingoingFlightSeat = 'A' + '' + (seatNo+1);
+								availableSeats--;
+							}
+							var decreaseby = passengerNum * -1;
+							myDB.db().collection('flights').updateOne({"_id": ObjectId(bookingData.returnFlightId)},{$set : {"seatmap": seatMap}, $inc : {"available_seats.seats_a" : decreaseby}} , function(err3, numUpdate)
+							{
+								if(err3)
+								{
+									result = {};
+									cb(err3, result);
+								}
+								else
+								{
+									myDB.db().collection('bookings').updateOne({"_id": ObjectId(booking._id)},{$set : {"passengers": booking.passengers,"ingoingFlightNum": booking.ingoingFlightNum,"type":booking.type}} , function(err4, updatedBooking)
+									{
+										if(err4)
+										{
+											result = {};
+											cb(err4, result);
+										}
+										else
+										{
+											cb(null, booking._id);
+										}
+									});
+								}
+							});
+						}
+						else
+						{
+							var availableSeats = flight.available_seats.seats_b;
+							for (i=0;i<passengerNum;i++)
+							{	
+								var seatNo = 30 - availableSeats;
+								var mySeat = flight.seatmap[seatNo];
+								seatMap[seatNo].reservation_id = booking._id;
+								booking.passengers[i].ingoingFlightSeat = 'B' + '' + (seatNo-9);
+								availableSeats--;
+							}
+							var decreaseby = passengerNum * -1;
+							myDB.db().collection('flights').updateOne({"_id": ObjectId(bookingData.returnFlightId)},{$set : {"seatmap": seatMap}, $inc : {"available_seats.seats_b" : decreaseby}} , function(err3, numUpdate)
+							{
+								if(err3)
+								{
+									result = {};
+									cb(err3, result);
+								}
+								else
+								{
+									myDB.db().collection('bookings').updateOne({"_id": ObjectId(booking._id)},{$set : {"passengers": booking.passengers,"ingoingFlightNum": booking.ingoingFlightNum,"type":booking.type}} , function(err4, updatedBooking)
+									{
+										if(err4)
+										{
+											result = {};
+											cb(err4, result);
+										}
+										else
+										{
+											cb(null, booking._id);
+										}
+									});
+								}
+							});
+						}
+					}					
+				});
+			}
+		});
+	});
+};
 exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
-/*var moment = require('moment');
-console.log(moment("2016-04-19").toDate().getTime());*/
-
-   /*myDB.connect(function(err,db)
-    {
-   		seedDB(function(err2,seeded)
-	    	{
-    		console.log(err2);
-    		console.log(seeded);
-        });
-    });*/
-
-/* myDB.connect(function(err,db)
-    {
-   		getRoundTripFlightFromDB(function(err2,result)
-    	{
-    		console.log('hello');
-    		console.log(result);
-        },"BOM","DEL","2016-04-12T18:25:43.511Z","2016-04-12T18:25:43.511Z",'business');
-    });*/
-/*    myDB.connect(function(err,db)
-    {
-   		myDB.clearDB(function(){
-    	console.log("Databaseis clear");
-    	});
-    });*/
+exports.bookOneWay = bookOneWay;
+exports.bookRound = bookRound;
     
