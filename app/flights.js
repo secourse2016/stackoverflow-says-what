@@ -126,11 +126,9 @@ exports.getBooking = function(cb , refNumber)
 };
 
 // to be continued
-exports.bookOneWay = function(bookingData, cb){
+bookOneWay = function(bookingData, cb){
 	var result = {};
 	var ObjectId = require('mongodb').ObjectID;
-	console.log('el bookng ya sada');
-	console.log(bookingData);
 	var booking = {};
 	booking.type = 'OneWay';
 	booking.class = bookingData.class;
@@ -140,12 +138,10 @@ exports.bookOneWay = function(bookingData, cb){
 		if(err1)
 		{
 			result = {};
-			cb(err, result);
+			cb(err1, result);
 		}
 		else
 		{
-			console.log('insertedBooking');
-			console.log(insertedBooking.ops[0]);
 			myDB.db().collection('flights').find({"_id": ObjectId(bookingData.outgoingFlightId)}).toArray(function(err2, flightsArray)
 			{
 
@@ -160,7 +156,6 @@ exports.bookOneWay = function(bookingData, cb){
 					var seatMap = flight.seatmap; 
 					var passengerNum = bookingData.passengerDetails.length;
 					var i=0;
-					var availableSeats = flight.available_seats.seats_a;
 					booking.outgoingFlightNum = flight.flight_no;
 					if (booking.class === 'business')
 					{	
@@ -169,9 +164,10 @@ exports.bookOneWay = function(bookingData, cb){
 						{	
 							var seatNo = 10 - availableSeats;
 							var mySeat = flight.seatmap[seatNo];
-							seatMap[seatNo].reservation_id = insertedBooking._id;
+							seatMap[seatNo].reservation_id = insertedBooking.ops[0]._id;
 							booking.passengers[i]=bookingData.passengerDetails[i];
 							booking.passengers[i].outgoingFlightSeat = 'A' + '' + (seatNo+1);
+							booking.passengers[i].ingoingFlightSeat = '-';
 							availableSeats--;
 						}
 						var decreaseby = passengerNum * -1;
@@ -184,9 +180,7 @@ exports.bookOneWay = function(bookingData, cb){
 							}
 							else
 							{
-								console.log('before updating passengers');
-								console.log(booking.passengers);
-								myDB.db().collection('bookings').updateOne({"_id": ObjectId(insertedBooking.ops[0]._id)},{$set : {"passengers": booking.passengers,"outgoingFlightNum": booking.outgoingFlightNum}} , function(err4, updatedBooking)
+								myDB.db().collection('bookings').updateOne({"_id": ObjectId(insertedBooking.ops[0]._id)},{$set : {"passengers": booking.passengers,"outgoingFlightNum": booking.outgoingFlightNum,"ingoingFlightNum": "-"}} , function(err4, updatedBooking)
 								{
 									if(err4)
 									{
@@ -195,8 +189,6 @@ exports.bookOneWay = function(bookingData, cb){
 									}
 									else
 									{
-										console.log('updatedBooking');
-										console.log(insertedBooking.ops[0]._id);
 										cb(null, insertedBooking.ops[0]._id);
 									}
 								});
@@ -210,9 +202,10 @@ exports.bookOneWay = function(bookingData, cb){
 						{	
 							var seatNo = 30 - availableSeats;
 							var mySeat = flight.seatmap[seatNo];
-							seatMap[seatNo].reservation_id = insertedBooking._id;
+							seatMap[seatNo].reservation_id = insertedBooking.ops[0]._id;
 							booking.passengers[i]=bookingData.passengerDetails[i];
 							booking.passengers[i].outgoingFlightSeat = 'B' + '' + (seatNo-9);
+							booking.passengers[i].ingoingFlightSeat = '-';
 							availableSeats--;
 						}
 						var decreaseby = passengerNum * -1;
@@ -225,7 +218,7 @@ exports.bookOneWay = function(bookingData, cb){
 							}
 							else
 							{
-								myDB.db().collection('bookings').updateOne({"_id": ObjectId(insertedBooking.ops[0]._id)},{$set : {"passengers": booking.passengers,"outgoingFlightNum": booking.outgoingFlightNum}} , function(err4, updatedBooking)
+								myDB.db().collection('bookings').updateOne({"_id": ObjectId(insertedBooking.ops[0]._id)},{$set : {"passengers": booking.passengers,"outgoingFlightNum": booking.outgoingFlightNum,"ingoingFlightNum": "-"}} , function(err4, updatedBooking)
 								{
 									if(err4)
 									{
@@ -245,6 +238,118 @@ exports.bookOneWay = function(bookingData, cb){
 		}
 	});
 };
-
+bookRound = function(bookingData, cb)
+{
+	console.log('adkadk');
+	var ObjectId = require('mongodb').ObjectID;
+	bookOneWay(bookingData,function(err,booking_id)
+	{
+		myDB.db().collection('bookings').find({"_id": ObjectId(booking_id)}).toArray(function(err1, bookingsArray)
+		{
+			var booking = bookingsArray[0];
+			booking.type = 'RoundTrip'
+			if(err1)
+			{	
+				result = {};
+				cb(err1, result);
+			}
+			else
+			{
+				myDB.db().collection('flights').find({"_id": ObjectId(bookingData.returnFlightId)}).toArray(function(err2, flightsArray)
+				{
+					if(err2 || flightsArray.length < 1)
+					{				
+						cb(err2, result);
+						console.log('No matching flights');
+					}
+					else
+					{
+						var flight = flightsArray[0];
+						var seatMap = flight.seatmap; 
+						var passengerNum = bookingData.passengerDetails.length;
+						var i=0;
+						booking.ingoingFlightNum = flight.flight_no;
+						if (booking.class === 'business')
+						{
+							var availableSeats = flight.available_seats.seats_a;
+							for (i=0;i<passengerNum;i++)
+							{	
+								var seatNo = 10 - availableSeats;
+								var mySeat = flight.seatmap[seatNo];
+								seatMap[seatNo].reservation_id = booking._id;
+								booking.passengers[i].ingoingFlightSeat = 'A' + '' + (seatNo+1);
+								availableSeats--;
+							}
+							var decreaseby = passengerNum * -1;
+							myDB.db().collection('flights').updateOne({"_id": ObjectId(bookingData.returnFlightId)},{$set : {"seatmap": seatMap}, $inc : {"available_seats.seats_a" : decreaseby}} , function(err3, numUpdate)
+							{
+								if(err3)
+								{
+									result = {};
+									cb(err3, result);
+								}
+								else
+								{
+									myDB.db().collection('bookings').updateOne({"_id": ObjectId(booking._id)},{$set : {"passengers": booking.passengers,"ingoingFlightNum": booking.ingoingFlightNum,"type":booking.type}} , function(err4, updatedBooking)
+									{
+										if(err4)
+										{
+											result = {};
+											cb(err4, result);
+										}
+										else
+										{
+											cb(null, booking._id);
+										}
+									});
+								}
+							});
+						}
+						else
+						{
+							var availableSeats = flight.available_seats.seats_b;
+							for (i=0;i<passengerNum;i++)
+							{	
+								var seatNo = 30 - availableSeats;
+								var mySeat = flight.seatmap[seatNo];
+								seatMap[seatNo].reservation_id = booking._id;
+								booking.passengers[i].ingoingFlightSeat = 'B' + '' + (seatNo-9);
+								availableSeats--;
+							}
+							var decreaseby = passengerNum * -1;
+							myDB.db().collection('flights').updateOne({"_id": ObjectId(bookingData.returnFlightId)},{$set : {"seatmap": seatMap}, $inc : {"available_seats.seats_b" : decreaseby}} , function(err3, numUpdate)
+							{
+								if(err3)
+								{
+									result = {};
+									cb(err3, result);
+								}
+								else
+								{
+									console.log('Before Updating booking');
+									console.log(booking);
+									myDB.db().collection('bookings').updateOne({"_id": ObjectId(booking._id)},{$set : {"passengers": booking.passengers,"ingoingFlightNum": booking.ingoingFlightNum,"type":booking.type}} , function(err4, updatedBooking)
+									{
+										if(err4)
+										{
+											result = {};
+											cb(err4, result);
+										}
+										else
+										{
+											cb(null, booking._id);
+										}
+									});
+								}
+							});
+						}
+					}					
+				});
+			}
+		});
+	});
+};
 exports.getOneWayFlightFromDB = getOneWayFlightFromDB;
+exports.bookOneWay = bookOneWay;
+exports.bookRound = bookRound;
     

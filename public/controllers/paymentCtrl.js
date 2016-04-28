@@ -22,13 +22,6 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
 
      else
      {
-      /*Stripe.card.createToken({
-      number: $('.credit').val(),
-      cvc: $('.cvc').val(),
-      exp_month: $('.expiryMonth').val(),
-      exp_year: $('.expiryYear').val()
-      
-      }, stripeResponseHandler);*/
        $scope.paymentDetails = {};
        $scope.paymentDetails.passengerDetails = [];
        $scope.paymentDetails.passengerDetails[0]=$scope.bookingData;
@@ -40,6 +33,7 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
         {
            $scope.paymentDetails.returnFlightId = flightSrv.getIngoingFlight().flightId;
            $scope.paymentDetails.cost += flightSrv.getIngoingFlight().cost;
+           console.log($scope.paymentDetails);
         }
         flightSrv.createPayment($scope.paymentDetails,function (data)
         {
@@ -53,8 +47,8 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
             }
             else
             {
-                flightSrv.setOutRefNo(data.outDetails._id);
-                flightSrv.setInRefNo(data.inDetails._id);
+                flightSrv.setOutRefNo(data);
+                flightSrv.setInRefNo(data);
             }
         }); 
         $location.url('/complete');

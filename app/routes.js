@@ -155,10 +155,7 @@ module.exports = function(app,mongo) {
 
       var jwtSecret = process.env.JWTSECRET;
         var payload = jwt.verify(token, jwtSecret);
-     
-             console.log(req.query);
         req.payload = payload;
-
         next();
       } 
       catch (err) 
@@ -173,44 +170,38 @@ module.exports = function(app,mongo) {
             type = 'Round';
         else
             type = 'OneWay';
-/*        var outFlight = req.body.outFlightNo;
-        var myClass = req.body.myClass;
-        var firstName = req.body.firstName;
-        var lastName = req.body.lastName;
-        var email = req.body.email;
-        var passport_no = req.body.passport_no;
-        var bookingData = {
-            "firstName" : firstName,
-            "lastName" : lastName,
-            "email" : email, 
-            "passport_no" : passport_no
-        };
-        // console.log(bookingData);*/
-        if(type === 'OneWay'){
+        if(type === 'OneWay')
+        {
             flights.bookOneWay(req.body, function(err, bookedDetails){
                 console.log(bookedDetails);
                 res.json(bookedDetails);
             });
-        }else{
-            var inFlight = req.body.inFlightNo;
+        }
+        else
+        {
+            flights.bookRound(req.body, function(err, bookedDetails)
+                {
+                    res.json(bookedDetails);
+                });
+        }
+/*            var inFlight = req.body.inFlightNo;
             flights.bookOneWay(outFlight, myClass, bookingData, function(err, outBookedDetails){
                 flights.bookOneWay(inFlight, myClass, bookingData, function(err, inBookedDetails){
                     console.log(outBookedDetails);
                     console.log(inBookedDetails);
-                    res.json(/*result*/{
+                    res.json({
                         "outDetails" : outBookedDetails,
                         "inDetails" : inBookedDetails
                     });
                 });
 
-            });
-        }
+            });*/
+        
     });
     app.get('/api/flights/search/:origin/:destination/:departingDate/:class/:seats', function(req, res)
     {
         flights.getOneWayFlightFromDB(function(err,result)
         {     
-                //new
             res.send(result);
         },req.params.origin,req.params.destination,req.params.departingDate,req.params.class,req.params.seats);
 
@@ -218,7 +209,7 @@ module.exports = function(app,mongo) {
     app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class/:seats', function(req, res)
     {
         flights.getRoundTripFlightFromDB(function(err,result)
-        {             //new
+        {
             res.send(result);
         },req.params.origin,req.params.destination,req.params.departingDate,req.params.returningDate,req.params.class,req.params.seats);
 
