@@ -1,4 +1,4 @@
-App.factory('FlightSrv',function($http){
+IonicApp.factory('FlightSrv',function($http){
 	return {
 		// returns all the flights in the json file
 		getInFlights : function(cb){

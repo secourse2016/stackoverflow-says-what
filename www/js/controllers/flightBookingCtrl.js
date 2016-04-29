@@ -1,4 +1,4 @@
-App.controller('flightBookingCtrl', function($scope, FlightSrv, $location) {
+IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$location) {
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[1];
@@ -140,5 +140,6 @@ $scope.validateForm =function() {
     
     
 }
+
   AirportCodes();
 });
