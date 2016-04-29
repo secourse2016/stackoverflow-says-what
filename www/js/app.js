@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-App=angular.module('starter', ['ionic', 'starter.controllers']);
+IonicApp=angular.module('starter', ['ionic']);
 
-App.run(function($ionicPlatform) {
+IonicApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -22,7 +22,7 @@ App.run(function($ionicPlatform) {
   });
 });
 
-App.config(function($stateProvider, $urlRouterProvider) {
+IonicApp.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
     .state('app', {
@@ -36,8 +36,8 @@ App.config(function($stateProvider, $urlRouterProvider) {
     url: '/oneWayBooking',
     views: {
       'menuContent': {
-        templateUrl: 'templates/oneWayBooking.html'
-        /*controller: 'flightBookingCtrl'*/
+        templateUrl: 'templates/oneWayBooking.html',
+        controller: 'flightBookingCtrl'
       }
     }
   })
