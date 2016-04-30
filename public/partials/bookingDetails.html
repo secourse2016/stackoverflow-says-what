@@ -5,34 +5,77 @@
 <h1 id="myTitle"class="text-center-h">Your Booking Details</h1>
 <br>
 
+<div class="row ">
+<div class="col-sm-2"></div>
+<label id="myText" class="text-center">Booking Reference Number: {{ booking._id }} </label>
+</div>
+
 <div class="row row-colored">
 <div class="col-sm-2"></div>
-<label id="myText"class="text-center">First Name:  {{booking.firstName}} </label>
+<label id="myText"class="text-center">Outgoing Flight Number:  {{ booking.outgoingFlightNum }} </label>
 
 </div>
 
 <div class="row">
 <div class="col-sm-2"></div>
-<label id="myText"class="text-center">Last Name:  {{booking.lastName}} </label>
+<label id="myText"class="text-center">Ingoing Flight Number:  {{ booking.ingoingFlightNum }} </label>
 
 </div>
-
-
 
 <div class="row row-colored">
 <div class="col-sm-2"></div>
-<label id="myText" class="text-center">Seat Number:  {{booking.seat_no}} </label>
-
+<label id="myText" class="text-center">Class: {{ booking.class }} </label>
 </div>
+<br>
+<br>
+<div ng-repeat="i in booking.passengers">
 
-
-
-<div class="row ">
+<div class="row">
 <div class="col-sm-2"></div>
-<label id="myText" class="text-center">Booking Reference Number: {{booking.receipt_no}} </label>
+<label id="myText"class="text-center">First Name:  {{ i.firstName }} </label>
+
 </div>
 
+<div class="row row-colored">
+<div class="col-sm-2"></div>
+<label id="myText"class="text-center">Last Name:  {{ i.lastName }} </label>
 
+</div>
+
+<div class="row">
+<div class="col-sm-2"></div>
+<label id="myText" class="text-center">Passport Number:  {{ i.passportNum }} </label>
+
+</div>
+
+<div class="row row-colored">
+<div class="col-sm-2"></div>
+<label id="myText"class="text-center">Date of Birth:  {{ i.dateOfBirth }} </label>
+
+</div>
+
+<div class="row">
+<div class="col-sm-2"></div>
+<label id="myText"class="text-center">Email:  {{ i.email }} </label>
+
+</div>
+
+<div class="row row-colored">
+<div class="col-sm-2"></div>
+<label id="myText" class="text-center">Outgoing Seat Number:  {{ i.outgoingFlightSeat }} </label>
+
+</div>
+
+<div class="row">
+<div class="col-sm-2"></div>
+<label id="myText" class="text-center">Ingoing Seat Number:  {{ i.ingoingFlightSeat }} </label>
+
+</div>
+
+<br>
+<br>
+
+</div>
 
 </div>
 

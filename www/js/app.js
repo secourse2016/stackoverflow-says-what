@@ -45,7 +45,26 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/roundTripBooking',
     views: {
       'menuContent': {
-        templateUrl: 'templates/roundTripBooking.html'
+        templateUrl: 'templates/roundTripBooking.html',
+        controller: 'flightBookingCtrl'
+      }
+    }
+  })
+  .state('app.outGoingFlights', {
+    url: '/outGoingFlights',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/outGoingFlights.html',
+        controller: 'outGoingFlightsCtrl'
+      }
+    }
+  })
+  .state('app.inGoingFlights', {
+    url: '/inGoingFlights',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/inGoingFlights.html',
+        controller: 'outGoingFlightsCtrl'
       }
     }
   })

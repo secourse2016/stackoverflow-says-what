@@ -1,23 +1,13 @@
-IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$location) {
+IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state) {
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[1];
-  $scope.open1 = function() {
-    $scope.popup1.opened = true;
-  };
-
-  $scope.open2 = function() {
-    $scope.popup2.opened = true;
-  };
-
-  $scope.popup1 = {
-    opened: false
-  };
-
-  $scope.popup2 = {
-    opened: false
-  };
-
+  $scope.flightData = {};
+  $scope.flightData.selectedOrigin = "";
+  $scope.flightData.selectedDestination = "";
+  $scope.flightData.dtOneway = "";
+  $scope.flightData.selectedClass = "";
+  $scope.flightData.otherAirlines = false;
   function AirportCodes() {
     FlightSrv.getAirports().success(function(airports) {
          $scope.Airports = airports;
@@ -29,7 +19,6 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$location) {
   $scope.departureAlert =false;
   $scope.arrivalAlert =false;
   $scope.classAlert =false;
-
 
   $scope.setOrigin = function(originAirport)
   {
@@ -52,87 +41,41 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$location) {
   $scope.minDate=Date.now();
 
   $scope.searchOneWay = function() {
-    if($scope.selectedOrigin == null || $scope.selectedOriginOneway == "")
-        $scope.originAlert =true;
-    else
-        $scope.originAlert =false;      
+    
 
-    if($scope.selectedDestination == null || $scope.selectedDestination == "")
-      $scope.destAlert =true;
-    else
-      $scope.destAlert =false;
-
-    if($scope.dtOneway == null || $scope.dtOneway == "")
-      $scope.departureAlert =true;
-    else
-      $scope.departureAlert =false;
-
-    if($scope.selectedClass == null || $scope.selectedClass == "")
-      $scope.classAlert =true;
-    else
-      $scope.classAlert =false;
-
-    if($scope.selectedOrigin != null && $scope.selectedDestination != null
-      && $scope.dtOneway != null && $scope.selectedClass != null)
+    if($scope.flightData.selectedOrigin != null && $scope.flightData.selectedDestination != null
+      && $scope.flightData.dtOneway != null && $scope.flightData.selectedClass != null && $scope.flightData.selectedClass != "")
     {
-    FlightSrv.setType('OneWay');
-    FlightSrv.setOriginAirport($scope.selectedOrigin);
-    FlightSrv.setDestinationAirport($scope.selectedDestination);
-    var date =  $scope.dtOneway.getDate();
-    var month = '0' + ($scope.dtOneway.getMonth() + 1); //Months are zero based
-    var year =  $scope.dtOneway.getFullYear();
-    $scope.newDate = year + "-" + month + "-" + date;
-    FlightSrv.setDepartureDate($scope.newDate);
-    FlightSrv.setClass($scope.selectedClass);
-    FlightSrv.setOtherAirlines($scope.otherAirlines);
-    $scope.go('outGoingFlights');
-   }
+      FlightSrv.setType('OneWay');
+      FlightSrv.setOriginAirport($scope.flightData.selectedOrigin);
+      FlightSrv.setDestinationAirport($scope.flightData.selectedDestination);
+      FlightSrv.setDepartureDate($scope.flightData.dtOneway);
+      FlightSrv.setClass($scope.flightData.selectedClass);
+      FlightSrv.setOtherAirlines($scope.flightData.otherAirlines);
+      $state.go('app.welcomePage');
+    }
 
   };
 
   $scope.searchRoundTrip = function() {
-    if ($scope.selectedOrigin == null || $scope.selectedOriginOneway == "")
-        $scope.originAlert =true;  
-    else
-        $scope.originAlert =false;      
-
-    if($scope.selectedDestination == null || $scope.selectedDestination == "")
-      $scope.destAlert =true;
-    else
-      $scope.destAlert =false;
-
-    if($scope.dtRound ==null || $scope.dtRound =="")
-      $scope.departureAlert =true;
-    else
-      $scope.departureAlert =false;
-
-    if($scope.atRound == null || $scope.atRound == "")
-      $scope.arrivalAlert =true;
-    else
-      $scope.arrivalAlert =false;
-
-    if($scope.selectedClass == null || $scope.selectedClass == "")
-      $scope.classAlert =true;
-    else
-      $scope.classAlert =false;
-
-    if($scope.selectedOrigin != null && $scope.selectedDestination != null
-      && $scope.dtRound !=null && $scope.atRound != null && $scope.selectedClass != null){
+    
+    if($scope.flightData.selectedOrigin != null && $scope.flightData.selectedDestination != null
+      && $scope.flightData.dtRound !=null && $scope.flightData.atRound != null && $scope.flightData.selectedClass != null && $scope.flightData.selectedClass != "")
+    {
     FlightSrv.setType('Round');
-    FlightSrv.setOriginAirport($scope.selectedOrigin);
-    FlightSrv.setDestinationAirport($scope.selectedDestination);
-    var date =  $scope.dtRound.getDate();
-    var month = '0' + ($scope.dtRound.getMonth() + 1); //Months are zero based
-    var year =  $scope.dtRound.getFullYear();
-    $scope.newDateD = year + "-" + month + "-" + date;
-    FlightSrv.setDepartureDate($scope.newDateD);
-    date = $scope.atRound.getDate();
-    month = '0' + ($scope.atRound.getMonth() + 1);
-    year =  $scope.atRound.getFullYear();
-    $scope.newDateA = year + "-" + month + "-" + date;
-    FlightSrv.setArrivalDate($scope.newDateA);
-    FlightSrv.setClass($scope.selectedClass);
-    FlightSrv.setOtherAirlines($scope.otherAirlines);
+    FlightSrv.setOriginAirport($scope.flightData.selectedOrigin);
+    FlightSrv.setDestinationAirport($scope.flightData.selectedDestination);
+    FlightSrv.setDepartureDate($scope.flightData.dtRound);
+    FlightSrv.setArrivalDate($scope.flightData.atRound);
+    FlightSrv.setClass($scope.flightData.selectedClass);
+    FlightSrv.setOtherAirlines($scope.flightData.otherAirlines);
+    console.log(FlightSrv.getType());
+    console.log(FlightSrv.getOriginAirport());
+    console.log(FlightSrv.getDestinationAirport());
+    console.log(FlightSrv.getDepartureDate());
+    console.log(FlightSrv.getArrivalDate());
+    console.log(FlightSrv.getClass());
+    console.log(FlightSrv.getOtherAirlines());
     $scope.go('outGoingFlights');
    }
   };

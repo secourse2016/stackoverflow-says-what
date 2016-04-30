@@ -91,6 +91,8 @@ module.exports = function(app,mongo) {
     app.get('/api/bookings/search/:refNo', function(req, res){
 
         flights.getBooking(function(err,result){ 
+            //console.log(result);
+            //console.log("from routes.js");
             res.send(result);
 
         },req.params.refNo);
