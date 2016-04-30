@@ -1,6 +1,7 @@
 App.controller('mainCtrl', function($scope,flightSrv,$location) {
 
   function getBookingDetails(){
+    //flightSrv.setRefNo($scope.ref);
       flightSrv.getBookings().success(function(booking){
         console.log(booking);
         $scope.booking = booking;
@@ -24,6 +25,7 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
       $scope.refAlert = true;
     else
     {
+      //console.log("in method bookingDetails");
       $location.url('/bookingDetails');
       
     }

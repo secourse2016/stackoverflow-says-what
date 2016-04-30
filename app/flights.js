@@ -116,8 +116,8 @@ exports.getBooking = function(cb , refNumber)
 	var ObjectId = require('mongodb').ObjectID;
 	var res = {};
 	myDB.db().collection("bookings").find({"_id" : ObjectId(refNumber)}).toArray(function(err,flightsArray){
-		console.log('The ref number');
-		console.log(flightsArray);
+		//console.log('The ref number');
+		//console.log(flightsArray);
 		cb(null, flightsArray[0]);
 	});
     
