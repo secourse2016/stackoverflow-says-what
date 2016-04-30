@@ -44,7 +44,7 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state) {
     
 
     if($scope.flightData.selectedOrigin != null && $scope.flightData.selectedDestination != null
-      && $scope.flightData.dtOneway != null && $scope.flightData.selectedClass != null)
+      && $scope.flightData.dtOneway != null && $scope.flightData.selectedClass != null && $scope.flightData.selectedClass != "")
     {
       FlightSrv.setType('OneWay');
       FlightSrv.setOriginAirport($scope.flightData.selectedOrigin);
