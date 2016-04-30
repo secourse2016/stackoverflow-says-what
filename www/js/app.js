@@ -49,6 +49,24 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  .state('app.outGoingFlights', {
+    url: '/outGoingFlights',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/outGoingFlights.html',
+        controller: 'outGoingFlightsCtrl'
+      }
+    }
+  })
+  .state('app.inGoingFlights', {
+    url: '/inGoingFlights',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/inGoingFlights.html',
+        controller: 'outGoingFlightsCtrl'
+      }
+    }
+  })
   .state('app.contactUs', {
     url: '/contactUs',
     views: {
