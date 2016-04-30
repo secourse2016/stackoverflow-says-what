@@ -1,0 +1,31 @@
+<link href="css/outGoingFlights.css" rel="stylesheet">
+<ion-navbar *navbar hideBackButton class="show-navbar">
+  <ion-title>OUTGOING FLIGHTS</ion-title>
+</ion-navbar>
+
+<ion-content>
+  <ion-list>
+  <ion-item ng-click = "bookOutgoing();">
+  <div class="row">
+      	<div class="col">
+      	 	<ion-thumbnail item-left>
+      		<img src="/../../img/favicon.png">
+      		</ion-thumbnail>
+      	</div>
+  		<div class="col" id="flightDetails">
+  			<h2> Airline: {{ flight.airline }}</h2>
+  			<p> Flight Number: {{ flight.flightNumber }}</p>
+  			<p> Origin: {{ flight.origin }}</p>
+  			<p> Destination: {{ flight.destination }}</p>
+  			<p> Departure Date: {{ flight.departureDateTime | date:'yyyy-MM-dd hh:mm' }}</p>
+  			<p> Arrival Date: {{ flight.arrivalDateTime | date:'yyyy-MM-dd hh:mm' }}</p>
+  			<p> Cost: $ {{ flight.cost }}</p>
+  		</div>
+  		<!-- <div class="col">
+  			<button clear item-right type="button" class="btn btn-success" id="priceButton"> $ {{ flight.cost }}</button>
+  		</div> -->
+    </div>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
