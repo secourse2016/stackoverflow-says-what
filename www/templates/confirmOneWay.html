@@ -1,13 +1,13 @@
-<ion-view title="confirmOneWay">
+<ion-view view-title="CONFIRM" style="background-color:lightblue; padding: 40px 10px 10px 10px">
 	
-	<ion-header-bar class="bar bar-header bar-stable">
+	<!-- <ion-header-bar class="bar bar-header bar-stable">
 		<button class="button button-icon">
 			<i class="icon ion-android-arrow-back"></i>
 		</button>
         <h1 class="title">Flight Details</h1>
-    </ion-header-bar>
+    </ion-header-bar> -->
 
-    <div class="list card">
+    <div class="list card" style="display: block">
     	
     	<a class="item item-icon-left">
     		<i class="icon ion-android-plane"></i>
@@ -20,7 +20,7 @@
     	</a>
 
     	<a class="item item-icon-left">
-    		<i class="icon ion-android-calender"></i>
+    		<i class="icon ion-android-calendar"></i>
     		Departure Date : {{ depDate | date:'fullDate' }}
     	</a>
 
@@ -41,6 +41,10 @@
     		Airline : {{ airline }}
     	</a>
 
+    	<button class="button button-icon-left button-positive">
+    		<i class="icon ion-android-arrow-back"> Back</i>
+    	</button>
+    	
     	<button class="button button-positive"> Confirm </button>
 
     </div>

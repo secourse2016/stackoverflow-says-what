@@ -1,4 +1,4 @@
-App.controller('confirmOCtrl', function($scope, flightSrv, $location){
+IonicApp.controller('confirmOneCtrl', function($scope, flightSrv, $location){
 	// flightSrv.setOriginAirport('IAD');
 	// flightSrv.setDestinationAirport('batee5');
 	// flightSrv.setOutgoingFlight({flight_no: 44444, capacity: 200,date:"2016-04-26T18:25:43.511Z"});

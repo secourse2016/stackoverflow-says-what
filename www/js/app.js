@@ -93,13 +93,17 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
         controller: 'PlaylistsCtrl'
       }
     }
-
-    .state('confirmOneWay', {
-      url : '/confirmOneWay',
-      templateUrl : '/templates/confirmOneWay.html',
-      controller : 'confirmOCtrl'
-    })
   })
+
+    .state('app.confirmOneWay', {
+      url : '/confirmOneWay',
+      views : {
+        'menuContent' : {
+          templateUrl : '/templates/confirmOneWay.html',
+          controller : 'confirmOneCtrl'
+        }
+      }
+    })
 
  
   // if none of the above states are matched, use this as the fallback
