@@ -10,35 +10,35 @@
            <label class="item item-input ">
               <i class="icon ion-plane placeholder-icon"></i>
               <span class="input-label">Flying From</span>
-              <input type="text">
+              <input type="text" ng-model="flightData.selectedOrigin">
            </label>
 
            <label class="item item-input">
               <i class="icon ion-plane placeholder-icon"></i>
               <span class="input-label">Flying To</span>
-              <input type="text">
+              <input type="text" ng-model="flightData.selectedDestination">
            </label>
 
            <label class="item item-input">
               <i class="icon ion-calendar placeholder-icon"></i>
               <span class="input-label">Departure Date</span>
-              <input type="text" onfocus="(this.type='date')">
+              <input type="text" placeholder="yyyy-mm-dd" onfocus="(this.type='date')" ng-model="flightData.dtOneway">
            </label>
 
-           <label class="item item-input item-select">
+           <label class="item item-input item-select" >
              <div class="input-label">Class</div>
-             <select>
-                <option selected>Economy</option>
-                <option>Business</option>
+             <select ng-model="flightData.selectedClass">
+                <option selected>economy</option>
+                <option>business</option>
              </select>
           </label>
 
           
-          <ion-checkbox>Search Other Airlines</ion-checkbox>
+          <ion-checkbox ng-model="flightData.otherAirlines">Search Other Airlines</ion-checkbox>
           
           
           <label>
-          <button class="button button-positive button-full icon-left ion-search" >Search Flights</button>
+          <button class="button button-positive button-full icon-left ion-search" ng-click="searchOneWay()">Search Flights</button>
           </label>
           
           

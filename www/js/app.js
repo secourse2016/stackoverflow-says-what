@@ -45,7 +45,8 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/roundTripBooking',
     views: {
       'menuContent': {
-        templateUrl: 'templates/roundTripBooking.html'
+        templateUrl: 'templates/roundTripBooking.html',
+        controller: 'flightBookingCtrl'
       }
     }
   })
