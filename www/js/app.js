@@ -28,7 +28,7 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
+    templateUrl: '/templates/menu.html',
     controller: 'AppCtrl'
   })
 
@@ -36,7 +36,7 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/oneWayBooking',
     views: {
       'menuContent': {
-        templateUrl: 'templates/oneWayBooking.html',
+        templateUrl: '/templates/oneWayBooking.html',
         controller: 'flightBookingCtrl'
       }
     }
@@ -45,7 +45,7 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/roundTripBooking',
     views: {
       'menuContent': {
-        templateUrl: 'templates/roundTripBooking.html'
+        templateUrl: '/templates/roundTripBooking.html'
       }
     }
   })
@@ -53,7 +53,7 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/contactUs',
     views: {
       'menuContent': {
-        templateUrl: 'templates/contactUs.html'
+        templateUrl: '/templates/contactUs.html'
 
       }
     }
@@ -62,7 +62,7 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/ourteam',
     views: {
       'menuContent': {
-        templateUrl: 'templates/ourteam.html'
+        templateUrl: '/templates/ourteam.html'
       }
     }
   })
@@ -72,7 +72,7 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
       url: '/searchByRefrence',
       views: {
         'menuContent': {
-          templateUrl: 'templates/searchByRefrence.html'
+          templateUrl: '/templates/searchByRefrence.html'
         }
       }
     })
@@ -89,10 +89,16 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/welcomePage',
     views: {
       'menuContent': {
-        templateUrl: 'templates/welcomePage.html',
+        templateUrl: '/templates/welcomePage.html',
         controller: 'PlaylistsCtrl'
       }
     }
+
+    .state('confirmOneWay', {
+      url : '/confirmOneWay',
+      templateUrl : '/templates/confirmOneWay.html',
+      controller : 'confirmOCtrl'
+    })
   })
 
  
