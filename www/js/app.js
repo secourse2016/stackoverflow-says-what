@@ -105,6 +105,16 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
       }
     })
 
+    .state('app.confirmRoundDep', {
+      url : '/confirmRoundDep',
+      views : {
+        'menuContent' : {
+          templateUrl : '/templates/confirmRoundTripDep.html',
+          controller : 'confirmRoundOneCtrlDep'
+        }
+      }
+    })
+
  
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/welcomePage');

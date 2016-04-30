@@ -11,40 +11,40 @@
     	
     	<a class="item item-icon-left">
     		<i class="icon ion-android-plane"></i>
-    		Origin Airport : {{ originAirport }}
+    		<strong>Origin Airport :</strong> {{ originAirport }}
     	</a>
 
     	<a class="item item-icon-left">
     		<i class="icon ion-android-plane"></i>
-    		Destination Airport : {{ destinationAirport }}
+    		<strong>Destination Airport :</strong> {{ destinationAirport }}
     	</a>
 
     	<a class="item item-icon-left">
     		<i class="icon ion-android-calendar"></i>
-    		Departure Date : {{ depDate | date:'fullDate' }}
+    		<strong>Departure Date :</strong> {{ depDate | date:'fullDate' }}
     	</a>
 
     	<a class="item item-icon-left">
     		<i class="icon ion-android-time"></i>
-    		Departure Time : {{ depDate | date:'shortTime' }}
+    		<strong>Departure Time :</strong> {{ depDate | date:'shortTime' }}
     	</a>
 
     	<a class="item">
-    		Seat Class : {{ class }}
+    		<strong>Seat Class :</strong> {{ class }}
     	</a>
 
     	<a class="item">
-    		Cost : {{ price | currency }}
+    		<strong>Cost :</strong> {{ price | currency }}
     	</a>
 
     	<a class="item">
-    		Airline : {{ airline }}
+    		<strong>Airline :</strong> {{ airline }}
     	</a>
 
     	<button class="button button-icon-left button-positive">
     		<i class="icon ion-android-arrow-back"> Back</i>
     	</button>
-    	
+
     	<button class="button button-positive"> Confirm </button>
 
     </div>
