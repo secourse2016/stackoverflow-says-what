@@ -1,33 +1,39 @@
-IonicApp.controller('confirmOneCtrl', function($scope, FlightSrv, $location){
-	// flightSrv.setOriginAirport('IAD');
-	// flightSrv.setDestinationAirport('batee5');
-	// flightSrv.setOutgoingFlight({flight_no: 44444, capacity: 200,date:"2016-04-26T18:25:43.511Z"});
-	// flightSrv.setDepartureDate(flightSrv.getOutgoingFlight().date);
-	// console.log(flightSrv.origin);
-	// flightSrv.setDestinationAirport('IAD');
-	$scope.originAirport = FlightSrv.getOriginAirport();
-	$scope.destinationAirport = FlightSrv.getDestinationAirport();
-	$scope.depDate = FlightSrv.getDepartureDate();
-	$scope.price = FlightSrv.getPriceOutgoingFlight();
-	$scope.flightNo = FlightSrv.getOutgoingFlight().flightNumber;
-	$scope.duration = FlightSrv.getOutgoingFlight().duration;
-	$scope.airline = FlightSrv.getOutgoingFlight().Airline;
-	$scope.class = FlightSrv.getClass();
-	// $scope.originAirport = 'JFK';
-	// $scope.destinationAirport = 'IAD';
-	// $scope.depDate = "2016-04-26T18:25:43.511Z";
-	// $scope.price = 130;
-	// $scope.flightNo = "SE2805";
-	// $scope.duration = 120;
-	// $scope.class = "A";
+IonicApp.controller('confirmOneCtrl', function($scope,$state, FlightSrv, $location){
+
+	if(FlightSrv.getOriginAirport() !== 'undefined'){
+		$scope.originAirport = FlightSrv.getOriginAirport();
+	}	
+	if(FlightSrv.getDestinationAirport() !== 'undefined'){
+		$scope.destinationAirport = FlightSrv.getDestinationAirport();
+	}
+	if(FlightSrv.getDepartureDate() !== 'undefined'){
+		$scope.depDate = FlightSrv.getDepartureDate();		
+	}
+	if(FlightSrv.getPriceOutgoingFlight() !== 'undefined'){
+		$scope.price = FlightSrv.getPriceOutgoingFlight();		
+	}
+	console.log('printing the flight   '+ FlightSrv.getOutgoingFlight());
+	if(typeof FlightSrv.getOutgoingFlight() !== 'undefined'){
+		$scope.flightNo = FlightSrv.getOutgoingFlight().flightNumber;
+	}
+	if(typeof FlightSrv.getOutgoingFlight() !== 'undefined'){
+		$scope.duration = FlightSrv.getOutgoingFlight().duration;
+	}
+	if(typeof FlightSrv.getOutgoingFlight() !== 'undefined'){
+		$scope.airline = FlightSrv.getOutgoingFlight().Airline;
+	}
+	if(typeof FlightSrv.getClass() !== 'undefined'){
+		$scope.class = FlightSrv.getClass();
+	}
 
 	$scope.updateO = function() {
-    $location.url('/outGoingFlights');
-  };
+    	$location.url('/outGoingFlights');
+    };
 
   
-	$scope.confirmO = function() {
-    $location.url('/payment');
-  };
+	$scope.confirmOne = function() {
+		console.log('hiiiiiiiiiii');
+		$state.go('app.paymentInfo');
+	};
 
 });
