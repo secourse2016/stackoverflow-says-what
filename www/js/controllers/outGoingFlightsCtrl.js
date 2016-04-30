@@ -1,40 +1,49 @@
-IonicApp.controller('outGoingFlightsCtrl', function($scope, FlightSrv,$location) {
+IonicApp.controller('outGoingFlightsCtrl', function($scope, FlightSrv, $state) {
 
-    /*function getOutFlights(){
-      flightSrv.getOutFlights(function(result){
-          $scope.outflights = result;
+
+    console.log(FlightSrv.getType());
+    console.log(FlightSrv.getOriginAirport());
+    console.log(FlightSrv.getDestinationAirport());
+    console.log(FlightSrv.getDepartureDate());
+    console.log(FlightSrv.getArrivalDate());
+    console.log(FlightSrv.getClass());
+    console.log(FlightSrv.getOtherAirlines());
+    $scope.flightData = {};
+    function getOutFlights(){
+      FlightSrv.getOutFlights(function(result){
+          console.log(result);
+          $scope.flightData.outflights = result;
       });
     };
-
+    $scope.flightData.brebe2= [1,3,4];
     function getInFlights(){
-      flightSrv.getInFlights(function(result){
+      FlightSrv.getInFlights(function(result){
           $scope.inflights = result;
       });
     };
-*/
-   // $scope.test = "bate5";
+
     $scope.bookOutgoing = function (flight,price,seatClass){
-    	//$scope.test = "potato";
         flightSrv.setOutgoingFlight(flight);
         flightSrv.setPriceOutgoingFlight(price);
         flightSrv.setOutgoingFlightClass(seatClass);
         if (flightSrv.getType() === 'OneWay')
-            $location.url(""); //todo
+            $location.url('/oneWayBooking');
         else
-            $location.url(""); //todo
+            $state.go('/inGoingFlights'); 
     }; 
 
     $scope.bookIngoing = function (flight,price,seatClass){
         flightSrv.setIngoingFlight(flight);
         flightSrv.setPriceIngoingFlight(price);
         flightSrv.setIngoingFlightClass(seatClass);
-        $location.url(""); //todo
+        $location.url('/ourteam');
     };
 
-
-/*
     getOutFlights();
-    if (flightSrv.getType() != 'OneWay')
+    if (FlightSrv.getType() != 'OneWay')
+    {
+      //console.log('7amada');
     	getInFlights(); 
-*/
+    }
+
 });
