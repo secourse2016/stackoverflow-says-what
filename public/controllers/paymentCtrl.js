@@ -1,4 +1,4 @@
-App.controller('paymentCtrl', function($scope, flightSrv, $location) {
+App.controller('paymentCtrl', function($scope, flightSrv, $location, $http) {
 
 	$scope.bookingData = {};
   $scope.alert = false;
@@ -7,9 +7,10 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
   $scope.dateCheck = true;
   $scope.verifying = false;
   var token = null;
+  var IP = "";
 
   $scope.stripeCallback = function (code, result) {
-
+    var wt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/';
     if (($scope.bookingData.firstName == null || $scope.bookingData.firstName == "")
     || ($scope.bookingData.lastName == null || $scope.bookingData.lastName == "")
     || ($scope.bookingData.passportNum == null || $scope.bookingData.passportNum == "")
@@ -27,7 +28,12 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
 
      else
      {
-        Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+        IP = flightSrv.getOutgoingFlight().IP;
+        if (!IP)
+          IP="";
+        var myUrl = IP;
+
+        myUrl = myUrl.concat('/stripe/pubkey?wt=').concat(wt);
         $scope.cardInfo = {};
         $scope.cardInfo.number = $scope.number;
         $scope.cardInfo.cvc = $scope.cvc;
@@ -38,8 +44,31 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
         //input validation
         $scope.cardCheck = Stripe.card.validateCardNumber($scope.number);
         $scope.cvcCheck = Stripe.card.validateCVC($scope.cvc);
-        $scope.dateCheck = Stripe.card.validateExpiry($scope.expiryMonth, $scope.expiryYear); 
-        Stripe.card.createToken($scope.cardInfo, stripeResponseHandler);
+        $scope.dateCheck = Stripe.card.validateExpiry($scope.expiryMonth, $scope.expiryYear);
+        if (flightSrv.getType() === 'OneWay')
+        {
+          
+          $http.get(myUrl).success(function(pubkey){
+            Stripe.setPublishableKey(pubkey);
+            Stripe.card.createToken($scope.cardInfo, stripeResponseHandler);
+            Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+          });
+        }  
+        else
+        {
+          if(flightSrv.getOutgoingFlight().Airline === flightSrv.getIngoingFlight().Airline)
+          {
+            $http.get(myUrl).success(function(pubkey){
+            Stripe.setPublishableKey(pubkey);
+            Stripe.card.createToken($scope.cardInfo, stripeResponseHandler);
+            Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+            });
+          }
+          else
+          {
+            $http.get(myUrl)
+          }  
+        }
      }
   	
 
@@ -57,13 +86,14 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location) {
     else 
     { 
       token = response.id;
-      console.log(token);
+      /*console.log(token);*/
       Book(token);
     }
   };
 
 function Book(token)
 {
+       console.log(IP);
        $scope.paymentDetails = {};
        $scope.paymentDetails.passengerDetails = [];
        $scope.paymentDetails.passengerDetails[0]=$scope.bookingData;
@@ -76,8 +106,9 @@ function Book(token)
         {
            $scope.paymentDetails.returnFlightId = flightSrv.getIngoingFlight().flightId;
            $scope.paymentDetails.cost += flightSrv.getIngoingFlight().cost;
+           console.log($scope.paymentDetails);
         }
-        flightSrv.createPayment($scope.paymentDetails,function (data)
+        flightSrv.createPayment($scope.paymentDetails,IP,function (data)
         {
             $scope.bookingData = {};
             $scope.paymentDetails = {};
@@ -95,6 +126,7 @@ function Book(token)
             }
         }); 
         verifying = false;
+        Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
         $location.url('/complete');
 };
 });

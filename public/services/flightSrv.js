@@ -57,14 +57,11 @@ App.factory('flightSrv',function($http){
 					callback(result.token);	
 				});
 		},
-		createPayment : function(bookingData,cb){
-			var ingoingFlight = this.ingoingFlight;
-			var outgoingFlight = this.outgoingFlight;
+		createPayment : function(bookingData,IP,cb){
 			this.getToken(function(token){
-
-				console.log(outgoingFlight);
-				console.log(ingoingFlight);
-				var myUrl = '/booking';
+				if (!IP)
+					IP="";
+				var myUrl = IP.concat('/booking');
 				myUrl = myUrl.concat('?wt=');
 				myUrl = myUrl.concat(token);
 				$http.post(myUrl, bookingData).success(function(data)
