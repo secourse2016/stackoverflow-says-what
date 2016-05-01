@@ -76,7 +76,6 @@ function Book(token)
         {
            $scope.paymentDetails.returnFlightId = flightSrv.getIngoingFlight().flightId;
            $scope.paymentDetails.cost += flightSrv.getIngoingFlight().cost;
-           console.log($scope.paymentDetails);
         }
         flightSrv.createPayment($scope.paymentDetails,function (data)
         {
@@ -85,6 +84,7 @@ function Book(token)
             $scope.refNo = data;
             if(flightSrv.getType() === "OneWay")
             {
+                console.log(" ");
                 flightSrv.setOutRefNo(data);
                 flightSrv.setInRefNo("-");
             }

@@ -1,6 +1,5 @@
 App.factory('flightSrv',function($http){
 	return {
-		// returns all the flights in the json file
 		getInFlights : function(cb){
 			var myUrl = this.destination;
 			myUrl = myUrl.concat('/');
@@ -59,7 +58,12 @@ App.factory('flightSrv',function($http){
 				});
 		},
 		createPayment : function(bookingData,cb){
+			var ingoingFlight = this.ingoingFlight;
+			var outgoingFlight = this.outgoingFlight;
 			this.getToken(function(token){
+
+				console.log(outgoingFlight);
+				console.log(ingoingFlight);
 				var myUrl = '/booking';
 				myUrl = myUrl.concat('?wt=');
 				myUrl = myUrl.concat(token);

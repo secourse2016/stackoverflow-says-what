@@ -153,10 +153,8 @@ module.exports = function(app,mongo) {
     app.use(function(req, res, next) {
        try 
       {
-       
-      var token = req.body.wt||req.query.wt||req.headers['x-access-token'];   
-
-      var jwtSecret = process.env.JWTSECRET;
+        var token = req.body.wt||req.query.wt||req.headers['x-access-token'];   
+        var jwtSecret = process.env.JWTSECRET;
         var payload = jwt.verify(token, jwtSecret);
         req.payload = payload;
         next();
@@ -166,6 +164,10 @@ module.exports = function(app,mongo) {
         console.error('[ERROR]: JWT Error reason:', err);
         res.status(403).sendFile(path.join(__dirname, '../public/partials', '403.html'));
       }
+    });
+    app.get('/stripe/pubkey', function(rep, res){
+        var myPubKey = process.env.STRIPE_PUBLISHABLE_KEY;
+        res.send(myPubKey);
     });
     app.post('/booking', function(req, res){
         var type;
