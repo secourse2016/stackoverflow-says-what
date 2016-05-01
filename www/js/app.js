@@ -85,7 +85,17 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
       url: '/searchByRefrence',
       views: {
         'menuContent': {
-          templateUrl: 'templates/searchByRefrence.html'
+          templateUrl: 'templates/searchByRefrence.html',
+          controller: 'SearchCtrl'
+        }
+      }
+    })
+  .state('app.bookingInfo', {
+      url: '/bookingInfo',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/bookingInfo.html',
+          controller: 'SearchCtrl'
         }
       }
     })

@@ -1,6 +1,14 @@
 <ion-view view-title="Search">
   <ion-content>
     <h1>Search</h1>
-    <input ng-model = "seachQuery"> 
+    <input  style="width:32%;margin-left:auto; margin-right:auto;" class="form-control" ng-model="search.searchQuery" ></input>
+    <span> {{search.searchQuery}}</span>
+ <label>
+          <button class="button button-positive button-full icon-left ion-search" ng-click="searchByRefrence()">Search Flights</button>
+          </label>
+  search
+</button>
   </ion-content>
+
+
 </ion-view>
