@@ -1,3 +1,4 @@
+
 IonicApp = angular.module('starter', ['ionic']);
 
 IonicApp.run(function($ionicPlatform) {
@@ -106,6 +107,46 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
+
+    .state('app.confirmOneWay', {
+      url : '/confirmOneWay',
+      views : {
+        'menuContent' : {
+          templateUrl : 'templates/confirmOneWay.html',
+          controller : 'confirmOneCtrl'
+        }
+      }
+    })
+
+    .state('app.paymentInfo', {
+      url : '/paymentInfo',
+      views : {
+        'menuContent' : {
+          templateUrl : '/templates/paymentInfo.html'
+        }
+      }
+    })
+
+    .state('app.confirmRoundDep', {
+      url : '/confirmRoundDep',
+      views : {
+        'menuContent' : {
+          templateUrl : 'templates/confirmRoundTripDep.html',
+          controller : 'confirmRoundDepCtrl'
+        }
+      }
+    })
+
+    .state('app.confirmRoundArr', {
+      url : '/confirmRoundArr',
+      views : {
+        'menuContent' : {
+          templateUrl : 'templates/confirmRoundTripArr.html',
+          controller : 'confirmRoundArrCtrl'
+        }
+      }
+    });
+ 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/welcomePage');
 });
