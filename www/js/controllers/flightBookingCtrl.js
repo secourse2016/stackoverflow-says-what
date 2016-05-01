@@ -35,24 +35,8 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state, ioni
   $scope.checkboxModel = false;
   $scope.minDate = Date.now();
 
-  /*  var ipObj1 = {
-      callback: function (val) {  //Mandatory
-        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
-      },
-      from: Date.now(), //Optional
-      inputDate: new Date(),      //Optional
-      closeOnSelect: false,       //Optional
-      templateType: 'popup'       //Optional
-    };
-
-    $scope.openDatePicker = function(){
-      ionicDatePicker.openDatePicker(ipObj1);
-    };*/
-
   $scope.searchOneWay = function() {
-    
-
-    if($scope.flightData.selectedOrigin != null && $scope.flightData.selectedOrigin != ""
+      if($scope.flightData.selectedOrigin != null && $scope.flightData.selectedOrigin != ""
       && $scope.flightData.selectedDestination != null && $scope.flightData.selectedDestination != ""
       && $scope.flightData.dtOneway != null && $scope.flightData.dtOneway != ""
       && $scope.flightData.selectedClass != null && $scope.flightData.selectedClass != "")
@@ -65,7 +49,6 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state, ioni
       FlightSrv.setOtherAirlines($scope.flightData.otherAirlines);
       $state.go('app.outGoingFlights');
     }
-
   };
 
   $scope.searchRoundTrip = function() {

@@ -1,5 +1,19 @@
-<ion-view view-title="Thank you">
-	<ion-content>
-	<button>Home</button>
+<link href="css/finalBookingPage.css" rel="stylesheet">
+<ion-view view-title="THANK YOU">
+	<ion-navbar *navbar hideBackButton class="show-navbar">
+	</ion-navbar>
+	<ion-content id="content">
+		<div class="animated slideInDown">
+	    	<img src ="/../../img/favicon.png" id="logo">
+	    </div>
+		<p id="thankYouText">
+			Thank you for choosing Hawaiian Airlines<br> Have a nice trip!
+		</p>
+		<button id="homeButton"
+		class="button button-outline button-royal icon-right" 
+        ng-click="home()"> 
+       		<i class="icon ion-home"></i>
+        	Home 
+        </button>
 	</ion-content>
 </ion-view>
