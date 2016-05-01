@@ -1,5 +1,5 @@
 
-IonicApp = angular.module('starter', ['ionic']);
+IonicApp = angular.module('starter', ['ionic','ionic-datepicker']);
 
 IonicApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -117,16 +117,6 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-
-    .state('app.paymentInfo', {
-      url : '/paymentInfo',
-      views : {
-        'menuContent' : {
-          templateUrl : '/templates/paymentInfo.html'
-        }
-      }
-    })
-
     .state('app.confirmRoundTripDep', {
       url : '/confirmRoundTripDep',
       views : {
@@ -136,13 +126,30 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-
     .state('app.confirmRoundArr', {
       url : '/confirmRoundArr',
       views : {
         'menuContent' : {
           templateUrl : 'templates/confirmRoundTripArr.html',
           controller : 'confirmRoundArrCtrl'
+        }
+      }
+    })
+    .state('app.paymentInfo', {
+      url : '/paymentInfo',
+      views : {
+        'menuContent' : {
+          templateUrl : '/templates/paymentInfo.html',
+
+        }
+      }
+    })
+    .state('app.finalBookingPage', {
+      url : '/finalBookingPage',
+      views : {
+        'menuContent' : {
+          templateUrl : 'templates/finalBookingPage.html',
+          controller : 'finalBookingPageCtrl'
         }
       }
     });

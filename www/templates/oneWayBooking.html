@@ -22,7 +22,15 @@
            <label class="item item-input">
               <i class="icon ion-calendar placeholder-icon"></i>
               <span class="input-label">Departure Date</span>
-              <input type="text" placeholder="yyyy-mm-dd" onfocus="(this.type='date')" ng-model="flightData.dtOneway">
+                <input type="text" placeholder="yyyy-mm-dd" onfocus="(this.type='date')" 
+                ng-model="flightData.dtOneway">
+            <!--   <ionic-datepicker>
+              <input type="text" placeholder="yyyy-mm-dd"
+              onfocus="(this.type='date')"
+              ng-model="flightData.dtOneway"
+              ng-click="openDatePicker()">
+              {{ currentDate | date:'MMMM/dd/yyyy' }} 
+              </ionic-datepicker> -->
            </label>
 
            <label class="item item-input item-select" >

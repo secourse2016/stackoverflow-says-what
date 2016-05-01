@@ -1,4 +1,4 @@
-IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state) {
+IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state, ionicDatePicker) {
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[1];
@@ -34,6 +34,20 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state) {
 
   $scope.checkboxModel = false;
   $scope.minDate = Date.now();
+
+  /*  var ipObj1 = {
+      callback: function (val) {  //Mandatory
+        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+      },
+      from: Date.now(), //Optional
+      inputDate: new Date(),      //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
+
+    $scope.openDatePicker = function(){
+      ionicDatePicker.openDatePicker(ipObj1);
+    };*/
 
   $scope.searchOneWay = function() {
     

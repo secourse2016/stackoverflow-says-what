@@ -12,7 +12,7 @@ IonicApp.controller('confirmOneCtrl', function($scope,$state, FlightSrv, $locati
 	if(FlightSrv.getPriceOutgoingFlight() !== 'undefined'){
 		$scope.price = FlightSrv.getPriceOutgoingFlight();		
 	}
-	console.log('printing the flight   '+ FlightSrv.getOutgoingFlight());
+	//console.log('printing the flight   '+ FlightSrv.getOutgoingFlight());
 	if(typeof FlightSrv.getOutgoingFlight() !== 'undefined'){
 		$scope.flightNo = FlightSrv.getOutgoingFlight().flightNumber;
 	}
