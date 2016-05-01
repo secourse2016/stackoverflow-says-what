@@ -4,6 +4,7 @@
     background-size: cover;
     height: 100%;
     position: absolute;
+    /*opacity: 0.9;*/
 }
 .item-content {
     background-color: transparent !important;
@@ -11,28 +12,42 @@
 
 #circular {
 	margin-left: 35%;
-	margin-top: 10%;
-	margin-bottom: 10%;
+	margin-top: 5%;
 	width: 30%;
 	height: 30%;
 	background: transparent !important;
 }
 
+#title {
+	margin-bottom: 10%;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+}
+
 .menuItem {
 	background-color: transparent !important;
     font-size: 12px;
-    /*border-top: 2px solid;  */ /*Top Border for each menu item*/
-  	border-bottom:2px solid;   /*Bottom border for each menu item*/
+    /*border-top: 2px solid;*/ 
+  	border-bottom:2px solid;
   	border-color: white;
 	color: white;
 	text-align: left;
 }
 
-ion-item:hover {
-	color: red;
+a:hover {
+  color: white ;
 }
 
 .custom-icon {
 	margin-right: 3%;
 	color:white;
+}
+
+.row {
+	margin-left: 17%;
+	margin-top: 10%;
+	color:transparent;
+	position: center;
 }
