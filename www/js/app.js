@@ -127,8 +127,8 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
       }
     })
 
-    .state('app.confirmRoundDep', {
-      url : '/confirmRoundDep',
+    .state('app.confirmRoundTripDep', {
+      url : '/confirmRoundTripDep',
       views : {
         'menuContent' : {
           templateUrl : 'templates/confirmRoundTripDep.html',
