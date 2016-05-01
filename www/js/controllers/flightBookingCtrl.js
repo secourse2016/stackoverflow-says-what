@@ -8,17 +8,12 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state) {
   $scope.flightData.dtOneway = "";
   $scope.flightData.selectedClass = "";
   $scope.flightData.otherAirlines = false;
+
   function AirportCodes() {
     FlightSrv.getAirports().success(function(airports) {
          $scope.Airports = airports;
      });
   };
-
-  $scope.originAlert =false;
-  $scope.destAlert =false;
-  $scope.departureAlert =false;
-  $scope.arrivalAlert =false;
-  $scope.classAlert =false;
 
   $scope.setOrigin = function(originAirport)
   {
@@ -38,13 +33,15 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state) {
   };
 
   $scope.checkboxModel = false;
-  $scope.minDate=Date.now();
+  $scope.minDate = Date.now();
 
   $scope.searchOneWay = function() {
     
 
-    if($scope.flightData.selectedOrigin != null && $scope.flightData.selectedDestination != null
-      && $scope.flightData.dtOneway != null && $scope.flightData.selectedClass != null && $scope.flightData.selectedClass != "")
+    if($scope.flightData.selectedOrigin != null && $scope.flightData.selectedOrigin != ""
+      && $scope.flightData.selectedDestination != null && $scope.flightData.selectedDestination != ""
+      && $scope.flightData.dtOneway != null && $scope.flightData.dtOneway != ""
+      && $scope.flightData.selectedClass != null && $scope.flightData.selectedClass != "")
     {
       FlightSrv.setType('OneWay');
       FlightSrv.setOriginAirport($scope.flightData.selectedOrigin);
@@ -52,15 +49,18 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state) {
       FlightSrv.setDepartureDate($scope.flightData.dtOneway);
       FlightSrv.setClass($scope.flightData.selectedClass);
       FlightSrv.setOtherAirlines($scope.flightData.otherAirlines);
-      $state.go('app.welcomePage');
+      $state.go('app.outGoingFlights');
     }
 
   };
 
   $scope.searchRoundTrip = function() {
     
-    if($scope.flightData.selectedOrigin != null && $scope.flightData.selectedDestination != null
-      && $scope.flightData.dtRound !=null && $scope.flightData.atRound != null && $scope.flightData.selectedClass != null && $scope.flightData.selectedClass != "")
+    if($scope.flightData.selectedOrigin != null && $scope.flightData.selectedOrigin != ""
+      && $scope.flightData.selectedDestination != null && $scope.flightData.selectedDestination != ""
+      && $scope.flightData.dtRound !=null && $scope.flightData.dtRound != "" 
+      && $scope.flightData.atRound != null  && $scope.flightData.atRound != ""
+      && $scope.flightData.selectedClass != null && $scope.flightData.selectedClass != "")
     {
     FlightSrv.setType('Round');
     FlightSrv.setOriginAirport($scope.flightData.selectedOrigin);
@@ -69,20 +69,15 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state) {
     FlightSrv.setArrivalDate($scope.flightData.atRound);
     FlightSrv.setClass($scope.flightData.selectedClass);
     FlightSrv.setOtherAirlines($scope.flightData.otherAirlines);
-    console.log(FlightSrv.getType());
-    console.log(FlightSrv.getOriginAirport());
-    console.log(FlightSrv.getDestinationAirport());
-    console.log(FlightSrv.getDepartureDate());
-    console.log(FlightSrv.getArrivalDate());
-    console.log(FlightSrv.getClass());
-    console.log(FlightSrv.getOtherAirlines());
-    $scope.go('outGoingFlights');
+    $state.go('app.outGoingFlights');
    }
   };
-$scope.validateForm =function() {
+
+  $scope.validateForm =function() {
     
     
-}
+  };
 
   AirportCodes();
+
 });

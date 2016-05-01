@@ -9,6 +9,7 @@ IonicApp.factory('FlightSrv',function($http){
 			myUrl = myUrl.concat(this.arrivalDate);
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
+			myUrl = myUrl.concat('/1');
 			var pingOthers = this.otherAirlines;
 			this.getToken(function(token){
 				myUrl = myUrl.concat('?wt=');
@@ -33,6 +34,7 @@ IonicApp.factory('FlightSrv',function($http){
 			myUrl = myUrl.concat(this.departureDate);
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
+			myUrl = myUrl.concat('/1');
 			var pingOthers = this.otherAirlines;
 			this.getToken(function(token){
 				myUrl = myUrl.concat('?wt=');
@@ -56,8 +58,17 @@ IonicApp.factory('FlightSrv',function($http){
 					callback(result.token);	
 				});
 		},
-		createPayment : function(bookingData){
-			return $http.post('http://54.93.36.94/api/pay', bookingData);
+		createPayment : function(bookingData,cb){
+			this.getToken(function(token){
+				var myUrl = 'http://54.93.36.94/booking';
+				myUrl = myUrl.concat('?wt=');
+				myUrl = myUrl.concat(token);
+				$http.post(myUrl, bookingData).success(function(data)
+					{
+						cb(data);
+					});
+			});
+			//return $http.post('/booking', bookingData);
 		},
 		// returns all airports in the json file
 		getAirports : function(){
@@ -143,9 +154,6 @@ IonicApp.factory('FlightSrv',function($http){
 		// returns the passenger's origin
 		getOriginAirport : function(){
 			return this.origin;
-			// return value;
-			// return this.origin;
-			// return 'JFK';
 		},
 		// saves the passenger's destination
 		setDestinationAirport : function(value){
@@ -154,7 +162,6 @@ IonicApp.factory('FlightSrv',function($http){
 		// returns the passenger's destination
 		getDestinationAirport : function(){
 			return this.destination;
-			// return 'IAD';
 		},
 		setPriceOutgoingFlight : function(value){
 			this.priceOutgoing = value;
@@ -192,7 +199,6 @@ IonicApp.factory('FlightSrv',function($http){
 		getIngoingFlightClass : function(){
 			return this.ingoingFlightClass;
 		},
-
 		setRefNo : function(value){
 			this.RefNo = value;
 		},

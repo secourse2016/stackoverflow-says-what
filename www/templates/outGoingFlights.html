@@ -5,25 +5,18 @@
 
 <ion-content>
   <ion-list>
-  <ion-item ng-click = "bookOutgoing();">
-  <div class="row">
-      	<div class="col">
-      	 	<ion-thumbnail item-left>
-      		<img src="/../../img/favicon.png">
-      		</ion-thumbnail>
-      	</div>
-  		<div class="col" id="flightDetails">
-  			<h2> Airline: {{ flight.airline }}</h2>
-  			<p> Flight Number: {{ flight.flightNumber }}</p>
-  			<p> Origin: {{ flight.origin }}</p>
-  			<p> Destination: {{ flight.destination }}</p>
-  			<p> Departure Date: {{ flight.departureDateTime | date:'yyyy-MM-dd hh:mm' }}</p>
-  			<p> Arrival Date: {{ flight.arrivalDateTime | date:'yyyy-MM-dd hh:mm' }}</p>
-  			<p> Cost: $ {{ flight.cost }}</p>
+  <ion-item ng-click = "showConfirmOut(flight,price,seatClass);" ng-repeat = "flight in flightData.outflights">
+  <div class="row animated fadeInLeft">
+  		<div class="col hvr-sweep-to-left">
+  	    <!-- <h2> Airline: {{ flight.airline }}</h2>  -->
+  			<i class="icon ion-plane"> Flight Number: {{ flight.flightNumber }}</i><br>
+  			<i class="icon ion-location"> Origin: {{ flight.origin }}</i><br>
+  			<i class="icon ion-location"> Destination: {{ flight.destination }}</i><br>
+  			<i class="icon ion-calendar"> Departure Date: {{ flight.departureDateTime | date:'yyyy-MM-dd hh:mm' }}</i><br>
+        <i class="icon ion-calendar"> Arrival Date: {{ flight.arrivalDateTime | date:'yyyy-MM-dd hh:mm' }}</i><br>
+  			<i class="icon ion-cash"> Cost: ${{ flight.cost }}</i>
   		</div>
-  		<!-- <div class="col">
-  			<button clear item-right type="button" class="btn btn-success" id="priceButton"> $ {{ flight.cost }}</button>
-  		</div> -->
+    <!--<button type="button" class="btn btn-success ">${{flight.cost}}</button> -->
     </div>
     </ion-item>
 

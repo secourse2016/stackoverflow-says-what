@@ -1,40 +1,71 @@
-IonicApp.controller('outGoingFlightsCtrl', function($scope, FlightSrv,$location) {
+IonicApp.controller('outGoingFlightsCtrl', function($scope, FlightSrv, $state, $ionicPopup) {
 
-    /*function getOutFlights(){
-      flightSrv.getOutFlights(function(result){
-          $scope.outflights = result;
+   /* console.log(FlightSrv.getType());
+    console.log(FlightSrv.getOriginAirport());
+    console.log(FlightSrv.getDestinationAirport());
+    console.log(FlightSrv.getDepartureDate());
+    console.log(FlightSrv.getArrivalDate());
+    console.log(FlightSrv.getClass());
+    console.log(FlightSrv.getOtherAirlines());
+*/
+    //$state.reload();
+    $scope.flightData = {};
+    function getOutFlights(){
+      FlightSrv.getOutFlights(function(result){
+          console.log("found out flights: " + result);
+          $scope.flightData.outflights = result;
       });
     };
 
     function getInFlights(){
-      flightSrv.getInFlights(function(result){
+      FlightSrv.getInFlights(function(result){
           $scope.inflights = result;
       });
     };
-*/
-   // $scope.test = "bate5";
-    $scope.bookOutgoing = function (flight,price,seatClass){
-    	//$scope.test = "potato";
-        flightSrv.setOutgoingFlight(flight);
-        flightSrv.setPriceOutgoingFlight(price);
-        flightSrv.setOutgoingFlightClass(seatClass);
-        if (flightSrv.getType() === 'OneWay')
-            $location.url(""); //todo
-        else
-            $location.url(""); //todo
+
+      $scope.showConfirmOut = function (flight,price,seatClass){
+        var confirmPopup = $ionicPopup.confirm({
+          title: 'Outgoing Flight',
+          template: 'Are you sure you want to select flight number '+ flight.flightNumber +' ?'
+        });
+        confirmPopup.then(function(res) {
+          if(res) {
+            FlightSrv.setOutgoingFlight(flight);
+            FlightSrv.setPriceOutgoingFlight(price);
+            FlightSrv.setOutgoingFlightClass(seatClass);
+            if (FlightSrv.getType() === 'OneWay')
+                $state.go('app.confirmationOneWay'); //todo
+            else
+                $state.go('app.inGoingFlights'); 
+            } 
+          else {
+            /*console.log('You are not sure');*/
+          }
+        });
     }; 
 
-    $scope.bookIngoing = function (flight,price,seatClass){
-        flightSrv.setIngoingFlight(flight);
-        flightSrv.setPriceIngoingFlight(price);
-        flightSrv.setIngoingFlightClass(seatClass);
-        $location.url(""); //todo
-    };
+     $scope.showConfirmIn = function (flight,price,seatClass){
+        var confirmPopup = $ionicPopup.confirm({
+          title: 'Ingoing Flight',
+          template: 'Are you sure you want to select flight number '+ flight.flightNumber +' ?'
+        });
+        confirmPopup.then(function(res) {
+          if(res) {
+             FlightSrv.setIngoingFlight(flight);
+             FlightSrv.setPriceIngoingFlight(price);
+             FlightSrv.setIngoingFlightClass(seatClass);
+             $state.go('app.confirmationRoundTrip'); //todo
+            } 
+          else {
+            /*console.log('You are not sure');*/
+          }
+        });
+    }; 
 
-
-/*
     getOutFlights();
-    if (flightSrv.getType() != 'OneWay')
+    if (FlightSrv.getType() != 'OneWay')
+    {
     	getInFlights(); 
-*/
+    }
+
 });
