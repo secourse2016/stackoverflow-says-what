@@ -1,4 +1,4 @@
-<ion-view view-title="DEPARTING FLIGHT DETAILS" style="padding: 40px 10px 10px 10px">
+<ion-view view-title="ARRIVING FLIGHT DETAILS" style="padding: 40px 10px 10px 10px">
     
     <!-- <ion-header-bar class="bar bar-header bar-stable">
         <button class="button button-icon">
@@ -11,38 +11,38 @@
         
         <a class="item item-icon-left">
             <i class="icon ion-android-plane"></i>
-            Origin Airport : {{ originAirport }}
+            Origin Airport : {{ destinationAirport }}
         </a>
 
         <a class="item item-icon-left">
             <i class="icon ion-android-plane"></i>
-            Destination Airport : {{ destinationAirport }}
+            Destination Airport : {{ originAirport }}
         </a>
 
         <a class="item item-icon-left">
             <i class="icon ion-android-calendar"></i>
-            Departure Date : {{ depDate | date:'fullDate' }}
+            Arrival Date : {{ arrivalDate | date:'fullDate' }}
         </a>
 
         <a class="item item-icon-left">
             <i class="icon ion-android-time"></i>
-            Departure Time : {{ depDate | date:'shortTime' }}
+            Arrival Time : {{ arrivalDate | date:'shortTime' }}
         </a>
 
         <a class="item">
-            Seat Class : {{ depClass }}
+            Seat Class : {{ arrivalClass }}
         </a>
 
         <a class="item">
-            Cost : {{ depPrice | currency }}
+            Cost : {{ arrivalPrice | currency }}
         </a>
 
         <a class="item">
-            Airline : {{ outAirline }}
+            Airline : {{ inAirline }}
         </a>
 
-        <button class="button button-icon-right button-positive" ng-click="goToArrivingFlightDetails()">
-            <i class="icon ion-android-arrow-forward"> Next</i>
+        <button class="button button-icon-right button-positive" ng-click="confirmRound()">
+            <i class="icon ion-android-arrow-forward"> Confrim</i>
         </button>
        
     </div>

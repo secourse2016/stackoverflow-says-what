@@ -32,7 +32,7 @@ IonicApp.controller('confirmOneCtrl', function($scope,$state, FlightSrv, $locati
 
   
 	$scope.confirmOne = function() {
-		console.log('hiiiiiiiiiii');
+		// console.log('hiiiiiiiiiii');
 		$state.go('app.paymentInfo');
 	};
 
