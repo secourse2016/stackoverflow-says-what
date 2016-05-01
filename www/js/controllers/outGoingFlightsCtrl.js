@@ -34,7 +34,7 @@ IonicApp.controller('outGoingFlightsCtrl', function($scope, FlightSrv, $state, $
             FlightSrv.setPriceOutgoingFlight(price);
             FlightSrv.setOutgoingFlightClass(seatClass);
             if (FlightSrv.getType() === 'OneWay')
-                $state.go('app.confirmationOneWay'); //todo
+                $state.go('app.confirmOneWay'); //todo
             else
                 $state.go('app.inGoingFlights'); 
             } 
@@ -54,7 +54,7 @@ IonicApp.controller('outGoingFlightsCtrl', function($scope, FlightSrv, $state, $
              FlightSrv.setIngoingFlight(flight);
              FlightSrv.setPriceIngoingFlight(price);
              FlightSrv.setIngoingFlightClass(seatClass);
-             $state.go('app.confirmationRoundTrip'); //todo
+             $state.go('app.confirmRoundTripDep'); //todo
             } 
           else {
             /*console.log('You are not sure');*/
