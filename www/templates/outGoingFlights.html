@@ -9,14 +9,14 @@
   <div class="row animated fadeInLeft">
   		<div class="col hvr-sweep-to-left">
   	    <!-- <h2> Airline: {{ flight.airline }}</h2>  -->
-  			<h2> Flight Number: {{ flight.flightNumber }}</h2>
-  			<h2> Origin: {{ flight.origin }}</h2>
-  			<h2> Destination: {{ flight.destination }}</h2>
-  			<h2>Departure Date: {{ flight.departureDateTime | date:'yyyy-MM-dd hh:mm' }}</h2>
-  			<h2> Arrival Date: {{ flight.arrivalDateTime | date:'yyyy-MM-dd hh:mm' }}</h2>
-  			<h2> Cost: ${{ flight.cost }}</p>
+  			<i class="icon ion-plane"> Flight Number: {{ flight.flightNumber }}</i><br>
+  			<i class="icon ion-location"> Origin: {{ flight.origin }}</i><br>
+  			<i class="icon ion-location"> Destination: {{ flight.destination }}</i><br>
+  			<i class="icon ion-calendar"> Departure Date: {{ flight.departureDateTime | date:'yyyy-MM-dd hh:mm' }}</i><br>
+        <i class="icon ion-calendar"> Arrival Date: {{ flight.arrivalDateTime | date:'yyyy-MM-dd hh:mm' }}</i><br>
+  			<i class="icon ion-cash"> Cost: ${{ flight.cost }}</i>
   		</div>
-    <!--   <button type="button" class="btn btn-success ">${{flight.cost}}</button> -->
+    <!--<button type="button" class="btn btn-success ">${{flight.cost}}</button> -->
     </div>
     </ion-item>
 
