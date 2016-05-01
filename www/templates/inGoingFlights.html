@@ -2,18 +2,12 @@
 <ion-navbar *navbar hideBackButton class="show-navbar">
   <ion-title>INGOING FLIGHTS</ion-title>
 </ion-navbar>
-
 <ion-content>
   <ion-list>
-  <ion-item ng-click = "bookIngoing();" ng-repeat = "flight in flightData.outflights">
-  <div class="row">
-      	<div class="col">
-      	 	<ion-thumbnail item-left>
-      		<img src="/../../img/favicon.png">
-      		</ion-thumbnail>
-      	</div>
-  		<div class="col" id="flightDetails">
-  			<h2> Airline: {{ flight.airline }}</h2>
+  <ion-item ng-click = "showConfirmIn(flight,price,seatClass);" ng-repeat = "flight in flightData.outflights">
+  <div class="row animated fadeInLeft">
+  		<div class="col hvr-sweep-to-left" id="flightDetails">
+  			<!-- <h2> Airline: {{ flight.airline }}</h2> -->
   			<p> Flight Number: {{ flight.flightNumber }}</p>
   			<p> Origin: {{ flight.origin }}</p>
   			<p> Destination: {{ flight.destination }}</p>
