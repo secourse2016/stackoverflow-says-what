@@ -65,7 +65,7 @@ IonicApp.factory('FlightSrv',function($http){
 		},
 		// returns all bookings in the json file
 		getBookings : function(){
-			var myUrl='http://54.93.36.94/api/bookings/search/';
+			var myUrl='http://localhost:3000/api/bookings/search/';
 			myUrl = myUrl.concat(this.RefNo);
 			return $http.get(myUrl);
 		},
@@ -195,6 +195,7 @@ IonicApp.factory('FlightSrv',function($http){
 
 		setRefNo : function(value){
 			this.RefNo = value;
+			console.log(value);
 		},
 		getRefNo : function(){
 			return this.RefNo;
@@ -218,6 +219,15 @@ IonicApp.factory('FlightSrv',function($http){
 		getOtherAirlines: function()
 		{
 			return this.otherAirlines;
+		},
+		// a boolean variable that indicates if the flight being booked is a round trip flight or a one-way flight
+		// if true, then the flight booked is one-way, else the flight booked is roundtrip
+		setFlight : function(value){
+			this.flight = value;
+		},
+		// returns the boolean that indicates if the flight is round trip
+		getFlight : function(){
+			return this.flight;
 		}
 
 	};

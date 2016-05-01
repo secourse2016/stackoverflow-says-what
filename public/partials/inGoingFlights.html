@@ -9,7 +9,7 @@
       <td><span style="font: bold; color: #C71585; font-size: 25px; font-family:Lobster">{{ selectedClass }}</span></td>
   </tr>
   
-  <tr class="clickable-row" ng-repeat = "flight in inflights">
+  <tr class="clickable-row" ng-repeat = "flight in inflights" ng-animate="'flight'">
     <td><form style="font-size: 17px">
     Airline : {{ flight.Airline }}<br>
     Flight Number : {{ flight.flightNumber }}<br>

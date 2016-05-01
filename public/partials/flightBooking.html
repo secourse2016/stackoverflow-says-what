@@ -34,9 +34,11 @@
   <!-- first panel -->
   <input name="tabbed" id="tabbed1" type="radio" checked>
   <section>
+  
     <h1>
       <label for="tabbed1">One Way</label>
     </h1>
+       <div class="list card animated bounceInLeft">
     <div>
       <label class="tripLabel">One Way</label>
       <label class="inputLabel">Departing From</label>
@@ -108,6 +110,7 @@
      </div>
      <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchOneWay()"><i class="fa fa-search" ></i>   Search Flights</button>
    </div>
+   </div>
   </section>
 
   <!-- second panel -->
@@ -116,6 +119,7 @@
     <h1>
       <label for="tabbed2">Round Trip</label>
     </h1>
+     <div class="list card animated bounceInRight">
     <div>
      
      <label class="tripLabel">Round Trip </label>
@@ -214,6 +218,7 @@
      </div>
 
      <button type="button" class="btn btn-default" style="background-color:#C71585; color:white;" ng-click="searchRoundTrip()"><i class="fa fa-search"></i>   Search Flights</button>
+    </div>
     </div>
   </section>
   </div>

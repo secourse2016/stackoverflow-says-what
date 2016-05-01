@@ -9,7 +9,9 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+      <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+      <link rel="stylesheet" href="styles/animate.css" type="text/css" charset="utf-8"/>
   <link rel="stylesheet" href="styles/index.css" type="text/css" charset="utf-8"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -18,6 +20,7 @@
   <!--<script src="https://checkout.stripe.com/checkout.js"></script> -->
 
   <script src="/js/angular.min.js"></script>
+   <script src="/js/angular-material.js"></script>
   <script src="/js/angular-route.min.js"></script>
   <script src="/js/ui-bootstrap-tpls-1.2.5.min.js"></script>
   <script src="core.js"></script>
@@ -25,10 +28,13 @@
   <script src="/controllers/confirmOCtrl.js"></script>
   <script src="/controllers/confirmRCtrl.js"></script>
   <script src="/controllers/flightBookingCtrl.js"></script>
+   <script src="/controllers/datepickerCtrl.js"></script>
   <script src="/controllers/flightCtrl.js"></script>
   <script src="/controllers/paymentCtrl.js"></script>
   <script src="/controllers/finalCtrl.js"></script>
   <script src="/services/flightSrv.js"></script>
+  
+
 </head>
 <body>
 
@@ -52,7 +58,7 @@
     </div>
   </div>
 </nav>
-
+  <md-datepicker ng-controller='datepickerCtrl' ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
 <div ng-view></div>
 
 

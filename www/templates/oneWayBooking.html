@@ -6,40 +6,53 @@
     display: block;  padding: 10px 10px;">
 
       
-
+             <div class="list card animated bounceInLeft">  
            <label class="item item-input ">
               <i class="icon ion-plane placeholder-icon"></i>
               <span class="input-label">Flying From</span>
               <input type="text">
            </label>
-
+          </div>
+          <div class="list card animated bounceInRight">  
            <label class="item item-input">
               <i class="icon ion-plane placeholder-icon"></i>
               <span class="input-label">Flying To</span>
               <input type="text">
            </label>
-
+           </div>
+           <div class="list card animated bounceInLeft">  
            <label class="item item-input">
               <i class="icon ion-calendar placeholder-icon"></i>
               <span class="input-label">Departure Date</span>
               <input type="text" onfocus="(this.type='date')">
            </label>
-
+           </div>
+          <div class="list card animated bounceInRight">  
            <label class="item item-input item-select">
              <div class="input-label">Class</div>
-             <select>
+            <!--  <select>
                 <option selected>Economy</option>
                 <option>Business</option>
-             </select>
+             </select> -->
+             <div class="item range">
+  <i >business</i>
+  <input type="range" name="class">
+  <i >economy</i>
+</div>
           </label>
+          </div>
 
+            <div class="list card animated bounceInLeft">  
+              <ion-toggle  ng-model="settings.enableFriends">
+        check Other airlines 
+    </ion-toggle>
+    </div>
           
-          <ion-checkbox>Search Other Airlines</ion-checkbox>
-          
-          
+           <div class="list card animated bounceInRight">  
           <label>
           <button class="button button-positive button-full icon-left ion-search" >Search Flights</button>
           </label>
+          </div>
           
           
   
