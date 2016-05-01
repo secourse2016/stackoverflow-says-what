@@ -1,0 +1,83 @@
+<ion-view view-title="PAYMENT INFO" style="padding: 40px 10px 10px 10px">
+	
+	<ion-content>
+
+		<div class="list">
+			<label class="item item-input item-stacked-label">
+				<span class="input-label">First Name</span>
+				<input type="text" placeholder="John"></input>
+			</label>
+
+			<label class="item item-input item-stacked-label">
+				<span class="input-label">Last Name</span>
+				<input type="text" placeholder="John"></input>
+			</label>
+
+			<label class="item item-input item-select">
+				<div class="input-label">
+					Gender
+				</div>
+				<select>
+					<option>Male</option>
+					<option>Female</option>
+				</select>
+			</label>
+
+			<label class="item item-input">
+	            <i class="icon ion-calendar placeholder-icon"></i>
+	            <span class="input-label">Date of Birth</span>
+	            <input type="text" placeholder="yyyy-mm-dd" onfocus="(this.type='date')" ng-model="flightData.dtOneway">
+	        </label>
+
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Nationality</span>
+	        	<input type="text" placeholder="Egyptian"></input>
+	        </label>
+
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Email</span>
+	        	<input type="text" placeholder="example@yahoo.com"></input>
+	        </label>
+
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Moblie Number</span>
+	        	<input type="text" placeholder="+ID XXXX-XXX-XXX"></input>
+	        </label>
+
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Passport Number</span>
+	        	<input type="text"></input>
+	        </label>
+
+	        <label class="item item-input">
+	            <i class="icon ion-calendar placeholder-icon"></i>
+	            <span class="input-label">Passport Expiry Date</span>
+	            <input type="text" placeholder="yyyy-mm-dd" onfocus="(this.type='date')" ng-model="flightData.dtOneway">
+	        </label>
+
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Credit Card Number</span>
+	        	<input type="text" placeholder="Card Number"></input>
+	        </label>
+
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">CVC</span>
+	        	<input type="text" placeholder="CVC"></input>
+	        </label>
+
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Card Expiry Year</span>
+	        	<input type="text" placeholder="YYYY"></input>
+	        </label>
+
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Card Expiry Month</span>
+	        	<input type="text" placeholder="MM"></input>
+	        </label>
+		</div>
+
+		<button class="button button-outline button-positive" style="margin-left: 250px" ng-click="confirmOne()"> Submit </button>
+
+	</ion-content>
+
+</ion-view>

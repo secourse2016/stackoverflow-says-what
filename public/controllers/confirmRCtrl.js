@@ -19,12 +19,12 @@ App.controller('confirmRCtrl', function($scope, flightSrv, $location){
 	$scope.inAirline = flightSrv.getIngoingFlight().Airline;
 
 	$scope.updateR = function() {
-    $location.url('/outGoingFlights');
-  };
+	    $location.url('/outGoingFlights');
+	};
 
 
 	$scope.confirmR = function() {
-    $location.url('/payment');
-  };
+	    $location.url('/payment');
+	};
 
 });

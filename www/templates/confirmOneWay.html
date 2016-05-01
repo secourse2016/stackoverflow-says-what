@@ -1,0 +1,50 @@
+<ion-view view-title="CONFIRM" style="padding: 40px 10px 10px 10px">
+	
+	<!-- <ion-header-bar class="bar bar-header bar-stable">
+		<button class="button button-icon">
+			<i class="icon ion-android-arrow-back"></i>
+		</button>
+        <h1 class="title">Flight Details</h1>
+    </ion-header-bar> -->
+
+    <div class="list card" style="display: block">
+    	
+    	<a class="item item-icon-left">
+    		<i class="icon ion-android-plane"></i>
+    		<strong>Origin Airport :</strong> {{ originAirport }}
+    	</a>
+
+    	<a class="item item-icon-left">
+    		<i class="icon ion-android-plane"></i>
+    		<strong>Destination Airport :</strong> {{ destinationAirport }}
+    	</a>
+
+    	<a class="item item-icon-left">
+    		<i class="icon ion-android-calendar"></i>
+    		<strong>Departure Date :</strong> {{ depDate | date:'fullDate' }}
+    	</a>
+
+    	<a class="item item-icon-left">
+    		<i class="icon ion-android-time"></i>
+    		<strong>Departure Time :</strong> {{ depDate | date:'shortTime' }}
+    	</a>
+
+    	<a class="item">
+    		<strong>Seat Class :</strong> {{ class }}
+    	</a>
+
+    	<a class="item">
+    		<strong>Cost :</strong> {{ price | currency }}
+    	</a>
+
+    	<a class="item">
+    		<strong>Airline :</strong> {{ airline }}
+    	</a>
+
+    </div>
+
+    <div style="text-align: center;">
+    	<button class="button button-outline button-block button-positive" style="width: 200px; margin-left: 100px" ng-click="confirmOne()"> Confirm </button>
+    </div>
+    	
+</ion-view>
