@@ -1,0 +1,38 @@
+#menu {
+	background-image:  url("/../img/wallpaper.png");
+    background-repeat: repeat;
+    background-size: cover;
+    height: 100%;
+    position: absolute;
+}
+.item-content {
+    background-color: transparent !important;
+}
+
+#circular {
+	margin-left: 35%;
+	margin-top: 10%;
+	margin-bottom: 10%;
+	width: 30%;
+	height: 30%;
+	background: transparent !important;
+}
+
+.menuItem {
+	background-color: transparent !important;
+    font-size: 12px;
+    /*border-top: 2px solid;  */ /*Top Border for each menu item*/
+  	border-bottom:2px solid;   /*Bottom border for each menu item*/
+  	border-color: white;
+	color: white;
+	text-align: left;
+}
+
+ion-item:hover {
+	color: red;
+}
+
+.custom-icon {
+	margin-right: 3%;
+	color:white;
+}

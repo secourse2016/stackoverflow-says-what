@@ -5,7 +5,7 @@
 
 <ion-content>
   <ion-list>
-  <ion-item ng-click = "bookOutgoing()" ng-repeat = "flight in flightData.brebe2">
+  <ion-item ng-click = "bookOutgoing();" ng-repeat = "flight in flightData.outflights">
   <div class="row">
       	<div class="col">
       	 	<ion-thumbnail item-left>
@@ -19,7 +19,7 @@
   			<p> Destination: {{ flight.destination }}</p>
   			<p> Departure Date: {{ flight.departureDateTime | date:'yyyy-MM-dd hh:mm' }}</p>
   			<p> Arrival Date: {{ flight.arrivalDateTime | date:'yyyy-MM-dd hh:mm' }}</p>
-  			<p> Cost: $ {{ flight.cost }}</p>
+  			<p> Cost: ${{ flight.cost }}</p>
   		</div>
     </div>
     </ion-item>
