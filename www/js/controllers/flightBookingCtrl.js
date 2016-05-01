@@ -43,12 +43,19 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state) {
       && $scope.flightData.dtOneway != null && $scope.flightData.dtOneway != ""
       && $scope.flightData.selectedClass != null && $scope.flightData.selectedClass != "")
     {
+      console.log('HELOOO');
       FlightSrv.setType('OneWay');
       FlightSrv.setOriginAirport($scope.flightData.selectedOrigin);
       FlightSrv.setDestinationAirport($scope.flightData.selectedDestination);
       FlightSrv.setDepartureDate($scope.flightData.dtOneway);
       FlightSrv.setClass($scope.flightData.selectedClass);
       FlightSrv.setOtherAirlines($scope.flightData.otherAirlines);
+      $scope.flightData = {};
+      $scope.flightData.selectedOrigin = "";
+      $scope.flightData.selectedDestination = "";
+      $scope.flightData.dtOneway = "";
+      $scope.flightData.selectedClass = "";
+      $scope.flightData.otherAirlines = false;
       $state.go('app.outGoingFlights');
     }
 
@@ -69,6 +76,13 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state) {
     FlightSrv.setArrivalDate($scope.flightData.atRound);
     FlightSrv.setClass($scope.flightData.selectedClass);
     FlightSrv.setOtherAirlines($scope.flightData.otherAirlines);
+    $scope.flightData = {};
+    $scope.flightData.selectedOrigin = "";
+    $scope.flightData.selectedDestination = "";
+    $scope.flightData.dtRound = "";
+    $scope.flightData.atRound = "";
+    $scope.flightData.selectedClass = "";
+    $scope.flightData.otherAirlines = false;
     $state.go('app.outGoingFlights');
    }
   };
