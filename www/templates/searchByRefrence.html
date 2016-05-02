@@ -14,7 +14,8 @@
   		<!-- <p class="animated slideInDown" id="error" ng-show="alert">Invalid Booking ID</p> -->
 	   <button class="button button-outline button-royal icon-right" 
 	   id="searchButton" ng-click="searchByRefrence()">
-	   <i class="icon ion-android-search"></i>   Search</button>
+	   <i class="icon ion-android-search"></i>   Search</button><br>
+     <span ng-hide = "found" ng-show= "!found" >Refrence number doesn't exist!</span>
 	</div>
   </ion-content>
 </ion-view>

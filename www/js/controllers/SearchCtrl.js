@@ -1,6 +1,7 @@
  IonicApp.controller('SearchCtrl', function($scope,$state,FlightSrv,$ionicPopup) {
  $scope.search={};
  $scope.flight= FlightSrv.getFlight();
+ $scope.found=true;
  if($scope.flight != undefined)
     console.log("passengers" + $scope.flight);
  
@@ -30,7 +31,20 @@
             $scope.flight.type=result.type;
             FlightSrv.setFlight($scope.flight);
             $scope.flight.type = result.type;
-				});            
+				})
+         .error(function(data, status) {
+  console.error('Repos error', status, data);
+
+           $scope.found = false ;
+            // FlightSrv.setOldFound($scope.searchQuery);
+           
+       }
+      ) 
+  .finally(function() {
+  console.log("finally finished repos");
+});   
+   
+           
   };
  
 });
