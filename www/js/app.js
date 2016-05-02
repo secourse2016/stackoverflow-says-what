@@ -1,5 +1,5 @@
 
-IonicApp = angular.module('starter', ['ionic']);
+IonicApp = angular.module('starter', ['ionic','ui.router']);
 
 IonicApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

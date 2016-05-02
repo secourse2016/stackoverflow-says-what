@@ -19,11 +19,11 @@ IonicApp.controller('outGoingFlightsCtrl', function($scope, FlightSrv, $state, $
 
     function getInFlights(){
       FlightSrv.getInFlights(function(result){
-          $scope.inflights = result;
+          $scope.flightData.inflights = result;
       });
     };
 
-      $scope.showConfirmOut = function (flight,price,seatClass){
+      $scope.showConfirmOut = function (flight,price){
         var confirmPopup = $ionicPopup.confirm({
           title: 'Outgoing Flight',
           template: 'Are you sure you want to select flight number '+ flight.flightNumber +' ?'
@@ -32,7 +32,7 @@ IonicApp.controller('outGoingFlightsCtrl', function($scope, FlightSrv, $state, $
           if(res) {
             FlightSrv.setOutgoingFlight(flight);
             FlightSrv.setPriceOutgoingFlight(price);
-            FlightSrv.setOutgoingFlightClass(seatClass);
+            $scope.flightData.outflights=[];
             if (FlightSrv.getType() === 'OneWay')
                 $state.go('app.confirmOneWay'); //todo
             else
@@ -44,7 +44,7 @@ IonicApp.controller('outGoingFlightsCtrl', function($scope, FlightSrv, $state, $
         });
     }; 
 
-     $scope.showConfirmIn = function (flight,price,seatClass){
+     $scope.showConfirmIn = function (flight,price){
         var confirmPopup = $ionicPopup.confirm({
           title: 'Ingoing Flight',
           template: 'Are you sure you want to select flight number '+ flight.flightNumber +' ?'
@@ -53,7 +53,7 @@ IonicApp.controller('outGoingFlightsCtrl', function($scope, FlightSrv, $state, $
           if(res) {
              FlightSrv.setIngoingFlight(flight);
              FlightSrv.setPriceIngoingFlight(price);
-             FlightSrv.setIngoingFlightClass(seatClass);
+             $scope.flightData.inflights=[];
              $state.go('app.confirmRoundTripDep'); //todo
             } 
           else {
