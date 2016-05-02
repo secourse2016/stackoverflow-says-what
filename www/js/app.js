@@ -1,6 +1,6 @@
 
 
-IonicApp = angular.module('starter', ['ionic','ui.router','ionic-datepicker']);
+IonicApp = angular.module('starter', ['ionic','ui.router','ionic-datepicker','ionic-modal-select']);
 
 
 IonicApp.run(function($ionicPlatform) {
@@ -82,7 +82,6 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     }
   })
   
-
   .state('app.searchByRefrence', {
       url: '/searchByRefrence',
       views: {
@@ -101,15 +100,6 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    /*.state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })*/
     .state('app.welcomePage', {
     url: '/welcomePage',
     views: {

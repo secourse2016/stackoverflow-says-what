@@ -1,45 +1,64 @@
-<ion-view view-title="bookingInfo">
-  <ion-content>
-    <div class="list card animated bounceInLeft" style="color:blue">
-    Type of Flight
-    </div>
-    <div class="list card animated bounceInRight">
-   {{flight.type}}
-    </div>
-     <div class="list card animated bounceInLeft" style="color:blue">
-    Class
-    </div>
-    <div class="list card animated bounceInRight">
-   {{flight.class}}
-    </div>
-    <div ng-repeat = "passenger in flight.passengers">
-       <div class="list card animated bounceInLeft" style="color:blue">
-    First Name 
-    </div>
-    <div class="list card animated bounceInRight">
-   {{passenger.firstName}}
-    </div>
-      <div class="list card animated bounceInLeft" style="color:blue">
-    Last  Name 
-    </div>
-    <div class="list card animated bounceInRight">
-   {{passenger.lastName}}
-    </div>
-     <div class="list card animated bounceInLeft" style="color:blue">
-    outgoingFlightSeat
-    </div>
- 
-    <div class="list card animated bounceInRight">
-  {{ passenger.outgoingFlightSeat}}
-    </div>
-      <div class="list card animated bounceInLeft" style="color:blue">
-    ingoingFlightSeat
-    </div>
+<link href="css/bookingInfo.css" rel="stylesheet">
 
-    <div class="list card animated bounceInRight">
-  {{ passenger.ingoingFlightSeat}}
-    </div>
-    </div>
-    </ion-content>
+  <ion-view view-title="BOOKING DETAILS" hideBackButton>
+ 
+  <ion-content>
+ <!-- refnum = 5726a0c645b95965055819ac
+ -->
+  <div class="card">
+  <div class="item item-divider item-icon-left" id="cardLabel">
+    <i class="icon ion-plane"></i>
+    Flight Details
+  </div>
+      <li class="item">
+      <h2>Type of Flight</h2>
+      </li>
+      <li class="item animated slideInRight">
+      <p>{{flight.type}}</p>
+      </li>
+
+      <li class="item">
+      <h2>Cabin Class</h2>
+      </li>
+      <li class="item animated slideInRight">
+      <p>{{flight.class}}</p>
+      </li>
+  </div>
+
+
+  <div class="card" ng-repeat = "passenger in flight.passengers">
+  <div class="item item-divider item-icon-left" id="cardLabel">
+    <i class="icon ion-person"></i>
+    Passenger Details
+  </div>
+      <li class="item">
+      <h2>First Name</h2>
+      </li>
+      <li class="item animated slideInRight">
+      <p>{{passenger.firstName}}</p>
+      </li>
+
+      <li class="item">
+      <h2>Last Name</h2>
+      </li>
+      <li class="item animated slideInRight">
+      <p>{{passenger.lastName}}</p>
+      </li>
+
+      <li class="item">
+      <h2>Outgoing Flight Seat Number</h2>
+      </li>
+      <li class="item animated slideInRight">
+      <p>{{passenger.outgoingFlightSeat}}</p>
+      </li>
+
+      <li class="item">
+      <h2>Incoming Flight Seat Number</h2>
+      </li>
+      <li class="item animated slideInRight">
+      <p> {{passenger.ingoingFlightSeat}}</p>
+      </li>
+  </div>
+
   </ion-content>
 </ion-view>
