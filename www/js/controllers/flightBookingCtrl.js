@@ -1,17 +1,16 @@
-IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state, ionicDatePicker) {
+IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state, ionicDatePicker, $ionicModal) {
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[1];
   $scope.flightData = {};
-  console.log("here1");
- 
-         $scope.Airports = ['BOM','DEL','CAI','JED','HKG','TPE',
-         'JNB','CPT','RUH','LHR','JFK','LCF','LAX','SFQ','FRA','TXL',
-         'FCO','LIN']
-  $scope.flightData.selectedOrigin = "";
-  $scope.flightData.selectedDestination = "";
+  $scope.Airports = ['BOM','DEL','CAI','JED','HKG','TPE',
+  'JNB','CPT','RUH','LHR','JFK','LCF','LAX','SFQ','FRA',
+  'TXL','FCO','LIN'];
+  $scope.seatClasses = ["economy", "business"];
+  $scope.flightData.selectedOrigin = "Flying from";
+  $scope.flightData.selectedDestination = "Flying to";
   $scope.flightData.dtOneway = "";
-  $scope.flightData.selectedClass = "";
+  $scope.flightData.selectedClass = "Seat Class";
   $scope.flightData.otherAirlines = false;
 
   // function AirportCodes() {
@@ -46,7 +45,6 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state, ioni
       && $scope.flightData.dtOneway != null && $scope.flightData.dtOneway != ""
       && $scope.flightData.selectedClass != null && $scope.flightData.selectedClass != "")
     {
-      console.log('HELOOO');
       FlightSrv.setType('OneWay');
       FlightSrv.setOriginAirport($scope.flightData.selectedOrigin);
       FlightSrv.setDestinationAirport($scope.flightData.selectedDestination);

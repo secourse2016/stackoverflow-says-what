@@ -1,6 +1,6 @@
 
 
-IonicApp = angular.module('starter', ['ionic','ui.router','ionic-datepicker']);
+IonicApp = angular.module('starter', ['ionic','ui.router','ionic-datepicker','ionic-modal-select']);
 
 
 IonicApp.run(function($ionicPlatform) {

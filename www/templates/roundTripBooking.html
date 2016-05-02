@@ -1,74 +1,49 @@
-
-<ion-view view-title="ROUND TRIP" style="background-color:lightblue">
+<link href="css/oneWayBooking.css" rel="stylesheet">
+<ion-view view-title="ROUND TRIP">
   <ion-content >
 
-     <div class="list list-inset" style="width:90%;margin-left: auto;
-    margin-right: auto;
-    display: block;  padding: 10px 10px;">
+  <div class="list list-inset">
 
-      
-             <label class="item item-input ">
-              <i class="icon ion-plane placeholder-icon"></i>
-              <span class="input-label">Flying From</span>
-               <select ng-model="flightData.selectedOrigin">
-               <option ng-repeat = "airport in Airports ">{{airport}}</option>
-               </select>
-           </label>
+  <label class="item item-input hvr-underline-from-center" id="inputLabel">
+    <button id ="inputButton" class="button icon-left ion-android-plane" modal-select ng-model="flightData.selectedOrigin" options="Airports" modal-title="Select Departure Airport">Origin<div class="option"> {{ option }} </div> </button> 
+    <input type="text" placeholder="{{ flightData.selectedOrigin }}">
+  </label>
 
-           <label class="item item-input">
-              <i class="icon ion-plane placeholder-icon"></i>
-              <span class="input-label">Flying To</span>
-              <select ng-model="flightData.selectedDestination">
-               <option ng-repeat = "airport in Airports">{{airport}}</option>
-               </select>
-           </label>
-           <!-- <label class="item item-input ">
-              <i class="icon ion-plane placeholder-icon"></i>
-              <span class="input-label">Flying From</span>
-              <input type="text" ng-model="flightData.selectedOrigin">
-           </label>
+  <label class="item item-input hvr-underline-from-center" id="inputLabel">
+     <button id ="inputButton" class="button icon-left ion-android-plane" modal-select ng-model="flightData.selectedDestination" options="Airports" modal-title="Select Arrival Airport">Destination<div class="option"> {{ option }} </div> </button> 
+    <input type="text" placeholder="{{ flightData.selectedDestination}}">
+  </label>
 
-           <label class="item item-input">
-              <i class="icon ion-plane placeholder-icon"></i>
-              <span class="input-label">Flying To</span>
-              <input type="text" ng-model="flightData.selectedDestination">
-           </label> -->
+  <label class="item item-input hvr-underline-from-center" id="inputLabel">
+    <span class="input-label" id ="otherButton" ><i class="icon ion-calendar"></i>  Departure Date</span>   
+    <input type="text" placeholder="MM/DD/YYYY"
+    onfocus="(this.type='date')" 
+    ng-model="flightData.dtRound">
+  </label>
 
-           <label class="item item-input">
-              <i class="icon ion-calendar placeholder-icon"></i>
-              <span class="input-label">Departure Date</span>
-              <input type="text" placeholder="yyyy-mm-dd" onfocus="(this.type='date')" 
-               ng-model="flightData.dtRound">
-           </label>
+  <label class="item item-input hvr-underline-from-center" id="inputLabel">
+    <span class="input-label" id ="otherButton" ><i class="icon ion-calendar"></i>  Arrival Date</span>   
+    <input type="text" placeholder="MM/DD/YYYY"
+    onfocus="(this.type='date')" 
+    ng-model="flightData.atRound">
+  </label>
 
-           <label class="item item-input">
-              <i class="icon ion-calendar placeholder-icon"></i>
-              <span class="input-label">Return Date</span>
-              <input type="text" placeholder="yyyy-mm-dd" onfocus="(this.type='date')" 
-               ng-model="flightData.atRound">
-           </label>
+  <label class="item item-input hvr-underline-from-center" id="inputLabel">
+     <button id ="inputButton" class="button icon-left ion-pinpoint" modal-select ng-model="flightData.selectedClass" options="seatClasses" modal-title="Select Seat Class">Cabin Class<div class="option"> {{ option }} </div> </button> 
+    <input type="text" placeholder="{{flightData.selectedClass}}">
+  </label>
 
-           <label class="item item-input item-select">
-             <div class="input-label">Class</div>
-             <select ng-model="flightData.selectedClass">
-                <option selected>economy</option>
-                <option>business</option>
-             </select>
-          </label>
+  <ion-toggle ng-model="flightData.otherAirlines" toggle-class="toggle-positive">
+   <i class="icon ion-android-search" id ="otherButton" ></i>
+    Search Other Airlines
+  </ion-toggle>
+  </div>
 
-          
-          <ion-toggle ng-model="flightData.otherAirlines" toggle-class="toggle-calm">Search Other Airlines</ion-toggle> 
-          
-          
-          <label>
-          <button class="button button-positive button-full icon-left ion-search"  ng-click="searchRoundTrip()">Search Flights</button>
-          </label>
-          
-          
-  
-     </div>
-
-          
-    
+  <button class="button button-block button-positive icon-right" 
+  id="searchButton"
+  ng-click="searchRoundTrip()"> 
+  <i class="icon ion-search"></i>
+     Search Flights
+  </button>
   </ion-content>
 </ion-view>

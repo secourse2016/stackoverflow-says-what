@@ -1,13 +1,5 @@
 IonicApp.controller('outGoingFlightsCtrl', function($scope, FlightSrv, $state, $ionicPopup) {
 
-   /* console.log(FlightSrv.getType());
-    console.log(FlightSrv.getOriginAirport());
-    console.log(FlightSrv.getDestinationAirport());
-    console.log(FlightSrv.getDepartureDate());
-    console.log(FlightSrv.getArrivalDate());
-    console.log(FlightSrv.getClass());
-    console.log(FlightSrv.getOtherAirlines());
-*/
     //$state.reload();
     $scope.flightData = {};
     function getOutFlights(){

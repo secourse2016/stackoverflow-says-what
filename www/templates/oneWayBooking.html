@@ -1,44 +1,93 @@
-<ion-view view-title="ONE WAY" style="background-color:#CCCCFF">
+<link href="css/oneWayBooking.css" rel="stylesheet">
+<ion-view view-title="ONE WAY">
   <ion-content>
-     <div class="list list-inset" style="width:90%;margin-left: auto;
-    margin-right: auto;
-    display: block;  padding: 10px 10px;">
-           <label class="item item-input ">
-              <i class="icon ion-plane placeholder-icon"></i>
-              <span class="input-label">Flying From</span>
-               <select ng-model="flightData.selectedOrigin">
-               <option ng-repeat = "airport in Airports ">{{airport}}</option>
-               </select>
-           </label>
 
-           <label class="item item-input">
-              <i class="icon ion-plane placeholder-icon"></i>
-              <span class="input-label">Flying To</span>
-              <select ng-model="flightData.selectedDestination">
-               <option ng-repeat = "airport in Airports">{{airport}}</option>
-               </select>
-           </label>
+  <div class="list list-inset">
 
-           <label class="item item-input">
-              <i class="icon ion-calendar placeholder-icon"></i>
-              <span class="input-label">Departure Date</span>
-                <input type="text" placeholder="yyyy-mm-dd" onfocus="(this.type='date')" 
-                ng-model="flightData.dtOneway">
-           </label>
+  <label class="item item-input hvr-underline-from-center" id="inputLabel">
+    <button id ="inputButton" class="button icon-left ion-android-plane" modal-select ng-model="flightData.selectedOrigin" options="Airports" modal-title="Select Departure Airport">Origin<div class="option"> {{ option }} </div> </button> 
+    <input type="text" placeholder="{{ flightData.selectedOrigin }}">
+  </label>
 
-           <label class="item item-input item-select" >
-             <div class="input-label">Class</div>
-             <select ng-model="flightData.selectedClass">
-                <option selected>economy</option>
-                <option>business</option>
-             </select>
-          </label>
-          
-          <ion-toggle ng-model="flightData.otherAirlines" toggle-class="toggle-calm">Search Other Airlines</ion-toggle> 
-          
-          <label>
-          <button class="button button-positive button-full icon-left ion-search" ng-click="searchOneWay()">Search Flights</button>
-          </label>
-     </div>
+  <label class="item item-input hvr-underline-from-center" id="inputLabel">
+     <button id ="inputButton" class="button icon-left ion-android-plane" modal-select ng-model="flightData.selectedDestination" options="Airports" modal-title="Select Arrival Airport">Destination<div class="option"> {{ option }} </div> </button> 
+    <input type="text" placeholder="{{ flightData.selectedDestination}}">
+  </label>
+
+  <label class="item item-input hvr-underline-from-center" id="inputLabel">
+    <span class="input-label" id ="otherButton" ><i class="icon ion-calendar"></i>  Departure Date</span>   
+    <input type="text" placeholder="MM/DD/YYYY"
+    onfocus="(this.type='date')" 
+    ng-model="flightData.dtOneway">
+  </label>
+
+  <label class="item item-input hvr-underline-from-center" id="inputLabel">
+     <button id ="inputButton" class="button icon-left ion-pinpoint" modal-select ng-model="flightData.selectedClass" options="seatClasses" modal-title="Select Seat Class">Cabin Class<div class="option"> {{ option }} </div> </button> 
+    <input type="text" placeholder="{{flightData.selectedClass}}">
+  </label>
+
+  <ion-toggle ng-model="flightData.otherAirlines" toggle-class="toggle-positive">
+   <i class="icon ion-android-search" id ="otherButton" ></i>
+    Search Other Airlines
+  </ion-toggle>
+  </div>
+
+  <button class="button button-block button-positive icon-right" 
+  id="searchButton"
+  ng-click="searchOneWay()"> 
+  <i class="icon ion-search"></i>
+     Search Flights
+  </button>
+  <!--    <div class="list">
+     <div class="row responsive-sm">
+      <label class="item item-input item-floating-label hvr-underline-from-center" id="inputLabel">
+        <span class="input-label"><i class="icon ion-android-plane"></i>  Origin</span>
+        <input type="text" placeholder="Flying From"
+        ng-model="flightData.selectedOrigin">  
+      </label>
+      </div>
+
+      <div class="row responsive-sm">
+      <label class="item item-input item-floating-label hvr-underline-from-center" id="inputLabel">
+        <span class="input-label"><i class="icon ion-android-plane"></i>  Destination</span>
+        <input type="text" placeholder="Flying To"
+        ng-model="flightData.selectedDestination">
+      </label>
+      </div>
+
+      <div class="row responsive-sm">
+      <label class="item item-input item-floating-label hvr-underline-from-center" id="inputLabel">
+        <span class="input-label"><i class="icon ion-calendar"></i>  Departure Date</span>
+        <input type="text" placeholder="MM-DD-YYYY"
+        ng-model="flightData.dtOneway"
+        ng-click="openDatePicker()">
+      </label>
+      </div>
+
+      <div class="row responsive-sm">
+      <div class="col">
+      <label class="item item-input item-floating-label hvr-underline-from-center" id="inputLabel">
+        <span class="input-label"><i class="icon ion-android-plane"></i>  Seat Class</span>
+        <input type="text" placeholder="Seat Class"
+        ng-model="flightData.selectedClass">
+      </label></div>
+      <div class="col">
+      <button id ="seatButton" class="button icon ion-navicon" modal-select ng-model="flightData.selectedClass" options="seatClasses" modal-title="Select a seat class"><div class="option"> {{ option }} </div> </button> 
+      </div>
+      </div>
+
+      <div class="row responsive-sm" id="inputLabel">
+      <ion-toggle ng-model="flightData.otherAirlines" toggle-class="toggle-positive"><strong>Search Other Airlines</strong>
+      </ion-toggle> </div>
+
+      <button class="button button-block button-positive icon-right" 
+        id="searchButton"
+        ng-click="searchOneWay()"> 
+        <i class="icon ion-search"></i>
+        Search Flights
+      </button>
+
+    </div>
+ -->
   </ion-content>
 </ion-view>
