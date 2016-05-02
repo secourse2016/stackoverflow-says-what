@@ -10,13 +10,17 @@
            <label class="item item-input ">
               <i class="icon ion-plane placeholder-icon"></i>
               <span class="input-label">Flying From</span>
-              <input type="text" ng-model="flightData.selectedOrigin">
+               <select ng-model="flightData.selectedOrigin">
+               <option ng-repeat = "airport in Airports ">{{airport}}</option>
+               </select>
            </label>
 
            <label class="item item-input">
               <i class="icon ion-plane placeholder-icon"></i>
               <span class="input-label">Flying To</span>
-              <input type="text" ng-model="flightData.selectedDestination">
+              <select ng-model="flightData.selectedDestination">
+               <option ng-repeat = "airport in Airports">{{airport}}</option>
+               </select>
            </label>
 
            <label class="item item-input">

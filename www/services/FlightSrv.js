@@ -76,7 +76,7 @@ IonicApp.factory('FlightSrv',function($http){
 		},
 		// returns all bookings in the json file
 		getBookings : function(){
-			var myUrl='http://localhost:3000/api/bookings/search/';
+			var myUrl='http://54.93.36.94/api/bookings/search/';
 			myUrl = myUrl.concat(this.RefNo);
 			return $http.get(myUrl);
 		},
