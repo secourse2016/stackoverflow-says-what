@@ -1,45 +1,49 @@
-<ion-view view-title="bookingInfo">
+<ion-view view-title="BOOKING DETAILS">
   <ion-content>
-    <div class="list card animated bounceInLeft" style="color:blue">
-    Type of Flight
+
+    <div class="list card animated slideInLeft">
+        Type of Flight
     </div>
-    <div class="list card animated bounceInRight">
-   {{flight.type}}
-    </div>
-     <div class="list card animated bounceInLeft" style="color:blue">
-    Class
-    </div>
-    <div class="list card animated bounceInRight">
-   {{flight.class}}
-    </div>
-    <div ng-repeat = "passenger in flight.passengers">
-       <div class="list card animated bounceInLeft" style="color:blue">
-    First Name 
-    </div>
-    <div class="list card animated bounceInRight">
-   {{passenger.firstName}}
-    </div>
-      <div class="list card animated bounceInLeft" style="color:blue">
-    Last  Name 
-    </div>
-    <div class="list card animated bounceInRight">
-   {{passenger.lastName}}
-    </div>
-     <div class="list card animated bounceInLeft" style="color:blue">
-    outgoingFlightSeat
-    </div>
- 
-    <div class="list card animated bounceInRight">
-  {{ passenger.outgoingFlightSeat}}
-    </div>
-      <div class="list card animated bounceInLeft" style="color:blue">
-    ingoingFlightSeat
+    <div class="list card animated slideInRight">
+        {{flight.type}}
     </div>
 
-    <div class="list card animated bounceInRight">
-  {{ passenger.ingoingFlightSeat}}
+     <div class="list card animated slideInLeft">
+        Class
     </div>
+    <div class="list card animated slideInRight">
+      {{flight.class}}
     </div>
-    </ion-content>
+
+    <div ng-repeat = "passenger in flight.passengers">
+        <div class="list card animated slideInLeft">
+          First Name 
+        </div>
+        <div class="list card animated slideInRight">
+          {{passenger.firstName}}
+        </div>
+
+        <div class="list card animated slideInLeft">
+          Last  Name 
+        </div>
+        <div class="list card animated slideInRight">
+          {{passenger.lastName}}
+        </div>
+
+        <div class="list card animated slideInLeft">
+          outgoingFlightSeat
+        </div>
+        <div class="list card animated slideInRight">
+          {{ passenger.outgoingFlightSeat}}
+        </div>
+
+        <div class="list card animated slideInLeft">
+         ingoingFlightSeat
+        </div>
+        <div class="list card animated slideInRight">
+          {{ passenger.ingoingFlightSeat}}
+        </div>
+      </div>
+    
   </ion-content>
 </ion-view>

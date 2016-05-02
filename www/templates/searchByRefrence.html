@@ -1,15 +1,19 @@
-<ion-view view-title="Search">
-  <ion-content>
-  <div>
-    <h1  style="width:32%;margin-left:auto; margin-right:auto;">Search</h1>
-    <input  style="width:60%;margin-left:auto; margin-right:auto;" class="form-control" ng-model="search.searchQuery" ></input>
-    
+<link href="css/searchByReference.css" rel="stylesheet">
+<ion-view view-title="FIND YOUR FLIGHT">
+  <ion-content id="content">
 
-          <button class="button button-positive button-full icon-left ion-search" ng-click="searchByRefrence()" style="width:40% ;left:30%;">Search</button>
-         
-</button>
-</div>
+  	<div class="animated slideInDown" id="block">
+	   <p id="enterText">Enter your booking reference <br>
+	   number</p>
+	   <label id="searchBox" class="item item-input item-floating-label">
+    		<span class="input-label">
+    		<i class="icon ion-compose custom-icon"></i>Booking ID</span>
+   		    <input id="inputField" type="text" placeholder="Booking ID"
+   		    ng-model="search.searchQuery">
+  		</label>
+	   <button class="button button-outline button-royal icon-right" 
+	   id="searchButton" ng-click="searchByRefrence()">
+	   <i class="icon ion-search"></i>Search</button>
+	</div>
   </ion-content>
-
-
 </ion-view>

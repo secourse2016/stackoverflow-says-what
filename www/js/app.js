@@ -101,15 +101,6 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    /*.state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })*/
     .state('app.welcomePage', {
     url: '/welcomePage',
     views: {
