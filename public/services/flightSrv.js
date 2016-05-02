@@ -1,6 +1,5 @@
 App.factory('flightSrv',function($http){
 	return {
-		// returns all the flights in the json file
 		getInFlights : function(cb){
 			var myUrl = this.destination;
 			myUrl = myUrl.concat('/');
@@ -58,9 +57,11 @@ App.factory('flightSrv',function($http){
 					callback(result.token);	
 				});
 		},
-		createPayment : function(bookingData,cb){
+		createPayment : function(bookingData,IP,cb){
 			this.getToken(function(token){
-				var myUrl = '/booking';
+				if (!IP)
+					IP="";
+				var myUrl = IP.concat('/booking');
 				myUrl = myUrl.concat('?wt=');
 				myUrl = myUrl.concat(token);
 				$http.post(myUrl, bookingData).success(function(data)

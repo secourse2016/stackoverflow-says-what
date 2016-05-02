@@ -32,12 +32,6 @@ IonicApp.controller('PlaylistsCtrl', function($scope) {
     { title: 'Rania :P', id: 6 }
   ];
 })
- IonicApp.controller('SearchCtrl', function($scope) {
-  
  
-
-
- })
-
 IonicApp.controller('PlaylistCtrl', function($scope, $stateParams) {
 });

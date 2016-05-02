@@ -7,8 +7,22 @@
     display: block;  padding: 10px 10px;">
 
       
+             <label class="item item-input ">
+              <i class="icon ion-plane placeholder-icon"></i>
+              <span class="input-label">Flying From</span>
+               <select ng-model="flightData.selectedOrigin">
+               <option ng-repeat = "airport in Airports ">{{airport}}</option>
+               </select>
+           </label>
 
-           <label class="item item-input ">
+           <label class="item item-input">
+              <i class="icon ion-plane placeholder-icon"></i>
+              <span class="input-label">Flying To</span>
+              <select ng-model="flightData.selectedDestination">
+               <option ng-repeat = "airport in Airports">{{airport}}</option>
+               </select>
+           </label>
+           <!-- <label class="item item-input ">
               <i class="icon ion-plane placeholder-icon"></i>
               <span class="input-label">Flying From</span>
               <input type="text" ng-model="flightData.selectedOrigin">
@@ -18,7 +32,7 @@
               <i class="icon ion-plane placeholder-icon"></i>
               <span class="input-label">Flying To</span>
               <input type="text" ng-model="flightData.selectedDestination">
-           </label>
+           </label> -->
 
            <label class="item item-input">
               <i class="icon ion-calendar placeholder-icon"></i>
@@ -43,7 +57,7 @@
           </label>
 
           
-          <ion-checkbox ng-model="flightData.otherAirlines">Search Other Airlines</ion-checkbox>
+          <ion-toggle ng-model="flightData.otherAirlines" toggle-class="toggle-calm">Search Other Airlines</ion-toggle> 
           
           
           <label>

@@ -1,5 +1,7 @@
 
-IonicApp = angular.module('starter', ['ionic','ionic-datepicker']);
+
+IonicApp = angular.module('starter', ['ionic','ui.router','ionic-datepicker']);
+
 
 IonicApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -85,7 +87,17 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
       url: '/searchByRefrence',
       views: {
         'menuContent': {
-          templateUrl: 'templates/searchByRefrence.html'
+          templateUrl: 'templates/searchByRefrence.html',
+          controller: 'SearchCtrl'
+        }
+      }
+    })
+  .state('app.bookingInfo', {
+      url: '/bookingInfo',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/bookingInfo.html',
+          controller: 'SearchCtrl'
         }
       }
     })

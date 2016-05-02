@@ -26,13 +26,17 @@ IonicApp.controller('confirmOneCtrl', function($scope,$state, FlightSrv, $locati
 		$scope.class = FlightSrv.getClass();
 	}
 
-	$scope.updateO = function() {
-    	$location.url('/outGoingFlights');
-    };
 
   
 	$scope.confirmOne = function() {
-		// console.log('hiiiiiiiiiii');
+		$scope.originAirport = "";
+		$scope.destinationAirport = "";
+		$scope.depDate = "";
+		$scope.price = "";
+		$scope.flightNo = "";
+		$scope.duration = "";
+		$scope.airline = "";
+		$scope.class = "";
 		$state.go('app.paymentInfo');
 	};
 
