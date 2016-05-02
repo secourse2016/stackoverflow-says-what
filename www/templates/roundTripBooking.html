@@ -11,7 +11,7 @@
               <i class="icon ion-plane placeholder-icon"></i>
               <span class="input-label">Flying From</span>
                <select ng-model="flightData.selectedOrigin">
-               <option ng-repeat = "airport in Airports ">{{airport.iata}}</option>
+               <option ng-repeat = "airport in Airports ">{{airport}}</option>
                </select>
            </label>
 
@@ -19,7 +19,7 @@
               <i class="icon ion-plane placeholder-icon"></i>
               <span class="input-label">Flying To</span>
               <select ng-model="flightData.selectedDestination">
-               <option ng-repeat = "airport in Airports">{{airport.iata}}</option>
+               <option ng-repeat = "airport in Airports">{{airport}}</option>
                </select>
            </label>
            <!-- <label class="item item-input ">
