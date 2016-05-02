@@ -2,9 +2,10 @@
  $scope.search={};
  $scope.flight= FlightSrv.getFlight();
  $scope.found=true;
- if($scope.flight != undefined)
-    console.log("passengers" + $scope.flight);
- 
+ console.log($scope.searchQuery);
+ $scope.change=function(){
+  $scope.found = true;
+}
  //refnum = 5726a0c645b95965055819ac
  
 /*  $scope.showAlert = function() {
@@ -34,8 +35,8 @@
 				})
          .error(function(data, status) {
   console.error('Repos error', status, data);
-
-           $scope.found = false ;
+           
+           $scope.found = false ; 
             // FlightSrv.setOldFound($scope.searchQuery);
            
        }
