@@ -1,12 +1,12 @@
 <ion-view view-title="Search">
   <ion-content>
   <div>
-    <input  style="width:60%;margin-left:auto; margin-right:auto;" class="form-control" ng-model="search.searchQuery"  placeholder="Search"></input>
+    <input  style="width:60%;up:20%;margin-left:auto; margin-right:auto;" class="form-control" ng-model="search.searchQuery"  placeholder="Search"></input>
     
 
           <button class="button button-positive button-full icon-left ion-search" ng-click="searchByRefrence()" style="width:40% ;left:30%;">Search</button>
          
-</button>
+<span ng-hide = "found" ng-show= "!found">You entered a refrence number that doesn't exist</span>
 </div>
   </ion-content>
 
