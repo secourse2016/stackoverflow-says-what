@@ -19,7 +19,14 @@
 	font-family: 'Lora', serif, Bold Italic;
 }
 
+#refButton {
+	margin-left: 30%;
+	margin-bottom: 3%;
+	color: white;
+}
+
 #homeButton {
 	margin-left: 40%;
 	color: white;
 }
+
