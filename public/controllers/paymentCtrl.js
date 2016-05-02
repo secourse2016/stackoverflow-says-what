@@ -113,16 +113,34 @@ function Book(token)
             $scope.bookingData = {};
             $scope.paymentDetails = {};
             $scope.refNo = data;
+            console.log(" ");
             if(flightSrv.getType() === "OneWay")
             {
-                console.log(" ");
-                flightSrv.setOutRefNo(data);
-                flightSrv.setInRefNo("-");
+                if (data.refNum)
+                {
+                  flightSrv.setOutRefNo(data.refNum);
+                  flightSrv.setInRefNo("-");
+                }
+                else
+                {
+                  flightSrv.setOutRefNo("Sorry the booking failed");
+                  flightSrv.setInRefNo("-");
+                }
             }
             else
             {
-                flightSrv.setOutRefNo(data);
-                flightSrv.setInRefNo(data);
+              if (data.refNum)
+                {
+                  flightSrv.setOutRefNo(data.refNum);
+                  flightSrv.setInRefNo(data.refNum);
+                }
+                else
+                {
+                  flightSrv.setOutRefNo("Sorry the booking failed");
+                  flightSrv.setInRefNo("Sorry the booking failed");
+                }
+                
+                
             }
         }); 
         verifying = false;
