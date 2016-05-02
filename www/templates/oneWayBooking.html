@@ -1,28 +1,29 @@
-<ion-view view-title="ONE WAY" style="background-color:lightblue">
-  <ion-content >
-
+<ion-view view-title="ONE WAY" style="background-color:#CCCCFF">
+  <ion-content>
      <div class="list list-inset" style="width:90%;margin-left: auto;
     margin-right: auto;
     display: block;  padding: 10px 10px;">
-
-      
-
            <label class="item item-input ">
               <i class="icon ion-plane placeholder-icon"></i>
               <span class="input-label">Flying From</span>
-              <input type="text" ng-model="flightData.selectedOrigin">
+               <select ng-model="flightData.selectedOrigin">
+               <option ng-repeat = "airport in Airports ">{{airport}}</option>
+               </select>
            </label>
 
            <label class="item item-input">
               <i class="icon ion-plane placeholder-icon"></i>
               <span class="input-label">Flying To</span>
-              <input type="text" ng-model="flightData.selectedDestination">
+              <select ng-model="flightData.selectedDestination">
+               <option ng-repeat = "airport in Airports">{{airport}}</option>
+               </select>
            </label>
 
            <label class="item item-input">
               <i class="icon ion-calendar placeholder-icon"></i>
               <span class="input-label">Departure Date</span>
-              <input type="text" placeholder="yyyy-mm-dd" onfocus="(this.type='date')" ng-model="flightData.dtOneway">
+                <input type="text" placeholder="yyyy-mm-dd" onfocus="(this.type='date')" 
+                ng-model="flightData.dtOneway">
            </label>
 
            <label class="item item-input item-select" >
@@ -32,20 +33,12 @@
                 <option>business</option>
              </select>
           </label>
-
           
-          <ion-checkbox ng-model="flightData.otherAirlines">Search Other Airlines</ion-checkbox>
-          
+          <ion-toggle ng-model="flightData.otherAirlines" toggle-class="toggle-calm">Search Other Airlines</ion-toggle> 
           
           <label>
           <button class="button button-positive button-full icon-left ion-search" ng-click="searchOneWay()">Search Flights</button>
           </label>
-          
-          
-  
      </div>
-
-          
-    
   </ion-content>
 </ion-view>

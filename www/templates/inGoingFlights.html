@@ -4,7 +4,7 @@
 </ion-navbar>
 <ion-content>
   <ion-list>
-  <ion-item ng-click = "showConfirmIn(flight,price,seatClass);" ng-repeat = "flight in flightData.outflights">
+  <ion-item ng-click = "showConfirmIn(flight,flight.cost)" ng-repeat = "flight in flightData.inflights">
   <div class="row animated fadeInLeft">
   		<div class="col hvr-sweep-to-left" id="flightDetails">
   			<!-- <h2> Airline: {{ flight.airline }}</h2> -->

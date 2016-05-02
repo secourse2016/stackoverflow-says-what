@@ -38,7 +38,10 @@ module.exports = function(app,mongo) {
     	var flights = require('../flights.json');
     	res.json(flights);
     });
-
+    app.get('/api/data/airlines', function(rep, res){
+        var flights = require('../airlinesData.json');
+        res.json(flights);
+    });
     app.get('/api/data/outflights', function(rep, res){
         var flights = require('../flights.json');
         res.json(flights);
@@ -88,6 +91,7 @@ module.exports = function(app,mongo) {
         });
 
     }); 
+
     app.get('/api/bookings/search/:refNo', function(req, res){
 
         flights.getBooking(function(err,result){ 
@@ -128,12 +132,15 @@ module.exports = function(app,mongo) {
             function(err1, res1, body) {
               if (err1)
                 callback(null,null);
-              else       
+              else    
+              {
+                body.url = url; 
                 callback(err1, body);
+              }
             }
           );
         }
-
+        var j;
         var arr = [];
         async.map(urls, httpGet, function (err2, res2){
           if (err2) return console.log(err2);
@@ -142,7 +149,11 @@ module.exports = function(app,mongo) {
           {
             if (res2[i])
                 if (res2[i].outgoingFlights != undefined)
+                {
+                    for (j=0;j<res2[i].outgoingFlights.length;j++)
+                        res2[i].outgoingFlights[j].IP = res2[i].url;
                     resultArr = resultArr.concat(res2[i].outgoingFlights);
+                }
           }
           result={};
           result.outgoingFlights=resultArr;
@@ -153,10 +164,8 @@ module.exports = function(app,mongo) {
     app.use(function(req, res, next) {
        try 
       {
-       
-      var token = req.body.wt||req.query.wt||req.headers['x-access-token'];   
-
-      var jwtSecret = process.env.JWTSECRET;
+        var token = req.body.wt||req.query.wt||req.headers['x-access-token'];   
+        var jwtSecret = process.env.JWTSECRET;
         var payload = jwt.verify(token, jwtSecret);
         req.payload = payload;
         next();
@@ -166,6 +175,10 @@ module.exports = function(app,mongo) {
         console.error('[ERROR]: JWT Error reason:', err);
         res.status(403).sendFile(path.join(__dirname, '../public/partials', '403.html'));
       }
+    });
+    app.get('/stripe/pubkey', function(rep, res){
+        var myPubKey = process.env.STRIPE_PUBLISHABLE_KEY;
+        res.send(myPubKey);
     });
     app.post('/booking', function(req, res){
         var type;
@@ -194,19 +207,36 @@ module.exports = function(app,mongo) {
                 if(type === 'OneWay')
                 {
                     flights.bookOneWay(req.body, function(err, bookedDetails){
-                       
-                        console.log(bookedDetails);
-                        console.log(flightCost);
-                        res.json(bookedDetails);
+                        var result = {};
+                        if (err)
+                        {
+                            result.refNum = null;
+                            result.errorMessage = err;
+                        }
+                        else
+                        {
+                            result.refNum = bookedDetails;
+                            result.errorMessage = err;
+                        }
+                        res.json(result);
                     });
                 }
                 else
                 {
                     flights.bookRound(req.body, function(err, bookedDetails)
-                        { 
-                            console.log(bookedDetails);
-                            console.log(flightCost);
-                            res.json(bookedDetails);
+                        {
+                            var result = {};
+                            if (err)
+                            {
+                                result.refNum = null;
+                                result.errorMessage = err;
+                            }
+                            else
+                            {
+                                result.refNum = bookedDetails;
+                                result.errorMessage = err;
+                            }
+                            res.json(result);
                     });
                 }
             }

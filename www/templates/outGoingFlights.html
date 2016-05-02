@@ -5,7 +5,7 @@
 
 <ion-content>
   <ion-list>
-  <ion-item ng-click = "showConfirmOut(flight,price,seatClass);" ng-repeat = "flight in flightData.outflights">
+  <ion-item ng-click = "showConfirmOut(flight,flight.cost)" ng-repeat = "flight in flightData.outflights">
   <div class="row animated fadeInLeft">
   		<div class="col hvr-sweep-to-left">
   	    <!-- <h2> Airline: {{ flight.airline }}</h2>  -->
@@ -16,7 +16,6 @@
         <i class="icon ion-calendar"> Arrival Date: {{ flight.arrivalDateTime | date:'yyyy-MM-dd hh:mm' }}</i><br>
   			<i class="icon ion-cash"> Cost: ${{ flight.cost }}</i>
   		</div>
-    <!--<button type="button" class="btn btn-success ">${{flight.cost}}</button> -->
     </div>
     </ion-item>
 
