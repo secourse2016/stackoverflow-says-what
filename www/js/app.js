@@ -82,7 +82,6 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     }
   })
   
-
   .state('app.searchByRefrence', {
       url: '/searchByRefrence',
       views: {
