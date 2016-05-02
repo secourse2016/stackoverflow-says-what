@@ -1,7 +1,19 @@
-/*.title {
-	color: white;
-	font-size: 50px;
+.welcomePage{
+	background-image: url("../img/flightAttendants.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+
+}
+
+.welcomeTextApplication{
 	text-align: center;
+	color: #12394C;
 	font-family: 'Lobster', cursive;
-	background-color: black;
-}*/
+	position: relative;
+}
+
+.flyWithUs{
+	text-align: center;
+	color: #12394C;
+	position: relative;
+}
