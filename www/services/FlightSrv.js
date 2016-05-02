@@ -224,6 +224,14 @@ IonicApp.factory('FlightSrv',function($http){
 		getOtherAirlines: function()
 		{
 			return this.otherAirlines;
+		},
+		setFlight: function(value)
+		{
+			this.flight = value;
+		},
+		getFlight: function()
+		{
+			return this.flight;
 		}
 
 	};

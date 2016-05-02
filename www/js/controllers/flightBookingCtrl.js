@@ -3,17 +3,22 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state) {
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[1];
   $scope.flightData = {};
+  console.log("here1");
+ 
+         $scope.Airports = ['BOM','DEL','CAI','JED','HKG','TPE',
+         'JNB','CPT','RUH','LHR','JFK','LCF','LAX','SFQ','FRA','TXL',
+         'FCO','LIN']
   $scope.flightData.selectedOrigin = "";
   $scope.flightData.selectedDestination = "";
   $scope.flightData.dtOneway = "";
   $scope.flightData.selectedClass = "";
   $scope.flightData.otherAirlines = false;
 
-  function AirportCodes() {
-    FlightSrv.getAirports().success(function(airports) {
-         $scope.Airports = airports;
-     });
-  };
+  // function AirportCodes() {
+  //   FlightSrv.getAirports().success(function(airports) {
+  //        $scope.Airports = airports;
+  //    });
+  // };
 
   $scope.setOrigin = function(originAirport)
   {
@@ -78,6 +83,6 @@ IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state) {
     
   };
 
-  AirportCodes();
+  // AirportCodes();
 
 });
