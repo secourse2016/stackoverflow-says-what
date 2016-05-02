@@ -11,8 +11,8 @@
 	text-align: center;
 	color: white;
 	font-size: 25px;
-	font-family: 'Lora', serif, Bold Italic;
-	margin-bottom: 3%;
+	font-family: 'Lora', serif;
+	margin-bottom: 5%;
 }
 #searchBox {
 	margin-left: 15%;
@@ -29,11 +29,18 @@
 .input-label{
 	color: white;
 }
+#error {
+	color: white;
+	margin-left: 32%;
+}
+
+
 #inputField {
 color: white;
 }
 
 #searchButton {
 	margin-left: 35%;
+	width: 30%;
 	color: white;
 }

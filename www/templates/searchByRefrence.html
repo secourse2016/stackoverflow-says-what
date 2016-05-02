@@ -3,17 +3,18 @@
   <ion-content id="content">
 
   	<div class="animated slideInDown" id="block">
-	   <p id="enterText">Enter your booking reference <br>
-	   number</p>
+	   <p id="enterText">
+	   Enter your booking reference <br> number</p>
 	   <label id="searchBox" class="item item-input item-floating-label">
     		<span class="input-label">
     		<i class="icon ion-compose custom-icon"></i>Booking ID</span>
    		    <input id="inputField" type="text" placeholder="Booking ID"
    		    ng-model="search.searchQuery">
   		</label>
+  		<!-- <p class="animated slideInDown" id="error" ng-show="alert">Invalid Booking ID</p> -->
 	   <button class="button button-outline button-royal icon-right" 
 	   id="searchButton" ng-click="searchByRefrence()">
-	   <i class="icon ion-search"></i>Search</button>
+	   <i class="icon ion-android-search"></i>   Search</button>
 	</div>
   </ion-content>
 </ion-view>

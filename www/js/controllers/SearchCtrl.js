@@ -3,27 +3,26 @@
  $scope.flight= FlightSrv.getFlight();
  if($scope.flight != undefined)
     console.log("passengers" + $scope.flight);
- //console.log("here");
-
-  $scope.showAlert = function() {
+ 
+ //refnum = 5726a0c645b95965055819ac
+ 
+/*  $scope.showAlert = function() {
     $ionicPopup.alert({
       title: 'Invalid Booking ID'
     }).then(function(res) {
         
     });
-  };
+  };*/
 
-  $scope.alertCheck = false;
-
+  /*$scope.alert = false;
+*/
   $scope.searchByRefrence = function() {
        //console.log($scope.search.searchQuery);
-       $scope.alertCheck = false;
   	   FlightSrv.setRefNo($scope.search.searchQuery);
 
        //synch alert with cb
        $scope.flight=  FlightSrv.getBookings().success(function(result)
 				{
-            $scope.alertCheck = true;
             $scope.flight=result;
             $scope.flight.type = result.type;
             $state.go("app.bookingInfo");
