@@ -105,7 +105,7 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent': {
         templateUrl: 'templates/welcomePage.html',
-        controller: 'welcomePageCtrl'
+        controller: 'PlaylistsCtrl'
       }
     }
   })
@@ -142,6 +142,7 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
       views : {
         'menuContent' : {
           templateUrl : '/templates/paymentInfo.html',
+          controller : 'paymentCtrl'
 
         }
       }
