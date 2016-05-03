@@ -102,7 +102,7 @@ exports.getRoundTripFlightFromDB = function(cb, origin, destination, departingDa
 	getOneWayFlightFromDB(function(err2, res2){
 		res.outgoingFlights =  res2.outgoingFlights;
 		getOneWayFlightFromDB(function(err3, res3){
-			res.returningFlights = res3.outgoingFlights;
+			res.returnFlights = res3.outgoingFlights;
 			cb(null, res);
 		}, destination, origin, returningDate,  myClass, seats);
 	}, origin, destination, departingDate, myClass, seats);

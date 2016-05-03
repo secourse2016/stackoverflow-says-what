@@ -1,7 +1,4 @@
-
-
-IonicApp = angular.module('starter', ['ionic','ui.router','ionic-datepicker','ionic-modal-select']);
-
+IonicApp = angular.module('starter', ['ionic','ui.router','ionic-modal-select']);
 
 IonicApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -105,7 +102,7 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent': {
         templateUrl: 'templates/welcomePage.html',
-        controller: 'PlaylistsCtrl'
+        controller: 'welcomePageCtrl'
       }
     }
   })
