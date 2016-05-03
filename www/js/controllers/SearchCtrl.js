@@ -3,11 +3,18 @@
  $scope.found=false;
  $scope.flight= FlightSrv.getFlight();
  console.log($scope.searchQuery);
-
+  $scope.myStyle = {'color':'red'};
  $scope.change=function(){
   $scope.found = false;
 }
+$scope.changeGreen = function(){
+  $scope.myStyle = {'color':'green'};
  //refnum = 5726a0c645b95965055819ac
+}
+$scope.changeRed = function(){
+  $scope.myStyle = {'color':'red'};
+ //refnum = 5726a0c645b95965055819ac
+}
  
 /*  $scope.showAlert = function() {
     $ionicPopup.alert({

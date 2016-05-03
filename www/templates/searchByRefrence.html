@@ -14,7 +14,7 @@
   		<p class="animated pulse" id="error" 
       ng-show="found">Invalid Booking ID</p>
 	   <button class="button button-outline button-royal icon-right" 
-	   id="searchButton" ng-click="searchByRefrence()">
+	   id="searchButton" ng-click="searchByRefrence()" ng-style="myStyle" ng-mouseenter="changeGreen() "ng-mouseleave="changeRed()">
 	   <i class="icon ion-android-search"></i>   Search</button><br>
     <!--  <span ng-hide = "found" ng-show= "!found" >Refrence number doesn't exist!</span> -->
 	</div>
