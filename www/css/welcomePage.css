@@ -52,7 +52,6 @@
 /*footer*/
 #Footerbar {
 	background-color: transparent;
-	/*color: white;*/
 	border:1px solid;
     border-bottom-color:transparent; 
     border-top-color:white;    
@@ -65,9 +64,9 @@
 
 #footerText {
 	text-align: center;
-	/*margin-left: 10%;*/
 	margin-bottom: 0%;
 	color: white;
+	font-size: 12px;
 }
 
 #social {

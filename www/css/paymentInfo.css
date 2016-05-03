@@ -1,0 +1,20 @@
+#content {
+	background-image: url("../img/background1.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.button {
+	width: 100%;
+}
+
+#month {
+	width: 49%;
+}
+#year {
+	width: 49%;
+}
+
+#month, #year {
+	display: inline-block;
+}
