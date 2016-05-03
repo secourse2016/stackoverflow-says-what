@@ -114,6 +114,7 @@ function Book(token)
            $scope.paymentDetails.cost += FlightSrv.getIngoingFlight().cost;
            console.log($scope.paymentDetails);
         }
+        console.log('Hello');
         FlightSrv.createPayment($scope.paymentDetails,IP,function (data)
         {
             $scope.bookingData = {};
