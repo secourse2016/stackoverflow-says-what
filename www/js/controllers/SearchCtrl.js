@@ -3,16 +3,17 @@
  $scope.found=false;
  $scope.flight= FlightSrv.getFlight();
  console.log($scope.searchQuery);
-  $scope.myStyle = {'color':'red'};
+  $scope.myStyle = {'color':'red','border-color':'red'};
  $scope.change=function(){
   $scope.found = false;
 }
 $scope.changeGreen = function(){
-  $scope.myStyle = {'color':'green'};
+  $scope.myStyle = {'color':'green' ,'border': '2px solid',
+    'border-radius': '25px'};
  //refnum = 5726a0c645b95965055819ac
 }
 $scope.changeRed = function(){
-  $scope.myStyle = {'color':'red'};
+  $scope.myStyle = {'color':'red','border-color':'red'};
  //refnum = 5726a0c645b95965055819ac
 }
  
