@@ -1,20 +1,19 @@
  IonicApp.controller('paymentCtrl', function($scope,$state,FlightSrv, $http) {
  	$scope.bookingData = {};
  	$scope.val = {};
-  	$scope.alert = false;
+
+  $scope.alert = false;
 	$scope.val.cardCheck = true;
 	$scope.val.cvcCheck = true;
 	$scope.val.dateCheck = true;
 	$scope.val.verifying = false;
+
 	var token = null;
 	var IP = "";
   var IPout = "";
   var IPin = "";
   var myUrlin = "";
 	$scope.stripeCallback = function (code, result) {
-	//console.log("waslna hna");
-	//console.log($scope.bookingData);
-	//console.log($scope.bookingData.gender);
     var wt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/';
     if (($scope.bookingData.firstName == null || $scope.bookingData.firstName == "")
     || ($scope.bookingData.lastName == null || $scope.bookingData.lastName == "")
@@ -33,10 +32,7 @@
 
      else
      {
-        //console.log(FlightSrv.getOutgoingFlight());
         IP = FlightSrv.getOutgoingFlight().IP;
-        //console.log(IP);
-        // = 'http://54.93.36.94';
         if (!IP)
           IP="http://54.93.36.94";
         var myUrl = IP;
@@ -107,8 +103,8 @@
     if(response.error) 
     { 
       $scope.verifying = false;
-      console.log(response.error);
-      //window.alert(response.error.message); 
+      $scope.val.verifying = false;
+
     }
     else 
     { 
@@ -179,7 +175,7 @@ function Book(token)
             $scope.bookingData = {};
             $scope.paymentDetails = {};
             $scope.bookingData.refNo = data;
-            //console.log(" ");
+  
             if(FlightSrv.getType() === "OneWay")
             {
                 if (data.refNum)

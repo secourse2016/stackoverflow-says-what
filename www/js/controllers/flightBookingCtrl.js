@@ -1,4 +1,4 @@
-IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state, ionicDatePicker, $ionicModal) {
+IonicApp.controller('flightBookingCtrl', function($scope, FlightSrv,$state,$ionicModal) {
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[1];

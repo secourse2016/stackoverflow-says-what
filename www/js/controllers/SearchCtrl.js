@@ -2,20 +2,20 @@
  $scope.search={};
  $scope.found=false;
  $scope.flight= FlightSrv.getFlight();
- console.log($scope.searchQuery);
-  $scope.myStyle = {'color':'red','border-color':'red'};
+ //console.log($scope.searchQuery);
+ //refnum = 5726a0c645b95965055819ac
+ 
+ $scope.myStyle = {'color':'white','border-color':'white'};
  $scope.change=function(){
   $scope.found = false;
-}
-$scope.changeGreen = function(){
-  $scope.myStyle = {'color':'green' ,'border': '2px solid',
+ }
+ $scope.changeEnter = function(){
+  $scope.myStyle = {'color':'white' ,'border': '2px solid',
     'border-radius': '25px'};
- //refnum = 5726a0c645b95965055819ac
-}
-$scope.changeRed = function(){
-  $scope.myStyle = {'color':'red','border-color':'red'};
- //refnum = 5726a0c645b95965055819ac
-}
+ }
+ $scope.changeLeave = function(){
+  $scope.myStyle = {'color':'white','border-color':'white'};
+ }
  
 /*  $scope.showAlert = function() {
     $ionicPopup.alert({
