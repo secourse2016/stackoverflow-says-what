@@ -18,3 +18,7 @@
 #month, #year {
 	display: inline-block;
 }
+
+#alert {
+	color:#A00000;
+}
