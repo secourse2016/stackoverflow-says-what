@@ -142,10 +142,11 @@ function Book(token)
                 
                 
             }
+            verifying = false;
+            Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+            $location.url('/complete');
         }); 
-        verifying = false;
-        Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
-        $location.url('/complete');
+        
 };
 });
 
