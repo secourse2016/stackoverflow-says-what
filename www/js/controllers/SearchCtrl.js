@@ -1,10 +1,11 @@
  IonicApp.controller('SearchCtrl', function($scope,$state,FlightSrv,$ionicPopup) {
  $scope.search={};
+ $scope.found=false;
  $scope.flight= FlightSrv.getFlight();
- $scope.found=true;
  console.log($scope.searchQuery);
+
  $scope.change=function(){
-  $scope.found = true;
+  $scope.found = false;
 }
  //refnum = 5726a0c645b95965055819ac
  
@@ -15,14 +16,9 @@
         
     });
   };*/
-
-  /*$scope.alert = false;
-*/
   $scope.searchByRefrence = function() {
-       //console.log($scope.search.searchQuery);
   	   FlightSrv.setRefNo($scope.search.searchQuery);
 
-       //synch alert with cb
        $scope.flight=  FlightSrv.getBookings().success(function(result)
 				{
             $scope.flight=result;
@@ -33,19 +29,16 @@
             FlightSrv.setFlight($scope.flight);
             $scope.flight.type = result.type;
 				})
-         .error(function(data, status) {
-  console.error('Repos error', status, data);
-           
-           $scope.found = false ; 
-            // FlightSrv.setOldFound($scope.searchQuery);
-           
+        .error(function(data, status) {
+           console.error('Repos error', status, data);
+           $scope.found = true ; 
        }
       ) 
-  .finally(function() {
-  console.log("finally finished repos");
-});   
+    .finally(function() {
+      console.log("finally finished repos");
+    });   
    
            
-  };
+};
  
 });
