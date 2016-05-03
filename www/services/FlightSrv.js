@@ -15,10 +15,12 @@ IonicApp.factory('FlightSrv',function($http){
 				myUrl = myUrl.concat('?wt=');
 				myUrl = myUrl.concat(token);
 				if (!pingOthers)
+				{
 					$http.get('http://54.93.36.94/api/flights/search/'.concat(myUrl)).success(function(flights)
 				 		{
 				 			cb(flights.outgoingFlights);
 				 		});
+				}
 				else
 					$http.get('http://54.93.36.94/api/flights/searchAll/'.concat(myUrl)).success(function(flights)
 				 		{
@@ -58,9 +60,11 @@ IonicApp.factory('FlightSrv',function($http){
 					callback(result.token);	
 				});
 		},
-		createPayment : function(bookingData,cb){
+		createPayment : function(bookingData,IP,cb){
 			this.getToken(function(token){
-				var myUrl = 'http://54.93.36.94/booking';
+				if (!IP)
+					IP="";
+				var myUrl = IP.concat('/booking');
 				myUrl = myUrl.concat('?wt=');
 				myUrl = myUrl.concat(token);
 				$http.post(myUrl, bookingData).success(function(data)

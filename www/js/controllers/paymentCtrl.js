@@ -146,8 +146,6 @@ function Book(token)
                   FlightSrv.setOutRefNo("Sorry the booking failed");
                   FlightSrv.setInRefNo("Sorry the booking failed");
                 }
-                
-                
             }
         }); 
         verifying = false;
