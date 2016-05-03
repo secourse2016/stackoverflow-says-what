@@ -105,7 +105,7 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent': {
         templateUrl: 'templates/welcomePage.html',
-        controller: 'PlaylistsCtrl'
+        controller: 'welcomePageCtrl'
       }
     }
   })

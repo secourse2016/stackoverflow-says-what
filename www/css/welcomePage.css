@@ -1,19 +1,79 @@
 .welcomePage{
-	background-image: url("../img/flightAttendants.jpg");
+	background-image: url("../img/final2.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 
 }
 
-.welcomeTextApplication{
+.welcomeText{
+	margin-top: 40%;
 	text-align: center;
-	color: #12394C;
+	color: white;
 	font-family: 'Lobster', cursive;
-	position: relative;
 }
 
-.flyWithUs{
+.enterText{
+	margin-top: 0%;
+	margin-bottom: 10%;
 	text-align: center;
-	color: #12394C;
-	position: relative;
+	color: white;
+	/*letter-spacing: 0.2px;*/
 }
+
+.semi-transparent-button {
+	display: block;
+  	padding: 5px;
+  	width: 50%;
+  	max-width: 90px;
+  	background: #fff; /* fallback color for old browsers */
+  	background: rgba(255, 255, 255, 0.3);
+  	border-radius: 8px;
+  	color: #fff;
+  	text-align: center;
+  	text-decoration: none;
+  	letter-spacing: 1px;
+  	font-size: 15px;
+}
+
+#buttonBar1 {
+	margin-bottom: 5%;
+	margin-left: 25%;
+}
+
+#buttonBar2 {
+	margin-left: 25%;
+}
+
+#btnLeft {
+	margin-right: 3%;
+}
+
+
+/*footer*/
+#Footerbar {
+	background-color: transparent;
+	/*color: white;*/
+	border:1px solid;
+    border-bottom-color:transparent; 
+    border-top-color:white;    
+    border-left-color:transparent;   
+    border-right-color:transparent;  
+    margin-top: 50%;
+    margin-bottom: -20%;
+     display: inline-block;
+}
+
+#footerText {
+	text-align: center;
+	/*margin-left: 10%;*/
+	margin-bottom: 0%;
+	color: white;
+}
+
+#social {
+	color:transparent;
+	position: center;
+	margin-left: 27%;
+	margin-top: 0%;
+}
+
