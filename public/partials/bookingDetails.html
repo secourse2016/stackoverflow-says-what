@@ -1,18 +1,87 @@
 <link rel="stylesheet" href="styles/bookingDetails.css" type="text/css" charset="utf-8"/>
+<div style="margin-bottom: 20%">
+<div class="container" style="width:70%;">
+  <div class="panel panel-success" style="margin-top:5%;">
+   <table class="table">
+    <thead>
+      <tr>
+        <th style="color: #C71585; font-size: 25px; font-family:Lobster">Booking Details</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr class="primary">
+        <td><strong>Booking Reference Number</strong></td>
+        <td>{{ booking._id }}</td>
+      </tr>
+      <tr class="success">
+        <td><strong>Outgoing Flight Number</strong></td>
+        <td>{{ booking.outgoingFlightNum }}</td>
+      </tr>
+      <tr class="primary">
+        <td><strong>Seat Class</strong></td>
+        <td>{{ booking.class }}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+
+  <div class="container" style="width:70%;" ng-repeat="i in booking.passengers">
+  <div class="panel panel-success" style="margin-top:5%;">
+   <table class="table">
+    <thead>
+      <tr>
+        <th style="color: #C71585; font-size: 25px; font-family:Lobster">Passenger Details</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr class="primary">
+        <td><strong>First Name</strong></td>
+        <td>  {{ i.firstName }} </td>
+      </tr>
+      <tr class="success">
+        <td><strong>>Last Name</strong></td>
+        <td>{{ {{ i.lastName }} }}</td>
+      </tr>
+      <tr class="primary">
+        <td><strong>Passport Number</strong></td>
+        <td>{{ i.passportNum }}</td>
+      </tr>
+      <tr class="success">
+        <td><strong>Date of Birth</strong></td>
+        <td>{{ i.dateOfBirth }}</td>
+      </tr>
+       <tr class="primary">
+        <td><strong>Email</strong></td>
+        <td>{{ i.email }} </td>
+      </tr>
+      <tr class="success">
+        <td><strong>>Outgoing Seat Number</strong></td>
+        <td>{{ i.outgoingFlightSeat }} </td>
+      </tr>
+       <tr class="primary">
+        <td><strong>Ingoing Seat Number</strong></td>
+        <td>{{ i.ingoingFlightSeat }} </td>
+      </tr>
+     
+    </tbody>
+  </table>
+  </div>
+  </div>
 
 <div ng-hide="notFound"class ="bookingDiv" style="margin-bottom:15%;">
 <br>
 <h1 id="myTitle"class="text-center-h">Your Booking Details</h1>
 <br>
 
-<div class="row ">
+<!-- <div class="row ">
 <div class="col-sm-2"></div>
 <label id="myText" class="text-center">Booking Reference Number: {{ booking._id }} </label>
-</div>
+</div> -->
 
-<div class="row row-colored">
+<!-- <div class="row row-colored">
 <div class="col-sm-2"></div>
-<label id="myText"class="text-center">Outgoing Flight Number:  {{ booking.outgoingFlightNum }} </label>
+<label id="myText"class="text-center" </label>
 
 </div>
 
@@ -20,67 +89,69 @@
 <div class="col-sm-2"></div>
 <label id="myText"class="text-center">Ingoing Flight Number:  {{ booking.ingoingFlightNum }} </label>
 
-</div>
+</div> -->
 
-<div class="row row-colored">
+<!-- div class="row row-colored">
 <div class="col-sm-2"></div>
 <label id="myText" class="text-center">Class: {{ booking.class }} </label>
 </div>
 <br>
-<br>
-<div ng-repeat="i in booking.passengers">
+<br> -->
+<!-- <div ng-repeat="i in booking.passengers"> -->
 
-<div class="row">
+<!-- <div class="row">
 <div class="col-sm-2"></div>
 <label id="myText"class="text-center">First Name:  {{ i.firstName }} </label>
 
-</div>
+</div> -->
 
-<div class="row row-colored">
+<!-- <div class="row row-colored">
 <div class="col-sm-2"></div>
 <label id="myText"class="text-center">Last Name:  {{ i.lastName }} </label>
 
-</div>
+</div> -->
 
-<div class="row">
+<!-- <div class="row">
 <div class="col-sm-2"></div>
 <label id="myText" class="text-center">Passport Number:  {{ i.passportNum }} </label>
 
-</div>
+</div> -->
 
-<div class="row row-colored">
+<!-- <div class="row row-colored">
 <div class="col-sm-2"></div>
 <label id="myText"class="text-center">Date of Birth:  {{ i.dateOfBirth }} </label>
 
-</div>
-
+</div> -->
+<!-- 
 <div class="row">
 <div class="col-sm-2"></div>
 <label id="myText"class="text-center">Email:  {{ i.email }} </label>
 
-</div>
+</div> -->
 
-<div class="row row-colored">
+<!-- <div class="row row-colored">
 <div class="col-sm-2"></div>
 <label id="myText" class="text-center">Outgoing Seat Number:  {{ i.outgoingFlightSeat }} </label>
 
-</div>
+</div> -->
 
-<div class="row">
+<!-- <div class="row">
 <div class="col-sm-2"></div>
 <label id="myText" class="text-center">Ingoing Seat Number:  {{ i.ingoingFlightSeat }} </label>
 
-</div>
+</div> -->
 
+<!-- <br>
 <br>
-<br>
 
-</div>
+</div> -->
 
-</div>
-<div ng-show="notFound"class ="bookingDiv" style="margin-bottom:15%;">
+<!-- </div> -->
+<!-- <div ng-show="notFound"class ="bookingDiv" style="margin-bottom:15%;">
 <br>
 <h1 id="myTitle"class="text-center-h">Your Booking Details Not Found</h1>
 <br>
+</div> -->
+
 </div>
 
