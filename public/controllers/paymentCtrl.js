@@ -33,7 +33,7 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location, $http) {
      {
         IP = flightSrv.getOutgoingFlight().IP;
         if (!IP)
-          IP="http://54.93.36.94/";
+          IP="";
         var myUrl = IP;
 
         myUrl = myUrl.concat('/stripe/pubkey?wt=').concat(wt);
@@ -54,6 +54,12 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location, $http) {
             Stripe.setPublishableKey(pubkey);
             Stripe.card.createToken($scope.cardInfo, stripeResponseHandler);
             Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+          }).error(function(data, status){
+            flightSrv.setOutRefNo("Sorry the booking failed");
+            flightSrv.setInRefNo("-");
+            verifying = false;
+            Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+            $location.url('/complete');
           });
         }  
         else
@@ -64,18 +70,24 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location, $http) {
             Stripe.setPublishableKey(pubkey);
             Stripe.card.createToken($scope.cardInfo, stripeResponseHandler);
             Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+            }).error(function(data, status){
+              flightSrv.setOutRefNo("Sorry the booking failed");
+              flightSrv.setInRefNo("Sorry the booking failed");
+              verifying = false;
+              Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+              $location.url('/complete');
             });
           }
           else
           {
             IPout = flightSrv.getOutgoingFlight().IP;
             if (!IPout)
-              IPout = "http://54.93.36.94/";
+              IPout = "";
             var myUrlout = IPout;
             myUrlout = myUrlout.concat('/stripe/pubkey?wt=').concat(wt); 
             IPin = flightSrv.getIngoingFlight().IP;
             if (!IPin)
-              IPin = "http://54.93.36.94/";
+              IPin = "";
             myUrlin = IPin;
             myUrlin = myUrlin.concat('/stripe/pubkey?wt=').concat(wt);
             $scope.diffAirlines = true;
@@ -83,6 +95,18 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location, $http) {
               Stripe.setPublishableKey(pubkey);
               Stripe.card.createToken($scope.cardInfo, stripeResponseHandler);
               Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+            }).error(function(data, status){
+              flightSrv.setOutRefNo("Sorry the booking failed");
+              $http.get(myUrlin).success(function(pubkey){
+              Stripe.setPublishableKey(pubkey);
+              Stripe.card.createToken($scope.cardInfo, stripeResponseHandler2);
+              Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+              }).error(function(data, status){
+              flightSrv.setInRefNo("Sorry the booking failed");
+              verifying = false;
+              Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+              $location.url('/complete');
+              });
             });
           }  
         }
@@ -104,7 +128,6 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location, $http) {
     else 
     { 
       token = response.id;
-      console.log(token);
       if ($scope.diffAirlines)
         bookDiffAirlines(token);
       else
@@ -129,16 +152,13 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location, $http) {
       $scope.paymentDetails2.class = flightSrv.getClass();
       $scope.paymentDetails2.cost = flightSrv.getIngoingFlight().cost;
       $scope.paymentDetails2.paymentToken = token;
-      console.log($scope.paymentDetails2);
       flightSrv.createPayment($scope.paymentDetails2,IPin,function(data){
         if (data.refNum)
         {
-          console.log("7amada");
           flightSrv.setInRefNo(data.refNum);
         }
         else
         {
-          console.log("7amada");
           flightSrv.setInRefNo("Sorry Payment Failed");
         }
         verifying = false;
@@ -150,7 +170,6 @@ App.controller('paymentCtrl', function($scope, flightSrv, $location, $http) {
 
 function Book(token)
 {
-       console.log(IP);
        $scope.paymentDetails = {};
        $scope.paymentDetails.passengerDetails = [];
        $scope.paymentDetails.passengerDetails[0]=$scope.bookingData;
@@ -158,19 +177,16 @@ function Book(token)
        $scope.paymentDetails.class = flightSrv.getClass();
        $scope.paymentDetails.cost = flightSrv.getOutgoingFlight().cost;
        $scope.paymentDetails.paymentToken = token;
-       console.log('Payment');
         if(flightSrv.getType() === 'Round')
         {
            $scope.paymentDetails.returnFlightId = flightSrv.getIngoingFlight().flightId;
            $scope.paymentDetails.cost += flightSrv.getIngoingFlight().cost;
-           console.log($scope.paymentDetails);
         }
         flightSrv.createPayment($scope.paymentDetails,IP,function (data)
         {
             $scope.bookingData = {};
             $scope.paymentDetails = {};
             $scope.refNo = data;
-            console.log(" ");
             if(flightSrv.getType() === "OneWay")
             {
                 if (data.refNum)
@@ -207,7 +223,6 @@ function Book(token)
 };
 function bookDiffAirlines(token)
 {
-    console.log('Booking Diff Airlines');
     $scope.paymentDetails = {};
     $scope.paymentDetails.passengerDetails = [];
     $scope.paymentDetails.passengerDetails[0]=$scope.bookingData;
@@ -215,22 +230,24 @@ function bookDiffAirlines(token)
     $scope.paymentDetails.class = flightSrv.getClass();
     $scope.paymentDetails.cost = flightSrv.getOutgoingFlight().cost;
     $scope.paymentDetails.paymentToken = token;
-    console.log($scope.paymentDetails);
     flightSrv.createPayment($scope.paymentDetails,IPout,function(data){
       if (data.refNum)
       {
-        console.log("7amada");
         flightSrv.setOutRefNo(data.refNum);
       }
       else
       {
-        console.log("7amada");
         flightSrv.setOutRefNo("Sorry Payment Failed");
       }
       $http.get(myUrlin).success(function(pubkey){
               Stripe.setPublishableKey(pubkey);
               Stripe.card.createToken($scope.cardInfo, stripeResponseHandler2);
               Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+            }).error(function(data, status){
+              flightSrv.setInRefNo("Sorry the booking failed");
+              verifying = false;
+              Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+              $location.url('/complete');
             });
     });
 };
