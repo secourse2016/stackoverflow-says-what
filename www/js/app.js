@@ -22,8 +22,7 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    templateUrl: 'templates/menu.html'
   })
   .state('app.oneWayBooking', {
     url: '/oneWayBooking',
