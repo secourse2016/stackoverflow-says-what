@@ -1,6 +1,7 @@
  IonicApp.controller('paymentCtrl', function($scope,$state,FlightSrv, $http) {
  	$scope.bookingData = {};
  	$scope.val = {};
+  $scope.cardData = {};
 
   //input validation checks
   $scope.firstNameAlert=false;
@@ -36,16 +37,16 @@
     if (($scope.bookingData.firstName != null && $scope.bookingData.firstName != "")
     && ($scope.bookingData.lastName != null && $scope.bookingData.lastName != "")
     && ($scope.bookingData.passportNum != null && $scope.bookingData.passportNum != "")
-    && ($scope.bookingData.gender != null && $scope.bookingData.gender != "")
+    && ($scope.cardData.gender != null && $scope.cardData.gender != "")
     && ($scope.bookingData.email != null && $scope.bookingData.email != "")
     && ($scope.bookingData.passportExpiryDate != null && $scope.bookingData.passportExpiryDate != "")
     && ($scope.bookingData.dateOfBirth != null && $scope.bookingData.dateOfBirth != "")
     && ($scope.bookingData.nationality != null && $scope.bookingData.nationality != "")
-    && ($scope.bookingData.mobile != null && $scope.bookingData.mobile != "")
-    && ($scope.bookingData.number != null && $scope.bookingData.number != "")
-    && ($scope.bookingData.cvc != null && $scope.bookingData.cvc != "")
-    && ($scope.bookingData.expiryYear != null && $scope.bookingData.expiryYear != "")
-    && ($scope.bookingData.expiryMonth != null && $scope.bookingData.expiryMonth != ""))
+    && ($scope.cardData.mobile != null && $scope.cardData.mobile != "")
+    && ($scope.cardData.number != null && $scope.cardData.number != "")
+    && ($scope.cardData.cvc != null && $scope.cardData.cvc != "")
+    && ($scope.cardData.expiryYear != null && $scope.cardData.expiryYear != "")
+    && ($scope.cardData.expiryMonth != null && $scope.cardData.expiryMonth != ""))
     {  
 
         IP = FlightSrv.getOutgoingFlight().IP;
@@ -55,17 +56,17 @@
 
         myUrl = myUrl.concat('/stripe/pubkey?wt=').concat(wt);
         $scope.cardInfo = {};
-        $scope.cardInfo.number = $scope.bookingData.number;
-        $scope.cardInfo.cvc = $scope.bookingData.cvc;
-        $scope.cardInfo.exp_month = $scope.bookingData.expiryMonth;
-        $scope.cardInfo.exp_year = $scope.bookingData.expiryYear;
+        $scope.cardInfo.number = $scope.cardData.number;
+        $scope.cardInfo.cvc = $scope.cardData.cvc;
+        $scope.cardInfo.exp_month = $scope.cardData.expiryMonth;
+        $scope.cardInfo.exp_year = $scope.cardData.expiryYear;
         $scope.val.verifying = true;  //disabling submit button to avoid resubmissions
         $scope.diffAirlines = false;
 
         //input validation
-        $scope.val.cardCheck = Stripe.card.validateCardNumber($scope.bookingData.number);
-        $scope.val.cvcCheck = Stripe.card.validateCVC($scope.bookingData.cvc);
-        $scope.val.dateCheck = Stripe.card.validateExpiry($scope.bookingData.expiryMonth, $scope.bookingData.expiryYear);
+        $scope.val.cardCheck = Stripe.card.validateCardNumber($scope.cardData.number);
+        $scope.val.cvcCheck = Stripe.card.validateCVC($scope.cardData.cvc);
+        $scope.val.dateCheck = Stripe.card.validateExpiry($scope.cardData.expiryMonth, $scope.cardData.expiryYear);
         if (FlightSrv.getType() === 'OneWay')
         {
           
@@ -121,7 +122,7 @@
         if($scope.bookingData.passportNum == null || $scope.bookingData.passportNum == "")
             $scope.passportNumAlert=true;
 
-        if($scope.bookingData.gender == null || $scope.bookingData.gender == "") 
+        if($scope.cardData.gender == null || $scope.cardData.gender == "") 
            $scope.genderAlert=true;
 
         if($scope.bookingData.email == null || $scope.bookingData.email == "")
@@ -136,19 +137,19 @@
         if($scope.bookingData.nationality == null || $scope.bookingData.nationality == "")
           $scope.nationalityAlert=true;
 
-        if($scope.bookingData.mobile == null || $scope.bookingData.mobile == "")
+        if($scope.cardData.mobile == null || $scope.cardData.mobile == "")
           $scope.mobileAlert=true;
 
-        if($scope.bookingData.number == null || $scope.bookingData.number == "")
+        if($scope.cardData.number == null || $scope.cardData.number == "")
           $scope.cardAlert=true;
 
-        if($scope.bookingData.cvc == null || $scope.bookingData.cvc == "")
+        if($scope.cardData.cvc == null || $scope.cardData.cvc == "")
           $scope.cvcAlert=true;
 
-        if($scope.bookingData.expiryYear == null || $scope.bookingData.expiryYear == "")
+        if($scope.cardData.expiryYear == null || $scope.cardData.expiryYear == "")
           $scope.yearAlert=true;
 
-        if($scope.bookingData.expiryMonth == null || $scope.bookingData.expiryMonth == "")
+        if($scope.cardData.expiryMonth == null || $scope.cardData.expiryMonth == "")
             $scope.monthAlert=true;
       }
 
@@ -194,12 +195,12 @@ function stripeResponseHandler2(status, response)
       FlightSrv.createPayment($scope.paymentDetails2,IPin,function(data){
         if (data.refNum)
         {
-          console.log("7amada");
+          //console.log("7amada");
           FlightSrv.setInRefNo(data.refNum);
         }
         else
         {
-          console.log("7amada");
+          //console.log("7amada");
           FlightSrv.setInRefNo("Sorry Payment Failed");
         }
         verifying = false;
@@ -279,12 +280,12 @@ function bookDiffAirlines(token)
     FlightSrv.createPayment($scope.paymentDetails,IPout,function(data){
       if (data.refNum)
       {
-        console.log("7amada");
+        //console.log("7amada");
         FlightSrv.setOutRefNo(data.refNum);
       }
       else
       {
-        console.log("7amada");
+        //console.log("7amada");
         FlightSrv.setOutRefNo("Sorry Payment Failed");
       }
       $http.get(myUrlin).success(function(pubkey){

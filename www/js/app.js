@@ -61,15 +61,27 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-  /*.state('app.contactUs', {
+.state('app.contactUs', {
     url: '/contactUs',
     views: {
       'menuContent': {
-        templateUrl: 'templates/contactUs.html'
+        templateUrl: 'templates/contactUs.html',
+        controller: 'contactUsCtrl'
 
       }
     }
-  })*/
+  })
+  
+  .state('app.thankYou', {
+    url: '/thankYou',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/thankYou.html',
+        controller: 'contactUsCtrl'
+
+      }
+    }
+  })
   .state('app.ourteam', {
     url: '/ourteam',
     views: {
