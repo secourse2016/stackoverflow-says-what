@@ -79,6 +79,7 @@ App.factory('flightSrv',function($http){
 		getBookings : function(){
 			var myUrl='/api/bookings/search/';
 			myUrl = myUrl.concat(this.RefNo);
+			console.log(myUrl);
 			return $http.get(myUrl);
 		},
 		// returns all aircrafts in the json file

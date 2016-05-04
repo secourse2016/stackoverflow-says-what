@@ -8,7 +8,7 @@
   <ion-item ng-click = "showConfirmOut(flight,flight.cost)" ng-repeat = "flight in flightData.outflights">
   <div class="row animated fadeInLeft">
   		<div class="col hvr-sweep-to-left">
-  	    <!-- <h2> Airline: {{ flight.airline }}</h2>  -->
+  	    <i class="icon ion-plane"> Airline: {{ flight.Airline }}</i><br> 
   			<i class="icon ion-plane"> Flight Number: {{ flight.flightNumber }}</i><br>
   			<i class="icon ion-location"> Origin: {{ flight.origin }}</i><br>
   			<i class="icon ion-location"> Destination: {{ flight.destination }}</i><br>
