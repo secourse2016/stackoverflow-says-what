@@ -9,7 +9,7 @@
                                          margin-right: auto;
                                          margin-top:10%;
                                          margin-bottom:20px;"/> 
-	<label style="font-family: Montserrat; color: black; font-size: 40px">Thank you! Your reservation is complete.</label>
+	<label style="font-family: Montserrat; color: black; font-size: 40px">Thank you for using Hawaiian Airlines!</label>
 	<p></p>
 	<div class="container" style="width:50%;">
     <h4><strong>You can use the following reference to search for your flight</strong></h4><br>
@@ -30,10 +30,12 @@
       <tr class="success">
         <td>Outgoing Flight</td>
         <td>{{ outRefNo }}</td>
+        <td> <a href="{{ outIP }}"> {{ outAirline }} </a></td>
       </tr>
       <tr class="success">
         <td>Ingoing Flight</td>
         <td>{{ inRefNo }}</td>
+        <td> <a href="{{ inIP }}"> {{ inAirline }} </a></td>
       </tr>
     </tbody>
   </table>
