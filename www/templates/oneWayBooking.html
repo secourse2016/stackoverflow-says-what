@@ -1,0 +1,47 @@
+<link href="css/oneWayBooking.css" rel="stylesheet">
+<ion-view view-title="ONE WAY">
+
+  <ion-content id="content">
+
+  <div class="list list-inset">
+
+  <label class="item item-input hvr-underline-from-center" id="inputLabel">
+    <button id ="inputButton" class="button icon-left ion-android-plane" modal-select ng-model="flightData.selectedOrigin" options="Airports" modal-title="Select Departure Airport">Origin<div class="option"> {{ option }} </div> </button> 
+    <input type="text" placeholder="{{ flightData.selectedOrigin }}">
+    <p ng-show="flightData.selectedOriginOneWayAlert" id="alert">Please fill in this field !</p>
+  </label>
+
+  <label class="item item-input hvr-underline-from-center" id="inputLabel">
+     <button id ="inputButton" class="button icon-left ion-android-plane" modal-select ng-model="flightData.selectedDestination" options="Airports" modal-title="Select Arrival Airport">Destination<div class="option"> {{ option }} </div> </button> 
+    <input type="text" placeholder="{{ flightData.selectedDestination}}">
+    <p ng-show="flightData.selectedDestinationOneWayAlert" id="alert">Please fill in this field !</p>
+  </label>
+
+  <label class="item item-input hvr-underline-from-center" id="inputLabel">
+    <span class="input-label" id ="otherButton" ><i class="icon ion-calendar"></i>  Departure Date</span>   
+    <input type="text" placeholder="MM/DD/YYYY"
+    onfocus="(this.type='date')" 
+    ng-model="flightData.dtOneway">
+    <p ng-show="flightData.dtOnewayAlert" id="alert">Please fill in this field !</p>
+  </label>
+
+  <label class="item item-input hvr-underline-from-center" id="inputLabel">
+     <button id ="inputButton" class="button icon-left ion-pinpoint" modal-select ng-model="flightData.selectedClass" options="seatClasses" modal-title="Select Seat Class">Cabin Class<div class="option"> {{ option }} </div> </button> 
+    <input type="text" placeholder="{{flightData.selectedClass}}">
+    <p ng-show="flightData.selectedClassOneWayAlert" id="alert">Please fill in this field !</p>
+  </label>
+
+  <ion-toggle ng-model="flightData.otherAirlines" toggle-class="toggle-positive">
+   <i class="icon ion-android-search" id ="otherButton" ></i>
+    Search Other Airlines
+  </ion-toggle>
+  </div>
+
+  <button class="button button-block button-positive icon-right" 
+  id="searchButton"
+  ng-click="searchOneWay()"> 
+  <i class="icon ion-search"></i>
+     Search Flights
+  </button>
+  </ion-content>
+</ion-view>

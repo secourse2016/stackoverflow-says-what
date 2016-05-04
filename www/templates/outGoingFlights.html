@@ -1,0 +1,23 @@
+<link href="css/outGoingFlights.css" rel="stylesheet">
+<ion-navbar *navbar hideBackButton class="show-navbar">
+  <ion-title>OUTGOING FLIGHTS</ion-title>
+</ion-navbar>
+
+<ion-content>
+  <ion-list>
+  <ion-item ng-click = "showConfirmOut(flight,flight.cost)" ng-repeat = "flight in flightData.outflights">
+  <div class="row animated fadeInLeft">
+  		<div class="col hvr-sweep-to-left">
+  	    <i class="icon ion-plane"> Airline: {{ flight.Airline }}</i><br> 
+  			<i class="icon ion-plane"> Flight Number: {{ flight.flightNumber }}</i><br>
+  			<i class="icon ion-location"> Origin: {{ flight.origin }}</i><br>
+  			<i class="icon ion-location"> Destination: {{ flight.destination }}</i><br>
+  			<i class="icon ion-calendar"> Departure Date: {{ flight.departureDateTime | date:'yyyy-MM-dd hh:mm' }}</i><br>
+        <i class="icon ion-calendar"> Arrival Date: {{ flight.arrivalDateTime | date:'yyyy-MM-dd hh:mm' }}</i><br>
+  			<i class="icon ion-cash"> Cost: ${{ flight.cost }}</i>
+  		</div>
+    </div>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

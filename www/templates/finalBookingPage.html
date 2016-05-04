@@ -1,0 +1,60 @@
+<link href="css/finalBookingPage.css" rel="stylesheet">
+<ion-view view-title="THANK YOU">
+	<ion-navbar *navbar hideBackButton class="show-navbar">
+	</ion-navbar>
+	<ion-content id="content">
+		<div class="animated slideInDown">
+	    	<img src ="/../../img/favicon.png" id="logo">
+	    </div>
+
+		<p id="thankYouText">
+			Thank you for choosing Hawaiian Airlines <br> 
+		</p>
+		<p id="thankYouText">
+			Have a nice trip!
+		</p>
+
+		<button class="button button-outline button-royal icon-right" 
+		id="refButton"
+		ng-click="showModal('fadeInDown')">
+			<i class="icon ion-clipboard"></i>
+			 View Booking ID
+		</button>
+
+    <!--modal view -->
+	<script id="templates/modal.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-royal">
+          <h1 class="title">BOOKING ID</h1>
+        </ion-header-bar>
+        <ion-content class="padding">
+          <div class="list list-inset" 
+               style="margin-bottom:0%;">
+
+          	<div class="item">
+          		<i class="icon ion-plane"></i>
+      			<strong>Out Ref:  </strong>
+      			{{outRefNo}}
+    		</div>
+    		<div class="item">
+    			<i class="icon ion-plane"></i>
+      			<strong>In Ref:  </strong>
+      			{{inRefNo}}
+    		</div>
+
+            <button class="button button-full button-royal" 
+            style="margin-top:5%;"
+            ng-click="closeModal()">Close</button>
+          </div>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+
+		<!-- <button id="homeButton"
+		class="button button-outline button-royal icon-right" 
+        ng-click="home()"> 
+       		<i class="icon ion-home"></i>
+        	Home 
+        </button> -->
+	</ion-content>
+</ion-view>

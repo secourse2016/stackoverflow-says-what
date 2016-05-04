@@ -1,0 +1,48 @@
+<link href="css/oneWayBooking.css" rel="stylesheet">
+<ion-view view-title="CONTACT US">
+  <ion-content id="content">
+
+    <div class="list list-inset">
+
+      <label class="item item-input item-floating-label hvr-underline-from-left"
+      style="width:100%;">
+        <span class="input-label">
+        <i class="icon ion-person"></i>   First Name</span>
+          <input id="inputField" type="text" placeholder="First Name"
+          ng-model="info.fn" >
+          <p ng-show="info.fnAlert" id="alert">Please enter a valid name!</p>
+      </label>
+
+       <label class="item item-input item-floating-label hvr-underline-from-left" style="width:100%;">
+        <span class="input-label">
+        <i class="icon ion-person"></i>  Last Name</span>
+          <input id="inputField" type="text" placeholder="Last Name"
+          ng-model="info.ln" >
+          <p ng-show="info.lnAlert" id="alert">Please enter a valid name!</p>
+      </label>
+
+      <label class="item item-input item-floating-label hvr-underline-from-left" style="width:100%;">
+        <span class="input-label">
+        <i class="icon ion-email"></i>  Email</span>
+          <input id="inputField" type="email" placeholder="Email"
+          ng-model="info.email" >
+          <p ng-show="info.emailAlert" id="alert">Please enter a valid email!</p>
+      </label>
+
+      <label class="item item-input item-floating-label hvr-underline-from-left" style="width:100%;">
+        <span class="input-label">
+        <i class="icon ion-compose"></i>  Your Comment</span>
+          <input id="inputField" type="text" placeholder="Your Comment"
+          ng-model="info.comment" >
+          <p ng-show="info.commentAlert" id="alert">Oops!Looks like you didn't leave a comment</p>
+      </label>
+   </div>
+
+     <button class="button button-block button-positive icon-right" 
+       id="searchButton"
+       ng-click="contactSubmit()"> 
+       <i class="icon ion-search"></i>
+       Submit
+     </button>
+  </ion-content>
+</ion-view>

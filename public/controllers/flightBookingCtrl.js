@@ -49,6 +49,7 @@ App.controller('flightBookingCtrl', function($scope, flightSrv, $location) {
   };
 
   $scope.checkboxModel = false;
+  $scope.minDate=Date.now();
 
   $scope.searchOneWay = function() {
     if($scope.selectedOrigin == null || $scope.selectedOriginOneway == "")

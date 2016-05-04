@@ -1,0 +1,47 @@
+<ion-view view-title="DEPARTING FLIGHT DETAILS" style="padding: 40px 10px 10px 10px">
+    <div class="list card">
+        <ion-item class="item item-icon-left">
+            <i class="icon ion-android-plane"></i>
+            Origin Airport : {{ originAirport }}
+        </ion-item>
+
+        <ion-item class="item item-icon-left">
+            <i class="icon ion-android-plane"></i>
+            Destination Airport : {{ destinationAirport }}
+        </ion-item>
+
+        <ion-item class="item item-icon-left">
+            <i class="icon ion-android-calendar"></i>
+            Departure Date : {{ depDate | date:'fullDate' }}
+        </ion-item>
+
+        <ion-item class="item item-icon-left">
+            <i class="icon ion-android-time"></i>
+            Departure Time : {{ depDate | date:'shortTime' }}
+        </ion-item>
+
+        <ion-item class="item item-icon-left">
+            <i class="icon ion-navigate"></i>
+            Seat Class : {{ depClass }}
+        </ion-item>
+
+        <ion-item class="item item-icon-left">
+            <i class="icon ion-card"></i>
+            Cost : {{ depPrice | currency }}
+        </ion-item>
+
+        <ion-item class="item item-icon-left">
+            <i class="icon ion-location"></i>
+            Airline : {{ outAirline }}
+        </ion-item>
+       
+    </div>
+
+    <button class="button button-block button-positive icon-right" 
+    ng-click="goToArrivingFlightDetails()" 
+    style="width:100%">
+    <i class="icon ion-android-arrow-forward"></i>
+        Confirm
+    </button>
+    
+</ion-view>

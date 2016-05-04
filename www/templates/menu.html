@@ -1,0 +1,70 @@
+<link href="css/menu.css" rel="stylesheet">
+
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-dark">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" id="menu">
+    <ion-content id="menu">
+      <img src="./img/favicon.png" id="circular">
+      <p id="title">Hawaiian<br>Airlines </p>
+      
+      <ion-list>
+        <ion-item menu-close class="menuItem" href="#/app/welcomePage">
+          <i class="icon ion-home custom-icon"></i>   HOME
+        </ion-item>
+        <ion-item menu-close class="menuItem" href="#/app/oneWayBooking">
+          <i class="icon ion-plane custom-icon"></i>   BOOK ONE-WAY FLIGHT
+        </ion-item>
+        <ion-item menu-close class="menuItem" href="#/app/roundTripBooking">
+          <i class="icon ion-plane custom-icon"></i>   BOOK ROUND-TRIP FLIGHT
+        </ion-item>
+        <ion-item menu-close class="menuItem" href="#/app/searchByRefrence">
+           <i class="icon ion-search custom-icon"></i>   SEARCH BY REFERENCE NUMBER
+        </ion-item>
+        <ion-item menu-close class="menuItem" href="#/app/contactUs">
+           <i class="icon ion-email custom-icon"></i>   CONTACT US
+        </ion-item>
+        <ion-item menu-close class="menuItem" href="#/app/ourteam">
+          <i class="icon ion-person custom-icon"></i>    OUR TEAM
+        </ion-item>
+      </ion-list>
+
+      <div class = "row">
+        <span class="fa-stack fa-lg hvr-float">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <a href="https://www.facebook.com/HawaiianAirlines">
+          <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+          </a>
+        </span>
+        <span class="fa-stack fa-lg hvr-float">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <a href="https://twitter.com/HawaiianAir">
+          <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+          </a>
+        </span>
+        <span class="fa-stack fa-lg hvr-float">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <a href="https://www.instagram.com/hawaiianairlines/">
+          <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+          </a>
+        </span>
+        <span class="fa-stack fa-lg hvr-float">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <a href="https://www.youtube.com/user/HawaiianAirlines">
+          <i class="fa fa-youtube-play fa-stack-1x fa-inverse"></i>
+          </a>
+        </span>
+      </div>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

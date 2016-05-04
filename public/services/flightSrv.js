@@ -1,7 +1,6 @@
 App.factory('flightSrv',function($http){
 	return {
-		// returns all the flights in the json file
-		getInFlights : function(){
+		getInFlights : function(cb){
 			var myUrl = this.destination;
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.origin);
@@ -9,12 +8,24 @@ App.factory('flightSrv',function($http){
 			myUrl = myUrl.concat(this.arrivalDate);
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
-			if (!this.otherAirlines)
-				return $http.get('/api/flights/search/'.concat(myUrl));
-			else
-				return $http.get('/api/flights/searchAll/'.concat(myUrl));
+			myUrl = myUrl.concat('/1');
+			var pingOthers = this.otherAirlines;
+			this.getToken(function(token){
+				myUrl = myUrl.concat('?wt=');
+				myUrl = myUrl.concat(token);
+				if (!pingOthers)
+					$http.get('/api/flights/search/'.concat(myUrl)).success(function(flights)
+				 		{
+				 			cb(flights.outgoingFlights);
+				 		});
+				else
+					$http.get('/api/flights/searchAll/'.concat(myUrl)).success(function(flights)
+				 		{
+				 			cb(flights.outgoingFlights);
+				 		});
+			});
 		},
-		getOutFlights : function(){
+		getOutFlights : function(cb){
 			var myUrl = this.origin;
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.destination);
@@ -22,13 +33,45 @@ App.factory('flightSrv',function($http){
 			myUrl = myUrl.concat(this.departureDate);
 			myUrl = myUrl.concat('/');
 			myUrl = myUrl.concat(this.flightClass);
-			if (!this.otherAirlines)
-				return $http.get('/api/flights/search/'.concat(myUrl));
-			else
-				return $http.get('/api/flights/searchAll/'.concat(myUrl));
+			myUrl = myUrl.concat('/1');
+			var pingOthers = this.otherAirlines;
+			this.getToken(function(token){
+				myUrl = myUrl.concat('?wt=');
+				myUrl = myUrl.concat(token);
+				if (!pingOthers)
+				 	$http.get('/api/flights/search/'.concat(myUrl)).success(function(flights)
+				 		{
+				 			cb(flights.outgoingFlights);
+				 		});
+				else
+					$http.get('/api/flights/searchAll/'.concat(myUrl)).success(function(flights)
+				 		{
+				 			cb(flights.outgoingFlights);
+				 		});
+			});
 		},
-		createPayment : function(bookingData){
-			return $http.post('/api/pay', bookingData);
+		getToken : function(callback)
+		{
+			$http.get('/api/data/generatingToken').success(function(result)
+				{
+					callback(result.token);	
+				});
+		},
+		createPayment : function(bookingData,IP,cb){
+			this.getToken(function(token){
+				if (!IP)
+					IP="";
+				var myUrl = IP.concat('/booking');
+				myUrl = myUrl.concat('?wt=');
+				myUrl = myUrl.concat(token);
+				$http.post(myUrl, bookingData).success(function(data)
+					{
+						cb(data);
+					}).error(function(data, status){
+              			cb(data);
+              		});
+			});
+			//return $http.post('/booking', bookingData);
 		},
 		// returns all airports in the json file
 		getAirports : function(){
@@ -38,6 +81,7 @@ App.factory('flightSrv',function($http){
 		getBookings : function(){
 			var myUrl='/api/bookings/search/';
 			myUrl = myUrl.concat(this.RefNo);
+			console.log(myUrl);
 			return $http.get(myUrl);
 		},
 		// returns all aircrafts in the json file
@@ -114,9 +158,6 @@ App.factory('flightSrv',function($http){
 		// returns the passenger's origin
 		getOriginAirport : function(){
 			return this.origin;
-			// return value;
-			// return this.origin;
-			// return 'JFK';
 		},
 		// saves the passenger's destination
 		setDestinationAirport : function(value){
@@ -125,7 +166,6 @@ App.factory('flightSrv',function($http){
 		// returns the passenger's destination
 		getDestinationAirport : function(){
 			return this.destination;
-			// return 'IAD';
 		},
 		setPriceOutgoingFlight : function(value){
 			this.priceOutgoing = value;
@@ -163,7 +203,6 @@ App.factory('flightSrv',function($http){
 		getIngoingFlightClass : function(){
 			return this.ingoingFlightClass;
 		},
-
 		setRefNo : function(value){
 			this.RefNo = value;
 		},

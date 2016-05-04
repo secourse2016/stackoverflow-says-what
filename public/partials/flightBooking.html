@@ -37,7 +37,7 @@
     <h1>
       <label for="tabbed1">One Way</label>
     </h1>
-    <div>
+    <div class="list card animated bounceInLeft">  
       <label class="tripLabel">One Way</label>
       <label class="inputLabel">Departing From</label>
       <div class="input-group">
@@ -75,6 +75,7 @@
       <label class="inputLabel">Departure Date</label>
       <div class='input-group date' id='datetimepicker1'>
          <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"
+         min-date="{{ minDate }}"
          uib-datepicker-popup="{{format}}"
          ng-model="dtOneway"
          is-open="popup1.opened"
@@ -115,7 +116,7 @@
     <h1>
       <label for="tabbed2">Round Trip</label>
     </h1>
-    <div>
+    <div class="list card animated bounceInRight">
      
      <label class="tripLabel">Round Trip </label>
      <label class="inputLabel">Departing From</label>
@@ -157,6 +158,7 @@
          <label class="inputLabel">Departure Date</label>
          <div class='input-group date' id='datetimepicker1'>
            <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"
+           min-date="{{ minDate }}"
            uib-datepicker-popup="{{format}}"
            ng-model="dtRound"
            is-open="popup1.opened"
@@ -171,6 +173,7 @@
          <label class="inputLabel">Arrival Date</label>
          <div class='input-group date' id='datetimepicker1'>
             <input type='text' class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2"
+            min-date="{{ minDate }}"
             uib-datepicker-popup="{{format}}"
             ng-model="atRound"
             is-open="popup2.opened"

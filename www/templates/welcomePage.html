@@ -1,0 +1,71 @@
+<link href="css/welcomePage.css" rel="stylesheet">
+
+<ion-view view-title="HAWAIIAN AIRLINES" class="welcomePage">
+<ion-navbar *navbar hideBackButton class="show-navbar">
+</ion-navbar>
+
+<ion-content>
+
+	<h3></h3>
+	 <h2 class="welcomeText">Experience Authentic Hawaiian Hospitality</h2><br>
+	<h2 class="enterText">FLY WITH US</h2>  
+    <div class="buttons">
+
+    <div class="button-bar animated fadeInUp" id="buttonBar1">
+    <button class="semi-transparent-button hvr-float-shadow" ng-click="oneWay()" id="btnLeft">
+    	<i class="fa fa-plane fa-2x" aria-hidden="true"></i><br>
+    	  One<br> Way
+    </button>
+    <button class="semi-transparent-button hvr-float-shadow" ng-click="roundTrip()">
+    	<i class="fa fa-plane fa-2x" aria-hidden="true"></i><br>
+    		Round Trip
+    </button>
+    </div>
+
+    <div class="button-bar animated fadeInUp" id="buttonBar2">
+    <button class="semi-transparent-button hvr-float-shadow" ng-click="searchRef()" id="btnLeft">
+    	<i class="fa fa-search fa-2x" aria-hidden="true"></i>
+    	<br>Search <br>Flight
+    </button>
+    	
+    <button class="semi-transparent-button hvr-float-shadow" ng-click="contactUs()">
+    	<i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i><br>
+    		Contact<br>Us
+    </button>
+    </div>
+
+    <div class="bar bar-footer" id="Footerbar">
+    	<p id="footerText">© 2016 HAWAIIAN AIRLINES. ALL RIGHTS <br>RESERVED</p><br>
+
+   		<div class = "row" id="social">
+        <span class="fa-stack fa-lg hvr-float">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <a href="https://www.facebook.com/HawaiianAirlines">
+          <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+          </a>
+        </span>
+        <span class="fa-stack fa-lg hvr-float">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <a href="https://twitter.com/HawaiianAir">
+          <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+          </a>
+        </span>
+        <span class="fa-stack fa-lg hvr-float">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <a href="https://www.instagram.com/hawaiianairlines/">
+          <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+          </a>
+        </span>
+        <span class="fa-stack fa-lg hvr-float">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <a href="https://www.youtube.com/user/HawaiianAirlines">
+          <i class="fa fa-youtube-play fa-stack-1x fa-inverse"></i>
+          </a>
+        </span>
+      </div>
+	</div>
+
+
+    
+</ion-content>
+</ion-view>

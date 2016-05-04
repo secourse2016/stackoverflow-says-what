@@ -1,15 +1,16 @@
 {
   "dependencies": {
-  	 "jsonwebtoken":"3.7.3",
-  	 "path":"3.7.3",
-  	"dotenv":"3.7.3",
     "body-parser": "^1.12.4",
+    "datepicker-for-ionic": "^1.1.7",
+    "dotenv": "3.7.3",
     "express": "~4.12.4",
+    "jsonwebtoken": "3.7.3",
     "method-override": "~2.1.2",
+    "moment": "*",
     "mongo": "^0.1.0",
     "mongoose": "~3.6.2",
     "morgan": "~1.2.2",
-    "method-override": "~2.1.2",
-    "moment": "*"
-    }
+    "path": "3.7.3",
+    "stripe": "4.5.0"
+  }
 }

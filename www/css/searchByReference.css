@@ -1,0 +1,48 @@
+#content {
+	background: url("/../../img/final2.jpg") center fixed;
+	background-repeat: no-repeat;
+    background-position: center;
+}
+
+#block{
+	margin-top: 15%;
+}
+
+#enterText {
+	text-align: center;
+	color: white;
+	font-size: 25px;
+	font-family: 'Lora', serif;
+	margin-bottom: 5%;
+}
+#searchBox {
+	margin-left: 15%;
+	margin-bottom: 5%;
+	width: 70%;
+	height: 5%;
+	background-color: transparent;
+	color: white;
+}
+
+.icon{
+	color: white;
+}
+.input-label{
+	color: white;
+}
+#error {
+	color: white;
+	margin-left: 28%;
+	font-size: 20px;
+}
+
+
+#inputField {
+color: white;
+}
+
+#searchButton {
+	margin-left: 35%;
+	width: 30%;
+	color: white;
+}

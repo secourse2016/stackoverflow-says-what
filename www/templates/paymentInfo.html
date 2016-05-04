@@ -1,0 +1,117 @@
+<link href="css/paymentInfo.css" rel="stylesheet">
+
+<ion-view view-title="PAYMENT">  
+	<ion-content id="content">
+
+	<div class="list list-inset">
+
+  	<label class="item item-input item-stacked-label">
+    	<span class="input-label"><i class="icon ion-person"></i>   First Name</span>
+    	<input ng-model="bookingData.firstName" type="text" 
+    	placeholder="e.g John">
+    	<p ng-show="firstNameAlert" id="alert">Please fill in this field!</p>
+  	</label>
+
+  	<label class="item item-input item-stacked-label">
+    	<span class="input-label"><i class="icon ion-person"></i>   Last Name</span>
+    	<input ng-model="bookingData.lastName" type="text" 
+    	placeholder="e.g Smith">
+    	<p ng-show="lastNameAlert" id="alert">Please fill in this field!</p>
+  	</label>
+
+  	<label class="item item-input item-select">
+    	<div class="input-label">
+    	<i class="icon ion-person"></i>
+      		Gender
+    	</div>
+    	<select ng-model="cardData.gender">
+      		<option>Male</option>
+      		<option>Female</option>
+    	</select>
+    	<p ng-show="genderAlert" id="alert">Please fill in this field!</p>
+    </label>
+
+  	<label class="item item-input item-stacked-label">
+    	<span class="input-label"><i class="icon ion-calendar"></i>   Date Of Birth</span>
+    	<input ng-model="bookingData.dateOfBirth" type="date" 
+    	placeholder="MM/DD/YYYY">
+    	<p ng-show="dobAlert" id="alert">Please fill in this field!</p>
+  	</label>
+
+  	<label class="item item-input item-stacked-label">
+    	<span class="input-label"><i class="icon ion-earth"></i>   Nationality</span>
+    	<input ng-model="bookingData.nationality" type="text" 
+    	placeholder="e.g Egyptian">
+    	<p ng-show="nationalityAlert" id="alert">Please fill in this field!</p>
+  	</label>
+
+  	<label class="item item-input item-stacked-label">
+    	<span class="input-label"><i class="icon ion-email"></i>   Email</span>
+    	<input ng-model="bookingData.email" type="email" 
+    	placeholder="example@yahoo.com">
+    	<p ng-show="emailAlert" id="alert">Please fill in this field!</p>
+  	</label>
+
+  	<label class="item item-input item-stacked-label">
+    	<span class="input-label"><i class="icon ion-android-phone-portrait"></i>   Mobile Number</span>
+    	<input ng-model="cardData.mobile" type="number" 
+    	placeholder="XXXXXXXXXXX">
+    	<p ng-show="mobileAlert" id="alert">Please fill in this field!</p>
+  	</label>
+
+  	<label class="item item-input item-stacked-label">
+    	<span class="input-label"><i class="icon ion-android-plane"></i>   Passport Number</span>
+    	<input ng-model="bookingData.passportNum" type="text" 
+    	placeholder="XXXX-XXX-XXX">
+    	<p ng-show="passportNumAlert" id="alert">Please fill in this field!</p>
+  	</label>
+
+  	<label class="item item-input item-stacked-label">
+    	<span class="input-label"><i class="icon ion-calendar"></i>
+    	    Passport Expiry Date</span>
+    	<input ng-model="bookingData.passportExpiryDate" type="date" 
+    	placeholder="XXXX-XXXX-XXXX">
+    	<p ng-show="passportExpAlert" id="alert">Please fill in this field!</p>
+  	</label>
+
+  	<label class="item item-input item-stacked-label">
+    	<span class="input-label"><i class="icon ion-card"></i>
+    	    Credit Card Number</span>
+    	<input ng-model="cardData.number" type="number" 
+    	placeholder="XXXX-XXXX-XXXX-XXXX">
+    	<p ng-show="cardAlert" id="alert">Please fill in this field!</p>
+      <p ng-hide="val.cardCheck" id="alert">Invalid Credit Card Num!</p>
+  	</label>
+
+  	<label class="item item-input item-stacked-label">
+    	<span class="input-label"><i class="icon ion-document-text"></i>
+    	   CVC</span>
+    	<input ng-model="cardData.cvc" type="number" 
+    	placeholder="XXX">
+    	<p ng-show="cvcAlert" id="alert">Please fill in this field!</p>
+      <p ng-hide="val.cvcCheck" id="alert">Invalid CVC!</p>
+
+  	</label>
+
+  	<label class="item item-input item-stacked-label" id="month">
+    	<span class="input-label"><i class="icon ion-calendar"></i>
+    	    Expiry Month</span>
+    	<input ng-model="cardData.expiryMonth" type="number" 
+    	placeholder="MM">
+    	<p ng-show="monthAlert" id="alert">Please fill in this field!</p>
+  	</label>
+
+  	<label class="item item-input item-stacked-label" id="year">
+    	<span class="input-label"><i class="icon ion-calendar"></i>
+    	    Expiry Year</span>
+    	<input ng-model="cardData.expiryYear" type="number" 
+    	placeholder="YYYY">
+    	<p ng-show="yearAlert" id="alert">Please fill in this field!</p>
+  	</label>
+    <p ng-hide="val.dateCheck" id="alert">    Invalid Expiry Date!</p>
+    
+	</div>
+	<button class="button button-positive button2" ng-click="stripeCallback()" ng-disabled="val.verifying"> Submit </button>
+
+	</ion-content>
+</ion-view>

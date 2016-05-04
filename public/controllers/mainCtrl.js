@@ -2,14 +2,20 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
 
   function getBookingDetails(){
       flightSrv.getBookings().success(function(booking){
+        console.log(booking);
+        if (!booking)
+          $scope.notFound=true;
         $scope.booking = booking;
+      })
+      .error(function(data, status){
+            $scope.notFound=true;
+            console.log("Error status: " + status);
       });
   };
 
 	$scope.BookAFlight = function() {
     $location.url('/flightBooking');
   };
-
 
 	$scope.homePage = function() {
     $location.url('/');
@@ -24,11 +30,11 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
       $scope.refAlert = true;
     else
     {
+      //console.log("in method bookingDetails");
       $location.url('/bookingDetails');
       
     }
   };
-
 
   //contactUs
   $scope.fn = null;
