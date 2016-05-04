@@ -17,6 +17,8 @@
   $scope.monthAlert=false;
   $scope.yearAlert=false;
 
+  //stripe checks
+ 
 	$scope.val.cardCheck = true;
 	$scope.val.cvcCheck = true;
 	$scope.val.dateCheck = true;
@@ -44,7 +46,7 @@
     && ($scope.bookingData.cvc != null && $scope.bookingData.cvc != "")
     && ($scope.bookingData.expiryYear != null && $scope.bookingData.expiryYear != "")
     && ($scope.bookingData.expiryMonth != null && $scope.bookingData.expiryMonth != ""))
-    {  console.log("fel if");
+    {  
 
         IP = FlightSrv.getOutgoingFlight().IP;
         if (!IP)
@@ -59,10 +61,11 @@
         $scope.cardInfo.exp_year = $scope.bookingData.expiryYear;
         $scope.val.verifying = true;  //disabling submit button to avoid resubmissions
         $scope.diffAirlines = false;
+
         //input validation
-        $scope.val.cardCheck = Stripe.card.validateCardNumber($scope.number);
-        $scope.val.cvcCheck = Stripe.card.validateCVC($scope.cvc);
-        $scope.val.dateCheck = Stripe.card.validateExpiry($scope.expiryMonth, $scope.expiryYear);
+        $scope.val.cardCheck = Stripe.card.validateCardNumber($scope.bookingData.number);
+        $scope.val.cvcCheck = Stripe.card.validateCVC($scope.bookingData.cvc);
+        $scope.val.dateCheck = Stripe.card.validateExpiry($scope.bookingData.expiryMonth, $scope.bookingData.expiryYear);
         if (FlightSrv.getType() === 'OneWay')
         {
           
@@ -108,7 +111,7 @@
       }
       else
       {
-        console.log("fel else");
+        
         if($scope.bookingData.firstName == null || $scope.bookingData.firstName == "")
           $scope.firstNameAlert=true;
 
