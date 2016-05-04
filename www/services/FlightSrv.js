@@ -70,7 +70,9 @@ IonicApp.factory('FlightSrv',function($http){
 				$http.post(myUrl, bookingData).success(function(data)
 					{
 						cb(data);
-					});
+					}).error(function(data, status){
+              			cb(data);
+              		});
 			});
 			//return $http.post('/booking', bookingData);
 		},

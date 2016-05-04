@@ -74,6 +74,12 @@
             Stripe.setPublishableKey(pubkey);
             Stripe.card.createToken($scope.cardInfo, stripeResponseHandler);
             Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+          }).error(function(data, status){
+            FlightSrv.setOutRefNo("Sorry the booking failed");
+            FlightSrv.setInRefNo("-");
+            verifying = false;
+            Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+            $state.go('app.finalBookingPage');
           });
         }  
         else
@@ -86,6 +92,12 @@
             Stripe.setPublishableKey(pubkey);
             Stripe.card.createToken($scope.cardInfo, stripeResponseHandler);
             Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+            }).error(function(data, status){
+              FlightSrv.setOutRefNo("Sorry the booking failed");
+              FlightSrv.setInRefNo("Sorry the booking failed");
+              verifying = false;
+              Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+              $state.go('app.finalBookingPage');
             });
           }
           else
@@ -106,6 +118,18 @@
               Stripe.setPublishableKey(pubkey);
               Stripe.card.createToken($scope.cardInfo, stripeResponseHandler);
               Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+            }).error(function(data, status){
+              FlightSrv.setOutRefNo("Sorry the booking failed");
+              $http.get(myUrlin).success(function(pubkey){
+              Stripe.setPublishableKey(pubkey);
+              Stripe.card.createToken($scope.cardInfo, stripeResponseHandler2);
+              Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+              }).error(function(data, status){
+              FlightSrv.setInRefNo("Sorry the booking failed");
+              verifying = false;
+              Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+              $state.go('app.finalBookingPage');
+              });
             });
           }  
         }
@@ -292,7 +316,12 @@ function bookDiffAirlines(token)
               Stripe.setPublishableKey(pubkey);
               Stripe.card.createToken($scope.cardInfo, stripeResponseHandler2);
               Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
-            });
+            }).error(function(data, status){
+              FlightSrv.setInRefNo("Sorry the booking failed");
+              verifying = false;
+              Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
+              $state.go('app.finalBookingPage'); 
+        });
     });
  };
 
