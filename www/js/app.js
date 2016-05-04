@@ -77,7 +77,7 @@ IonicApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent': {
         templateUrl: 'templates/thankYou.html',
-        controller: 'contactUsCtrl'
+        controller: 'thankYouCtrl'
 
       }
     }

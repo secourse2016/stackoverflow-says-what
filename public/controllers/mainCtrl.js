@@ -6,10 +6,11 @@ App.controller('mainCtrl', function($scope,flightSrv,$location) {
         if (!booking)
           $scope.notFound=true;
         $scope.booking = booking;
-      }).error(function(data, status){
+      })
+      .error(function(data, status){
             $scope.notFound=true;
             console.log("Error status: " + status);
-          });
+      });
   };
 
 	$scope.BookAFlight = function() {

@@ -33,10 +33,8 @@ IonicApp.controller('contactUsCtrl', function($scope, FlightSrv,$state, $http) {
     if($scope.info.fn != null && $scope.info.ln != null &&
       $scope.info.email != null && $scope.info.comment != null){ 
             
-       $state.go('app.thankYou');
+        $state.go('app.thankYou');
     }
   };
-   $scope.homePage = function() {    
-       $state.go('app.welcomePage');
-  };
+
  });

@@ -1,18 +1,23 @@
-<link href="css/searchByReference.css" rel="stylesheet">
-<ion-view view-title="THANK YOU" style="background-color:lightblue">
- <ion-content id="content">
+<link href="css/finalBookingPage.css" rel="stylesheet">
+<ion-view view-title="THANK YOU">
+	<ion-navbar *navbar hideBackButton class="show-navbar">
+	</ion-navbar>
+	<ion-content id="content">
+		<div class="animated slideInDown">
+	    	<img src ="/../../img/favicon.png" id="logo">
+	    </div>
 
-<div class="animated slideInDown" id="block" style="margin-top: 40%">
-<span id="enterText" style="margin-left: 25px">Thank you for contacting us</span>
-</div>
-<button id="searchButton"
+		<p id="thankYouText">
+			Thank you for contacting us 
+		</p>
+		<br> 
+		<p></p>
+
+		<button id="homeButton"
 		class="button button-outline button-royal icon-right" 
-        ng-click="homePage()" style="z-index: 5"> 
+        ng-click="home()"> 
        		<i class="icon ion-home"></i>
         	Home 
         </button>
-
-<!-- <button ng-click="homePage()" id="searchButton" type="button" class="button button-positive icon-right"> Home</button> -->
-
- <ion-content>
- <ion-view>
+	</ion-content>
+</ion-view>

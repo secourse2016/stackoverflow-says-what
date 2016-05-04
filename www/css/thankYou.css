@@ -1,0 +1,27 @@
+#content {
+	background: url("/../../img/final2.jpg") center fixed;
+	background-repeat: no-repeat;
+    background-position: center;
+}
+
+#logo {
+	margin-top: 5%;
+	margin-bottom: 5%;
+	margin-left: 33%;
+	position: center;
+}
+
+#thankYouText {
+	text-align: center;
+	color: white;
+	font-size: 25px;
+	font-family: 'Lora', serif, Bold Italic;
+}
+
+
+#homeButton {
+	margin-left: 35%;
+	width: 30%;
+	color: white;
+}
+
