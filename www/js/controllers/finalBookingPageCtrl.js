@@ -13,6 +13,8 @@ $scope.outRefNo = "potato";*/
       animation: 'animated ' + animation,
       hideDelay:920
     }).then(function(modal) {
+      $scope.inRefNo = FlightSrv.getInRefNo();
+      $scope.outRefNo = FlightSrv.getOutRefNo();
       $scope.modal = modal;
       $scope.modal.show();
       $scope.hideModal = function(){

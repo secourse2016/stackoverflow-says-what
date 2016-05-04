@@ -1,7 +1,7 @@
 <link href="css/paymentInfo.css" rel="stylesheet">
 
 <ion-view view-title="PAYMENT">  
-	<ion-content>
+	<ion-content id="content">
 
 	<div class="list list-inset">
 
@@ -106,7 +106,7 @@
     	<p ng-show="yearAlert" id="alert">Please fill in this field!</p>
   	</label>
 	</div>
-	<button class="button button-positive" ng-click="stripeCallback()"> Submit </button>
+	<button class="button button-positive" ng-click="stripeCallback()" ng-disabled="verifying"> Submit </button>
 
 	</ion-content>
 </ion-view>
