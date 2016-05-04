@@ -2,7 +2,21 @@
  	$scope.bookingData = {};
  	$scope.val = {};
 
-  $scope.alert = false;
+  //input validation checks
+  $scope.firstNameAlert=false;
+  $scope.lastNameAlert=false;
+  $scope.genderAlert=false;
+  $scope.dobAlert=false;
+  $scope.nationalityAlert=false;
+  $scope.emailAlert=false;
+  $scope.mobileAlert=false;
+  $scope.passportNumAlert=false;
+  $scope.passportExpAlert=false;
+  $scope.cardAlert=false;
+  $scope.cvcAlert=false;
+  $scope.monthAlert=false;
+  $scope.yearAlert=false;
+
 	$scope.val.cardCheck = true;
 	$scope.val.cvcCheck = true;
 	$scope.val.dateCheck = true;
@@ -14,24 +28,24 @@
   var IPin = "";
   var myUrlin = "";
 	$scope.stripeCallback = function (code, result) {
+   
     var wt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWNvdXJzZSIsImlhdCI6MTQ2MDg0NzM0NywiZXhwIjoxNDkyMzgzMzUwLCJhdWQiOiJ3d3cuc2Vjb3Vyc2UuY29tIiwic3ViIjoidGVzdCJ9.nG7cFcHmCeMW03YwPS69a9LBRGimweIPBi7wIwxGmIs#/';
-    if (($scope.bookingData.firstName == null || $scope.bookingData.firstName == "")
-    || ($scope.bookingData.lastName == null || $scope.bookingData.lastName == "")
-    || ($scope.bookingData.passportNum == null || $scope.bookingData.passportNum == "")
-    || ($scope.bookingData.gender == null || $scope.bookingData.gender == "")
-    || ($scope.bookingData.email == null || $scope.bookingData.email == "")
-    || ($scope.bookingData.passportExpiryDate == null || $scope.bookingData.passportExpiryDate == "")
-    || ($scope.bookingData.dateOfBirth == null || $scope.bookingData.dateOfBirth == "")
-    || ($scope.bookingData.nationality == null || $scope.bookingData.nationality == "")
-    || ($scope.bookingData.mobile == null || $scope.bookingData.mobile == "")
-    || ($scope.bookingData.number == null || $scope.bookingData.number == "")
-    || ($scope.bookingData.cvc == null || $scope.bookingData.cvc == "")
-    || ($scope.bookingData.expiryYear == null || $scope.bookingData.expiryYear == "")
-    || ($scope.bookingData.expiryMonth == null || $scope.bookingData.expiryMonth == ""))
-       $scope.alert = true;
 
-     else
-     {
+    if (($scope.bookingData.firstName != null && $scope.bookingData.firstName != "")
+    && ($scope.bookingData.lastName != null && $scope.bookingData.lastName != "")
+    && ($scope.bookingData.passportNum != null && $scope.bookingData.passportNum != "")
+    && ($scope.bookingData.gender != null && $scope.bookingData.gender != "")
+    && ($scope.bookingData.email != null && $scope.bookingData.email != "")
+    && ($scope.bookingData.passportExpiryDate != null && $scope.bookingData.passportExpiryDate != "")
+    && ($scope.bookingData.dateOfBirth != null && $scope.bookingData.dateOfBirth != "")
+    && ($scope.bookingData.nationality != null && $scope.bookingData.nationality != "")
+    && ($scope.bookingData.mobile != null && $scope.bookingData.mobile != "")
+    && ($scope.bookingData.number != null && $scope.bookingData.number != "")
+    && ($scope.bookingData.cvc != null && $scope.bookingData.cvc != "")
+    && ($scope.bookingData.expiryYear != null && $scope.bookingData.expiryYear != "")
+    && ($scope.bookingData.expiryMonth != null && $scope.bookingData.expiryMonth != ""))
+    {  console.log("fel if");
+
         IP = FlightSrv.getOutgoingFlight().IP;
         if (!IP)
           IP="http://54.93.36.94";
@@ -91,12 +105,51 @@
             });
           }  
         }
-     }
-  	
+      }
+      else
+      {
+        console.log("fel else");
+        if($scope.bookingData.firstName == null || $scope.bookingData.firstName == "")
+          $scope.firstNameAlert=true;
 
-     
-     
-  };
+        if($scope.bookingData.lastName == null || $scope.bookingData.lastName == "")
+          $scope.lastNameAlert=true;
+
+        if($scope.bookingData.passportNum == null || $scope.bookingData.passportNum == "")
+            $scope.passportNumAlert=true;
+
+        if($scope.bookingData.gender == null || $scope.bookingData.gender == "") 
+           $scope.genderAlert=true;
+
+        if($scope.bookingData.email == null || $scope.bookingData.email == "")
+          $scope.emailAlert=true;
+
+        if($scope.bookingData.passportExpiryDate == null || $scope.bookingData.passportExpiryDate == "")
+          $scope.passportExpAlert=true;
+
+        if($scope.bookingData.dateOfBirth == null || $scope.bookingData.dateOfBirth == "")
+          $scope.dobAlert=true;
+
+        if($scope.bookingData.nationality == null || $scope.bookingData.nationality == "")
+          $scope.nationalityAlert=true;
+
+        if($scope.bookingData.mobile == null || $scope.bookingData.mobile == "")
+          $scope.mobileAlert=true;
+
+        if($scope.bookingData.number == null || $scope.bookingData.number == "")
+          $scope.cardAlert=true;
+
+        if($scope.bookingData.cvc == null || $scope.bookingData.cvc == "")
+          $scope.cvcAlert=true;
+
+        if($scope.bookingData.expiryYear == null || $scope.bookingData.expiryYear == "")
+          $scope.yearAlert=true;
+
+        if($scope.bookingData.expiryMonth == null || $scope.bookingData.expiryMonth == "")
+            $scope.monthAlert=true;
+      }
+
+    };
 
   function stripeResponseHandler(status, response) 
   {
@@ -202,11 +255,13 @@ function Book(token)
                   FlightSrv.setInRefNo("Sorry the booking failed");
                 }
             }
-        }); 
         verifying = false;
         Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
         $state.go('app.finalBookingPage');
-};
+        }); 
+  };
+
+
 function bookDiffAirlines(token)
 {
     console.log('Booking Diff Airlines');
@@ -235,5 +290,6 @@ function bookDiffAirlines(token)
               Stripe.setPublishableKey('pk_test_wAzEmAILhEkjKJZdSiui6s98');
             });
     });
-};
+ };
+
 });

@@ -1,6 +1,7 @@
 <link href="css/paymentInfo.css" rel="stylesheet">
-<ion-view view-title="PAYMENT" id="content">
-	<ion-content>
+
+<ion-view view-title="PAYMENT">  
+	<ion-content id="content">
 
 	<div class="list list-inset">
 
@@ -8,12 +9,14 @@
     	<span class="input-label"><i class="icon ion-person"></i>   First Name</span>
     	<input ng-model="bookingData.firstName" type="text" 
     	placeholder="e.g John">
+    	<p ng-show="firstNameAlert" id="alert">Please fill in this field!</p>
   	</label>
 
   	<label class="item item-input item-stacked-label">
     	<span class="input-label"><i class="icon ion-person"></i>   Last Name</span>
     	<input ng-model="bookingData.lastName" type="text" 
     	placeholder="e.g Smith">
+    	<p ng-show="lastNameAlert" id="alert">Please fill in this field!</p>
   	</label>
 
   	<label class="item item-input item-select">
@@ -25,36 +28,42 @@
       		<option>Male</option>
       		<option>Female</option>
     	</select>
+    	<p ng-show="genderAlert" id="alert">Please fill in this field!</p>
     </label>
 
   	<label class="item item-input item-stacked-label">
     	<span class="input-label"><i class="icon ion-calendar"></i>   Date Of Birth</span>
     	<input ng-model="bookingData.dateOfBirth" type="date" 
     	placeholder="MM/DD/YYYY">
+    	<p ng-show="dobAlert" id="alert">Please fill in this field!</p>
   	</label>
 
   	<label class="item item-input item-stacked-label">
     	<span class="input-label"><i class="icon ion-earth"></i>   Nationality</span>
     	<input ng-model="bookingData.nationality" type="text" 
     	placeholder="e.g Egyptian">
+    	<p ng-show="nationalityAlert" id="alert">Please fill in this field!</p>
   	</label>
 
   	<label class="item item-input item-stacked-label">
     	<span class="input-label"><i class="icon ion-email"></i>   Email</span>
     	<input ng-model="bookingData.email" type="email" 
     	placeholder="example@yahoo.com">
+    	<p ng-show="emailAlert" id="alert">Please fill in this field!</p>
   	</label>
 
   	<label class="item item-input item-stacked-label">
     	<span class="input-label"><i class="icon ion-android-phone-portrait"></i>   Mobile Number</span>
     	<input ng-model="bookingData.mobile" type="number" 
     	placeholder="XXXXXXXXXXX">
+    	<p ng-show="mobileAlert" id="alert">Please fill in this field!</p>
   	</label>
 
   	<label class="item item-input item-stacked-label">
     	<span class="input-label"><i class="icon ion-android-plane"></i>   Passport Number</span>
     	<input ng-model="bookingData.passportNum" type="text" 
     	placeholder="XXXX-XXX-XXX">
+    	<p ng-show="passportNumAlert" id="alert">Please fill in this field!</p>
   	</label>
 
   	<label class="item item-input item-stacked-label">
@@ -62,6 +71,7 @@
     	    Passport Expiry Date</span>
     	<input ng-model="bookingData.passportExpiryDate" type="date" 
     	placeholder="XXXX-XXXX-XXXX">
+    	<p ng-show="passportExpAlert" id="alert">Please fill in this field!</p>
   	</label>
 
   	<label class="item item-input item-stacked-label">
@@ -69,6 +79,7 @@
     	    Credit Card Number</span>
     	<input ng-model="bookingData.number" type="number" 
     	placeholder="XXXX-XXXX-XXXX-XXXX">
+    	<p ng-show="cardAlert" id="alert">Please fill in this field!</p>
   	</label>
 
   	<label class="item item-input item-stacked-label">
@@ -76,6 +87,7 @@
     	   CVC</span>
     	<input ng-model="bookingData.cvc" type="number" 
     	placeholder="XXX">
+    	<p ng-show="cvcAlert" id="alert">Please fill in this field!</p>
   	</label>
 
   	<label class="item item-input item-stacked-label" id="month">
@@ -83,6 +95,7 @@
     	    Expiry Month</span>
     	<input ng-model="bookingData.expiryMonth" type="number" 
     	placeholder="MM">
+    	<p ng-show="monthAlert" id="alert">Please fill in this field!</p>
   	</label>
 
   	<label class="item item-input item-stacked-label" id="year">
@@ -90,9 +103,10 @@
     	    Expiry Year</span>
     	<input ng-model="bookingData.expiryYear" type="number" 
     	placeholder="YYYY">
+    	<p ng-show="yearAlert" id="alert">Please fill in this field!</p>
   	</label>
 	</div>
-	<button class="button button-positive" ng-click="stripeCallback()"> Submit </button>
+	<button class="button button-positive" ng-click="stripeCallback()" ng-disabled="verifying"> Submit </button>
 
 	</ion-content>
 </ion-view>

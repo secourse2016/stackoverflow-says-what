@@ -4,7 +4,7 @@
  
   <ion-content id="content">
  <!-- refnum = 5726a0c645b95965055819ac -->
-  <div class="card">
+  <div class="card animated slideInRight">
   <div class="item item-divider item-icon-left" id="cardLabel">
     <i class="icon ion-plane"></i>
     Flight Details
@@ -12,20 +12,20 @@
       <li class="item">
       <h2>Type of Flight</h2>
       </li>
-      <li class="item animated slideInRight">
+      <li class="item">
       <p>{{flight.type}}</p>
       </li>
 
       <li class="item">
       <h2>Cabin Class</h2>
       </li>
-      <li class="item animated slideInRight">
+      <li class="item">
       <p>{{flight.class}}</p>
       </li>
   </div>
 
 
-  <div class="card" ng-repeat = "passenger in flight.passengers">
+  <div class="card animated slideInLeft" ng-repeat = "passenger in flight.passengers">
   <div class="item item-divider item-icon-left" id="cardLabel">
     <i class="icon ion-person"></i>
     Passenger Details
@@ -33,28 +33,28 @@
       <li class="item">
       <h2>First Name</h2>
       </li>
-      <li class="item animated slideInRight">
+      <li class="item">
       <p>{{passenger.firstName}}</p>
       </li>
 
       <li class="item">
       <h2>Last Name</h2>
       </li>
-      <li class="item animated slideInRight">
+      <li class="item">
       <p>{{passenger.lastName}}</p>
       </li>
 
       <li class="item">
       <h2>Outgoing Flight Seat Number</h2>
       </li>
-      <li class="item animated slideInRight">
+      <li class="item">
       <p>{{passenger.outgoingFlightSeat}}</p>
       </li>
 
       <li class="item">
       <h2>Incoming Flight Seat Number</h2>
       </li>
-      <li class="item animated slideInRight">
+      <li class="item">
       <p> {{passenger.ingoingFlightSeat}}</p>
       </li>
   </div>
