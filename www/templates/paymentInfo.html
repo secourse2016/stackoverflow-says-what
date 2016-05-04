@@ -24,7 +24,7 @@
     	<i class="icon ion-person"></i>
       		Gender
     	</div>
-    	<select ng-model="bookingData.gender">
+    	<select ng-model="cardData.gender">
       		<option>Male</option>
       		<option>Female</option>
     	</select>
@@ -54,7 +54,7 @@
 
   	<label class="item item-input item-stacked-label">
     	<span class="input-label"><i class="icon ion-android-phone-portrait"></i>   Mobile Number</span>
-    	<input ng-model="bookingData.mobile" type="number" 
+    	<input ng-model="cardData.mobile" type="number" 
     	placeholder="XXXXXXXXXXX">
     	<p ng-show="mobileAlert" id="alert">Please fill in this field!</p>
   	</label>
@@ -77,7 +77,7 @@
   	<label class="item item-input item-stacked-label">
     	<span class="input-label"><i class="icon ion-card"></i>
     	    Credit Card Number</span>
-    	<input ng-model="bookingData.number" type="number" 
+    	<input ng-model="cardData.number" type="number" 
     	placeholder="XXXX-XXXX-XXXX-XXXX">
     	<p ng-show="cardAlert" id="alert">Please fill in this field!</p>
       <p ng-hide="val.cardCheck" id="alert">Invalid Credit Card Num!</p>
@@ -86,7 +86,7 @@
   	<label class="item item-input item-stacked-label">
     	<span class="input-label"><i class="icon ion-document-text"></i>
     	   CVC</span>
-    	<input ng-model="bookingData.cvc" type="number" 
+    	<input ng-model="cardData.cvc" type="number" 
     	placeholder="XXX">
     	<p ng-show="cvcAlert" id="alert">Please fill in this field!</p>
       <p ng-hide="val.cvcCheck" id="alert">Invalid CVC!</p>
@@ -96,7 +96,7 @@
   	<label class="item item-input item-stacked-label" id="month">
     	<span class="input-label"><i class="icon ion-calendar"></i>
     	    Expiry Month</span>
-    	<input ng-model="bookingData.expiryMonth" type="number" 
+    	<input ng-model="cardData.expiryMonth" type="number" 
     	placeholder="MM">
     	<p ng-show="monthAlert" id="alert">Please fill in this field!</p>
   	</label>
@@ -104,7 +104,7 @@
   	<label class="item item-input item-stacked-label" id="year">
     	<span class="input-label"><i class="icon ion-calendar"></i>
     	    Expiry Year</span>
-    	<input ng-model="bookingData.expiryYear" type="number" 
+    	<input ng-model="cardData.expiryYear" type="number" 
     	placeholder="YYYY">
     	<p ng-show="yearAlert" id="alert">Please fill in this field!</p>
   	</label>

@@ -1,0 +1,46 @@
+<link href="css/oneWayBooking.css" rel="stylesheet">
+<ion-view view-title="CONTACT US" style="background-color:lightblue">
+  <ion-content id="content">
+
+    <div class="list list-inset">
+
+       <label class="item item-input hvr-underline-from-center" id="inputLabel">
+          <span>First Name</span>
+          <input type="text" ng-model="info.fn"> 
+          <p ng-show="info.fnAlert" id="alert">Please enter a valid name!</p>
+       </label>
+
+       <label class="item item-input hvr-underline-from-center" id="inputLabel">
+          <span>Last Name</span>
+          <input type="text" ng-model="info.ln"> 
+          <p ng-show="info.lnAlert" id="alert">Please enter a valid name!</p>
+       </label>
+
+       <label class="item item-input hvr-underline-from-center" id="inputLabel">
+          <span>Email</span>
+          <input type="email" ng-model="info.email" placeholder="example@yahoo.com"> 
+          <p ng-show="info.emailAlert" id="alert">Please enter an email!</p>
+          
+       </label>
+
+       <label class="item item-input hvr-underline-from-center" id="inputLabel">
+          <span>Your comment</span>
+          <textarea type="text" ng-model="info.comment" rows="4"> </textarea>
+          <p ng-show="info.commentAlert" id="alert">Oops!Looks like you didn't leave a comment</p>
+          
+       </label>
+
+       <button class="button button-block button-positive icon-right" 
+       id="searchButton"
+       ng-click="contactSubmit()"> 
+       <i class="icon ion-search"></i>
+       Submit
+       </button>
+
+
+    </div>
+
+
+
+  </ion-content>
+</ion-view>
