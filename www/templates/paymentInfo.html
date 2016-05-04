@@ -1,98 +1,81 @@
-<link href="css/paymentInfo.css" rel="stylesheet">
-<ion-view view-title="PAYMENT" id="content">
+<ion-view view-title="PAYMENT INFO" style="padding: 40px 10px 10px 10px">
+	
 	<ion-content>
 
-	<div class="list list-inset">
+		<div class="list">
+			<label class="item item-input item-stacked-label">
+				<span class="input-label">First Name</span>
+				<input ng-model="bookingData.firstName" type="text" placeholder="John"></input>
+			</label>
 
-  	<label class="item item-input item-stacked-label">
-    	<span class="input-label"><i class="icon ion-person"></i>   First Name</span>
-    	<input ng-model="bookingData.firstName" type="text" 
-    	placeholder="e.g John">
-  	</label>
+			<label class="item item-input item-stacked-label">
+				<span class="input-label">Last Name</span>
+				<input ng-model="bookingData.lastName" type="text" placeholder="John"></input>
+			</label>
 
-  	<label class="item item-input item-stacked-label">
-    	<span class="input-label"><i class="icon ion-person"></i>   Last Name</span>
-    	<input ng-model="bookingData.lastName" type="text" 
-    	placeholder="e.g Smith">
-  	</label>
+			<label class="item item-input item-select">
+					Gender
+				<select ng-model="cardData.gender">
+					<option>Male</option>
+					<option>Female</option>
+				</select>
+			</label>
 
-  	<label class="item item-input item-select">
-    	<div class="input-label">
-    	<i class="icon ion-person"></i>
-      		Gender
-    	</div>
-    	<select ng-model="bookingData.gender">
-      		<option>Male</option>
-      		<option>Female</option>
-    	</select>
-    </label>
+			<label class="item item-input">
+	            <i class="icon ion-calendar placeholder-icon"></i>
+	            <span class="input-label">Date of Birth</span>
+	            <input type="text" placeholder="yyyy-mm-dd" onfocus="(this.type='date')" ng-model="bookingData.dateOfBirth">
+	        </label>
 
-  	<label class="item item-input item-stacked-label">
-    	<span class="input-label"><i class="icon ion-calendar"></i>   Date Of Birth</span>
-    	<input ng-model="bookingData.dateOfBirth" type="date" 
-    	placeholder="MM/DD/YYYY">
-  	</label>
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Nationality</span>
+	        	<input type="text" placeholder="Egyptian" ng-model="bookingData.nationality"></input>
+	        </label>
 
-  	<label class="item item-input item-stacked-label">
-    	<span class="input-label"><i class="icon ion-earth"></i>   Nationality</span>
-    	<input ng-model="bookingData.nationality" type="text" 
-    	placeholder="e.g Egyptian">
-  	</label>
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Email</span>
+	        	<input type="text" placeholder="example@yahoo.com" ng-model="bookingData.email"></input>
+	        </label>
 
-  	<label class="item item-input item-stacked-label">
-    	<span class="input-label"><i class="icon ion-email"></i>   Email</span>
-    	<input ng-model="bookingData.email" type="email" 
-    	placeholder="example@yahoo.com">
-  	</label>
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Moblie Number</span>
+	        	<input type="text" placeholder="+ID XXXX-XXX-XXX" ng-model="cardData.mobile"></input>
+	        </label>
 
-  	<label class="item item-input item-stacked-label">
-    	<span class="input-label"><i class="icon ion-android-phone-portrait"></i>   Mobile Number</span>
-    	<input ng-model="bookingData.mobile" type="number" 
-    	placeholder="XXXXXXXXXXX">
-  	</label>
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Passport Number</span>
+	        	<input type="text" ng-model="bookingData.passportNum"></input>
+	        </label>
 
-  	<label class="item item-input item-stacked-label">
-    	<span class="input-label"><i class="icon ion-android-plane"></i>   Passport Number</span>
-    	<input ng-model="bookingData.passportNum" type="text" 
-    	placeholder="XXXX-XXX-XXX">
-  	</label>
+	        <label class="item item-input">
+	            <i class="icon ion-calendar placeholder-icon"></i>
+	            <span class="input-label">Passport Expiry Date</span>
+	            <input type="text" placeholder="yyyy-mm-dd" onfocus="(this.type='date')" ng-model="bookingData.passportExpiryDate">
+	        </label>
 
-  	<label class="item item-input item-stacked-label">
-    	<span class="input-label"><i class="icon ion-calendar"></i>
-    	    Passport Expiry Date</span>
-    	<input ng-model="bookingData.passportExpiryDate" type="date" 
-    	placeholder="XXXX-XXXX-XXXX">
-  	</label>
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Credit Card Number</span>
+	        	<input type="text" placeholder="Card Number" ng-model="cardData.number"></input>
+	        </label>
 
-  	<label class="item item-input item-stacked-label">
-    	<span class="input-label"><i class="icon ion-card"></i>
-    	    Credit Card Number</span>
-    	<input ng-model="bookingData.number" type="number" 
-    	placeholder="XXXX-XXXX-XXXX-XXXX">
-  	</label>
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">CVC</span>
+	        	<input type="text" placeholder="CVC" ng-model="cardData.cvc"></input>
+	        </label>
 
-  	<label class="item item-input item-stacked-label">
-    	<span class="input-label"><i class="icon ion-document-text"></i>
-    	   CVC</span>
-    	<input ng-model="bookingData.cvc" type="number" 
-    	placeholder="XXX">
-  	</label>
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Card Expiry Year</span>
+	        	<input type="text" placeholder="YYYY" ng-model="cardData.expiryYear"></input>
+	        </label>
 
-  	<label class="item item-input item-stacked-label" id="month">
-    	<span class="input-label"><i class="icon ion-calendar"></i>
-    	    Expiry Month</span>
-    	<input ng-model="bookingData.expiryMonth" type="number" 
-    	placeholder="MM">
-  	</label>
+	        <label class="item item-input item-stacked-label">
+	        	<span class="input-label">Card Expiry Month</span>
+	        	<input type="text" placeholder="MM" ng-model="cardData.expiryMonth"></input>
+	        </label>
+		</div>
 
-  	<label class="item item-input item-stacked-label" id="year">
-    	<span class="input-label"><i class="icon ion-calendar"></i>
-    	    Expiry Year</span>
-    	<input ng-model="bookingData.expiryYear" type="number" 
-    	placeholder="YYYY">
-  	</label>
-	</div>
-	<button class="button button-positive" ng-click="stripeCallback()"> Submit </button>
+		<button class="button button-outline button-positive" style="margin-left: 250px" ng-click="stripeCallback()"> Submit </button>
 
 	</ion-content>
+
 </ion-view>
